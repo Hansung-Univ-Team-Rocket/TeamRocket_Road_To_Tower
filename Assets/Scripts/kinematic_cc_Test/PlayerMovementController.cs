@@ -14,6 +14,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     [SerializeField] float _maxStableMoveSpeed = 10f;
     [SerializeField] float _stableMovementSharpness = 15f;
     [SerializeField] private float _orientationSharpness = 10f;
+    [SerializeField] Vector3 _gravity = new Vector3(0, -60f, 0);
     Vector3 _moveInputVector;
     Vector3 _lookInputVector;
 
@@ -82,16 +83,24 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
     public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
     {
-        float curVelocityMagnitude = currentVelocity.magnitude;
-        Vector3 effectiveGroundNorm = _motor.GroundingStatus.GroundNormal;
 
-        currentVelocity = _motor.GetDirectionTangentToSurface(currentVelocity, effectiveGroundNorm) * curVelocityMagnitude;
+        if (_motor.GroundingStatus.IsStableOnGround)
+        {
+            float curVelocityMagnitude = currentVelocity.magnitude;
+            Vector3 effectiveGroundNorm = _motor.GroundingStatus.GroundNormal;
 
-        Vector3 inputRight = Vector3.Cross(_moveInputVector, _motor.CharacterUp);
-        Vector3 reorientedInput = Vector3.Cross(effectiveGroundNorm, inputRight).normalized * _moveInputVector.magnitude;
+            currentVelocity = _motor.GetDirectionTangentToSurface(currentVelocity, effectiveGroundNorm) * curVelocityMagnitude;
 
-        Vector3 targetMovementVelocity = reorientedInput * _maxStableMoveSpeed;
+            Vector3 inputRight = Vector3.Cross(_moveInputVector, _motor.CharacterUp);
+            Vector3 reorientedInput = Vector3.Cross(effectiveGroundNorm, inputRight).normalized * _moveInputVector.magnitude;
 
-        currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-_stableMovementSharpness * deltaTime));
+            Vector3 targetMovementVelocity = reorientedInput * _maxStableMoveSpeed;
+            currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-_stableMovementSharpness * deltaTime));
+        }
+        else
+        {
+            currentVelocity.y += _gravity.y * Time.deltaTime;
+            //currentVelocity += _gravity * deltaTime;
+        }
     }
 }
