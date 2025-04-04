@@ -17,6 +17,8 @@ public class PlayerCamera : MonoBehaviour
         _maxVerticalAngle = 90f,
         _defaultVerticalAngle = 20f;
 
+    public float raycastDis = 10f;
+    public RaycastHit hit;
     Transform _followTransform;
     Vector3 _currentFollowPos, _planarDir;
     float _targetVerticalAngle;
@@ -78,6 +80,16 @@ public class PlayerCamera : MonoBehaviour
             HandleRotationInput(deltaTime, rotationInput, out Quaternion targetRotation);
             HandlePosition(deltaTime, zoomInput, targetRotation);
         }
+    }
+
+    public void UpdatePlayerStickOnWall(float deltaTime, Vector3 rotationInput)
+    {
+        // if(_followTransform)
+        // {
+        //     HandleRotationInput(deltaTime, rotationInput, out Quaternion targetRotation);
+        //     HandlePosition(deltaTime, -10f, targetRotation);
+        // }
+        // Doesnt works
     }
     
 }

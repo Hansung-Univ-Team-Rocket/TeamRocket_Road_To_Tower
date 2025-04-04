@@ -15,13 +15,20 @@ public class PlayerController : MonoBehaviour
         _playerCam.SetFollowTransform(_cameraFollowPoint);
 
     }
-    
+
+
     void HandledCameraInput()
     {
         float mouseUp = Input.GetAxisRaw("Mouse Y");
         float mouseRIght = Input.GetAxisRaw("Mouse X");
 
         _lookInputVector = new Vector3(mouseRIght, mouseUp, 0f);
+
+        // if(Physics.Raycast(_playerCam.gameObject.transform.position, -_playerCam.gameObject.transform.forward, out _playerCam.hit, _playerCam.raycastDis))
+        // {
+        //     _playerCam.UpdatePlayerStickOnWall(Time.deltaTime, _lookInputVector);
+        // }
+        // Doesnt works
 
         float scrollInput = -Input.GetAxis("Mouse ScrollWheel");
         _playerCam.UpdateWithInput(Time.deltaTime, scrollInput, _lookInputVector);
