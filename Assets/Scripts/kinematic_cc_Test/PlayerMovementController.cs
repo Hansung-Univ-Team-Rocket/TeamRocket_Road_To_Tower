@@ -60,6 +60,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         _motor.CharacterController = this;
     }
 
+    // 정지 상태인 경우에 여기서 플레이어 스테이트 머신 해결
     public void SetInputs(ref PlayerInput inputs)
     {
         if (playerState == PlayerState.DEAD) return;
@@ -145,6 +146,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         }
 
     }
+    // 최대한 이동 상태와 관련된 플레이어 스테이트는 이 콜백에서 해결
     public void AfterCharacterUpdate(float deltaTime)
     {
         if (_isCrouching && !_secondCrouchingChecker)
