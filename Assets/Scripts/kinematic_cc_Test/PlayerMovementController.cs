@@ -1,5 +1,6 @@
 using KinematicCharacterController;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public struct PlayerInput
 {
@@ -19,7 +20,7 @@ public enum PlayerState
     MOVE,
     SPRINT,
     CROUCH,
-    CROUNCH_MOVE,
+    CROUCH_MOVE,
     DODGE,
     ATTACK,
     DAMAGED,
@@ -81,20 +82,6 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             //Debug.Log("들어 옴?");
             if(inputs.CrouchDown)
             {
-                //if(inputs.Sprint)
-                //{
-                //    _secondCrouchingChecker = false;
-                //    _motor.SetCapsuleDimensions(0.5f, _playerNonCrouhedCapsuleHieght, 1f);
-                //    if (_motor.CharacterOverlap(
-                //        _motor.TransientPosition,
-                //        _motor.TransientRotation,
-                //        _probedColliders,
-                //        _motor.CollidableLayers,
-                //        QueryTriggerInteraction.Ignore) > 0) return;
-                //    else
-                //        playerState = PlayerState.SPRINT;
-                //}
-                // 필요 없을 듯? 일단 빼보기
                 _isSprinting = false;
                 _secondCrouchingChecker = true;
 
@@ -102,73 +89,20 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
                 {
                     _isCrouching = true;
                     _motor.SetCapsuleDimensions(0.5f, _playerCrouchedCapsuleHieght, _playerCrouchedCapsuleHieght * .5f);
-                    playerState = PlayerState.CROUNCH_MOVE;
+                    playerState = PlayerState.CROUCH_MOVE;
                 }
-
-                //if (inputs.Non_Sprint)
-                //{
-                //    _isSprinting= false;
-                //    _secondCrouchingChecker = true;
-
-                //    if(!_isCrouching)
-                //    {
-                //        _isCrouching = true;
-                //        _motor.SetCapsuleDimensions(0.5f, _playerCrouchedCapsuleHieght, _playerCrouchedCapsuleHieght * .5f);
-                //        playerState = PlayerState.CROUNCH_MOVE;
-                //    }
-                //}
-                // 여기도
             }
             else if(inputs.CrouchUp)
             {
                 _secondCrouchingChecker = false;
-                //if(inputs.Sprint)
-                //{
-                //    _isSprinting = true;
-                //    playerState = PlayerState.SPRINT;
-                //}
-                // 여기도
-                // _isSprinting = false;
-
-                _motor.SetCapsuleDimensions(0.5f, _playerNonCrouhedCapsuleHieght, 1f);
-                if (_motor.CharacterOverlap(
-                    _motor.TransientPosition,
-                    _motor.TransientRotation,
-                    _probedColliders,
-                    _motor.CollidableLayers,
-                    QueryTriggerInteraction.Ignore) > 0) return;
-                else
-                {
-                    if (inputs.Sprint)
-                    {
-                        _isSprinting = true;
-                        playerState = PlayerState.SPRINT;
-                    }
-                    else if(inputs.Non_Sprint)
-                    {
-                        _isSprinting = false;
-                         playerState = PlayerState.MOVE;
-                    }
-                }
-
-                //else if(inputs.Non_Sprint)
-                //{
-                //    _isSprinting = false;
-                //    _motor.SetCapsuleDimensions(0.5f, _playerNonCrouhedCapsuleHieght, 1f);
-                //    if (_motor.CharacterOverlap(
-                //        _motor.TransientPosition,
-                //        _motor.TransientRotation,
-                //        _probedColliders,
-                //        _motor.CollidableLayers,
-                //        QueryTriggerInteraction.Ignore) > 0) return;
-                //    else
-                //        playerState = PlayerState.MOVE;
-                //}
-                // 여기도
             }
             else
             {
-                if(!_isCrouching && !_isSprinting)
+                if (_isCrouching)
+                {
+                    playerState = PlayerState.CROUCH_MOVE;
+                }
+                if (!_isCrouching && !_isSprinting)
                 {
                     playerState = PlayerState.MOVE;
                 }
@@ -180,6 +114,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         }
         if(inputs.AxisFwd == 0 && inputs.AxisRight == 0)
         {
+
             if(inputs.CrouchDown)
             {
                 _secondCrouchingChecker = true;
@@ -204,6 +139,10 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
                 if(!_isCrouching)
                 {
                     playerState = PlayerState.IDLE;
+                }
+                else
+                {
+                    playerState = PlayerState.CROUCH;
                 }
             }
         }
@@ -289,7 +228,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
             if (playerState == PlayerState.SPRINT)
                 targetMovementVelocity = reorientedInput * _maxSprintMoveSpeed;
-            else if(playerState == PlayerState.CROUCH || playerState == PlayerState.CROUNCH_MOVE)
+            else if(playerState == PlayerState.CROUCH || playerState == PlayerState.CROUCH_MOVE)
                 targetMovementVelocity = reorientedInput * _maxStableMoveSpeed * 2/3;
             else
                 targetMovementVelocity = reorientedInput * _maxStableMoveSpeed;
