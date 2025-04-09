@@ -80,7 +80,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         if (inputs.AxisFwd != 0 || inputs.AxisRight != 0)
         {
             //Debug.Log("들어 옴?");
-            if(inputs.CrouchDown)
+            if (inputs.CrouchDown)
             {
                 _isSprinting = false;
                 _secondCrouchingChecker = true;
@@ -92,24 +92,21 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
                     playerState = PlayerState.CROUCH_MOVE;
                 }
             }
-            else if(inputs.CrouchUp)
+            else if (inputs.CrouchUp)
             {
                 _secondCrouchingChecker = false;
             }
-            else
+            else if (inputs.Sprint)
             {
-                if (_isCrouching)
+                if (!_isCrouching)
                 {
-                    playerState = PlayerState.CROUCH_MOVE;
+                    _isSprinting = true;
                 }
-                if (!_isCrouching && !_isSprinting)
-                {
-                    playerState = PlayerState.MOVE;
-                }
-                if(!_isCrouching && _isSprinting)
-                {
-                    playerState = PlayerState.SPRINT;
-                }
+                else _isSprinting = false;
+            }
+            else if (inputs.Non_Sprint) // 사실상의 달리기를 안 했을 때의 모든 상태가 들어가는 else 구문
+            {
+                _isSprinting = false;
             }
         }
         if(inputs.AxisFwd == 0 && inputs.AxisRight == 0)
@@ -168,6 +165,21 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             {
                 _isCrouching = false;
                 playerState = PlayerState.IDLE;
+            }
+        }
+        if(_isSprinting)
+        {
+            playerState = PlayerState.SPRINT;
+        }
+        else
+        {
+            if (_isCrouching)
+            {
+                playerState = PlayerState.CROUCH_MOVE;
+            }
+            if (!_isCrouching && !_isSprinting)
+            {
+                playerState = PlayerState.MOVE;
             }
         }
     }
