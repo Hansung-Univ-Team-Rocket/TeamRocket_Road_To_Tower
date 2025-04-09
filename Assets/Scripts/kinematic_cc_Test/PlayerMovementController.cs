@@ -235,11 +235,15 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
             currentVelocity = _motor.GetDirectionTangentToSurface(currentVelocity, effectiveGroundNorm) * curVelocityMagnitude;
 
+            // 외적으로 방향찾기
             Vector3 inputRight = Vector3.Cross(_moveInputVector, _motor.CharacterUp);
+            // 방향 벡터와 카메라 이동 방향과 키보드 인풋을 곱한 벡터 값의 속도(벡터의 크기)를 곱한 벡터값
             Vector3 reorientedInput = Vector3.Cross(effectiveGroundNorm, inputRight).normalized * _moveInputVector.magnitude;
 
             Vector3 targetMovementVelocity;
 
+            // 3개의 상태별로 나눠서 구한 해당 방향으로의 벡터 이동 및 속도값을 변수로 지정한 최대 수치 값과 곱함
+            // 즉, 3개의 상태 당, 각 유저 인풋에 대한 방향별 최대 이동속도 값
             if (playerState == PlayerState.SPRINT)
                 targetMovementVelocity = reorientedInput * _maxSprintMoveSpeed;
             else if(playerState == PlayerState.CROUCH || playerState == PlayerState.CROUCH_MOVE)
@@ -247,6 +251,8 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             else
                 targetMovementVelocity = reorientedInput * _maxStableMoveSpeed;
 
+            // 현재 이동한 ref 파라메터인 currentVelocity에 targetMovementVelocity과 지수 감쇠 보간처리 하여 
+            // 점차 가속되게 함
             currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-_stableMovementSharpness * deltaTime));
         }
         else
