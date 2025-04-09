@@ -99,7 +99,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         }
         else
         {
-            currentVelocity.y += _gravity.y * Time.deltaTime;
+            currentVelocity.y += _gravity.y * deltaTime;
             //currentVelocity += _gravity * deltaTime;
         }
     }

@@ -1001,7 +1001,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1057,6 +1057,7 @@ MonoBehaviour:
   _minVerticalAngle: -90
   _maxVerticalAngle: 90
   _defaultVerticalAngle: 20
+  raycastDis: 10
 --- !u!1 &1104174972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,6 +1378,7 @@ MonoBehaviour:
   _maxStableMoveSpeed: 10
   _stableMovementSharpness: 15
   _orientationSharpness: 10
+  _gravity: {x: 0, y: -60, z: 0}
 --- !u!1 &1215495912
 GameObject:
   m_ObjectHideFlags: 0
