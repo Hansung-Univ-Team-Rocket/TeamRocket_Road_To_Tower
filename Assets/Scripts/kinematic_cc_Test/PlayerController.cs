@@ -39,6 +39,16 @@ public class PlayerController : MonoBehaviour
         inputs.AxisFwd = Input.GetAxisRaw("Vertical");
         inputs.AxisRight = Input.GetAxisRaw("Horizontal");
         inputs.CameraRotation = _playerCam.transform.rotation;
+        inputs.CrouchDown = Input.GetKeyDown(KeyCode.LeftControl);
+        inputs.CrouchUp = Input.GetKeyUp(KeyCode.LeftControl);
+        inputs.Sprint = Input.GetKey(KeyCode.LeftShift);
+        inputs.Non_Sprint = !inputs.Sprint;
+        if (inputs.Sprint) Debug.Log("달리기 온");
+        if (inputs.Non_Sprint) Debug.Log("달리기 아님");
+        //inputs.Sprint = Input.GetKeyDown(KeyCode.LeftShift);
+        //inputs.Non_Sprint = Input.GetKeyUp(KeyCode.LeftShift);
+        inputs.Dodge = Input.GetKeyDown(KeyCode.Space);
+        
 
         _characterController.SetInputs(ref inputs);
     }
