@@ -167,66 +167,63 @@ public class BossControl : MonoBehaviour
 
     IEnumerator SpikePattern()
     {
-        List<Vector3> spikePositions = new List<Vector3>();
-        List<GameObject> warningPlanes = new List<GameObject>();
-
-        Vector3 floorSize = Floor.transform.localScale; // Floor 객체의 크기 (localScale)을 사용
-        Vector3 floorCenter = Floor.transform.position;      // Floor 중심 좌표
-
-        float actualSizeX = floorSize.x * 10f;               // Plane의 실제 크기 고려
-        float actualSizeZ = floorSize.z * 10f;
-        float cellSize = 10f;                                 // 셀 한 칸 크기
-
-        int cellCountX = Mathf.FloorToInt(actualSizeX / cellSize);
-        int cellCountZ = Mathf.FloorToInt(actualSizeZ / cellSize);
-
-        // 모든 셀의 인덱스를 모은 리스트
-        List<Vector2Int> allCells = new List<Vector2Int>();
-        for (int x = 0; x < cellCountX; x++)
+        for (int count = 0; count < 3; count++)
         {
-            for (int z = 0; z < cellCountZ; z++)
+            List<Vector3> spikePositions = new List<Vector3>();
+            List<GameObject> warningPlanes = new List<GameObject>();
+
+            Vector3 floorSize = Floor.transform.localScale; // Floor 객체의 크기 (localScale)을 사용
+            Vector3 floorCenter = Floor.transform.position; // Floor 중심 좌표
+
+            float realSizeX = floorSize.x * 10f; // Plane의 실제 크기 고려
+            float realSizeZ = floorSize.z * 10f;
+            float cellSize = 10f; // 셀 한 칸 크기
+
+            // 가능한 셀 목록 생성
+            List<Vector3> availableCells = new List<Vector3>();
+
+            for (int x = 0; x < Mathf.FloorToInt(realSizeX / cellSize); x++)
             {
-                allCells.Add(new Vector2Int(x, z));
+                for (int z = 0; z < Mathf.FloorToInt(realSizeZ / cellSize); z++)
+                {
+                    float worldX = floorCenter.x - realSizeX / 2f + x * cellSize + cellSize / 2f;
+                    float worldZ = floorCenter.z - realSizeZ / 2f + z * cellSize + cellSize / 2f;
+                    availableCells.Add(new Vector3(worldX, 0, worldZ));
+                }
             }
+
+            // 셀 무작위 선택
+            for (int i = 0; i < spikeCount && availableCells.Count > 0; i++)
+            {
+                int index = Random.Range(0, availableCells.Count);
+                Vector3 cellPos = availableCells[index];
+                availableCells.RemoveAt(index);
+
+                GameObject warning = Instantiate(warningPlanePrefab, cellPos + Vector3.up * 0.01f, Quaternion.identity);
+                warning.transform.localScale = new Vector3(cellSize, 0.1f, cellSize);
+                warningPlanes.Add(warning);
+                spikePositions.Add(cellPos);
+            }
+
+            // 일정 시간 대기 (경고 유지)
+            yield return new WaitForSeconds(warningDuration);
+
+            //  경고 제거, 가시 생성
+            foreach (GameObject warning in warningPlanes)
+            {
+                Destroy(warning);
+            }
+
+            foreach (Vector3 pos in spikePositions)
+            {
+                GameObject spike = Instantiate(spikePrefab, pos, Quaternion.identity);
+                spike.transform.localScale = new Vector3(cellSize, 0.1f, cellSize);
+                Destroy(spike, spikeDuration);
+            }
+            yield return new WaitForSeconds(1f); // 반복 간 간격
         }
 
-        // 섞고 일부만 선택
-        allCells = allCells.OrderBy(c => Random.value).ToList();
-        int count = Mathf.Min(spikeCount, allCells.Count);
-
-        for (int i = 0; i < count; i++)
-        {
-            Vector2Int cell = allCells[i];
-
-            // 셀 인덱스를 실제 좌표로 변환
-            float posX = (cell.x + 0.5f) * cellSize - actualSizeX / 2f;
-            float posZ = (cell.y + 0.5f) * cellSize - actualSizeZ / 2f;
-            Vector3 cellCenter = new Vector3(posX, 0f, posZ) + floorCenter;
-
-            // 경고 평면
-            GameObject warning = Instantiate(warningPlanePrefab, cellCenter + Vector3.up * 0.01f, Quaternion.identity);
-            warning.transform.localScale = new Vector3(cellSize, 0.1f, cellSize);
-            warningPlanes.Add(warning);
-            spikePositions.Add(cellCenter);
-        }
-
-        // 일정 시간 대기 (경고 유지)
-        yield return new WaitForSeconds(warningDuration);
-
-        //  경고 제거, 가시 생성
-        foreach (GameObject warning in warningPlanes)
-        {
-            Destroy(warning);
-        }
-
-        foreach (Vector3 pos in spikePositions)
-        {
-            GameObject spike = Instantiate(spikePrefab, pos, Quaternion.identity);
-            spike.transform.localScale = new Vector3(cellSize, 0.1f, cellSize);
-            Destroy(spike, spikeDuration); // 일정 시간 뒤 자동 제거
-        }
-
-        yield return new WaitForSeconds(1f); // 다음 패턴 간 간격
+        yield return new WaitForSeconds(1f);
     }
 
     void FireStraightBullet(Transform hand)
