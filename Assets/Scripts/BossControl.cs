@@ -31,7 +31,7 @@ public class BossControl : MonoBehaviour
             {
                 isAttacking = true;
 
-                int pattern = 0;//Random.Range(0, 3);
+                int pattern = Random.Range(0, 3);
                 switch (pattern)
                 {
                     case 0:
