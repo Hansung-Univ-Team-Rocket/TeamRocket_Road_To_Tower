@@ -52,6 +52,15 @@ public class Player : MonoBehaviour
                 StartCoroutine(OnDamage());
             }
         }
+        else if(other.gameObject.tag == "Spike")
+        {
+            if (!isDamaged)
+            {
+                Spike spike = other.GetComponent<Spike>();
+                hp -= spike.damage;
+                StartCoroutine(OnDamage());
+            }
+        }
     }
 
     IEnumerator OnDamage()

@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
+using System.Linq;
 
 public class BossControl : MonoBehaviour
 {
@@ -14,17 +16,26 @@ public class BossControl : MonoBehaviour
     public GameObject straightBulletPrefab;
     public GameObject homingBulletPrefab;
     public GameObject SpreadBulletPrefab;
+    public GameObject warningPlanePrefab;
+    public GameObject spikePrefab;
+    private GameObject Floor;
 
     public float dashSpeed = 20f;
     public float patternCooldown = 2f;
     public int damage = 5;
     public float fanAngle = 60f;
     public int bulletCount = 10;
+    public float warningDuration = 3f;
+    public float spikeDuration = 2f;
+    public int spikeCount = 5;
+
+    private Vector3 spikeAreaSize = new Vector3(25f, 0f, 25f);
 
     private bool isAttacking = false;
 
     void Start()
     {
+        Floor = GameObject.Find("Floor");
         meshs = GetComponentsInChildren<MeshRenderer>();
         StartCoroutine(PatternLoop());
     }
@@ -37,7 +48,7 @@ public class BossControl : MonoBehaviour
             {
                 isAttacking = true;
 
-                int pattern = Random.Range(0, 4);
+                int pattern = Random.Range(0, 5);
                 switch (pattern)
                 {
                     case 0:
@@ -51,6 +62,9 @@ public class BossControl : MonoBehaviour
                         break;
                     case 3:
                         yield return StartCoroutine(SpreadPattern());
+                        break;
+                    case 4:
+                        yield return StartCoroutine(SpikePattern());
                         break;
                 }
 
@@ -149,6 +163,70 @@ public class BossControl : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f); // 패턴 종료 대기
+    }
+
+    IEnumerator SpikePattern()
+    {
+        List<Vector3> spikePositions = new List<Vector3>();
+        List<GameObject> warningPlanes = new List<GameObject>();
+
+        Vector3 floorSize = Floor.transform.localScale; // Floor 객체의 크기 (localScale)을 사용
+        Vector3 floorCenter = Floor.transform.position;      // Floor 중심 좌표
+
+        float actualSizeX = floorSize.x * 10f;               // Plane의 실제 크기 고려
+        float actualSizeZ = floorSize.z * 10f;
+        float cellSize = 10f;                                 // 셀 한 칸 크기
+
+        int cellCountX = Mathf.FloorToInt(actualSizeX / cellSize);
+        int cellCountZ = Mathf.FloorToInt(actualSizeZ / cellSize);
+
+        // 모든 셀의 인덱스를 모은 리스트
+        List<Vector2Int> allCells = new List<Vector2Int>();
+        for (int x = 0; x < cellCountX; x++)
+        {
+            for (int z = 0; z < cellCountZ; z++)
+            {
+                allCells.Add(new Vector2Int(x, z));
+            }
+        }
+
+        // 섞고 일부만 선택
+        allCells = allCells.OrderBy(c => Random.value).ToList();
+        int count = Mathf.Min(spikeCount, allCells.Count);
+
+        for (int i = 0; i < count; i++)
+        {
+            Vector2Int cell = allCells[i];
+
+            // 셀 인덱스를 실제 좌표로 변환
+            float posX = (cell.x + 0.5f) * cellSize - actualSizeX / 2f;
+            float posZ = (cell.y + 0.5f) * cellSize - actualSizeZ / 2f;
+            Vector3 cellCenter = new Vector3(posX, 0f, posZ) + floorCenter;
+
+            // 경고 평면
+            GameObject warning = Instantiate(warningPlanePrefab, cellCenter + Vector3.up * 0.01f, Quaternion.identity);
+            warning.transform.localScale = new Vector3(cellSize, 0.1f, cellSize);
+            warningPlanes.Add(warning);
+            spikePositions.Add(cellCenter);
+        }
+
+        // 일정 시간 대기 (경고 유지)
+        yield return new WaitForSeconds(warningDuration);
+
+        //  경고 제거, 가시 생성
+        foreach (GameObject warning in warningPlanes)
+        {
+            Destroy(warning);
+        }
+
+        foreach (Vector3 pos in spikePositions)
+        {
+            GameObject spike = Instantiate(spikePrefab, pos, Quaternion.identity);
+            spike.transform.localScale = new Vector3(cellSize, 0.1f, cellSize);
+            Destroy(spike, spikeDuration); // 일정 시간 뒤 자동 제거
+        }
+
+        yield return new WaitForSeconds(1f); // 다음 패턴 간 간격
     }
 
     void FireStraightBullet(Transform hand)

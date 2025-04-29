@@ -119,59 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &242960676
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 242960677}
-  - component: {fileID: 242960678}
-  m_Layer: 0
-  m_Name: AtkArea
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &242960677
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 242960676}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1789681288}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &242960678
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 242960676}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.9, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &552733490
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,7 +909,7 @@ Transform:
   m_Children:
   - {fileID: 1721815490}
   - {fileID: 1187293485}
-  - {fileID: 242960677}
+  - {fileID: 1838209130}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!54 &1789681289
@@ -1007,11 +954,51 @@ MonoBehaviour:
   player: {fileID: 1945655888}
   LHand: {fileID: 1721815490}
   RHand: {fileID: 1187293485}
+  shootPoint: {fileID: 1838209130}
   straightBulletPrefab: {fileID: 9166365378689018418, guid: 39af17f42b037fc438ee65f986ac5d4c, type: 3}
   homingBulletPrefab: {fileID: 110288649633853082, guid: e3e478c807bdd7340beab31fae5b7216, type: 3}
+  SpreadBulletPrefab: {fileID: 9010742471142047644, guid: 6104eb1b692ed4843abf624091d5dfb6, type: 3}
+  warningPlanePrefab: {fileID: 2801908183515063299, guid: c71c72ff2a5f6684fab881a9ba1c7d4b, type: 3}
+  spikePrefab: {fileID: 5517957459761711049, guid: 8770f89a4f2ba6045adb2f71790a5b47, type: 3}
   dashSpeed: 20
   patternCooldown: 2
-  damage: 5
+  damage: 10
+  fanAngle: 120
+  bulletCount: 10
+  warningDuration: 3
+  spikeDuration: 2
+  spikeCount: 8
+--- !u!1 &1838209129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1838209130}
+  m_Layer: 0
+  m_Name: FirePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1838209130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838209129}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.34, z: 0.453}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1789681288}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1862464326
 GameObject:
   m_ObjectHideFlags: 0
