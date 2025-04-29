@@ -79,24 +79,36 @@ public class BossControl : MonoBehaviour
     // 패턴 1: 플레이어를 향한 돌진
     IEnumerator DashPattern()
     {
-        // 플레이어 위치 인식
-        Vector3 targetPosition = player.position;
-        targetPosition.y = transform.position.y;
-        // 플레이어를 바라보게
-        Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
-        transform.rotation = Quaternion.LookRotation(targetDirection);
+        float preparationTime = 0f;
 
-        foreach (MeshRenderer mesh in meshs)
-            mesh.material.color = Color.green;
-        yield return new WaitForSeconds(2f);
-        foreach (MeshRenderer mesh in meshs)
-            mesh.material.color = Color.white;
-
-        transform.forward = (targetPosition - transform.position).normalized;
-
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        // 준비 시간 동안 플레이어를 계속 바라봄
+        while (preparationTime < 2.0f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
+            Vector3 directionToPlayer = (player.position - transform.position);
+            directionToPlayer.y = 0;
+            if (directionToPlayer != Vector3.zero)
+                transform.rotation = Quaternion.LookRotation(directionToPlayer.normalized);
+
+            foreach (MeshRenderer mesh in meshs)
+                mesh.material.color = Color.green;
+
+            preparationTime += Time.deltaTime;
+            yield return null;
+        }
+
+        foreach (MeshRenderer mesh in meshs)
+            mesh.material.color = Color.gray;
+
+        // 돌진 시작 시점의 플레이어 위치를 기준으로 돌진
+        Vector3 dashTarget = player.position;
+        dashTarget.y = transform.position.y;
+
+        transform.forward = (dashTarget - transform.position).normalized;
+
+        // 해당 위치까지 돌진
+        while (Vector3.Distance(transform.position, dashTarget) > 0.1f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, dashTarget, dashSpeed * Time.deltaTime);
             yield return null;
         }
 
@@ -106,8 +118,16 @@ public class BossControl : MonoBehaviour
     // 패턴 2: 각 손에서 5발씩 비유도 탄환 발사
     IEnumerator StraightShotPattern()
     {
+
         for (int i = 0; i < 5; i++)
         {
+            // 플레이어 위치 인식
+            Vector3 targetPosition = player.position;
+            targetPosition.y = transform.position.y;
+            // 플레이어를 바라보게
+            Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
+            transform.rotation = Quaternion.LookRotation(targetDirection);
+
             // 번갈아가며 손을 선택
             Transform fireHand = (i % 2 == 0) ? RHand : LHand;
 
@@ -121,6 +141,13 @@ public class BossControl : MonoBehaviour
     // 패턴 3: 각 손에서 1발씩 유도 탄환 발사
     IEnumerator HomingShotPattern()
     {
+        // 플레이어 위치 인식
+        Vector3 targetPosition = player.position;
+        targetPosition.y = transform.position.y;
+        // 플레이어를 바라보게
+        Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
+        transform.rotation = Quaternion.LookRotation(targetDirection);
+
         FireHomingBullet(RHand);
         yield return new WaitForSeconds(1f);
 
@@ -128,8 +155,16 @@ public class BossControl : MonoBehaviour
         yield return new WaitForSeconds(1f); // 다음 패턴과의 간격 유지
     }
 
+    // 패턴 4: 몸의 중앙에서 부채꼴 모양으로 탄환을 흩뿌리며 발사
     IEnumerator SpreadPattern()
     {
+        // 플레이어 위치 인식
+        Vector3 targetPosition = player.position;
+        targetPosition.y = transform.position.y;
+        // 플레이어를 바라보게
+        Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
+        transform.rotation = Quaternion.LookRotation(targetDirection);
+
         for (int i = 0; i < 5; i++) // 총 5회 반복
         {
             Vector3 directionToPlayer = (player.position - shootPoint.position).normalized;
@@ -165,8 +200,16 @@ public class BossControl : MonoBehaviour
         yield return new WaitForSeconds(1f); // 패턴 종료 대기
     }
 
+    // 패턴 5: 격자무늬의 장판을 바닥에 무작위로 생성
     IEnumerator SpikePattern()
     {
+        // 플레이어 위치 인식
+        Vector3 targetPosition = player.position;
+        targetPosition.y = transform.position.y;
+        // 플레이어를 바라보게
+        Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
+        transform.rotation = Quaternion.LookRotation(targetDirection);
+
         for (int count = 0; count < 3; count++)
         {
             List<Vector3> spikePositions = new List<Vector3>();
