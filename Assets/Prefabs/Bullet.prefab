@@ -150,7 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  isMelee: 0
   lifeTime: 3
   target: {fileID: 0}
-  speed: 10
+  speed: 20

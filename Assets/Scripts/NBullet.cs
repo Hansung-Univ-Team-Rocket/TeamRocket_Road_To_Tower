@@ -22,5 +22,8 @@ public class NBullet : Bullet
 
         // 탄환이 향하는 방향으로 회전
         transform.forward = Direction;
+
+        // 일정시간이 지나면 총알 삭제
+        Destroy(gameObject, lifeTime);
     }
 }

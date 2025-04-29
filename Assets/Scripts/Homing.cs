@@ -7,7 +7,7 @@ public class Homing : Bullet
 
     void Start()
     {
-        
+        Destroy(gameObject, lifeTime);
     }
 
     // Update is called once per frame

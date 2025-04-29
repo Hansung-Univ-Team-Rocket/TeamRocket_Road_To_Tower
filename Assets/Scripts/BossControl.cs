@@ -14,6 +14,7 @@ public class BossControl : MonoBehaviour
 
     public float dashSpeed = 20f;
     public float patternCooldown = 2f;
+    public int damage = 5;
 
     private bool isAttacking = false;
 

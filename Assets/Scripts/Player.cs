@@ -27,6 +27,19 @@ public class Player : MonoBehaviour
         transform.position += moveVec * speed * Time.deltaTime;
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Boss")
+        {
+            if (!isDamaged)
+            {
+                BossControl Boss = collision.gameObject.GetComponent<BossControl>();
+                hp -= Boss.damage;
+                StartCoroutine(OnDamage());
+            }
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Bullet")
