@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UIElements;
 
 public class BossControl : MonoBehaviour
 {
@@ -8,13 +9,17 @@ public class BossControl : MonoBehaviour
 
     public Transform LHand;
     public Transform RHand;
+    public Transform shootPoint;
 
     public GameObject straightBulletPrefab;
     public GameObject homingBulletPrefab;
+    public GameObject SpreadBulletPrefab;
 
     public float dashSpeed = 20f;
     public float patternCooldown = 2f;
     public int damage = 5;
+    public float fanAngle = 60f;
+    public int bulletCount = 10;
 
     private bool isAttacking = false;
 
@@ -32,7 +37,7 @@ public class BossControl : MonoBehaviour
             {
                 isAttacking = true;
 
-                int pattern = Random.Range(0, 3);
+                int pattern = Random.Range(0, 4);
                 switch (pattern)
                 {
                     case 0:
@@ -44,6 +49,9 @@ public class BossControl : MonoBehaviour
                     case 2:
                         yield return StartCoroutine(HomingShotPattern());
                         break;
+                    case 3:
+                        yield return StartCoroutine(SpreadPattern());
+                        break;
                 }
 
                 yield return new WaitForSeconds(patternCooldown);
@@ -54,13 +62,13 @@ public class BossControl : MonoBehaviour
         }
     }
 
-    // ÆĞÅÏ 1: ÇÃ·¹ÀÌ¾î¸¦ ÇâÇÑ µ¹Áø
+    // íŒ¨í„´ 1: í”Œë ˆì´ì–´ë¥¼ í–¥í•œ ëŒì§„
     IEnumerator DashPattern()
     {
-        // ÇÃ·¹ÀÌ¾î À§Ä¡ ÀÎ½Ä
+        // í”Œë ˆì´ì–´ ìœ„ì¹˜ ì¸ì‹
         Vector3 targetPosition = player.position;
         targetPosition.y = transform.position.y;
-        // ÇÃ·¹ÀÌ¾î¸¦ ¹Ù¶óº¸°Ô
+        // í”Œë ˆì´ì–´ë¥¼ ë°”ë¼ë³´ê²Œ
         Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
         transform.rotation = Quaternion.LookRotation(targetDirection);
 
@@ -81,29 +89,66 @@ public class BossControl : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
-    // ÆĞÅÏ 2: °¢ ¼Õ¿¡¼­ 5¹ß¾¿ ºñÀ¯µµ ÅºÈ¯ ¹ß»ç
+    // íŒ¨í„´ 2: ê° ì†ì—ì„œ 5ë°œì”© ë¹„ìœ ë„ íƒ„í™˜ ë°œì‚¬
     IEnumerator StraightShotPattern()
     {
         for (int i = 0; i < 5; i++)
         {
-            // ¹ø°¥¾Æ°¡¸ç ¼ÕÀ» ¼±ÅÃ
+            // ë²ˆê°ˆì•„ê°€ë©° ì†ì„ ì„ íƒ
             Transform fireHand = (i % 2 == 0) ? RHand : LHand;
 
             FireStraightBullet(fireHand);
-            yield return new WaitForSeconds(0.5f); // °£°İ Á¶Á¤ °¡´É
+            yield return new WaitForSeconds(0.5f); // ê°„ê²© ì¡°ì • ê°€ëŠ¥
         }
 
-        yield return new WaitForSeconds(1f); // ÆĞÅÏ Á¾·á Àü ´ë±â
+        yield return new WaitForSeconds(1f); // íŒ¨í„´ ì¢…ë£Œ ì „ ëŒ€ê¸°
     }
 
-    // ÆĞÅÏ 3: °¢ ¼Õ¿¡¼­ 1¹ß¾¿ À¯µµ ÅºÈ¯ ¹ß»ç
+    // íŒ¨í„´ 3: ê° ì†ì—ì„œ 1ë°œì”© ìœ ë„ íƒ„í™˜ ë°œì‚¬
     IEnumerator HomingShotPattern()
     {
         FireHomingBullet(RHand);
         yield return new WaitForSeconds(1f);
 
         FireHomingBullet(LHand);
-        yield return new WaitForSeconds(1f); // ´ÙÀ½ ÆĞÅÏ°úÀÇ °£°İ À¯Áö
+        yield return new WaitForSeconds(1f); // ë‹¤ìŒ íŒ¨í„´ê³¼ì˜ ê°„ê²© ìœ ì§€
+    }
+
+    IEnumerator SpreadPattern()
+    {
+        for (int i = 0; i < 5; i++) // ì´ 5íšŒ ë°˜ë³µ
+        {
+            Vector3 directionToPlayer = (player.position - shootPoint.position).normalized;
+            float startAngle = -fanAngle / 2f;
+            float angleStep = fanAngle / (bulletCount - 1);
+
+            // ì¢Œâ†’ìš°(ê¸°ë³¸), ìš°â†’ì¢Œ(ë°˜ì „)
+            if (i % 2 == 1)
+            {
+                startAngle = fanAngle / 2f;
+                angleStep = -angleStep;
+            }
+
+            for (int j = 0; j < bulletCount; j++)
+            {
+                float angle = startAngle + (angleStep * j);
+                Vector3 rotatedDirection = Quaternion.AngleAxis(angle, Vector3.up) * directionToPlayer;
+
+                GameObject bullet = Instantiate(SpreadBulletPrefab, shootPoint.position, Quaternion.identity);
+                Spread sb = bullet.GetComponent<Spread>();
+                if (sb != null)
+                {
+                    sb.target = player;
+                    sb.SetDirection(rotatedDirection);
+                }
+
+                yield return new WaitForSeconds(0.05f); // ë°œì‚¬ ê°„ê²©
+            }
+
+            yield return new WaitForSeconds(0.5f); // ê° ë¶€ì±„ê¼´ ì‚¬ì´ ê°„ê²©
+        }
+
+        yield return new WaitForSeconds(1f); // íŒ¨í„´ ì¢…ë£Œ ëŒ€ê¸°
     }
 
     void FireStraightBullet(Transform hand)
