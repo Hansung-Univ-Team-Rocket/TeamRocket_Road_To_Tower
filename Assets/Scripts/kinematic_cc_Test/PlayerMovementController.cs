@@ -33,15 +33,21 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     [SerializeField] KinematicCharacterMotor _motor;
     [SerializeField] float _maxStableMoveSpeed = 10f;
     [SerializeField] float _maxSprintMoveSpeed = 18f;
+    [SerializeField] float _maxDodgeMoveSpeed = 33f;
     [SerializeField] float _stableMovementSharpness = 15f;
     [SerializeField] private float _orientationSharpness = 10f;
     [SerializeField] Vector3 _gravity = new Vector3(0, -60f, 0);
+
+    [Header("CoolTimes")]
+    [SerializeField] float _dodgeTime = .5f;
+    [SerializeField] float _dodgeTimeChecker = 0f;
 
     [Header("Flag value")]
     [SerializeField] bool _isSprinting = false;
     [SerializeField] bool _isCrouching = false; // 캐릭터가 일어설 수 있는 상태인가? 앉아 있어야 하는 상태인가? 충돌 검사와 관련된 플레그 값
     [SerializeField] bool _secondCrouchingChecker = false; // 플레이어가 일어서고 싶어 하는가? 즉, 컨트롤 키를 땠는가?
     [SerializeField] bool _isDodge = false;
+    [SerializeField] bool _isNowDodge = false;
 
     [Header("Player Size")]
     [SerializeField] float _playerCrouchedCapsuleHieght = 1f;
@@ -60,10 +66,35 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         _motor.CharacterController = this;
     }
 
+
     // 정지 상태인 경우에 여기서 플레이어 스테이트 머신 해결
     public void SetInputs(ref PlayerInput inputs)
     {
         if (playerState == PlayerState.DEAD) return;
+
+        if (_dodgeTimeChecker >= _dodgeTime)
+        {
+            _isNowDodge = false;
+            _isDodge = false;
+            playerState = PlayerState.IDLE;
+            _dodgeTimeChecker = 0f;
+        }
+        if (inputs.Dodge && !_isNowDodge && !_isCrouching)
+        {
+            _isDodge = true;
+            _isNowDodge = true;
+            _isCrouching = false;
+            _isSprinting = false;
+        }
+
+        if(_isNowDodge)
+        {
+            _dodgeTimeChecker += Time.deltaTime;
+
+            playerState = PlayerState.DODGE;
+            
+            return;
+        }
 
         Vector3 moveInputVector = Vector3.ClampMagnitude(new Vector3(inputs.AxisRight, 0f, inputs.AxisFwd), 1f);
         Vector3 cameraPlanarDir = Vector3.ProjectOnPlane(inputs.CameraRotation * Vector3.forward, _motor.CharacterUp).normalized;
@@ -239,6 +270,8 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             Vector3 inputRight = Vector3.Cross(_moveInputVector, _motor.CharacterUp);
             // 방향 벡터와 카메라 이동 방향과 키보드 인풋을 곱한 벡터 값의 속도(벡터의 크기)를 곱한 벡터값
             Vector3 reorientedInput = Vector3.Cross(effectiveGroundNorm, inputRight).normalized * _moveInputVector.magnitude;
+            // 여기서 방향을 구하고 있다면, 위에서 스프린트 상태 관리만 하면 되는게 아닐까?
+
 
             Vector3 targetMovementVelocity;
 
@@ -248,12 +281,18 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
                 targetMovementVelocity = reorientedInput * _maxSprintMoveSpeed;
             else if(playerState == PlayerState.CROUCH || playerState == PlayerState.CROUCH_MOVE)
                 targetMovementVelocity = reorientedInput * _maxStableMoveSpeed * 2/3;
+            else if(playerState == PlayerState.DODGE || _isNowDodge)
+                targetMovementVelocity = reorientedInput * _maxDodgeMoveSpeed;
             else
                 targetMovementVelocity = reorientedInput * _maxStableMoveSpeed;
 
+            
             // 현재 이동한 ref 파라메터인 currentVelocity에 targetMovementVelocity과 지수 감쇠 보간처리 하여 
             // 점차 가속되게 함
-            currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-_stableMovementSharpness * deltaTime));
+            if(playerState == PlayerState.DODGE)
+                currentVelocity = Vector3.Lerp(targetMovementVelocity, currentVelocity, 1f - Mathf.Exp(-_stableMovementSharpness * deltaTime));
+            else
+                currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-_stableMovementSharpness * deltaTime));
         }
         else
         {
