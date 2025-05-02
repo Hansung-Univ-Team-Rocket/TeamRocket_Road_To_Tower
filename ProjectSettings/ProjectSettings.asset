@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 6b960f2aae94e6e4badf45b764099f2d
+  productGUID: ef081917ccce6004fb50044d50d9924d
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: RougeLike3D
+  productName: UI-UX
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -837,14 +837,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: RougeLike3D
+  metroPackageName: UI-UX
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: RougeLike3D
+  metroApplicationDescription: UI-UX
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -915,11 +915,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: ca6e48a7-4b67-48aa-9795-f50b66c3fdd3
+  cloudProjectId: afb29b4d-06bb-4f68-ba0b-f0ccf06a8eef
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: RougeLike3D 2025-03-27_20-52-51
-  organizationId: daehan121993
+  projectName: UI-UX 2025-05-02_22-04-37
+  organizationId: oneweeek
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
