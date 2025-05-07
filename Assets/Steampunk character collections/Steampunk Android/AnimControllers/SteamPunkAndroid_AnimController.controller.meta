@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b1f5d79b700761e4dab85707051239bc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 242599
+  packageName: Steampunk character collections
+  packageVersion: 1.0
+  assetPath: Assets/Steampunk character collections/Steampunk Android/AnimControllers/SteamPunkAndroid_AnimController.controller
+  uploadId: 614690

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bb863eca9974edd49a646e8083d59be3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 242599
+  packageName: Steampunk character collections
+  packageVersion: 1.0
+  assetPath: Assets/Steampunk character collections/SteamPunkSpiderMech/Materials/M_SteamPunkSpriderMech_Gun.mat
+  uploadId: 614690

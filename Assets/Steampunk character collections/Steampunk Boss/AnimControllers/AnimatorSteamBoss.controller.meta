@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 84c7b47b0f98e154b90774f1ac2c9cb6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 242599
+  packageName: Steampunk character collections
+  packageVersion: 1.0
+  assetPath: Assets/Steampunk character collections/Steampunk Boss/AnimControllers/AnimatorSteamBoss.controller
+  uploadId: 614690

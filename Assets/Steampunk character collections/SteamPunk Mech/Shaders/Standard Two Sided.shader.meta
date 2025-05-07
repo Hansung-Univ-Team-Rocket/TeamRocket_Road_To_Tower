@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9a66ad10e77173c4494233ba86b8838c
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 242599
+  packageName: Steampunk character collections
+  packageVersion: 1.0
+  assetPath: Assets/Steampunk character collections/SteamPunk Mech/Shaders/Standard
+    Two Sided.shader
+  uploadId: 614690
