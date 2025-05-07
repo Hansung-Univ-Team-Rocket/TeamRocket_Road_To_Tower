@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9248220e495b304498b7156ef3a88e83
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 242599
+  packageName: Steampunk character collections
+  packageVersion: 1.0
+  assetPath: Assets/Steampunk character collections/Steampunk Android/Shaders/Standard
+    Two Sided.shader
+  uploadId: 614690
