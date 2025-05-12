@@ -71,13 +71,6 @@ public class PlayerController : MonoBehaviour
         if (inputs.Sprint) Debug.Log("달리기 온");
         if (inputs.Non_Sprint) Debug.Log("달리기 아님");
 
-        // 에임 회복
-        if (_weaponScript.spreadAmount > 0)
-        {
-            _weaponScript.spreadAmount -= _weaponScript.spreadRecoverySpeed * Time.deltaTime;
-            _weaponScript.spreadAmount = Mathf.Max(_weaponScript.spreadAmount, 0f);
-        }
-
         if (Input.GetKey(KeyCode.Mouse0))
         {
             FireGun(inputs);
@@ -125,17 +118,14 @@ public class PlayerController : MonoBehaviour
         _fireTimer = 0;
         _weaponScript.nowBullet--;
 
-        _weaponScript.spreadAmount += _weaponScript.spreadPerShot;
-        _weaponScript.spreadAmount = Mathf.Clamp(_weaponScript.spreadAmount, 0f, _weaponScript.maxSpread);
-
         // 에임 내 랜덤 방향 적용 (스프레드)
         Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
-        Vector3 spreadDir = GetSpreadDirection();
+        //Vector3 spreadDir = GetSpreadDirection();
 
         Ray ray = _playerCam.GetComponent<Camera>().ScreenPointToRay(screenCenter);
-        ray.direction += spreadDir;
+        //ray.direction += spreadDir;
 
-        _playerCam.ApplyRecoilShake(Random.Range(-0.2f, 0.2f), 0.3f);
+        _playerCam.ApplyRecoilShake(Random.Range(-_weaponScript.horizontalAmount, _weaponScript.horizontalAmount), _weaponScript.verticalAmount);
 
         if (Physics.Raycast(ray, out RaycastHit hit, _weaponScript.maxFireDistance))
         {
@@ -153,6 +143,7 @@ public class PlayerController : MonoBehaviour
 
         Destroy(trail, 0.1f); // 잠깐 보여주고 제거
     }
+    /*
     Vector3 GetSpreadDirection()
     {
         // 카메라 기준 랜덤 방향 (좌우 상하 퍼짐)
@@ -163,7 +154,7 @@ public class PlayerController : MonoBehaviour
         Vector3 up = _playerCam.transform.up;
 
         return (right * spreadX + up * spreadY);
-    }
+    }*/
     private void Update()
     {
         HandleCharacterInputs();
