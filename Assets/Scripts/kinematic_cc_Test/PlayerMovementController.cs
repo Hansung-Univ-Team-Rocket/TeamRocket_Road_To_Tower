@@ -96,6 +96,13 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             return;
         }
 
+        // 닷지는 됐어. 그럼 남은건 공격.
+        // 공격 중에서도 근접 공격과 원거리 공격
+        // 상체, 하체가 따로 가기 때문에, 회피를 제외하면, 공격은 별개가 되어야 함.
+        // 무기의 정보를 가져와서 무기의 자식 객체가 원거리인가? 근거리인가에 대한 flag 값을 기준으로 나누기.
+        // 원거리 사격은 방법이 두가지가 있음 카메라 중앙에서 나가는 것
+        // 총구에서 나가는 것. 전자가 제일 좋아보이는데...
+
         Vector3 moveInputVector = Vector3.ClampMagnitude(new Vector3(inputs.AxisRight, 0f, inputs.AxisFwd), 1f);
         Vector3 cameraPlanarDir = Vector3.ProjectOnPlane(inputs.CameraRotation * Vector3.forward, _motor.CharacterUp).normalized;
   

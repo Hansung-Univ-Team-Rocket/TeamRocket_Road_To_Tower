@@ -85,9 +85,14 @@ public class PlayerCamera : MonoBehaviour
         _targetDis = Mathf.Clamp(_targetDis, _minDis, _maxDis);
 
         _currentFollowPos = Vector3.Lerp(_currentFollowPos, _followTransform.position, 1f - Mathf.Exp(-_followSharpness * deltaTime));
+
+        // 오른쪽으로 약간 치우치게?
+        Vector3 rightOffset = targetRotation * Vector3.right * 2f;
+        
+
         // 카메라가 따라가야 할 포지션 값과 현재 카메라가 위치한 두 값을 보간하여, 현재 따라가야 할 포지션 값 변수를 갱신함.
         // 1f - Mathf.Exp(-_followSharpness * deltaTime) : 지수 감쇠 활용하여 부드러운 줌인, 줌아웃 구현
-        Vector3 tagetPosition = _currentFollowPos - ((targetRotation * Vector3.forward) * _curDIs);
+        Vector3 tagetPosition = _currentFollowPos - ((targetRotation * Vector3.forward) * _curDIs) + rightOffset;
 
         _curDIs = Mathf.Lerp(_curDIs, _targetDis, 1-Mathf.Exp(-_disMovementSharpness * deltaTime));
         transform.position = tagetPosition;
