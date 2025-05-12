@@ -16,7 +16,12 @@ public class PlayerCamera : MonoBehaviour
         _followSharpness = 10000f,
         _minVerticalAngle = -90f,
         _maxVerticalAngle = 90f,
-        _defaultVerticalAngle = 20f;
+        _defaultVerticalAngle = 20f,
+        _recoilReturnSpeed = 10f; // 카메라 흔들림 복구 변수
+
+    // 카메라 총기 반동에 따른 변수
+    Vector2 _recoilShake = Vector2.zero;
+    Vector2 _recoilVelocity = Vector2.zero;
 
     public float raycastDis = 10f;
     public RaycastHit hit;
@@ -45,7 +50,16 @@ public class PlayerCamera : MonoBehaviour
         _currentFollowPos = t.position;
         _planarDir = t.forward;
     }
-
+    /// <summary>
+    /// 카메라 흔들림 콜 함수
+    /// </summary>
+    /// <param name="horizontalAmount">좌우 흔들림</param>
+    /// <param name="verticalAmount">상하 흔들림</param>
+    public void ApplyRecoilShake(float horizontalAmount, float verticalAmount)
+    {
+        _recoilShake.x += horizontalAmount; 
+        _recoilShake.y += verticalAmount;  
+    }
     private void OnValidate()
     {
         _defaultDis = Mathf.Clamp(_defaultDis, _minDis, _maxDis);
@@ -60,17 +74,36 @@ public class PlayerCamera : MonoBehaviour
     /// <param name="targetRotation"> 계산된 기준점 t에 대한 회전값이 들어간 out 파라미터. HandlePosition에서 해당 값이 다시 사용됨</param>
     void HandleRotationInput(float deltaTime, Vector3 rotationInput, out Quaternion targetRotation)
     {
-        Quaternion rotationFromInput = Quaternion.Euler(_followTransform.up * (rotationInput.x * _rotationSpd));
+        // 화면 쉐이크 감쇠 계산
+        _recoilShake = Vector2.SmoothDamp(_recoilShake, Vector2.zero, ref _recoilVelocity, 1f / _recoilReturnSpeed);
+
+        // 흔들림 계산이 들어간 마우스 회전
+        float totalYaw = rotationInput.x * _rotationSpd + _recoilShake.x;
+        float totalPitch = rotationInput.y * _rotationSpd + _recoilShake.y;
+
+        Quaternion rotationFromInput = Quaternion.Euler(_followTransform.up * totalYaw);
         _planarDir = rotationFromInput * _planarDir;
         Quaternion planarRotation = Quaternion.LookRotation(_planarDir, _followTransform.up);
 
-        _targetVerticalAngle -= (rotationInput.y * _rotationSpd);
+        _targetVerticalAngle -= totalPitch;
         _targetVerticalAngle = Mathf.Clamp(_targetVerticalAngle, _minVerticalAngle, _maxVerticalAngle);
-        Quaternion verticalRotation = Quaternion.Euler(_targetVerticalAngle, 0, 0);
 
+        Quaternion verticalRotation = Quaternion.Euler(_targetVerticalAngle, 0, 0);
         targetRotation = Quaternion.Slerp(transform.rotation, planarRotation * verticalRotation, _rotationSharpness * deltaTime);
 
         transform.rotation = targetRotation;
+
+        //Quaternion rotationFromInput = Quaternion.Euler(_followTransform.up * (rotationInput.x * _rotationSpd));
+        //_planarDir = rotationFromInput * _planarDir;
+        //Quaternion planarRotation = Quaternion.LookRotation(_planarDir, _followTransform.up);
+
+        //_targetVerticalAngle -= (rotationInput.y * _rotationSpd);
+        //_targetVerticalAngle = Mathf.Clamp(_targetVerticalAngle, _minVerticalAngle, _maxVerticalAngle);
+        //Quaternion verticalRotation = Quaternion.Euler(_targetVerticalAngle, 0, 0);
+
+        //targetRotation = Quaternion.Slerp(transform.rotation, planarRotation * verticalRotation, _rotationSharpness * deltaTime);
+
+        //transform.rotation = targetRotation;
     }
 
     /// <summary>

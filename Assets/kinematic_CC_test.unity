@@ -354,11 +354,16 @@ MonoBehaviour:
   isMeele: 0
   isShotgun: 0
   weaponDamage: 0
-  weaponReroadTime: 1
-  nowBullet: 12
-  maxBullet: 12
+  weaponReroadTime: 0.12
+  nowBullet: 100
+  maxBullet: 100
   nowReroading: 0
-  roundsPerMinute: 1
+  roundsPerMinute: 0.12
+  maxFireDistance: 100
+  spreadAmount: 0.1
+  maxSpread: 0.3
+  spreadPerShot: 0.02
+  spreadRecoverySpeed: 0.05
 --- !u!1 &558107426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,7 +1271,9 @@ MonoBehaviour:
   _cameraFollowPoint: {fileID: 2110801536}
   _characterController: {fileID: 1178144073}
   _WeaponPrefab: {fileID: 0}
+  _weaponScript: {fileID: 0}
   _fireTimer: 0
+  bulletTrailPrefab: {fileID: 6815339865969837386, guid: b30a684a183993c48819a15f1cb215e6, type: 3}
 --- !u!1 &1160234425
 GameObject:
   m_ObjectHideFlags: 0

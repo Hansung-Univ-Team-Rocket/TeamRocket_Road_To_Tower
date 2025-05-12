@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]    Transform _cameraFollowPoint;
     [SerializeField]    PlayerMovementController _characterController;
     [SerializeField]    Transform _WeaponPrefab;
+    [SerializeField]    WeaponScript _weaponScript;
     [SerializeField]    float _fireTimer = 0;
+    [SerializeField]    GameObject bulletTrailPrefab;
     RaycastHit hit;
 
     Vector3 _lookInputVector;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         _playerCam.SetFollowTransform(_cameraFollowPoint);
         _WeaponPrefab = FindChildWithTag(_characterController.gameObject.transform, "Weapon");
+        _weaponScript = _WeaponPrefab.GetComponent<WeaponScript>();
 
     }
 
@@ -68,9 +71,20 @@ public class PlayerController : MonoBehaviour
         if (inputs.Sprint) Debug.Log("달리기 온");
         if (inputs.Non_Sprint) Debug.Log("달리기 아님");
 
-        if (Input.GetKey(KeyCode.Mouse0) && !_WeaponPrefab.GetComponent<WeaponScript>().isMeele
-            && !_WeaponPrefab.GetComponent<WeaponScript>().nowReroading && _WeaponPrefab.GetComponent<WeaponScript>().nowBullet > 0)
+        // 에임 회복
+        if (_weaponScript.spreadAmount > 0)
         {
+            _weaponScript.spreadAmount -= _weaponScript.spreadRecoverySpeed * Time.deltaTime;
+            _weaponScript.spreadAmount = Mathf.Max(_weaponScript.spreadAmount, 0f);
+        }
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            FireGun(inputs);
+        }
+        //if (Input.GetKey(KeyCode.Mouse0) && !_weaponScript.isMeele
+        //    && !_weaponScript.nowReroading && _weaponScript.nowBullet > 0)
+        //{
             // 테스트 스크립트. 정상 작동함
             //if(_fireTimer >= _WeaponPrefab.GetComponent<WeaponScript>().roundsPerMinute)
             //{
@@ -86,15 +100,15 @@ public class PlayerController : MonoBehaviour
             //        Debug.Log($"Hit {hit.collider.name} 사격 완료");
             //    }
             //}
-        }
-        if (Input.GetKey(KeyCode.Mouse0) && _WeaponPrefab.GetComponent<WeaponScript>().isMeele)
-        {
-            if (_fireTimer >= _WeaponPrefab.GetComponent<WeaponScript>().roundsPerMinute)
-            {
-                _fireTimer = 0;
-                inputs.ShootingAttack = true;
-            }
-        }
+        //}
+        //if (Input.GetKey(KeyCode.Mouse0) && _WeaponPrefab.GetComponent<WeaponScript>().isMeele)
+        //{
+        //    if (_fireTimer >= _WeaponPrefab.GetComponent<WeaponScript>().roundsPerMinute)
+        //    {
+        //        _fireTimer = 0;
+        //        inputs.ShootingAttack = true;
+        //    }
+        //}
         //inputs.Sprint = Input.GetKeyDown(KeyCode.LeftShift);
         //inputs.Non_Sprint = Input.GetKeyUp(KeyCode.LeftShift);
         inputs.Dodge = Input.GetKeyDown(KeyCode.Space);
@@ -103,6 +117,53 @@ public class PlayerController : MonoBehaviour
         _characterController.SetInputs(ref inputs);
     }
 
+    void FireGun(PlayerInput inputs)
+    {
+        if (_weaponScript.nowReroading || _weaponScript.nowBullet <= 0 || _weaponScript.isMeele) return;
+        if(_fireTimer < _weaponScript.roundsPerMinute) return;
+
+        _fireTimer = 0;
+        _weaponScript.nowBullet--;
+
+        _weaponScript.spreadAmount += _weaponScript.spreadPerShot;
+        _weaponScript.spreadAmount = Mathf.Clamp(_weaponScript.spreadAmount, 0f, _weaponScript.maxSpread);
+
+        // 에임 내 랜덤 방향 적용 (스프레드)
+        Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
+        Vector3 spreadDir = GetSpreadDirection();
+
+        Ray ray = _playerCam.GetComponent<Camera>().ScreenPointToRay(screenCenter);
+        ray.direction += spreadDir;
+
+        _playerCam.ApplyRecoilShake(Random.Range(-0.2f, 0.2f), 0.3f);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, _weaponScript.maxFireDistance))
+        {
+            Debug.Log($"Hit {hit.collider.name} ||||||||| {hit.point}");
+            // 여기에 데미지 처리 필요함. 일단 테스트
+            ShowBulletTestTrail(ray.origin, hit.point);
+        }
+    }
+    void ShowBulletTestTrail(Vector3 start, Vector3 end)
+    {
+        GameObject trail = Instantiate(bulletTrailPrefab);
+        LineRenderer lr = trail.GetComponent<LineRenderer>();
+        lr.SetPosition(0, start);
+        lr.SetPosition(1, end);
+
+        Destroy(trail, 0.1f); // 잠깐 보여주고 제거
+    }
+    Vector3 GetSpreadDirection()
+    {
+        // 카메라 기준 랜덤 방향 (좌우 상하 퍼짐)
+        float spreadX = Random.Range(-_weaponScript.spreadAmount, _weaponScript.spreadAmount);
+        float spreadY = Random.Range(-_weaponScript.spreadAmount, _weaponScript.spreadAmount);
+
+        Vector3 right = _playerCam.transform.right;
+        Vector3 up = _playerCam.transform.up;
+
+        return (right * spreadX + up * spreadY);
+    }
     private void Update()
     {
         HandleCharacterInputs();

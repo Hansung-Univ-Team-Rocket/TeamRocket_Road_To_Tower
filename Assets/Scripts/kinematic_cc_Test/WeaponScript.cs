@@ -14,7 +14,7 @@ public class WeaponScript : MonoBehaviour
 
 
     [Header("Weapon's Spread Value | use only for Gun")]
-    public float maxFireDistance = 100f;
+    public float maxFireDistance = 100f;    // 총기 사거리
     public float spreadAmount = 0.1f;         // 현재 화면 애임 벌어짐
     public float maxSpread = 0.3f;            // 최대 에임 벌어짐
     public float spreadPerShot = 0.02f;       // 발당 에임 벌어짐 증가수치
