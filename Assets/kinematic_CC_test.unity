@@ -307,6 +307,58 @@ Transform:
   - {fileID: 7823694312774259421}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &522125296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 522125297}
+  - component: {fileID: 522125298}
+  m_Layer: 0
+  m_Name: TestWeapon
+  m_TagString: Weapon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &522125297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522125296}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1178144070}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &522125298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522125296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd279d8b8d62a5428093490f342ebb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMeele: 0
+  isShotgun: 0
+  weaponDamage: 0
+  weaponReroadTime: 1
+  nowBullet: 12
+  maxBullet: 12
+  nowReroading: 0
+  roundsPerMinute: 1
 --- !u!1 &558107426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,6 +1265,8 @@ MonoBehaviour:
   _playerCam: {fileID: 961739754}
   _cameraFollowPoint: {fileID: 2110801536}
   _characterController: {fileID: 1178144073}
+  _WeaponPrefab: {fileID: 0}
+  _fireTimer: 0
 --- !u!1 &1160234425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,6 +1349,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 165439516}
+  - {fileID: 522125297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1178144071
@@ -1377,13 +1432,17 @@ MonoBehaviour:
   _motor: {fileID: 1178144071}
   _maxStableMoveSpeed: 10
   _maxSprintMoveSpeed: 18
+  _maxDodgeMoveSpeed: 33
   _stableMovementSharpness: 15
   _orientationSharpness: 10
   _gravity: {x: 0, y: -60, z: 0}
+  _dodgeTime: 0.5
+  _dodgeTimeChecker: 0
   _isSprinting: 0
   _isCrouching: 0
   _secondCrouchingChecker: 0
   _isDodge: 0
+  _isNowDodge: 0
   _playerCrouchedCapsuleHieght: 1
   _playerNonCrouhedCapsuleHieght: 2
   playerState: 0

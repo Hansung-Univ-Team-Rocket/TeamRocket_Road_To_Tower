@@ -8,6 +8,7 @@ TagManager:
   - Struc
   - Boss
   - Spike
+  - Weapon
   layers:
   - Default
   - TransparentFX

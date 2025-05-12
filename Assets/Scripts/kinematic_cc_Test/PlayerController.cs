@@ -9,18 +9,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField]    PlayerMovementController _characterController;
     [SerializeField]    Transform _WeaponPrefab;
     [SerializeField]    float _fireTimer = 0;
+    RaycastHit hit;
 
     Vector3 _lookInputVector;
 
+    //private void Awake()
+    //{
+    //    _WeaponPrefab = FindCHildWithTag(GameObject.Find("Character").transform, "Weapon");
+    //}
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         _playerCam.SetFollowTransform(_cameraFollowPoint);
-        _WeaponPrefab = FindCHildWithTag(GameObject.Find("Character").transform, "Weapon");
+        _WeaponPrefab = FindChildWithTag(_characterController.gameObject.transform, "Weapon");
 
     }
 
-    Transform FindCHildWithTag(Transform character, string tag)
+    Transform FindChildWithTag(Transform character, string tag)
     {
         foreach(Transform childs in character.transform.GetComponentInChildren<Transform>())
         {
@@ -63,15 +68,26 @@ public class PlayerController : MonoBehaviour
         if (inputs.Sprint) Debug.Log("달리기 온");
         if (inputs.Non_Sprint) Debug.Log("달리기 아님");
 
-        if (Input.GetKey(KeyCode.Mouse0) && _WeaponPrefab.GetComponent<WeaponScript>().isMeele)
+        if (Input.GetKey(KeyCode.Mouse0) && !_WeaponPrefab.GetComponent<WeaponScript>().isMeele
+            && !_WeaponPrefab.GetComponent<WeaponScript>().nowReroading && _WeaponPrefab.GetComponent<WeaponScript>().nowBullet > 0)
         {
-            if(_fireTimer >= _WeaponPrefab.GetComponent<WeaponScript>().roundsPerMinute)
-            {
-                _fireTimer = 0;
-                inputs.MeleeAttack = true;
-            }
+            // 테스트 스크립트. 정상 작동함
+            //if(_fireTimer >= _WeaponPrefab.GetComponent<WeaponScript>().roundsPerMinute)
+            //{
+            //    _fireTimer = 0;
+            //    inputs.MeleeAttack = true;
+            //    _WeaponPrefab.GetComponent<WeaponScript>().nowBullet--;
+
+            //    Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
+
+            //    Ray ray = _playerCam.gameObject.GetComponent<Camera>().ScreenPointToRay(screenCenter);
+            //    if (Physics.Raycast(ray, out hit, 100f))
+            //    {
+            //        Debug.Log($"Hit {hit.collider.name} 사격 완료");
+            //    }
+            //}
         }
-        if (Input.GetKey(KeyCode.Mouse0) && !_WeaponPrefab.GetComponent<WeaponScript>().isMeele)
+        if (Input.GetKey(KeyCode.Mouse0) && _WeaponPrefab.GetComponent<WeaponScript>().isMeele)
         {
             if (_fireTimer >= _WeaponPrefab.GetComponent<WeaponScript>().roundsPerMinute)
             {
