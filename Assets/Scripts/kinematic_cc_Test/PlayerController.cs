@@ -1,11 +1,14 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]    PlayerCamera _playerCam;
     [SerializeField]    Transform _cameraFollowPoint;
     [SerializeField]    PlayerMovementController _characterController;
+    [SerializeField]    Transform _WeaponPrefab;
+    [SerializeField]    float _fireTimer = 0;
 
     Vector3 _lookInputVector;
 
@@ -13,9 +16,22 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         _playerCam.SetFollowTransform(_cameraFollowPoint);
+        _WeaponPrefab = FindCHildWithTag(GameObject.Find("Character").transform, "Weapon");
 
     }
 
+    Transform FindCHildWithTag(Transform character, string tag)
+    {
+        foreach(Transform childs in character.transform.GetComponentInChildren<Transform>())
+        {
+            if(childs.CompareTag(tag))
+            {
+                return childs;
+            }
+        }
+
+        return null;
+    }
 
     void HandledCameraInput()
     {
@@ -35,6 +51,7 @@ public class PlayerController : MonoBehaviour
     }
     void HandleCharacterInputs()
     {
+        _fireTimer += Time.deltaTime;
         PlayerInput inputs = new PlayerInput();
         inputs.AxisFwd = Input.GetAxisRaw("Vertical");
         inputs.AxisRight = Input.GetAxisRaw("Horizontal");
@@ -45,6 +62,23 @@ public class PlayerController : MonoBehaviour
         inputs.Non_Sprint = !inputs.Sprint;
         if (inputs.Sprint) Debug.Log("달리기 온");
         if (inputs.Non_Sprint) Debug.Log("달리기 아님");
+
+        if (Input.GetKey(KeyCode.Mouse0) && _WeaponPrefab.GetComponent<WeaponScript>().isMeele)
+        {
+            if(_fireTimer >= _WeaponPrefab.GetComponent<WeaponScript>().roundsPerMinute)
+            {
+                _fireTimer = 0;
+                inputs.MeleeAttack = true;
+            }
+        }
+        if (Input.GetKey(KeyCode.Mouse0) && !_WeaponPrefab.GetComponent<WeaponScript>().isMeele)
+        {
+            if (_fireTimer >= _WeaponPrefab.GetComponent<WeaponScript>().roundsPerMinute)
+            {
+                _fireTimer = 0;
+                inputs.ShootingAttack = true;
+            }
+        }
         //inputs.Sprint = Input.GetKeyDown(KeyCode.LeftShift);
         //inputs.Non_Sprint = Input.GetKeyUp(KeyCode.LeftShift);
         inputs.Dodge = Input.GetKeyDown(KeyCode.Space);

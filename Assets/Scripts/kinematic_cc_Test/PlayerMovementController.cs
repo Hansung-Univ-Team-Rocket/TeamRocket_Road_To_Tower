@@ -12,6 +12,8 @@ public struct PlayerInput
     public bool Non_Sprint;
     public bool Sprint;
     public bool Dodge;
+    public bool MeleeAttack;
+    public bool ShootingAttack;
 }
 
 public enum PlayerState
@@ -22,7 +24,8 @@ public enum PlayerState
     CROUCH,
     CROUCH_MOVE,
     DODGE,
-    ATTACK,
+    MELEEATTACK,
+    SHOOTINGATTACK,
     DAMAGED,
     DEAD
 }
