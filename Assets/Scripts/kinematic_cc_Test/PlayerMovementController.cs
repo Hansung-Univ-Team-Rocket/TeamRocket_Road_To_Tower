@@ -31,7 +31,7 @@ public enum PlayerState
     DAMAGED,
     DEAD
 }
-
+// PlayerState를 UpperPlayerState, LowerPlayerState 둘로 나눠야 함.
 
 public class PlayerMovementController : MonoBehaviour, ICharacterController
 {
