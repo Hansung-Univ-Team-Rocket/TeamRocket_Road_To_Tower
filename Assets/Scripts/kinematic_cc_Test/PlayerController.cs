@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]    WeaponScript _weaponScript;
     [SerializeField]    float _fireTimer = 0;
     [SerializeField]    GameObject bulletTrailPrefab;
+    [SerializeField]    float _reRoadTimer = 0;
     RaycastHit hit;
 
     Vector3 _lookInputVector;
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour
     void HandleCharacterInputs()
     {
         _fireTimer += Time.deltaTime;
+
         PlayerInput inputs = new PlayerInput();
         inputs.AxisFwd = Input.GetAxisRaw("Vertical");
         inputs.AxisRight = Input.GetAxisRaw("Horizontal");
@@ -68,31 +70,55 @@ public class PlayerController : MonoBehaviour
         inputs.CrouchUp = Input.GetKeyUp(KeyCode.LeftControl);
         inputs.Sprint = Input.GetKey(KeyCode.LeftShift);
         inputs.Non_Sprint = !inputs.Sprint;
+        //inputs.Reroading = Input.GetKeyDown(KeyCode.R);
+
+        if (Input.GetKeyDown(KeyCode.R) && !inputs.Reroading)
+        {
+            inputs.Reroading = true;
+            _characterController.playerState = PlayerState.REROADING;
+        }
+
+        if (inputs.Reroading)
+        {
+            _reRoadTimer += Time.deltaTime;
+
+            if (_reRoadTimer >= _weaponScript.weaponReroadTime)
+            {
+                inputs.Reroading = false;
+                _weaponScript.nowBullet = _weaponScript.maxBullet;
+                _characterController.playerState = PlayerState.IDLE;
+                _reRoadTimer = 0;
+            }
+        }
         if (inputs.Sprint) Debug.Log("달리기 온");
         if (inputs.Non_Sprint) Debug.Log("달리기 아님");
-
         if (Input.GetKey(KeyCode.Mouse0))
         {
             FireGun(inputs);
         }
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            _characterController.playerState = PlayerState.IDLE;
+        }
+
         //if (Input.GetKey(KeyCode.Mouse0) && !_weaponScript.isMeele
         //    && !_weaponScript.nowReroading && _weaponScript.nowBullet > 0)
         //{
-            // 테스트 스크립트. 정상 작동함
-            //if(_fireTimer >= _WeaponPrefab.GetComponent<WeaponScript>().roundsPerMinute)
-            //{
-            //    _fireTimer = 0;
-            //    inputs.MeleeAttack = true;
-            //    _WeaponPrefab.GetComponent<WeaponScript>().nowBullet--;
+        // 테스트 스크립트. 정상 작동함
+        //if(_fireTimer >= _WeaponPrefab.GetComponent<WeaponScript>().roundsPerMinute)
+        //{
+        //    _fireTimer = 0;
+        //    inputs.MeleeAttack = true;
+        //    _WeaponPrefab.GetComponent<WeaponScript>().nowBullet--;
 
-            //    Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
+        //    Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
 
-            //    Ray ray = _playerCam.gameObject.GetComponent<Camera>().ScreenPointToRay(screenCenter);
-            //    if (Physics.Raycast(ray, out hit, 100f))
-            //    {
-            //        Debug.Log($"Hit {hit.collider.name} 사격 완료");
-            //    }
-            //}
+        //    Ray ray = _playerCam.gameObject.GetComponent<Camera>().ScreenPointToRay(screenCenter);
+        //    if (Physics.Raycast(ray, out hit, 100f))
+        //    {
+        //        Debug.Log($"Hit {hit.collider.name} 사격 완료");
+        //    }
+        //}
         //}
         //if (Input.GetKey(KeyCode.Mouse0) && _WeaponPrefab.GetComponent<WeaponScript>().isMeele)
         //{
@@ -115,6 +141,7 @@ public class PlayerController : MonoBehaviour
         if (_weaponScript.nowReroading || _weaponScript.nowBullet <= 0 || _weaponScript.isMeele) return;
         if(_fireTimer < _weaponScript.roundsPerMinute) return;
 
+        _characterController.playerState = PlayerState.SHOOTINGATTACK;
         _fireTimer = 0;
         _weaponScript.nowBullet--;
 

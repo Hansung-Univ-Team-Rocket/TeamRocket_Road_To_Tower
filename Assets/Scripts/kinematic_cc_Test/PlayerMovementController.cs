@@ -14,6 +14,7 @@ public struct PlayerInput
     public bool Dodge;
     public bool MeleeAttack;
     public bool ShootingAttack;
+    public bool Reroading;
 }
 
 public enum PlayerState
@@ -26,6 +27,7 @@ public enum PlayerState
     DODGE,
     MELEEATTACK,
     SHOOTINGATTACK,
+    REROADING,
     DAMAGED,
     DEAD
 }
@@ -51,6 +53,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     [SerializeField] bool _secondCrouchingChecker = false; // 플레이어가 일어서고 싶어 하는가? 즉, 컨트롤 키를 땠는가?
     [SerializeField] bool _isDodge = false;
     [SerializeField] bool _isNowDodge = false;
+    [SerializeField] bool _isReroading = false;
 
     [Header("Player Size")]
     [SerializeField] float _playerCrouchedCapsuleHieght = 1f;
