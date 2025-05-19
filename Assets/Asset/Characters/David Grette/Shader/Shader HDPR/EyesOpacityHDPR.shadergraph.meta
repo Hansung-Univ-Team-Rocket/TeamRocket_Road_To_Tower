@@ -10,8 +10,8 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
 AssetOrigin:
   serializedVersion: 1
-  productId: 226041
-  packageName: Bandit Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
+  productId: 226042
+  packageName: Sheriff Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
   packageVersion: 1.0
   assetPath: Assets/Asset/Characters/David Grette/Shader/Shader HDPR/EyesOpacityHDPR.shadergraph
-  uploadId: 514935
+  uploadId: 514964

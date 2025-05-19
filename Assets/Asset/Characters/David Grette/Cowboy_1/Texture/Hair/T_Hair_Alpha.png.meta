@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b227ea3a93366e348aefa7ab9c3f5c88
+guid: 21ed40c7343e64741b2a9a29accee66b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -96,8 +96,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 226041
-  packageName: Bandit Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
+  productId: 226042
+  packageName: Sheriff Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
   packageVersion: 1.0
   assetPath: Assets/Asset/Characters/David Grette/Cowboy_1/Texture/Hair/T_Hair_Alpha.png
-  uploadId: 514935
+  uploadId: 514964
