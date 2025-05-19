@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: cfa817c57c5148646863264ae78f2142
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226037
+  packageName: Cowboy Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
+  packageVersion: 1.0
+  assetPath: Assets/David Grette/Shader/SubGpaph/SkinDeformationBlend.hlsl
+  uploadId: 514921

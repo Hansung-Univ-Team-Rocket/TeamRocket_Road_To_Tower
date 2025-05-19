@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+T_Hand_cavity.png filter=lfs diff=lfs merge=lfs -text
+T_Head_Cavity.png filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: af276926b0db1c248a93ab3c1134a6c2
+timeCreated: 1513680030
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226037
+  packageName: Cowboy Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
+  packageVersion: 1.0
+  assetPath: Assets/David Grette/Scripts/UnityChanSpringBone-release-1.1/Runtime/SpringManager.cs
+  uploadId: 514921

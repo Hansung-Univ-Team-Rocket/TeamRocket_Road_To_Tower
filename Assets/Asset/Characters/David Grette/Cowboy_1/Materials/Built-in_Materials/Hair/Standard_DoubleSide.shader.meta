@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 52bfa3466ba210140b7d10ac068323ff
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226037
+  packageName: Cowboy Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
+  packageVersion: 1.0
+  assetPath: Assets/David Grette/Cowboy_1/Materials/Built-in_Materials/Hair/Standard_DoubleSide.shader
+  uploadId: 514921
