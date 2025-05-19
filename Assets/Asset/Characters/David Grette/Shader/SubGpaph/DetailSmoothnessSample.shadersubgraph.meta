@@ -10,8 +10,8 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 60072b568d64c40a485e0fc55012dc9f, type: 3}
 AssetOrigin:
   serializedVersion: 1
-  productId: 226037
-  packageName: Cowboy Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
+  productId: 226041
+  packageName: Bandit Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
   packageVersion: 1.0
-  assetPath: Assets/David Grette/Shader/SubGpaph/DetailSmoothnessSample.shadersubgraph
-  uploadId: 514921
+  assetPath: Assets/Asset/Characters/David Grette/Shader/SubGpaph/DetailSmoothnessSample.shadersubgraph
+  uploadId: 514935

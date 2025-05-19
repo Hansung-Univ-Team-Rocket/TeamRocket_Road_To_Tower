@@ -97,8 +97,8 @@ ModelImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 226037
-  packageName: Cowboy Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
+  productId: 226041
+  packageName: Bandit Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
   packageVersion: 1.0
-  assetPath: Assets/David Grette/StarterAssets/Environment/Art/Models/Box_350x250x200_Mesh.fbx
-  uploadId: 514921
+  assetPath: Assets/Asset/Characters/David Grette/StarterAssets/Environment/Art/Models/Box_350x250x200_Mesh.fbx
+  uploadId: 514935
