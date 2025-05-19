@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]    float _fireTimer = 0;
     [SerializeField]    GameObject bulletTrailPrefab;
     [SerializeField]    float _reRoadTimer = 0;
+
     RaycastHit hit;
 
     Vector3 _lookInputVector;
@@ -72,33 +73,35 @@ public class PlayerController : MonoBehaviour
         inputs.Non_Sprint = !inputs.Sprint;
         //inputs.Reroading = Input.GetKeyDown(KeyCode.R);
 
-        if (Input.GetKeyDown(KeyCode.R) && !inputs.Reroading)
+        if (Input.GetKeyDown(KeyCode.R) && !_characterController.isReroading)
         {
-            inputs.Reroading = true;
-            _characterController.playerState = PlayerState.REROADING;
+            _characterController.isReroading = true;
+            _characterController.upperPlayerState = UpperPlayerState.REROADING;
         }
 
-        if (inputs.Reroading)
+        if (_characterController.isReroading)
         {
             _reRoadTimer += Time.deltaTime;
 
             if (_reRoadTimer >= _weaponScript.weaponReroadTime)
             {
-                inputs.Reroading = false;
+                _characterController.isReroading = false;
                 _weaponScript.nowBullet = _weaponScript.maxBullet;
-                _characterController.playerState = PlayerState.IDLE;
+                _characterController.upperPlayerState = UpperPlayerState.IDLE;
                 _reRoadTimer = 0;
             }
         }
         if (inputs.Sprint) Debug.Log("달리기 온");
         if (inputs.Non_Sprint) Debug.Log("달리기 아님");
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && !_characterController.isReroading)
         {
+            _characterController.isFire = true;
             FireGun(inputs);
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            _characterController.playerState = PlayerState.IDLE;
+            _characterController.isFire = false;
+            _characterController.upperPlayerState = UpperPlayerState.IDLE;
         }
 
         //if (Input.GetKey(KeyCode.Mouse0) && !_weaponScript.isMeele
@@ -141,7 +144,7 @@ public class PlayerController : MonoBehaviour
         if (_weaponScript.nowReroading || _weaponScript.nowBullet <= 0 || _weaponScript.isMeele) return;
         if(_fireTimer < _weaponScript.roundsPerMinute) return;
 
-        _characterController.playerState = PlayerState.SHOOTINGATTACK;
+        _characterController.upperPlayerState = UpperPlayerState.SHOOTINGATTACK;
         _fireTimer = 0;
         _weaponScript.nowBullet--;
 

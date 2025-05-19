@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
-
+/*
 namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
@@ -389,4 +390,4 @@ namespace StarterAssets
             }
         }
     }
-}
+}*/

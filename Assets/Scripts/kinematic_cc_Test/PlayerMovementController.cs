@@ -17,7 +17,19 @@ public struct PlayerInput
     public bool Reroading;
 }
 
-public enum PlayerState
+public enum UpperPlayerState
+{
+    IDLE = 0,
+    MELEEATTACK,
+    SHOOTINGATTACK,
+    REROADING,
+    SPRINT,
+    DODGE,
+    DAMAGED,
+    DEAD
+}
+
+public enum LowerPlayerState
 {
     IDLE = 0,
     MOVE,
@@ -25,12 +37,10 @@ public enum PlayerState
     CROUCH,
     CROUCH_MOVE,
     DODGE,
-    MELEEATTACK,
-    SHOOTINGATTACK,
-    REROADING,
     DAMAGED,
     DEAD
 }
+
 // PlayerState를 UpperPlayerState, LowerPlayerState 둘로 나눠야 함.
 
 public class PlayerMovementController : MonoBehaviour, ICharacterController
@@ -53,14 +63,18 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     [SerializeField] bool _secondCrouchingChecker = false; // 플레이어가 일어서고 싶어 하는가? 즉, 컨트롤 키를 땠는가?
     [SerializeField] bool _isDodge = false;
     [SerializeField] bool _isNowDodge = false;
-    [SerializeField] bool _isReroading = false;
+    public           bool isReroading = false;
+    public           bool isFire = false;
 
     [Header("Player Size")]
     [SerializeField] float _playerCrouchedCapsuleHieght = 1f;
     [SerializeField] float _playerNonCrouhedCapsuleHieght = 2f;
 
     [Header("Player state")]
-    public PlayerState playerState;
+    public UpperPlayerState upperPlayerState;
+    public LowerPlayerState lowerPlayerState;
+    
+
 
     private Collider[] _probedColliders = new Collider[8];
     Vector3 _moveInputVector;
@@ -68,7 +82,8 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
     private void Start()
     {
-        playerState = PlayerState.IDLE;
+        upperPlayerState = UpperPlayerState.IDLE;
+        lowerPlayerState = LowerPlayerState.IDLE;
         _motor.CharacterController = this;
     }
 
@@ -76,13 +91,14 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     // 정지 상태인 경우에 여기서 플레이어 스테이트 머신 해결
     public void SetInputs(ref PlayerInput inputs)
     {
-        if (playerState == PlayerState.DEAD) return;
+        if (upperPlayerState == UpperPlayerState.DEAD || lowerPlayerState == LowerPlayerState.DEAD) return;
 
-        if (_dodgeTimeChecker >= _dodgeTime)
+        if (_dodgeTimeChecker >= _dodgeTime && _isNowDodge)
         {
             _isNowDodge = false;
             _isDodge = false;
-            playerState = PlayerState.IDLE;
+            upperPlayerState = UpperPlayerState.IDLE;
+            lowerPlayerState = LowerPlayerState.IDLE;
             _dodgeTimeChecker = 0f;
         }
         if (inputs.Dodge && !_isNowDodge && !_isCrouching)
@@ -97,7 +113,8 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         {
             _dodgeTimeChecker += Time.deltaTime;
 
-            playerState = PlayerState.DODGE;
+            upperPlayerState = UpperPlayerState.DODGE;
+            lowerPlayerState = LowerPlayerState.DODGE;
             
             return;
         }
@@ -134,7 +151,8 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
                 {
                     _isCrouching = true;
                     _motor.SetCapsuleDimensions(0.5f, _playerCrouchedCapsuleHieght, _playerCrouchedCapsuleHieght * .5f);
-                    playerState = PlayerState.CROUCH_MOVE;
+
+                    lowerPlayerState = LowerPlayerState.CROUCH_MOVE;
                 }
             }
             else if (inputs.CrouchUp)
@@ -165,11 +183,11 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
                 {
                     _isCrouching = true;
                     _motor.SetCapsuleDimensions(0.5f, _playerCrouchedCapsuleHieght, _playerCrouchedCapsuleHieght * .5f);
-                    playerState = PlayerState.CROUCH;
+                    lowerPlayerState = LowerPlayerState.CROUCH;
                 }
                 else
                 {
-                    playerState = PlayerState.CROUCH;
+                    lowerPlayerState = LowerPlayerState.CROUCH;
                 }
             }
             if(inputs.CrouchUp)
@@ -180,11 +198,11 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             {
                 if(!_isCrouching)
                 {
-                    playerState = PlayerState.IDLE;
+                    lowerPlayerState = LowerPlayerState.IDLE;
                 }
                 else
                 {
-                    playerState = PlayerState.CROUCH;
+                    lowerPlayerState = LowerPlayerState.CROUCH;
                 }
             }
         }
@@ -210,22 +228,47 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             else
             {
                 _isCrouching = false;
-                playerState = PlayerState.IDLE;
+                //upperPlayerState = UpperPlayerState.IDLE;
+                lowerPlayerState = LowerPlayerState.IDLE;
             }
         }
         if(_isSprinting)
         {
-            playerState = PlayerState.SPRINT;
+            if (isFire || isReroading)
+            {
+                lowerPlayerState = LowerPlayerState.SPRINT;
+            }
+            else
+            {
+                upperPlayerState = UpperPlayerState.SPRINT;
+                lowerPlayerState = LowerPlayerState.SPRINT;
+            }
         }
         else
         {
             if (_isCrouching)
             {
-                playerState = PlayerState.CROUCH_MOVE;
+                if (isFire || isReroading)
+                {
+                    lowerPlayerState = LowerPlayerState.CROUCH_MOVE;
+                }
+                else
+                {
+                    upperPlayerState = UpperPlayerState.IDLE;
+                    lowerPlayerState = LowerPlayerState.CROUCH_MOVE;
+                }
             }
             if (!_isCrouching && !_isSprinting)
             {
-                playerState = PlayerState.MOVE;
+                if (isFire || isReroading)
+                {
+                    lowerPlayerState = LowerPlayerState.MOVE;
+                }
+                else
+                {
+                    upperPlayerState = UpperPlayerState.IDLE;
+                    lowerPlayerState = LowerPlayerState.MOVE;
+                }
             }
         }
     }
@@ -290,11 +333,11 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
             // 3개의 상태별로 나눠서 구한 해당 방향으로의 벡터 이동 및 속도값을 변수로 지정한 최대 수치 값과 곱함
             // 즉, 3개의 상태 당, 각 유저 인풋에 대한 방향별 최대 이동속도 값
-            if (playerState == PlayerState.SPRINT)
+            if (lowerPlayerState == LowerPlayerState.SPRINT || upperPlayerState == UpperPlayerState.SPRINT)
                 targetMovementVelocity = reorientedInput * _maxSprintMoveSpeed;
-            else if(playerState == PlayerState.CROUCH || playerState == PlayerState.CROUCH_MOVE)
+            else if(lowerPlayerState == LowerPlayerState.CROUCH || lowerPlayerState == LowerPlayerState.CROUCH_MOVE)
                 targetMovementVelocity = reorientedInput * _maxStableMoveSpeed * 2/3;
-            else if(playerState == PlayerState.DODGE || _isNowDodge)
+            else if(lowerPlayerState == LowerPlayerState.DODGE || _isNowDodge)
                 targetMovementVelocity = reorientedInput * _maxDodgeMoveSpeed;
             else
                 targetMovementVelocity = reorientedInput * _maxStableMoveSpeed;
@@ -302,7 +345,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             
             // 현재 이동한 ref 파라메터인 currentVelocity에 targetMovementVelocity과 지수 감쇠 보간처리 하여 
             // 점차 가속되게 함
-            if(playerState == PlayerState.DODGE)
+            if(lowerPlayerState == LowerPlayerState.DODGE)
                 currentVelocity = Vector3.Lerp(targetMovementVelocity, currentVelocity, 1f - Mathf.Exp(-_stableMovementSharpness * deltaTime));
             else
                 currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-_stableMovementSharpness * deltaTime));

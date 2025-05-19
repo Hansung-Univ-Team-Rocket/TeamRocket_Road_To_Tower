@@ -1,3 +1,4 @@
+/*
 using System;
 using System.Linq;
 using StarterAssetsPackageChecker;
@@ -167,3 +168,4 @@ namespace StarterAssets
 #endif
     }
 }
+*/
