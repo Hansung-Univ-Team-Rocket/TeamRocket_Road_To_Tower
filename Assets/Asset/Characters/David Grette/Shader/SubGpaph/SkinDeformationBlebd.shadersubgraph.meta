@@ -10,8 +10,8 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 60072b568d64c40a485e0fc55012dc9f, type: 3}
 AssetOrigin:
   serializedVersion: 1
-  productId: 226044
-  packageName: Cowboy Girl 1 Western Character - Wild West,Adventure,Survival,Survivor,Action
+  productId: 226046
+  packageName: Cowboy Girl 2 Western Character - Wild West,Adventure,Survival,Survivor,Action
   packageVersion: 1.0
   assetPath: Assets/Asset/Characters/David Grette/Shader/SubGpaph/SkinDeformationBlebd.shadersubgraph
-  uploadId: 514941
+  uploadId: 514963

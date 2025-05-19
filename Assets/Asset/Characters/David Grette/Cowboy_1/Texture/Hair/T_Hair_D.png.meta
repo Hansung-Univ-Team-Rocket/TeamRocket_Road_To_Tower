@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ed0a1f1d894aa244a8100d9b54fb894d
+guid: 3af66a9204a7b6a4e91f9eb0c2e15505
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -75,6 +75,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
@@ -96,8 +108,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 226037
-  packageName: Cowboy Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
+  productId: 226046
+  packageName: Cowboy Girl 2 Western Character - Wild West,Adventure,Survival,Survivor,Action
   packageVersion: 1.0
-  assetPath: Assets/David Grette/Cowboy_1/Texture/Hair/T_Hair_D.png
-  uploadId: 514921
+  assetPath: Assets/Asset/Characters/David Grette/Cowboy_1/Texture/Hair/T_Hair_D.png
+  uploadId: 514963

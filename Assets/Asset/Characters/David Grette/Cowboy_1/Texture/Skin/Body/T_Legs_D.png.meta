@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 503df85522faeb34da8ef240df437e31
+guid: b005525471cf8ad4fbcb56ba3364e0c4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -96,8 +96,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 226044
-  packageName: Cowboy Girl 1 Western Character - Wild West,Adventure,Survival,Survivor,Action
+  productId: 226046
+  packageName: Cowboy Girl 2 Western Character - Wild West,Adventure,Survival,Survivor,Action
   packageVersion: 1.0
   assetPath: Assets/Asset/Characters/David Grette/Cowboy_1/Texture/Skin/Body/T_Legs_D.png
-  uploadId: 514941
+  uploadId: 514963

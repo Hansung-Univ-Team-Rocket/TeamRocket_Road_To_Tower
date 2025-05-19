@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 53a62fe4fe19af04fafea2992d7a1173
+guid: 9b9f33f844bd546409a3cc253397175b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -108,8 +108,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 226044
-  packageName: Cowboy Girl 1 Western Character - Wild West,Adventure,Survival,Survivor,Action
+  productId: 226046
+  packageName: Cowboy Girl 2 Western Character - Wild West,Adventure,Survival,Survivor,Action
   packageVersion: 1.0
   assetPath: Assets/Asset/Characters/David Grette/Cowboy_1/Texture/Skin/Body/T_Hands_N.png
-  uploadId: 514941
+  uploadId: 514963

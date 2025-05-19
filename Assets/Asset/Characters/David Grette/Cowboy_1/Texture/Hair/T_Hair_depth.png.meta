@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6263e3716d0eac34fa930b58e69ba4ca
+guid: 5b563f6b7862131439aedb3402129e31
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -96,8 +96,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 226041
-  packageName: Bandit Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
+  productId: 226046
+  packageName: Cowboy Girl 2 Western Character - Wild West,Adventure,Survival,Survivor,Action
   packageVersion: 1.0
   assetPath: Assets/Asset/Characters/David Grette/Cowboy_1/Texture/Hair/T_Hair_depth.png
-  uploadId: 514935
+  uploadId: 514963

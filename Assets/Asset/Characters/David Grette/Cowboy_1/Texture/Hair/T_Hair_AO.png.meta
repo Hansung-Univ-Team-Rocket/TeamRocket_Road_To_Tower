@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5bf21b989811e01408bb1e0bfddc37f7
+guid: 8ebca76d98d5637458a0ced03a612dcf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -96,8 +96,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 226044
-  packageName: Cowboy Girl 1 Western Character - Wild West,Adventure,Survival,Survivor,Action
+  productId: 226046
+  packageName: Cowboy Girl 2 Western Character - Wild West,Adventure,Survival,Survivor,Action
   packageVersion: 1.0
   assetPath: Assets/Asset/Characters/David Grette/Cowboy_1/Texture/Hair/T_Hair_AO.png
-  uploadId: 514941
+  uploadId: 514963
