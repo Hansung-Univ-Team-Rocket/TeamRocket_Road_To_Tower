@@ -50,7 +50,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     [SerializeField] float _maxSprintMoveSpeed = 18f;
     [SerializeField] float _maxDodgeMoveSpeed = 33f;
     [SerializeField] float _stableMovementSharpness = 15f;
-    [SerializeField] public float _orientationSharpness = 250f;
+    [SerializeField] public float _orientationSharpness = 10f;
     [SerializeField] Vector3 _gravity = new Vector3(0, -60f, 0);
 
     [Header("CoolTimes")]
@@ -304,26 +304,33 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
     public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
     {
-        // 카메라가 바라보는 평면 방향 (Y축 제외)
-        Vector3 cameraForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
-
-        if (cameraForward.sqrMagnitude > 0f)
+        // 업퍼 enum이 사격 시 아닐 시, 캐릭터는 카메라 시점으로 회전 X
+        if (upperPlayerState == UpperPlayerState.SHOOTINGATTACK)
         {
-            // 부드러운 회전을 위한 보간
-            Vector3 smoothedLookDir = Vector3.Slerp(_motor.CharacterForward, cameraForward,
-                1 - Mathf.Exp(-_orientationSharpness * deltaTime)).normalized;
+            _orientationSharpness = 150f;
+            // 카메라가 바라보는 평면 방향 (Y축 제외)
+            Vector3 cameraForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
 
-            // 플레이어가 카메라 방향을 바라보도록 회전
-            currentRotation = Quaternion.LookRotation(smoothedLookDir, _motor.CharacterUp);
+            if (cameraForward.sqrMagnitude > 0f)
+            {
+                // 부드러운 회전을 위한 보간
+                Vector3 smoothedLookDir = Vector3.Slerp(_motor.CharacterForward, cameraForward,
+                    1 - Mathf.Exp(-_orientationSharpness * deltaTime)).normalized;
+
+                // 플레이어가 카메라 방향을 바라보도록 회전
+                currentRotation = Quaternion.LookRotation(smoothedLookDir, _motor.CharacterUp);
+            }
         }
-
-        /*
-        if(_lookInputVector.sqrMagnitude > 0f && _orientationSharpness > 0f)
+        else // 그 외에는
         {
-            Vector3 smoothedLookInputDir = Vector3.Slerp(_motor.CharacterForward, _lookInputVector, 1 - Mathf.Exp(-_orientationSharpness * deltaTime)).normalized;
+            _orientationSharpness = 10f;
+            if (_lookInputVector.sqrMagnitude > 0f && _orientationSharpness > 0f)
+            {
+                Vector3 smoothedLookInputDir = Vector3.Slerp(_motor.CharacterForward, _lookInputVector, 1 - Mathf.Exp(-_orientationSharpness * deltaTime)).normalized;
 
-            currentRotation = Quaternion.LookRotation(smoothedLookInputDir, _motor.CharacterUp);
-        }*/
+                currentRotation = Quaternion.LookRotation(smoothedLookInputDir, _motor.CharacterUp);
+            }
+        }
     }
 
     public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)

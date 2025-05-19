@@ -64,7 +64,7 @@ public class PlayerCamera : MonoBehaviour
     /// <param name="deltaTime"></param>
     private void ApplySpeedBasedShake(float deltaTime)
     {
-        if (_currentSpeed < 0.3f)
+        if (_currentSpeed < 0.5f)
         {
             _targetShakeRotation = Quaternion.identity;
         }
@@ -77,8 +77,8 @@ public class PlayerCamera : MonoBehaviour
             float noiseX = Mathf.PerlinNoise(Time.time * _shakeFrequency, 0f);
             float noiseY = Mathf.PerlinNoise(0f, Time.time * _shakeFrequency);
 
-            float shakePitch = (noiseY - 0.5f) * 2f * intensity * 10f;  // »óÇÏ Èçµé¸²
-            float shakeRoll = (noiseX - 0.5f) * 2f * intensity * 10f;  // ÁÂ¿ì ±â¿ï±â
+            float shakePitch = (noiseY - 0.5f) * 2f * intensity * 5f;  // »óÇÏ Èçµé¸²
+            float shakeRoll = (noiseX - 0.5f) * 2f * intensity * 30f;  // ÁÂ¿ì ±â¿ï±â
 
             _targetShakeRotation = Quaternion.Euler(shakePitch, 0f, shakeRoll);
         }
