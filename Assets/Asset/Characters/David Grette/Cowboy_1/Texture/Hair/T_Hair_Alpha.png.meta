@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 21ed40c7343e64741b2a9a29accee66b
+guid: a67da0379971e9f4dbf3b95ac6a0ae5e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -96,8 +96,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 226042
-  packageName: Sheriff Western Character - Wild West,Adventure,Survival,Survivor,Shooter,Action
+  productId: 226044
+  packageName: Cowboy Girl 1 Western Character - Wild West,Adventure,Survival,Survivor,Action
   packageVersion: 1.0
   assetPath: Assets/Asset/Characters/David Grette/Cowboy_1/Texture/Hair/T_Hair_Alpha.png
-  uploadId: 514964
+  uploadId: 514941
