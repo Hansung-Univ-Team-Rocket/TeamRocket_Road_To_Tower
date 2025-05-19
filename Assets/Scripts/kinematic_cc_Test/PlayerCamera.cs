@@ -19,6 +19,15 @@ public class PlayerCamera : MonoBehaviour
         _defaultVerticalAngle = 20f,
         _recoilReturnSpeed = 10f; // 카메라 흔들림 복구 변수
 
+    [Header("Sprint Camera Shake")] // 카메라 스프린트 흔들림
+    [SerializeField] float _maxShakeIntensity = 0.15f;
+    [SerializeField] float _shakeFrequency = 10f;
+    [SerializeField] Quaternion _targetShakeRotation = Quaternion.identity;
+    [SerializeField] Quaternion _currentShakeRotation = Quaternion.identity;
+
+    private float _currentSpeed = 0f;
+    private float _shakeTimer = 0f;
+
     // 카메라 총기 반동에 따른 변수
     Vector2 _recoilShake = Vector2.zero;
     Vector2 _recoilVelocity = Vector2.zero;
@@ -39,6 +48,48 @@ public class PlayerCamera : MonoBehaviour
         _targetVerticalAngle = 0f;
         _planarDir = Vector3.forward;
     }
+    /// <summary>
+    /// 속도비례 흔들림 강도 계산
+    /// </summary>
+    /// <param name="currentSpeed"> 현재 속도 </param>
+    /// <param name="maxSpeed"> 최고 속도 </param>
+    public void UpdateSprintState(float currentSpeed, float maxSpeed)
+    {
+        _currentSpeed = currentSpeed / maxSpeed;
+    }
+
+    /// <summary>
+    /// 속도 비례 카메라 흔들림 적용
+    /// </summary>
+    /// <param name="deltaTime"></param>
+    private void ApplySpeedBasedShake(float deltaTime)
+    {
+        if (_currentSpeed < 0.3f)
+        {
+            _targetShakeRotation = Quaternion.identity;
+        }
+        else
+        {
+            _shakeTimer += deltaTime * _shakeFrequency;
+            float intensity = _currentSpeed * _maxShakeIntensity;
+
+            // Perlin Noise 기반 흔들림 생성 (더 자연스러움)
+            float noiseX = Mathf.PerlinNoise(Time.time * _shakeFrequency, 0f);
+            float noiseY = Mathf.PerlinNoise(0f, Time.time * _shakeFrequency);
+
+            float shakePitch = (noiseY - 0.5f) * 2f * intensity * 10f;  // 상하 흔들림
+            float shakeRoll = (noiseX - 0.5f) * 2f * intensity * 10f;  // 좌우 기울기
+
+            _targetShakeRotation = Quaternion.Euler(shakePitch, 0f, shakeRoll);
+        }
+
+        // 흔들림 감쇠 (스무딩)
+        _currentShakeRotation = Quaternion.Slerp(_currentShakeRotation, _targetShakeRotation, deltaTime * 10f);
+
+        // 카메라 회전에 적용
+        transform.rotation *= _currentShakeRotation;
+    }
+
 
     /// <summary>
     /// 카메라가 따라다닐 대상 t를 설정 (유니티 계층 구조 상, 플레이어 자식 오브젝트인 CameraPos 오브젝트의 위치값이 들어감)
@@ -143,6 +194,7 @@ public class PlayerCamera : MonoBehaviour
         {
             HandleRotationInput(deltaTime, rotationInput, out Quaternion targetRotation);
             HandlePosition(deltaTime, zoomInput, targetRotation);
+            ApplySpeedBasedShake(deltaTime);
         }
     }
 

@@ -50,7 +50,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     [SerializeField] float _maxSprintMoveSpeed = 18f;
     [SerializeField] float _maxDodgeMoveSpeed = 33f;
     [SerializeField] float _stableMovementSharpness = 15f;
-    [SerializeField] private float _orientationSharpness = 10f;
+    [SerializeField] public float _orientationSharpness = 250f;
     [SerializeField] Vector3 _gravity = new Vector3(0, -60f, 0);
 
     [Header("CoolTimes")]
@@ -304,12 +304,26 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
     public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
     {
+        // 카메라가 바라보는 평면 방향 (Y축 제외)
+        Vector3 cameraForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
+
+        if (cameraForward.sqrMagnitude > 0f)
+        {
+            // 부드러운 회전을 위한 보간
+            Vector3 smoothedLookDir = Vector3.Slerp(_motor.CharacterForward, cameraForward,
+                1 - Mathf.Exp(-_orientationSharpness * deltaTime)).normalized;
+
+            // 플레이어가 카메라 방향을 바라보도록 회전
+            currentRotation = Quaternion.LookRotation(smoothedLookDir, _motor.CharacterUp);
+        }
+
+        /*
         if(_lookInputVector.sqrMagnitude > 0f && _orientationSharpness > 0f)
         {
             Vector3 smoothedLookInputDir = Vector3.Slerp(_motor.CharacterForward, _lookInputVector, 1 - Mathf.Exp(-_orientationSharpness * deltaTime)).normalized;
 
             currentRotation = Quaternion.LookRotation(smoothedLookInputDir, _motor.CharacterUp);
-        }
+        }*/
     }
 
     public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
@@ -327,7 +341,6 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             // 방향 벡터와 카메라 이동 방향과 키보드 인풋을 곱한 벡터 값의 속도(벡터의 크기)를 곱한 벡터값
             Vector3 reorientedInput = Vector3.Cross(effectiveGroundNorm, inputRight).normalized * _moveInputVector.magnitude;
             // 여기서 방향을 구하고 있다면, 위에서 스프린트 상태 관리만 하면 되는게 아닐까?
-
 
             Vector3 targetMovementVelocity;
 
@@ -349,6 +362,12 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
                 currentVelocity = Vector3.Lerp(targetMovementVelocity, currentVelocity, 1f - Mathf.Exp(-_stableMovementSharpness * deltaTime));
             else
                 currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-_stableMovementSharpness * deltaTime));
+
+            float currentSpeedMagnitude = currentVelocity.magnitude;
+            float maxAllowedSpeed = _isSprinting ? _maxSprintMoveSpeed : _maxStableMoveSpeed;
+
+            // 카메라에 속도 정보 전달
+            FindObjectOfType<PlayerCamera>().UpdateSprintState(currentSpeedMagnitude, maxAllowedSpeed);
         }
         else
         {

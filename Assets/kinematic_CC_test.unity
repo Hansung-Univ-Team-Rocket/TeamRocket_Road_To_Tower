@@ -360,10 +360,8 @@ MonoBehaviour:
   nowReroading: 0
   roundsPerMinute: 0.12
   maxFireDistance: 100
-  spreadAmount: 0.1
-  maxSpread: 0.3
-  spreadPerShot: 0.02
-  spreadRecoverySpeed: 0.05
+  horizontalAmount: 0.2
+  verticalAmount: 0.3
 --- !u!1 &558107426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,6 +1112,7 @@ MonoBehaviour:
   _minVerticalAngle: -90
   _maxVerticalAngle: 90
   _defaultVerticalAngle: 20
+  _recoilReturnSpeed: 10
   raycastDis: 10
 --- !u!1 &1104174972
 GameObject:
@@ -1274,6 +1273,7 @@ MonoBehaviour:
   _weaponScript: {fileID: 0}
   _fireTimer: 0
   bulletTrailPrefab: {fileID: 6815339865969837386, guid: b30a684a183993c48819a15f1cb215e6, type: 3}
+  _reRoadTimer: 0
 --- !u!1 &1160234425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,7 +1441,7 @@ MonoBehaviour:
   _maxSprintMoveSpeed: 18
   _maxDodgeMoveSpeed: 33
   _stableMovementSharpness: 15
-  _orientationSharpness: 10
+  _orientationSharpness: 250
   _gravity: {x: 0, y: -60, z: 0}
   _dodgeTime: 0.5
   _dodgeTimeChecker: 0
@@ -1450,9 +1450,12 @@ MonoBehaviour:
   _secondCrouchingChecker: 0
   _isDodge: 0
   _isNowDodge: 0
+  isReroading: 0
+  isFire: 0
   _playerCrouchedCapsuleHieght: 1
   _playerNonCrouhedCapsuleHieght: 2
-  playerState: 0
+  upperPlayerState: 0
+  lowerPlayerState: 0
 --- !u!1 &1215495912
 GameObject:
   m_ObjectHideFlags: 0
