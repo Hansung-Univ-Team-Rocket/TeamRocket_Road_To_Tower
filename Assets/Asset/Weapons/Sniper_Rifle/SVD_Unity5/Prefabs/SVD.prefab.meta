@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a3f4e5eb2a365e54190142e38b6b3dce
+timeCreated: 1436812977
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 6980
+  packageName: Sniper Rifle (SVD)
+  packageVersion: 1.3
+  assetPath: Assets/Sniper_Rifle/SVD_Unity5/Prefabs/SVD.prefab
+  uploadId: 72530

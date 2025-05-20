@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 0bc017518f575ac4f8da978960172b16
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 6980
+  packageName: Sniper Rifle (SVD)
+  packageVersion: 1.3
+  assetPath: Assets/Sniper_Rifle/SVD_Unity4/Materials/Optics_dif.mat
+  uploadId: 72530
