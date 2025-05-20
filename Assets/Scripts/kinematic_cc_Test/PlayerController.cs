@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         }
         if (inputs.Sprint) Debug.Log("달리기 온");
         if (inputs.Non_Sprint) Debug.Log("달리기 아님");
-        if (Input.GetKey(KeyCode.Mouse0) && !_characterController.isReroading)
+        if (Input.GetKey(KeyCode.Mouse0) && !_characterController.isReroading && !_characterController.isNowDodge)
         {
             _characterController.isFire = true;
             FireGun(inputs);

@@ -62,7 +62,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     [SerializeField] bool _isCrouching = false; // 캐릭터가 일어설 수 있는 상태인가? 앉아 있어야 하는 상태인가? 충돌 검사와 관련된 플레그 값
     [SerializeField] bool _secondCrouchingChecker = false; // 플레이어가 일어서고 싶어 하는가? 즉, 컨트롤 키를 땠는가?
     [SerializeField] bool _isDodge = false;
-    [SerializeField] bool _isNowDodge = false;
+    public           bool isNowDodge = false;
     public           bool isReroading = false;
     public           bool isFire = false;
 
@@ -93,23 +93,23 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     {
         if (upperPlayerState == UpperPlayerState.DEAD || lowerPlayerState == LowerPlayerState.DEAD) return;
 
-        if (_dodgeTimeChecker >= _dodgeTime && _isNowDodge)
+        if (_dodgeTimeChecker >= _dodgeTime && isNowDodge)
         {
-            _isNowDodge = false;
+            isNowDodge = false;
             _isDodge = false;
             upperPlayerState = UpperPlayerState.IDLE;
             lowerPlayerState = LowerPlayerState.IDLE;
             _dodgeTimeChecker = 0f;
         }
-        if (inputs.Dodge && !_isNowDodge && !_isCrouching)
+        if (inputs.Dodge && !isNowDodge && !_isCrouching)
         {
             _isDodge = true;
-            _isNowDodge = true;
+            isNowDodge = true;
             _isCrouching = false;
             _isSprinting = false;
         }
 
-        if(_isNowDodge)
+        if(isNowDodge)
         {
             _dodgeTimeChecker += Time.deltaTime;
 
@@ -211,6 +211,11 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     // 최대한 이동 상태와 관련된 플레이어 스테이트는 이 콜백에서 해결
     public void AfterCharacterUpdate(float deltaTime)
     {
+        // 하드코딩, 스프린트를 하다, 앉기 키를 누르고 동시에 손을 때면 상체는 스프린트로, 하체는 아이들인 상태가 되는 경우가 있음
+        if(upperPlayerState == UpperPlayerState.SPRINT && lowerPlayerState == LowerPlayerState.IDLE)
+        {
+            upperPlayerState = UpperPlayerState.IDLE;
+        }
         if (_isCrouching && !_secondCrouchingChecker)
         {
             // 앉은 상태에서 머리 위에 콜라이더가 있는 오브젝트가 있는가?
@@ -357,7 +362,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
                 targetMovementVelocity = reorientedInput * _maxSprintMoveSpeed;
             else if(lowerPlayerState == LowerPlayerState.CROUCH || lowerPlayerState == LowerPlayerState.CROUCH_MOVE)
                 targetMovementVelocity = reorientedInput * _maxStableMoveSpeed * 2/3;
-            else if(lowerPlayerState == LowerPlayerState.DODGE || _isNowDodge)
+            else if(lowerPlayerState == LowerPlayerState.DODGE || isNowDodge)
                 targetMovementVelocity = reorientedInput * _maxDodgeMoveSpeed;
             else
                 targetMovementVelocity = reorientedInput * _maxStableMoveSpeed;
