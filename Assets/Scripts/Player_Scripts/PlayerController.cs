@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]    float _fireTimer = 0;
     [SerializeField]    GameObject bulletTrailPrefab;
     [SerializeField]    float _reRoadTimer = 0;
-    [SerializeField]    bool _isShoulder = false;
+    [SerializeField]    bool _isAim = false;
+    [SerializeField]    Vector3 _beforeScrollInput;
     RaycastHit hit;
 
     Vector3 _lookInputVector;
@@ -50,6 +51,20 @@ public class PlayerController : MonoBehaviour
         float mouseUp = Input.GetAxisRaw("Mouse Y");
         float mouseRIght = Input.GetAxisRaw("Mouse X");
 
+        float scrollInput = -Input.GetAxis("Mouse ScrollWheel");
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            _playerCam.SetAimState(true);
+
+            _isAim = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            _playerCam.SetAimState(false);
+            _isAim = false;
+        }
+
         _lookInputVector = new Vector3(mouseRIght, mouseUp, 0f);
 
         // if(Physics.Raycast(_playerCam.gameObject.transform.position, -_playerCam.gameObject.transform.forward, out _playerCam.hit, _playerCam.raycastDis))
@@ -58,8 +73,14 @@ public class PlayerController : MonoBehaviour
         // }
         // Doesnt works
 
-        float scrollInput = -Input.GetAxis("Mouse ScrollWheel");
-        _playerCam.UpdateWithInput(Time.deltaTime, scrollInput, _lookInputVector * _cameraSensivity);
+        if (!_isAim)
+        {
+            _playerCam.UpdateWithInput(Time.deltaTime, scrollInput, _lookInputVector * _cameraSensivity);
+        }
+        else
+        {
+            _playerCam.UpdateWithInput(Time.deltaTime, -100f, _lookInputVector * _cameraSensivity);
+        }
     }
     void HandleCharacterInputs()
     {
@@ -158,8 +179,14 @@ public class PlayerController : MonoBehaviour
         Ray ray = _playerCam.GetComponent<Camera>().ScreenPointToRay(screenCenter);
         //ray.direction += spreadDir;
 
-        _playerCam.ApplyRecoilShake(Random.Range(-_weaponScript.horizontalAmount, _weaponScript.horizontalAmount), _weaponScript.verticalAmount);
-
+        if (_isAim)
+        {
+            _playerCam.ApplyRecoilShake(Random.Range(-_weaponScript.horizontalAmount * 2/3, _weaponScript.horizontalAmount * 2 / 3), _weaponScript.verticalAmount * 2 / 3);
+        }
+        else
+        {
+            _playerCam.ApplyRecoilShake(Random.Range(-_weaponScript.horizontalAmount, _weaponScript.horizontalAmount), _weaponScript.verticalAmount);
+        }
         if (Physics.Raycast(ray, out RaycastHit hit, _weaponScript.maxFireDistance))
         {
             Debug.Log($"Hit {hit.collider.name} ||||||||| {hit.point}");
