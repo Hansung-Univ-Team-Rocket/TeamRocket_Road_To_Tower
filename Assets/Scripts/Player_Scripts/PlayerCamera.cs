@@ -25,8 +25,9 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] Quaternion _targetShakeRotation = Quaternion.identity;
     [SerializeField] Quaternion _currentShakeRotation = Quaternion.identity;
 
-    private float _currentSpeed = 0f;
-    private float _shakeTimer = 0f;
+
+    float _currentSpeed = 0f;
+    float _shakeTimer = 0f;
 
     // 카메라 총기 반동에 따른 변수
     Vector2 _recoilShake = Vector2.zero;

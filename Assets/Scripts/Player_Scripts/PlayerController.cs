@@ -12,11 +12,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]    float _fireTimer = 0;
     [SerializeField]    GameObject bulletTrailPrefab;
     [SerializeField]    float _reRoadTimer = 0;
-
+    [SerializeField]    bool _isShoulder = false;
     RaycastHit hit;
 
     Vector3 _lookInputVector;
 
+    [Header("Camera Sensivity")]
+    [SerializeField] float _cameraSensivity = 0.5f;
     //private void Awake()
     //{
     //    _WeaponPrefab = FindCHildWithTag(GameObject.Find("Character").transform, "Weapon");
@@ -57,10 +59,11 @@ public class PlayerController : MonoBehaviour
         // Doesnt works
 
         float scrollInput = -Input.GetAxis("Mouse ScrollWheel");
-        _playerCam.UpdateWithInput(Time.deltaTime, scrollInput, _lookInputVector);
+        _playerCam.UpdateWithInput(Time.deltaTime, scrollInput, _lookInputVector * _cameraSensivity);
     }
     void HandleCharacterInputs()
     {
+        if (PlayerStatusInfo.playerHP <= 0) return;
         _fireTimer += Time.deltaTime;
 
         PlayerInput inputs = new PlayerInput();
@@ -141,7 +144,7 @@ public class PlayerController : MonoBehaviour
 
     void FireGun(PlayerInput inputs)
     {
-        if (_weaponScript.nowReroading || _weaponScript.nowBullet <= 0 || _weaponScript.isMeele) return;
+        if (_weaponScript.nowReroading || _weaponScript.nowBullet <= 0 || _weaponScript.weaponType == "Shotgun") return;
         if(_fireTimer < _weaponScript.roundsPerMinute) return;
 
         _characterController.upperPlayerState = UpperPlayerState.SHOOTINGATTACK;
