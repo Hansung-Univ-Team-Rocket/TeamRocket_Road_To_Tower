@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using NUnit.Framework.Internal.Filters;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -26,7 +27,13 @@ public class Enemy_FSM : MonoBehaviour
     [SerializeField] GameObject _spawnEffect;
     public          float spwanEffectTime;
 
+    [Header("Flag Values")]
     [SerializeField] bool _isDead = false;
+
+
+    [Header("Enemy's Finder Value")]
+    [SerializeField] float _fovDegrees; // 적 유닛이 볼 수 있는 시야각
+    [SerializeField] float _maxDistance; // 적 유닛이 볼 수 있는 최대 시야 거리
 
     private void Start()
     {
@@ -39,6 +46,39 @@ public class Enemy_FSM : MonoBehaviour
     {
         GameObject spwanEffect = Instantiate(_spawnEffect, this.transform.position, Quaternion.identity);
         Destroy(spwanEffect, spwanEffectTime); 
+    }
+
+    /// <summary>
+    /// 적 유닛 기준에서 플레이어가 시야에 들어 왔는지 확인하는 함수
+    /// </summary>
+    /// <param name="lookDir">적 유닛이 바라보는 방향</param>
+    /// <param name="toTargetDIr">바라보는 대상(플레이어)</param>
+    /// <param name="fovAngle">적 유닛의 시야각</param>
+    /// <returns>
+    /// 만약에 시야에 들어왔으면 true를 리턴, 그게 아니라면 false
+    /// </returns>
+    bool IsTragetInSight(Vector3 lookDir, Vector3 toTargetDIr, float fovAngle, float maxFIndDIstance)
+    {
+        // 적 유닛과 플레이어 유닛간의 거리 판별
+        float resultDistance =
+            Vector3.Distance(this.gameObject.transform.position, toTargetDIr);
+
+        if (resultDistance > maxFIndDIstance)
+        {
+            return false;
+            // 만약에 적 유닛의 최대 시야보다 플레이어 거리간의 거리가 더 길면 false 리턴 
+        }
+
+        float dot = Vector3.Dot(lookDir.normalized, toTargetDIr.normalized);
+        // 백터 내적
+
+        float thres = Mathf.Cos(fovAngle / 2 * Mathf.Deg2Rad);
+        // 시야각을 1/2함. 또, 라디안 값을 도로 바꿈
+        
+        bool checker = dot >= thres;
+        // 목표물이 시야 범위 안에 있으면 참, 아니면 거짓
+
+        return checker;
     }
 
     private void Update()
@@ -62,16 +102,17 @@ public class Enemy_FSM : MonoBehaviour
         switch (state)
         {
             case STATE.SPAWN:
-                if(_animator != null)
+
+                break;
+
+            case STATE.IDLE:
+                if (_animator != null)
                     _animator.SetInteger("State", 0);
                 else
                 {
                     Debug.LogError("Animator is null");
                 }
                 // 애니메이터 FSM은 Integer로 작성
-                break;
-
-            case STATE.IDLE:
                 break;
 
             case STATE.DAMAGED:
