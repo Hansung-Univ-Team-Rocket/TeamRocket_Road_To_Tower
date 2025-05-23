@@ -9,12 +9,11 @@ public class PlayerAnimation : MonoBehaviour
     {
         anim.SetInteger("Up", 0);
         anim.SetInteger("Down", 0);
-        anim.SetInteger("Weapon", 0);
+        anim.SetInteger("Weapon", 1);
     }
 
     void Update()
     {
-        Debug.Log($"현재 State : {PMC.lowerPlayerState}");
         CheckUpperState();
         CheckLowerState();
     }
@@ -27,7 +26,7 @@ public class PlayerAnimation : MonoBehaviour
         /// 활 : 2
         /// 검 : 3
 
-        anim.SetInteger("Weapon", 0);
+        anim.SetInteger("Weapon", 1);
     }
 
     void CheckUpperState()
