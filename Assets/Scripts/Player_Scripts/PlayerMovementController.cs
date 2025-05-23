@@ -73,7 +73,8 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     [Header("Player state")]
     public UpperPlayerState upperPlayerState;
     public LowerPlayerState lowerPlayerState;
-    
+
+    float _movementCheckValue = 0f;
 
 
     private Collider[] _probedColliders = new Collider[8];
@@ -87,12 +88,16 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         _motor.CharacterController = this;
     }
 
-
+    void ReturnMoveInput(PlayerInput inputs)
+    {
+        _movementCheckValue = Mathf.Abs(inputs.AxisFwd) + Mathf.Abs(inputs.AxisRight);
+    }
     // 정지 상태인 경우에 여기서 플레이어 스테이트 머신 해결
     public void SetInputs(ref PlayerInput inputs)
     {
         if (upperPlayerState == UpperPlayerState.DEAD || lowerPlayerState == LowerPlayerState.DEAD) return;
 
+        ReturnMoveInput(inputs);
         if (_dodgeTimeChecker >= _dodgeTime && isNowDodge)
         {
             isNowDodge = false;
@@ -269,13 +274,20 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
                 {
                     lowerPlayerState = LowerPlayerState.MOVE;
                 }
-                else
+                if(!isFire && !isReroading && _movementCheckValue != 0)
                 {
                     upperPlayerState = UpperPlayerState.IDLE;
                     lowerPlayerState = LowerPlayerState.MOVE;
                 }
+                if (!isFire && !isReroading && _movementCheckValue == 0)
+                {
+                    upperPlayerState = UpperPlayerState.IDLE;
+                    lowerPlayerState = LowerPlayerState.IDLE;
+                }
             }
         }
+
+        Debug.Log($"lowerPlayerState: {lowerPlayerState}, upperPlayerState: {upperPlayerState}");
     }
 
     public void BeforeCharacterUpdate(float deltaTime)
