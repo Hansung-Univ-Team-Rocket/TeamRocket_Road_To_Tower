@@ -8,6 +8,7 @@ public class BossControl : MonoBehaviour
 {
     public Transform player;
     MeshRenderer[] meshs;
+    Color softRed = new Color(1f, 0f, 0f, 0.4f);
 
     public Transform LHand;
     public Transform RHand;
@@ -19,6 +20,7 @@ public class BossControl : MonoBehaviour
     public GameObject warningPlanePrefab;
     public GameObject spikePrefab;
     private GameObject Floor;
+    private Animator anim;
 
     public float dashSpeed = 20f;
     public float patternCooldown = 2f;
@@ -37,6 +39,7 @@ public class BossControl : MonoBehaviour
     {
         Floor = GameObject.Find("Floor");
         meshs = GetComponentsInChildren<MeshRenderer>();
+        anim = GetComponent<Animator>();
         StartCoroutine(PatternLoop());
     }
 
@@ -90,14 +93,20 @@ public class BossControl : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(directionToPlayer.normalized);
 
             foreach (MeshRenderer mesh in meshs)
-                mesh.material.color = Color.green;
+            {
+                foreach (Material mat in mesh.materials)
+                {
+                    mat.color = softRed;
+                }
+            }
 
             preparationTime += Time.deltaTime;
             yield return null;
         }
 
         foreach (MeshRenderer mesh in meshs)
-            mesh.material.color = Color.gray;
+            foreach (Material mat in mesh.materials)
+                mesh.material.color = Color.gray;
 
         // 돌진 시작 시점의 플레이어 위치를 기준으로 돌진
         Vector3 dashTarget = player.position;
@@ -106,11 +115,14 @@ public class BossControl : MonoBehaviour
         transform.forward = (dashTarget - transform.position).normalized;
 
         // 해당 위치까지 돌진
+
+        anim.SetBool("run", true);
         while (Vector3.Distance(transform.position, dashTarget) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, dashTarget, dashSpeed * Time.deltaTime);
             yield return null;
         }
+        anim.SetBool("run", false);
 
         yield return new WaitForSeconds(1f);
     }
@@ -118,9 +130,9 @@ public class BossControl : MonoBehaviour
     // 패턴 2: 각 손에서 5발씩 비유도 탄환 발사
     IEnumerator StraightShotPattern()
     {
-
         for (int i = 0; i < 5; i++)
         {
+            anim.SetBool("shoot", true);
             // 플레이어 위치 인식
             Vector3 targetPosition = player.position;
             targetPosition.y = transform.position.y;
@@ -129,9 +141,10 @@ public class BossControl : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(targetDirection);
 
             // 번갈아가며 손을 선택
-            Transform fireHand = (i % 2 == 0) ? RHand : LHand;
+            Transform fireHand = RHand;
 
             FireStraightBullet(fireHand);
+            anim.SetBool("shoot", false);
             yield return new WaitForSeconds(0.5f); // 간격 조정 가능
         }
 
@@ -148,11 +161,13 @@ public class BossControl : MonoBehaviour
         Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
         transform.rotation = Quaternion.LookRotation(targetDirection);
 
+        anim.SetBool("shoot", true);
         FireHomingBullet(RHand);
         yield return new WaitForSeconds(1f);
 
-        FireHomingBullet(LHand);
-        yield return new WaitForSeconds(1f); // 다음 패턴과의 간격 유지
+        FireHomingBullet(RHand);
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("shoot", false);
     }
 
     // 패턴 4: 몸의 중앙에서 부채꼴 모양으로 탄환을 흩뿌리며 발사
@@ -167,6 +182,7 @@ public class BossControl : MonoBehaviour
 
         for (int i = 0; i < 5; i++) // 총 5회 반복
         {
+            anim.SetBool("spread", true);
             Vector3 directionToPlayer = (player.position - shootPoint.position).normalized;
             float startAngle = -fanAngle / 2f;
             float angleStep = fanAngle / (bulletCount - 1);
@@ -211,7 +227,8 @@ public class BossControl : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(targetDirection);
 
         for (int count = 0; count < 3; count++)
-        {
+        { 
+            anim.SetBool("spike", true);
             List<Vector3> spikePositions = new List<Vector3>();
             List<GameObject> warningPlanes = new List<GameObject>();
 
@@ -263,6 +280,7 @@ public class BossControl : MonoBehaviour
                 spike.transform.localScale = new Vector3(cellSize, 0.1f, cellSize);
                 Destroy(spike, spikeDuration);
             }
+            anim.SetBool("spike", false);
             yield return new WaitForSeconds(1f); // 반복 간 간격
         }
 
