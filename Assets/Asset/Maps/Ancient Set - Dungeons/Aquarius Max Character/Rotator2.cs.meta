@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: cb53fdb7c1432714fb99321f562b947e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164581
+  packageName: The Ancient Set - Dungeons
+  packageVersion: 1.0
+  assetPath: Assets/Ancient Set - Dungeons/Aquarius Max Character/Rotator2.cs
+  uploadId: 357038

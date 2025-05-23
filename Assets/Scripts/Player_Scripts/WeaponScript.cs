@@ -3,8 +3,7 @@ using UnityEngine;
 public class WeaponScript : MonoBehaviour
 {
     [Header("Weapon's Basic Value | If the weapon is meele, set roundsPerMinute as animation delay")]
-    public bool isMeele = true;
-    public bool isShotgun = false;
+    public string weaponType = string.Empty;
     public int weaponDamage = 0;
     public float weaponReroadTime = 0;
     public int nowBullet = 12;

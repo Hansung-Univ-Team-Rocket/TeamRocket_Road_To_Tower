@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3300b07b81cc7d74e824481eca5bbcdb
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164581
+  packageName: The Ancient Set - Dungeons
+  packageVersion: 1.0
+  assetPath: Assets/Ancient Set - Dungeons/Aquarius Max Character/Rock_Cover_Standard.shader
+  uploadId: 357038

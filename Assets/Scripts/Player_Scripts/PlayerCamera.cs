@@ -25,8 +25,11 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] Quaternion _targetShakeRotation = Quaternion.identity;
     [SerializeField] Quaternion _currentShakeRotation = Quaternion.identity;
 
-    private float _currentSpeed = 0f;
-    private float _shakeTimer = 0f;
+
+    float _currentSpeed = 0f;
+    float _shakeTimer = 0f;
+    float _preAimDistance;
+    bool _isAiming = false;
 
     // 카메라 총기 반동에 따른 변수
     Vector2 _recoilShake = Vector2.zero;
@@ -48,6 +51,24 @@ public class PlayerCamera : MonoBehaviour
         _targetVerticalAngle = 0f;
         _planarDir = Vector3.forward;
     }
+
+    public void SetAimState(bool aiming)
+    {
+        if (aiming && !_isAiming)
+        {
+            // 에임 시작 시 기존 거리 저장
+            _preAimDistance = _targetDis;
+            _targetDis = _minDis; // 가까이 줌인 (에임)
+        }
+        else if (!aiming && _isAiming)
+        {
+            // 에임 종료 시 원래 거리 복원
+            _targetDis = _preAimDistance;
+        }
+
+        _isAiming = aiming;
+    }
+
     /// <summary>
     /// 속도비례 흔들림 강도 계산
     /// </summary>
@@ -74,8 +95,8 @@ public class PlayerCamera : MonoBehaviour
             float intensity = _currentSpeed * _maxShakeIntensity;
 
             // Perlin Noise 기반 흔들림 생성 (더 자연스러움)
-            float noiseX = Mathf.PerlinNoise(Time.time * _shakeFrequency, 0f);
-            float noiseY = Mathf.PerlinNoise(0f, Time.time * _shakeFrequency);
+            float noiseX = Mathf.PerlinNoise(_shakeTimer, 0f);
+            float noiseY = Mathf.PerlinNoise(0f, _shakeTimer);
 
             float shakePitch = (noiseY - 0.5f) * 2f * intensity * 5f;  // 상하 흔들림
             float shakeRoll = (noiseX - 0.5f) * 2f * intensity * 30f;  // 좌우 기울기
@@ -198,14 +219,23 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
+    /*
     public void UpdatePlayerStickOnWall(float deltaTime, Vector3 rotationInput)
     {
-        // if(_followTransform)
-        // {
-        //     HandleRotationInput(deltaTime, rotationInput, out Quaternion targetRotation);
-        //     HandlePosition(deltaTime, -10f, targetRotation);
-        // }
-        // Doesnt works
-    }
+        if (_followTransform)
+        {
+            HandleRotationInput(deltaTime, rotationInput, out Quaternion targetRotation);
+
+            _targetDis = _minDis;
+
+            Vector3 rightOffset = targetRotation * Vector3.right * 2f;
+            _currentFollowPos = Vector3.Lerp(_currentFollowPos, _followTransform.position, 1f - Mathf.Exp(-_followSharpness * deltaTime));
+            Vector3 targetPosition = _currentFollowPos - ((targetRotation * Vector3.forward) * _minDis) + rightOffset;
+
+            _curDIs = Mathf.Lerp(_curDIs, _minDis, 1 - Mathf.Exp(-_disMovementSharpness * deltaTime));
+            transform.position = targetPosition;
+            transform.rotation = targetRotation;
+        }
+    }*/
     
 }

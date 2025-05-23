@@ -1,0 +1,688 @@
+fileFormatVersion: 2
+guid: ce359c5ba5c6ab048b1a4674ed0449b4
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Curved Floor Piece L 1A1
+    100002: Curved Floor Piece L 1B1
+    100004: Curved Floor Piece L 2A1
+    100006: Curved Floor Piece L 2B1
+    100008: Curved Floor Piece R 1A1
+    100010: Curved Floor Piece R 1B1
+    100012: Curved Floor Piece R 2A2
+    100014: Curved Floor Piece R 2B2
+    100016: //RootNode
+    100018: Staircase Curved L 1A1
+    100020: Staircase Curved L 1B1
+    100022: Staircase Curved L 2A1
+    100024: Staircase Curved L 2B1
+    100026: Staircase Curved Pillars 1A1
+    100028: Staircase Curved Pillars 1A2
+    100030: Staircase Curved Pillars 1B1
+    100032: Staircase Curved Pillars 1B2
+    100034: Staircase Curved Pillars 2A1
+    100036: Staircase Curved Pillars 2A2
+    100038: Staircase Curved Pillars 2B1
+    100040: Staircase Curved Pillars 2B2
+    100042: Staircase Curved R 1A1
+    100044: Staircase Curved R 1B1
+    100046: Staircase Curved R 2A1
+    100048: Staircase Curved R 2B1
+    100050: Staircase Curved Railing L 1A1
+    100052: Staircase Curved Railing L 1A2
+    100054: Staircase Curved Railing L 1B1
+    100056: Staircase Curved Railing L 1B2
+    100058: Staircase Curved Railing L 2A1
+    100060: Staircase Curved Railing L 2A2
+    100062: Staircase Curved Railing L 2B1
+    100064: Staircase Curved Railing L 2B2
+    100066: Staircase Curved Railing R 1A1
+    100068: Staircase Curved Railing R 1A2
+    100070: Staircase Curved Railing R 1B1
+    100072: Staircase Curved Railing R 1B2
+    100074: Staircase Curved Railing R 2A1
+    100076: Staircase Curved Railing R 2A2
+    100078: Staircase Curved Railing R 2B1
+    100080: Staircase Curved Railing R 2B2
+    100082: Staircase Straight 1A1
+    100084: Staircase Straight 1B1
+    100086: Staircase Straight Half 1A1
+    100088: Staircase Straight Half 1A2
+    100090: Staircase Straight Half 1B1
+    100092: Staircase Straight Half 1B2
+    100094: Staircase Straight Half Railing L 1A1
+    100096: Staircase Straight Half Railing L 1A2
+    100098: Staircase Straight Half Railing L 1B1
+    100100: Staircase Straight Half Railing L 1B2
+    100102: Staircase Straight Half Railing R 1A1
+    100104: Staircase Straight Half Railing R 1A2
+    100106: Staircase Straight Half Railing R 1B1
+    100108: Staircase Straight Half Railing R 1B2
+    100110: Staircase Straight Pillars 1A1
+    100112: Staircase Straight Pillars 1A2
+    100114: Staircase Straight Pillars 1B1
+    100116: Staircase Straight Pillars 1B2
+    100118: Staircase Straight Railing L 1A1
+    100120: Staircase Straight Railing L 1B1
+    100122: Staircase Straight Railing R 1A1
+    100124: Staircase Straight Railing R 1B1
+    100126: Wall Curved L 1A1
+    100128: Wall Curved L 1A2
+    100130: Wall Curved L 1B1
+    100132: Wall Curved L 1B2
+    100134: Wall Curved L 2A1
+    100136: Wall Curved L 2A2
+    100138: Wall Curved L 2B1
+    100140: Wall Curved L 2B2
+    100142: Wall Curved R 1A1
+    100144: Wall Curved R 1A2
+    100146: Wall Curved R 1B1
+    100148: Wall Curved R 1B2
+    100150: Wall Curved R 2A1
+    100152: Wall Curved R 2A2
+    100154: Wall Curved R 2B1
+    100156: Wall Curved R 2B2
+    100158: Wall Curved Railing L 1A1
+    100160: Wall Curved Railing L 1A2
+    100162: Wall Curved Railing L 1B1
+    100164: Wall Curved Railing L 1B2
+    100166: Wall Curved Railing L 2A1
+    100168: Wall Curved Railing L 2A2
+    100170: Wall Curved Railing L 2B1
+    100172: Wall Curved Railing L 2B2
+    100174: Wall Curved Railing R 1A1
+    100176: Wall Curved Railing R 1A2
+    100178: Wall Curved Railing R 1B1
+    100180: Wall Curved Railing R 1B2
+    100182: Wall Curved Railing R 2A1
+    100184: Wall Curved Railing R 2A2
+    100186: Wall Curved Railing R 2B1
+    100188: Wall Curved Railing R 2B2
+    400000: Curved Floor Piece L 1A1
+    400002: Curved Floor Piece L 1B1
+    400004: Curved Floor Piece L 2A1
+    400006: Curved Floor Piece L 2B1
+    400008: Curved Floor Piece R 1A1
+    400010: Curved Floor Piece R 1B1
+    400012: Curved Floor Piece R 2A2
+    400014: Curved Floor Piece R 2B2
+    400016: //RootNode
+    400018: Staircase Curved L 1A1
+    400020: Staircase Curved L 1B1
+    400022: Staircase Curved L 2A1
+    400024: Staircase Curved L 2B1
+    400026: Staircase Curved Pillars 1A1
+    400028: Staircase Curved Pillars 1A2
+    400030: Staircase Curved Pillars 1B1
+    400032: Staircase Curved Pillars 1B2
+    400034: Staircase Curved Pillars 2A1
+    400036: Staircase Curved Pillars 2A2
+    400038: Staircase Curved Pillars 2B1
+    400040: Staircase Curved Pillars 2B2
+    400042: Staircase Curved R 1A1
+    400044: Staircase Curved R 1B1
+    400046: Staircase Curved R 2A1
+    400048: Staircase Curved R 2B1
+    400050: Staircase Curved Railing L 1A1
+    400052: Staircase Curved Railing L 1A2
+    400054: Staircase Curved Railing L 1B1
+    400056: Staircase Curved Railing L 1B2
+    400058: Staircase Curved Railing L 2A1
+    400060: Staircase Curved Railing L 2A2
+    400062: Staircase Curved Railing L 2B1
+    400064: Staircase Curved Railing L 2B2
+    400066: Staircase Curved Railing R 1A1
+    400068: Staircase Curved Railing R 1A2
+    400070: Staircase Curved Railing R 1B1
+    400072: Staircase Curved Railing R 1B2
+    400074: Staircase Curved Railing R 2A1
+    400076: Staircase Curved Railing R 2A2
+    400078: Staircase Curved Railing R 2B1
+    400080: Staircase Curved Railing R 2B2
+    400082: Staircase Straight 1A1
+    400084: Staircase Straight 1B1
+    400086: Staircase Straight Half 1A1
+    400088: Staircase Straight Half 1A2
+    400090: Staircase Straight Half 1B1
+    400092: Staircase Straight Half 1B2
+    400094: Staircase Straight Half Railing L 1A1
+    400096: Staircase Straight Half Railing L 1A2
+    400098: Staircase Straight Half Railing L 1B1
+    400100: Staircase Straight Half Railing L 1B2
+    400102: Staircase Straight Half Railing R 1A1
+    400104: Staircase Straight Half Railing R 1A2
+    400106: Staircase Straight Half Railing R 1B1
+    400108: Staircase Straight Half Railing R 1B2
+    400110: Staircase Straight Pillars 1A1
+    400112: Staircase Straight Pillars 1A2
+    400114: Staircase Straight Pillars 1B1
+    400116: Staircase Straight Pillars 1B2
+    400118: Staircase Straight Railing L 1A1
+    400120: Staircase Straight Railing L 1B1
+    400122: Staircase Straight Railing R 1A1
+    400124: Staircase Straight Railing R 1B1
+    400126: Wall Curved L 1A1
+    400128: Wall Curved L 1A2
+    400130: Wall Curved L 1B1
+    400132: Wall Curved L 1B2
+    400134: Wall Curved L 2A1
+    400136: Wall Curved L 2A2
+    400138: Wall Curved L 2B1
+    400140: Wall Curved L 2B2
+    400142: Wall Curved R 1A1
+    400144: Wall Curved R 1A2
+    400146: Wall Curved R 1B1
+    400148: Wall Curved R 1B2
+    400150: Wall Curved R 2A1
+    400152: Wall Curved R 2A2
+    400154: Wall Curved R 2B1
+    400156: Wall Curved R 2B2
+    400158: Wall Curved Railing L 1A1
+    400160: Wall Curved Railing L 1A2
+    400162: Wall Curved Railing L 1B1
+    400164: Wall Curved Railing L 1B2
+    400166: Wall Curved Railing L 2A1
+    400168: Wall Curved Railing L 2A2
+    400170: Wall Curved Railing L 2B1
+    400172: Wall Curved Railing L 2B2
+    400174: Wall Curved Railing R 1A1
+    400176: Wall Curved Railing R 1A2
+    400178: Wall Curved Railing R 1B1
+    400180: Wall Curved Railing R 1B2
+    400182: Wall Curved Railing R 2A1
+    400184: Wall Curved Railing R 2A2
+    400186: Wall Curved Railing R 2B1
+    400188: Wall Curved Railing R 2B2
+    2100000: Dungeon Wall 1A1
+    2100002: Dungeon Pillars 2A1
+    2100004: Dungeon Railings 1A1
+    2100006: Dungeon Tile 1A1
+    2300000: Curved Floor Piece L 1A1
+    2300002: Curved Floor Piece L 1B1
+    2300004: Curved Floor Piece L 2A1
+    2300006: Curved Floor Piece L 2B1
+    2300008: Curved Floor Piece R 1A1
+    2300010: Curved Floor Piece R 1B1
+    2300012: Curved Floor Piece R 2A2
+    2300014: Curved Floor Piece R 2B2
+    2300016: Staircase Curved L 1A1
+    2300018: Staircase Curved L 1B1
+    2300020: Staircase Curved L 2A1
+    2300022: Staircase Curved L 2B1
+    2300024: Staircase Curved Pillars 1A1
+    2300026: Staircase Curved Pillars 1A2
+    2300028: Staircase Curved Pillars 1B1
+    2300030: Staircase Curved Pillars 1B2
+    2300032: Staircase Curved Pillars 2A1
+    2300034: Staircase Curved Pillars 2A2
+    2300036: Staircase Curved Pillars 2B1
+    2300038: Staircase Curved Pillars 2B2
+    2300040: Staircase Curved R 1A1
+    2300042: Staircase Curved R 1B1
+    2300044: Staircase Curved R 2A1
+    2300046: Staircase Curved R 2B1
+    2300048: Staircase Curved Railing L 1A1
+    2300050: Staircase Curved Railing L 1A2
+    2300052: Staircase Curved Railing L 1B1
+    2300054: Staircase Curved Railing L 1B2
+    2300056: Staircase Curved Railing L 2A1
+    2300058: Staircase Curved Railing L 2A2
+    2300060: Staircase Curved Railing L 2B1
+    2300062: Staircase Curved Railing L 2B2
+    2300064: Staircase Curved Railing R 1A1
+    2300066: Staircase Curved Railing R 1A2
+    2300068: Staircase Curved Railing R 1B1
+    2300070: Staircase Curved Railing R 1B2
+    2300072: Staircase Curved Railing R 2A1
+    2300074: Staircase Curved Railing R 2A2
+    2300076: Staircase Curved Railing R 2B1
+    2300078: Staircase Curved Railing R 2B2
+    2300080: Staircase Straight 1A1
+    2300082: Staircase Straight 1B1
+    2300084: Staircase Straight Half 1A1
+    2300086: Staircase Straight Half 1A2
+    2300088: Staircase Straight Half 1B1
+    2300090: Staircase Straight Half 1B2
+    2300092: Staircase Straight Half Railing L 1A1
+    2300094: Staircase Straight Half Railing L 1A2
+    2300096: Staircase Straight Half Railing L 1B1
+    2300098: Staircase Straight Half Railing L 1B2
+    2300100: Staircase Straight Half Railing R 1A1
+    2300102: Staircase Straight Half Railing R 1A2
+    2300104: Staircase Straight Half Railing R 1B1
+    2300106: Staircase Straight Half Railing R 1B2
+    2300108: Staircase Straight Pillars 1A1
+    2300110: Staircase Straight Pillars 1A2
+    2300112: Staircase Straight Pillars 1B1
+    2300114: Staircase Straight Pillars 1B2
+    2300116: Staircase Straight Railing L 1A1
+    2300118: Staircase Straight Railing L 1B1
+    2300120: Staircase Straight Railing R 1A1
+    2300122: Staircase Straight Railing R 1B1
+    2300124: Wall Curved L 1A1
+    2300126: Wall Curved L 1A2
+    2300128: Wall Curved L 1B1
+    2300130: Wall Curved L 1B2
+    2300132: Wall Curved L 2A1
+    2300134: Wall Curved L 2A2
+    2300136: Wall Curved L 2B1
+    2300138: Wall Curved L 2B2
+    2300140: Wall Curved R 1A1
+    2300142: Wall Curved R 1A2
+    2300144: Wall Curved R 1B1
+    2300146: Wall Curved R 1B2
+    2300148: Wall Curved R 2A1
+    2300150: Wall Curved R 2A2
+    2300152: Wall Curved R 2B1
+    2300154: Wall Curved R 2B2
+    2300156: Wall Curved Railing L 1A1
+    2300158: Wall Curved Railing L 1A2
+    2300160: Wall Curved Railing L 1B1
+    2300162: Wall Curved Railing L 1B2
+    2300164: Wall Curved Railing L 2A1
+    2300166: Wall Curved Railing L 2A2
+    2300168: Wall Curved Railing L 2B1
+    2300170: Wall Curved Railing L 2B2
+    2300172: Wall Curved Railing R 1A1
+    2300174: Wall Curved Railing R 1A2
+    2300176: Wall Curved Railing R 1B1
+    2300178: Wall Curved Railing R 1B2
+    2300180: Wall Curved Railing R 2A1
+    2300182: Wall Curved Railing R 2A2
+    2300184: Wall Curved Railing R 2B1
+    2300186: Wall Curved Railing R 2B2
+    3300000: Curved Floor Piece L 1A1
+    3300002: Curved Floor Piece L 1B1
+    3300004: Curved Floor Piece L 2A1
+    3300006: Curved Floor Piece L 2B1
+    3300008: Curved Floor Piece R 1A1
+    3300010: Curved Floor Piece R 1B1
+    3300012: Curved Floor Piece R 2A2
+    3300014: Curved Floor Piece R 2B2
+    3300016: Staircase Curved L 1A1
+    3300018: Staircase Curved L 1B1
+    3300020: Staircase Curved L 2A1
+    3300022: Staircase Curved L 2B1
+    3300024: Staircase Curved Pillars 1A1
+    3300026: Staircase Curved Pillars 1A2
+    3300028: Staircase Curved Pillars 1B1
+    3300030: Staircase Curved Pillars 1B2
+    3300032: Staircase Curved Pillars 2A1
+    3300034: Staircase Curved Pillars 2A2
+    3300036: Staircase Curved Pillars 2B1
+    3300038: Staircase Curved Pillars 2B2
+    3300040: Staircase Curved R 1A1
+    3300042: Staircase Curved R 1B1
+    3300044: Staircase Curved R 2A1
+    3300046: Staircase Curved R 2B1
+    3300048: Staircase Curved Railing L 1A1
+    3300050: Staircase Curved Railing L 1A2
+    3300052: Staircase Curved Railing L 1B1
+    3300054: Staircase Curved Railing L 1B2
+    3300056: Staircase Curved Railing L 2A1
+    3300058: Staircase Curved Railing L 2A2
+    3300060: Staircase Curved Railing L 2B1
+    3300062: Staircase Curved Railing L 2B2
+    3300064: Staircase Curved Railing R 1A1
+    3300066: Staircase Curved Railing R 1A2
+    3300068: Staircase Curved Railing R 1B1
+    3300070: Staircase Curved Railing R 1B2
+    3300072: Staircase Curved Railing R 2A1
+    3300074: Staircase Curved Railing R 2A2
+    3300076: Staircase Curved Railing R 2B1
+    3300078: Staircase Curved Railing R 2B2
+    3300080: Staircase Straight 1A1
+    3300082: Staircase Straight 1B1
+    3300084: Staircase Straight Half 1A1
+    3300086: Staircase Straight Half 1A2
+    3300088: Staircase Straight Half 1B1
+    3300090: Staircase Straight Half 1B2
+    3300092: Staircase Straight Half Railing L 1A1
+    3300094: Staircase Straight Half Railing L 1A2
+    3300096: Staircase Straight Half Railing L 1B1
+    3300098: Staircase Straight Half Railing L 1B2
+    3300100: Staircase Straight Half Railing R 1A1
+    3300102: Staircase Straight Half Railing R 1A2
+    3300104: Staircase Straight Half Railing R 1B1
+    3300106: Staircase Straight Half Railing R 1B2
+    3300108: Staircase Straight Pillars 1A1
+    3300110: Staircase Straight Pillars 1A2
+    3300112: Staircase Straight Pillars 1B1
+    3300114: Staircase Straight Pillars 1B2
+    3300116: Staircase Straight Railing L 1A1
+    3300118: Staircase Straight Railing L 1B1
+    3300120: Staircase Straight Railing R 1A1
+    3300122: Staircase Straight Railing R 1B1
+    3300124: Wall Curved L 1A1
+    3300126: Wall Curved L 1A2
+    3300128: Wall Curved L 1B1
+    3300130: Wall Curved L 1B2
+    3300132: Wall Curved L 2A1
+    3300134: Wall Curved L 2A2
+    3300136: Wall Curved L 2B1
+    3300138: Wall Curved L 2B2
+    3300140: Wall Curved R 1A1
+    3300142: Wall Curved R 1A2
+    3300144: Wall Curved R 1B1
+    3300146: Wall Curved R 1B2
+    3300148: Wall Curved R 2A1
+    3300150: Wall Curved R 2A2
+    3300152: Wall Curved R 2B1
+    3300154: Wall Curved R 2B2
+    3300156: Wall Curved Railing L 1A1
+    3300158: Wall Curved Railing L 1A2
+    3300160: Wall Curved Railing L 1B1
+    3300162: Wall Curved Railing L 1B2
+    3300164: Wall Curved Railing L 2A1
+    3300166: Wall Curved Railing L 2A2
+    3300168: Wall Curved Railing L 2B1
+    3300170: Wall Curved Railing L 2B2
+    3300172: Wall Curved Railing R 1A1
+    3300174: Wall Curved Railing R 1A2
+    3300176: Wall Curved Railing R 1B1
+    3300178: Wall Curved Railing R 1B2
+    3300180: Wall Curved Railing R 2A1
+    3300182: Wall Curved Railing R 2A2
+    3300184: Wall Curved Railing R 2B1
+    3300186: Wall Curved Railing R 2B2
+    4300000: Staircase Straight 1A1
+    4300002: Staircase Straight Railing L 1A1
+    4300004: Staircase Straight Railing R 1A1
+    4300006: Staircase Straight Half 1A1
+    4300008: Staircase Straight Half Railing L 1A1
+    4300010: Staircase Straight Half Railing R 1A1
+    4300012: Staircase Straight Half 1A2
+    4300014: Staircase Straight Half Railing R 1A2
+    4300016: Staircase Straight Half Railing L 1A2
+    4300018: Staircase Straight 1B1
+    4300020: Staircase Straight Railing L 1B1
+    4300022: Staircase Straight Railing R 1B1
+    4300024: Staircase Straight Half 1B1
+    4300026: Staircase Straight Half Railing L 1B1
+    4300028: Staircase Straight Half Railing R 1B1
+    4300030: Staircase Straight Half 1B2
+    4300032: Staircase Straight Half Railing R 1B2
+    4300034: Staircase Straight Half Railing L 1B2
+    4300036: Wall Curved L 2A2
+    4300038: Wall Curved Railing L 2A2
+    4300040: Wall Curved L 2B2
+    4300042: Wall Curved Railing L 2B2
+    4300044: Wall Curved L 1B2
+    4300046: Wall Curved Railing L 1B2
+    4300048: Wall Curved L 1A2
+    4300050: Wall Curved Railing L 1A2
+    4300052: Wall Curved R 1A2
+    4300054: Wall Curved Railing R 1A2
+    4300056: Wall Curved R 1B2
+    4300058: Wall Curved Railing R 1B2
+    4300060: Wall Curved R 2A2
+    4300062: Wall Curved Railing R 2A2
+    4300064: Wall Curved R 2B2
+    4300066: Wall Curved Railing R 2B2
+    4300068: Staircase Curved Pillars 1B1
+    4300070: Staircase Curved Pillars 1B2
+    4300072: Staircase Curved Pillars 1A2
+    4300074: Staircase Curved Pillars 1A1
+    4300076: Staircase Curved Pillars 2A2
+    4300078: Staircase Curved Pillars 2A1
+    4300080: Staircase Curved Pillars 2B1
+    4300082: Staircase Curved Pillars 2B2
+    4300084: Staircase Straight Pillars 1A1
+    4300086: Staircase Straight Pillars 1A2
+    4300088: Staircase Straight Pillars 1B1
+    4300090: Staircase Straight Pillars 1B2
+    4300092: Staircase Curved L 2B1
+    4300094: Staircase Curved Railing L 2B2
+    4300096: Staircase Curved Railing L 2B1
+    4300098: Staircase Curved L 2A1
+    4300100: Staircase Curved Railing L 2A2
+    4300102: Staircase Curved Railing L 2A1
+    4300104: Staircase Curved R 2A1
+    4300106: Staircase Curved Railing R 2A2
+    4300108: Staircase Curved Railing R 2A1
+    4300110: Staircase Curved R 2B1
+    4300112: Staircase Curved Railing R 2B2
+    4300114: Staircase Curved Railing R 2B1
+    4300116: Staircase Curved L 1A1
+    4300118: Staircase Curved Railing L 1A2
+    4300120: Staircase Curved Railing L 1A1
+    4300122: Staircase Curved L 1B1
+    4300124: Staircase Curved Railing L 1B2
+    4300126: Staircase Curved Railing L 1B1
+    4300128: Staircase Curved R 1A1
+    4300130: Staircase Curved Railing R 1A2
+    4300132: Staircase Curved Railing R 1A1
+    4300134: Staircase Curved R 1B1
+    4300136: Staircase Curved Railing R 1B2
+    4300138: Staircase Curved Railing R 1B1
+    4300140: Wall Curved L 1A1
+    4300142: Wall Curved Railing L 1A1
+    4300144: Wall Curved R 1A1
+    4300146: Wall Curved Railing R 1A1
+    4300148: Wall Curved R 1B1
+    4300150: Wall Curved Railing R 1B1
+    4300152: Wall Curved L 1B1
+    4300154: Wall Curved Railing L 1B1
+    4300156: Wall Curved L 2A1
+    4300158: Wall Curved Railing L 2A1
+    4300160: Wall Curved R 2A1
+    4300162: Wall Curved Railing R 2A1
+    4300164: Wall Curved L 2B1
+    4300166: Wall Curved Railing L 2B1
+    4300168: Wall Curved R 2B1
+    4300170: Wall Curved Railing R 2B1
+    4300172: Curved Floor Piece L 2B1
+    4300174: Curved Floor Piece L 2A1
+    4300176: Curved Floor Piece R 2A2
+    4300178: Curved Floor Piece R 2B2
+    4300180: Curved Floor Piece L 1A1
+    4300182: Curved Floor Piece L 1B1
+    4300184: Curved Floor Piece R 1A1
+    4300186: Curved Floor Piece R 1B1
+    6400000: Curved Floor Piece L 1A1
+    6400002: Curved Floor Piece L 1B1
+    6400004: Curved Floor Piece L 2A1
+    6400006: Curved Floor Piece L 2B1
+    6400008: Curved Floor Piece R 1A1
+    6400010: Curved Floor Piece R 1B1
+    6400012: Curved Floor Piece R 2A2
+    6400014: Curved Floor Piece R 2B2
+    6400016: Staircase Curved L 1A1
+    6400018: Staircase Curved L 1B1
+    6400020: Staircase Curved L 2A1
+    6400022: Staircase Curved L 2B1
+    6400024: Staircase Curved Pillars 1A1
+    6400026: Staircase Curved Pillars 1A2
+    6400028: Staircase Curved Pillars 1B1
+    6400030: Staircase Curved Pillars 1B2
+    6400032: Staircase Curved Pillars 2A1
+    6400034: Staircase Curved Pillars 2A2
+    6400036: Staircase Curved Pillars 2B1
+    6400038: Staircase Curved Pillars 2B2
+    6400040: Staircase Curved R 1A1
+    6400042: Staircase Curved R 1B1
+    6400044: Staircase Curved R 2A1
+    6400046: Staircase Curved R 2B1
+    6400048: Staircase Curved Railing L 1A1
+    6400050: Staircase Curved Railing L 1A2
+    6400052: Staircase Curved Railing L 1B1
+    6400054: Staircase Curved Railing L 1B2
+    6400056: Staircase Curved Railing L 2A1
+    6400058: Staircase Curved Railing L 2A2
+    6400060: Staircase Curved Railing L 2B1
+    6400062: Staircase Curved Railing L 2B2
+    6400064: Staircase Curved Railing R 1A1
+    6400066: Staircase Curved Railing R 1A2
+    6400068: Staircase Curved Railing R 1B1
+    6400070: Staircase Curved Railing R 1B2
+    6400072: Staircase Curved Railing R 2A1
+    6400074: Staircase Curved Railing R 2A2
+    6400076: Staircase Curved Railing R 2B1
+    6400078: Staircase Curved Railing R 2B2
+    6400080: Staircase Straight 1A1
+    6400082: Staircase Straight 1B1
+    6400084: Staircase Straight Half 1A1
+    6400086: Staircase Straight Half 1A2
+    6400088: Staircase Straight Half 1B1
+    6400090: Staircase Straight Half 1B2
+    6400092: Staircase Straight Half Railing L 1A1
+    6400094: Staircase Straight Half Railing L 1A2
+    6400096: Staircase Straight Half Railing L 1B1
+    6400098: Staircase Straight Half Railing L 1B2
+    6400100: Staircase Straight Half Railing R 1A1
+    6400102: Staircase Straight Half Railing R 1A2
+    6400104: Staircase Straight Half Railing R 1B1
+    6400106: Staircase Straight Half Railing R 1B2
+    6400108: Staircase Straight Pillars 1A1
+    6400110: Staircase Straight Pillars 1A2
+    6400112: Staircase Straight Pillars 1B1
+    6400114: Staircase Straight Pillars 1B2
+    6400116: Staircase Straight Railing L 1A1
+    6400118: Staircase Straight Railing L 1B1
+    6400120: Staircase Straight Railing R 1A1
+    6400122: Staircase Straight Railing R 1B1
+    6400124: Wall Curved L 1A1
+    6400126: Wall Curved L 1A2
+    6400128: Wall Curved L 1B1
+    6400130: Wall Curved L 1B2
+    6400132: Wall Curved L 2A1
+    6400134: Wall Curved L 2A2
+    6400136: Wall Curved L 2B1
+    6400138: Wall Curved L 2B2
+    6400140: Wall Curved R 1A1
+    6400142: Wall Curved R 1A2
+    6400144: Wall Curved R 1B1
+    6400146: Wall Curved R 1B2
+    6400148: Wall Curved R 2A1
+    6400150: Wall Curved R 2A2
+    6400152: Wall Curved R 2B1
+    6400154: Wall Curved R 2B2
+    6400156: Wall Curved Railing L 1A1
+    6400158: Wall Curved Railing L 1A2
+    6400160: Wall Curved Railing L 1B1
+    6400162: Wall Curved Railing L 1B2
+    6400164: Wall Curved Railing L 2A1
+    6400166: Wall Curved Railing L 2A2
+    6400168: Wall Curved Railing L 2B1
+    6400170: Wall Curved Railing L 2B2
+    6400172: Wall Curved Railing R 1A1
+    6400174: Wall Curved Railing R 1A2
+    6400176: Wall Curved Railing R 1B1
+    6400178: Wall Curved Railing R 1B2
+    6400180: Wall Curved Railing R 2A1
+    6400182: Wall Curved Railing R 2A2
+    6400184: Wall Curved Railing R 2B1
+    6400186: Wall Curved Railing R 2B2
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Pillars 2A1
+    second: {fileID: 2100000, guid: 3cff038742da36945a99e0e0031b86da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Railings 1A1
+    second: {fileID: 2100000, guid: 5f812d62ae3ead84b987d4ccb36e3be9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Tile 1A1
+    second: {fileID: 2100000, guid: b3d031a66b356124eb669c3e21d28db3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Wall 1A1
+    second: {fileID: 2100000, guid: e54dd8821e67c3046a4e93c93d94285d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164581
+  packageName: The Ancient Set - Dungeons
+  packageVersion: 1.0
+  assetPath: Assets/Ancient Set - Dungeons/FBX/Dungeon Supply 1.fbx
+  uploadId: 357038

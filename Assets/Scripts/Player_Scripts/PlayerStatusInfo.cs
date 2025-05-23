@@ -1,16 +1,8 @@
 using UnityEngine;
 
-public class PlayerStatusInfo : MonoBehaviour
+static public class PlayerStatusInfo
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Player basic Info")]
+    static public int playerHP = 10;
+    
 }
