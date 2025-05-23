@@ -1,0 +1,244 @@
+fileFormatVersion: 2
+guid: fd81a6e05473df04dbf15ff8c7d8b2ed
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bone 1A1
+    100002: Bone 1A2
+    100004: Bone 1A3
+    100006: Bone 1B1
+    100008: Bone 1B2
+    100010: Bone 1B3
+    100012: Bone Pile 1A1
+    100014: Bone Pile 1A2
+    100016: Bone Pile 1A3
+    100018: Bone Pile 1A4
+    100020: Bone Pile 1A5
+    100022: Bone Pile 1A6
+    100024: //RootNode
+    100026: Rib Cage 1A1
+    100028: Rib Cage 1A2
+    100030: Skull 1A1
+    100032: Skull 1A2
+    100034: Skull 1A3
+    100036: Spine Bone 1A1
+    100038: Spine Bone 1A2
+    100040: Spine Bone 1A3
+    100042: Spine Bone 1A4
+    100044: Spine Bone 1A5
+    100046: Spine Bone 1A6
+    400000: Bone 1A1
+    400002: Bone 1A2
+    400004: Bone 1A3
+    400006: Bone 1B1
+    400008: Bone 1B2
+    400010: Bone 1B3
+    400012: Bone Pile 1A1
+    400014: Bone Pile 1A2
+    400016: Bone Pile 1A3
+    400018: Bone Pile 1A4
+    400020: Bone Pile 1A5
+    400022: Bone Pile 1A6
+    400024: //RootNode
+    400026: Rib Cage 1A1
+    400028: Rib Cage 1A2
+    400030: Skull 1A1
+    400032: Skull 1A2
+    400034: Skull 1A3
+    400036: Spine Bone 1A1
+    400038: Spine Bone 1A2
+    400040: Spine Bone 1A3
+    400042: Spine Bone 1A4
+    400044: Spine Bone 1A5
+    400046: Spine Bone 1A6
+    2100000: Skeleton 1A1
+    2300000: Bone 1A1
+    2300002: Bone 1A2
+    2300004: Bone 1A3
+    2300006: Bone 1B1
+    2300008: Bone 1B2
+    2300010: Bone 1B3
+    2300012: Bone Pile 1A1
+    2300014: Bone Pile 1A2
+    2300016: Bone Pile 1A3
+    2300018: Bone Pile 1A4
+    2300020: Bone Pile 1A5
+    2300022: Bone Pile 1A6
+    2300024: Rib Cage 1A1
+    2300026: Rib Cage 1A2
+    2300028: Skull 1A1
+    2300030: Skull 1A2
+    2300032: Skull 1A3
+    2300034: Spine Bone 1A1
+    2300036: Spine Bone 1A2
+    2300038: Spine Bone 1A3
+    2300040: Spine Bone 1A4
+    2300042: Spine Bone 1A5
+    2300044: Spine Bone 1A6
+    3300000: Bone 1A1
+    3300002: Bone 1A2
+    3300004: Bone 1A3
+    3300006: Bone 1B1
+    3300008: Bone 1B2
+    3300010: Bone 1B3
+    3300012: Bone Pile 1A1
+    3300014: Bone Pile 1A2
+    3300016: Bone Pile 1A3
+    3300018: Bone Pile 1A4
+    3300020: Bone Pile 1A5
+    3300022: Bone Pile 1A6
+    3300024: Rib Cage 1A1
+    3300026: Rib Cage 1A2
+    3300028: Skull 1A1
+    3300030: Skull 1A2
+    3300032: Skull 1A3
+    3300034: Spine Bone 1A1
+    3300036: Spine Bone 1A2
+    3300038: Spine Bone 1A3
+    3300040: Spine Bone 1A4
+    3300042: Spine Bone 1A5
+    3300044: Spine Bone 1A6
+    4300000: Skull 1A1
+    4300002: Skull 1A3
+    4300004: Skull 1A2
+    4300006: Bone 1A1
+    4300008: Bone 1B1
+    4300010: Rib Cage 1A1
+    4300012: Spine Bone 1A2
+    4300014: Spine Bone 1A6
+    4300016: Spine Bone 1A4
+    4300018: Bone 1A2
+    4300020: Bone 1A3
+    4300022: Bone 1B2
+    4300024: Bone 1B3
+    4300026: Spine Bone 1A1
+    4300028: Spine Bone 1A3
+    4300030: Spine Bone 1A5
+    4300032: Rib Cage 1A2
+    4300034: Bone Pile 1A4
+    4300036: Bone Pile 1A5
+    4300038: Bone Pile 1A3
+    4300040: Bone Pile 1A2
+    4300042: Bone Pile 1A1
+    4300044: Bone Pile 1A6
+    6400000: Bone 1A1
+    6400002: Bone 1A2
+    6400004: Bone 1A3
+    6400006: Bone 1B1
+    6400008: Bone 1B2
+    6400010: Bone 1B3
+    6400012: Bone Pile 1A1
+    6400014: Bone Pile 1A2
+    6400016: Bone Pile 1A3
+    6400018: Bone Pile 1A4
+    6400020: Bone Pile 1A5
+    6400022: Bone Pile 1A6
+    6400024: Rib Cage 1A1
+    6400026: Rib Cage 1A2
+    6400028: Skull 1A1
+    6400030: Skull 1A2
+    6400032: Skull 1A3
+    6400034: Spine Bone 1A1
+    6400036: Spine Bone 1A2
+    6400038: Spine Bone 1A3
+    6400040: Spine Bone 1A4
+    6400042: Spine Bone 1A5
+    6400044: Spine Bone 1A6
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skeleton 1A1
+    second: {fileID: 2100000, guid: 148563975a9810644bfac16dd7b8c7be, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164581
+  packageName: The Ancient Set - Dungeons
+  packageVersion: 1.0
+  assetPath: Assets/Ancient Set - Dungeons/FBX/Bones Skeletons 1A1.fbx
+  uploadId: 357038

@@ -1,0 +1,337 @@
+fileFormatVersion: 2
+guid: e494db967e3181e4abf096b34c89b0a3
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Chest Coins 1
+    100002: Chest Coins 2
+    100004: Chest Coins 3
+    100006: Chest Coins 4
+    100008: Chest Coins Pile 1
+    100010: Chest Coins Pile 2
+    100012: Chest Coins Pile 3
+    100014: Chest Coins Pile 4
+    100016: Gem 1A1
+    100018: Gem 1A2
+    100020: Gem 1A3
+    100022: Gem 1A4
+    100024: Gem 1A5
+    100026: Gem 1A6
+    100028: Gem 1A7
+    100030: Gem 1A8
+    100032: Gold Coin 1A1
+    100034: Gold Coin 1A2
+    100036: Gold Coin 1A3
+    100038: Gold Coin Stack 1A1
+    100040: Gold Coin Stack 1A2
+    100042: Gold Coin Stack 1A3
+    100044: Gold Coin Stack 1A4
+    100046: Gold Coin Stack 1A4B
+    100048: Gold Coin Stack 1A5
+    100050: Gold Coin Stack 1A5B
+    100052: Gold Coin Stack 1B1
+    100054: Gold Coin Stack 1B2
+    100056: Gold Coin Stack 1B3
+    100058: Gold Coin Stack 1B4
+    100060: Gold Coin Stack 1B5
+    100062: Gold Coin Stack 1B6
+    100064: Gold Coin Stack 1B6B
+    100066: Ground Gold Pile 1A1
+    100068: Ground Gold Pile 1A2
+    100070: Ground Gold Pile 1B1
+    100072: Ground Gold Pile 1B2
+    100074: Treasure Chest 1A1
+    100076: Treasure Chest 1A2
+    100078: Treasure Chest 1A3
+    100080: Treasure Chest 1A4
+    100082: Treasure Chest Lid 1A1
+    100084: Treasure Chest Lid 1A2
+    100086: Treasure Chest Lid 1A3
+    100088: Treasure Chest Lid 1A4
+    100090: //RootNode
+    400000: Chest Coins 1
+    400002: Chest Coins 2
+    400004: Chest Coins 3
+    400006: Chest Coins 4
+    400008: Chest Coins Pile 1
+    400010: Chest Coins Pile 2
+    400012: Chest Coins Pile 3
+    400014: Chest Coins Pile 4
+    400016: Gem 1A1
+    400018: Gem 1A2
+    400020: Gem 1A3
+    400022: Gem 1A4
+    400024: Gem 1A5
+    400026: Gem 1A6
+    400028: Gem 1A7
+    400030: Gem 1A8
+    400032: Gold Coin 1A1
+    400034: Gold Coin 1A2
+    400036: Gold Coin 1A3
+    400038: Gold Coin Stack 1A1
+    400040: Gold Coin Stack 1A2
+    400042: Gold Coin Stack 1A3
+    400044: Gold Coin Stack 1A4
+    400046: Gold Coin Stack 1A4B
+    400048: Gold Coin Stack 1A5
+    400050: Gold Coin Stack 1A5B
+    400052: Gold Coin Stack 1B1
+    400054: Gold Coin Stack 1B2
+    400056: Gold Coin Stack 1B3
+    400058: Gold Coin Stack 1B4
+    400060: Gold Coin Stack 1B5
+    400062: Gold Coin Stack 1B6
+    400064: Gold Coin Stack 1B6B
+    400066: Ground Gold Pile 1A1
+    400068: Ground Gold Pile 1A2
+    400070: Ground Gold Pile 1B1
+    400072: Ground Gold Pile 1B2
+    400074: Treasure Chest 1A1
+    400076: Treasure Chest 1A2
+    400078: Treasure Chest 1A3
+    400080: Treasure Chest 1A4
+    400082: Treasure Chest Lid 1A1
+    400084: Treasure Chest Lid 1A2
+    400086: Treasure Chest Lid 1A3
+    400088: Treasure Chest Lid 1A4
+    400090: //RootNode
+    2100000: Treasure 1A1
+    2100002: Chest 1A1
+    2300000: Chest Coins 1
+    2300002: Chest Coins 2
+    2300004: Chest Coins 3
+    2300006: Chest Coins 4
+    2300008: Chest Coins Pile 1
+    2300010: Chest Coins Pile 2
+    2300012: Chest Coins Pile 3
+    2300014: Chest Coins Pile 4
+    2300016: Gem 1A1
+    2300018: Gem 1A2
+    2300020: Gem 1A3
+    2300022: Gem 1A4
+    2300024: Gem 1A5
+    2300026: Gem 1A6
+    2300028: Gem 1A7
+    2300030: Gem 1A8
+    2300032: Gold Coin 1A1
+    2300034: Gold Coin 1A2
+    2300036: Gold Coin 1A3
+    2300038: Gold Coin Stack 1A1
+    2300040: Gold Coin Stack 1A2
+    2300042: Gold Coin Stack 1A3
+    2300044: Gold Coin Stack 1A4
+    2300046: Gold Coin Stack 1A4B
+    2300048: Gold Coin Stack 1A5
+    2300050: Gold Coin Stack 1A5B
+    2300052: Gold Coin Stack 1B1
+    2300054: Gold Coin Stack 1B2
+    2300056: Gold Coin Stack 1B3
+    2300058: Gold Coin Stack 1B4
+    2300060: Gold Coin Stack 1B5
+    2300062: Gold Coin Stack 1B6
+    2300064: Gold Coin Stack 1B6B
+    2300066: Ground Gold Pile 1A1
+    2300068: Ground Gold Pile 1A2
+    2300070: Ground Gold Pile 1B1
+    2300072: Ground Gold Pile 1B2
+    2300074: Treasure Chest 1A1
+    2300076: Treasure Chest 1A2
+    2300078: Treasure Chest 1A3
+    2300080: Treasure Chest 1A4
+    2300082: Treasure Chest Lid 1A1
+    2300084: Treasure Chest Lid 1A2
+    2300086: Treasure Chest Lid 1A3
+    2300088: Treasure Chest Lid 1A4
+    3300000: Chest Coins 1
+    3300002: Chest Coins 2
+    3300004: Chest Coins 3
+    3300006: Chest Coins 4
+    3300008: Chest Coins Pile 1
+    3300010: Chest Coins Pile 2
+    3300012: Chest Coins Pile 3
+    3300014: Chest Coins Pile 4
+    3300016: Gem 1A1
+    3300018: Gem 1A2
+    3300020: Gem 1A3
+    3300022: Gem 1A4
+    3300024: Gem 1A5
+    3300026: Gem 1A6
+    3300028: Gem 1A7
+    3300030: Gem 1A8
+    3300032: Gold Coin 1A1
+    3300034: Gold Coin 1A2
+    3300036: Gold Coin 1A3
+    3300038: Gold Coin Stack 1A1
+    3300040: Gold Coin Stack 1A2
+    3300042: Gold Coin Stack 1A3
+    3300044: Gold Coin Stack 1A4
+    3300046: Gold Coin Stack 1A4B
+    3300048: Gold Coin Stack 1A5
+    3300050: Gold Coin Stack 1A5B
+    3300052: Gold Coin Stack 1B1
+    3300054: Gold Coin Stack 1B2
+    3300056: Gold Coin Stack 1B3
+    3300058: Gold Coin Stack 1B4
+    3300060: Gold Coin Stack 1B5
+    3300062: Gold Coin Stack 1B6
+    3300064: Gold Coin Stack 1B6B
+    3300066: Ground Gold Pile 1A1
+    3300068: Ground Gold Pile 1A2
+    3300070: Ground Gold Pile 1B1
+    3300072: Ground Gold Pile 1B2
+    3300074: Treasure Chest 1A1
+    3300076: Treasure Chest 1A2
+    3300078: Treasure Chest 1A3
+    3300080: Treasure Chest 1A4
+    3300082: Treasure Chest Lid 1A1
+    3300084: Treasure Chest Lid 1A2
+    3300086: Treasure Chest Lid 1A3
+    3300088: Treasure Chest Lid 1A4
+    4300000: Gem 1A2
+    4300002: Gem 1A5
+    4300004: Gem 1A7
+    4300006: Gold Coin 1A2
+    4300008: Gold Coin 1A1
+    4300010: Gold Coin 1A3
+    4300012: Gem 1A3
+    4300014: Gold Coin Stack 1B2
+    4300016: Gold Coin Stack 1A3
+    4300018: Gold Coin Stack 1B3
+    4300020: Gold Coin Stack 1B4
+    4300022: Gold Coin Stack 1A2
+    4300024: Gold Coin Stack 1A1
+    4300026: Gold Coin Stack 1B1
+    4300028: Gold Coin Stack 1B5
+    4300030: Gold Coin Stack 1A4
+    4300032: Gem 1A6
+    4300034: Gem 1A8
+    4300036: Gem 1A4
+    4300038: Gem 1A1
+    4300040: Gold Coin Stack 1A5
+    4300042: Treasure Chest 1A1
+    4300044: Treasure Chest Lid 1A1
+    4300046: Chest Coins Pile 1
+    4300048: Chest Coins 1
+    4300050: Treasure Chest 1A2
+    4300052: Treasure Chest Lid 1A2
+    4300054: Chest Coins Pile 2
+    4300056: Chest Coins 2
+    4300058: Treasure Chest 1A4
+    4300060: Treasure Chest Lid 1A4
+    4300062: Chest Coins Pile 4
+    4300064: Chest Coins 4
+    4300066: Treasure Chest 1A3
+    4300068: Treasure Chest Lid 1A3
+    4300070: Chest Coins Pile 3
+    4300072: Chest Coins 3
+    4300074: Gold Coin Stack 1B6
+    4300076: Ground Gold Pile 1A1
+    4300078: Ground Gold Pile 1B1
+    4300080: Ground Gold Pile 1A2
+    4300082: Ground Gold Pile 1B2
+    4300084: Gold Coin Stack 1A5B
+    4300086: Gold Coin Stack 1B6B
+    4300088: Gold Coin Stack 1A4B
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chest 1A1
+    second: {fileID: 2100000, guid: 2111c0193e2ec1843b66e28e006cf499, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Treasure 1A1
+    second: {fileID: 2100000, guid: c8f9cdf2a3b7ceb49a80724e9d39b942, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164581
+  packageName: The Ancient Set - Dungeons
+  packageVersion: 1.0
+  assetPath: Assets/Ancient Set - Dungeons/FBX/Treasures 1A1.fbx
+  uploadId: 357038

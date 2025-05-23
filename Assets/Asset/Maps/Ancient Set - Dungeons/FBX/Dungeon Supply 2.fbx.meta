@@ -1,0 +1,1241 @@
+fileFormatVersion: 2
+guid: 6be35206bc82e2e4083ca92ca43c12c1
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arched Wall 1A1
+    100002: Arched Wall 1A2
+    100004: Arched Wall 1A3
+    100006: Arched Wall 1A4
+    100008: Arched Wall 1B1
+    100010: Arched Wall 1B2
+    100012: Arched Wall 1B3
+    100014: Arched Wall 1B4
+    100016: Arched Wall Extension 1A1
+    100018: Arched Wall Extension 1B1
+    100020: Arched Wall Gate 1A1
+    100022: Arched Wall Gate 1B1
+    100024: Arched Wall Small Extension 1A1
+    100026: Arched Wall Window 1A1
+    100028: Chains Hanging 1A1
+    100030: Chains Hanging 1A2
+    100032: Chains Hanging 1A3
+    100034: Chains Hanging 2A1
+    100036: Chains Large Hanging 1A1
+    100038: Chains Large Hanging 1A2
+    100040: Chains Large Hanging 1A3
+    100042: Chains Large Hanging 2A1
+    100044: Corridor Celing 1A1
+    100046: Corridor Celing 1A1 (Large)
+    100048: Corridor Celing Attachment 1
+    100050: Corridor Celing Attachment 1 (Large)
+    100052: Corridor Celing Attachment 2
+    100054: Corridor Celing Attachment 2 (Large)
+    100056: Curved Floor Inner 1A
+    100058: Curved Floor Outer 1A
+    100060: //RootNode
+    100062: Floor Piece 1A1
+    100064: Floor Piece 1A2
+    100066: Floor Piece 1A3
+    100068: Floor Piece 1A4
+    100070: Floor Piece 1A5
+    100072: Floor Piece 1A6
+    100074: Floor Piece 1A7
+    100076: Floor Piece 1A8
+    100078: Floor Piece Half 1A1
+    100080: Floor Piece Half Quarter 1A1
+    100082: Floor Piece Quarter 1A1
+    100084: Ornate Door 1A1
+    100086: Ornate Door 1A1 L
+    100088: Ornate Door 1A1 R
+    100090: Ornate Door 1A2
+    100092: Ornate Door 1A2 L
+    100094: Ornate Door 1A2 R
+    100096: Pillar 1A1
+    100098: Pillar 1A1 (Large)
+    100100: Pillar 1A2
+    100102: Pillar 1A2 (Large)
+    100104: Pillar 1A3
+    100106: Pillar 1A3 (Large)
+    100108: Pillar 1A4
+    100110: Pillar 1A4 (Large)
+    100112: Pillar 1A5
+    100114: Pillar 1A5 (Large)
+    100116: Pillar 1B1
+    100118: Pillar 1B1 (Large)
+    100120: Pillar 1B2
+    100122: Pillar 1B2 (Large)
+    100124: Pillar 1B3
+    100126: Pillar 1B3 (Large)
+    100128: Pillar 1B4
+    100130: Pillar 1B4 (Large)
+    100132: Pillar 1B5
+    100134: Pillar 1B5 (Large)
+    100136: Pillar 1B6
+    100138: Pillar 1B6 (Large)
+    100140: Pillar Archway 1A1
+    100142: Pillar Archway 1A1 (Large)
+    100144: Pillar Archway 1A2
+    100146: Pillar Archway 1A2 (Large)
+    100148: Pillar Archway 1A3
+    100150: Pillar Archway 1A3 (Large)
+    100152: Pillar Archway 1A4
+    100154: Pillar Archway 1A4 (Large)
+    100156: Pillar Archway 1A5
+    100158: Pillar Archway 1A5 (Large)
+    100160: Pillar Archway Double 1A1
+    100162: Pillar Archway Double 1A1 (Large)
+    100164: Pillar Archway Gate 1A1
+    100166: Pillar Archway Gate 1A1 (Large)
+    100168: Pillar Archway Gate 1A2
+    100170: Pillar Archway Gate 1A2 (Large)
+    100172: Pillar Archway Ornate 1A1
+    100174: Pillar Archway Ornate 1A1 (Large)
+    100176: Pillar Archway Ornate 1A2
+    100178: Pillar Archway Ornate 1A2 (Large)
+    100180: Pillar Archway Stone 1A1
+    100182: Pillar Archway Stone 1A1 (Large)
+    100184: Pillar Chains 1A1
+    100186: Pillar Chains 1A2
+    100188: Pillar Chains 1A3
+    100190: Pillar Chains 1A4
+    100192: Pillar Chains 1B1
+    100194: Pillar Pedestal 1A1
+    100196: Pillar Pedestal 1A2
+    100198: Pillar Pedestal 1A3
+    100200: Pillar Pedestal 1A4
+    100202: Pillar Pedestal 1A5
+    100204: Pillar Small 2A1
+    100206: Pillar Small 2A2
+    100208: Pillar Small 2A3
+    100210: Pillar Small 2A4
+    100212: Pillar Small 2A5
+    100214: Railing 1A1
+    100216: Railing 1A2
+    100218: Railing 1A3
+    100220: Railing 1A4
+    100222: Railing 1B1
+    100224: Railing 1B2
+    100226: Railing 1B3
+    100228: Railing 1B4
+    100230: Railing 1C1
+    100232: Railing 1C2
+    100234: Railing 1D1
+    100236: Railing 1D2
+    100238: Railing Post 1A1
+    100240: Stairs Quarter Inner 1A1
+    100242: Stairs Quarter Inner 1A2
+    100244: Stairs Quarter Inner 1B1
+    100246: Stairs Quarter Inner 1B2
+    100248: Stairs Quarter Outer 1A1
+    100250: Stairs Quarter Outer 1A2
+    100252: Stairs Quarter Outer 1B1
+    100254: Stairs Quarter Outer 1B2
+    100256: Stairs Quarter Straight 1A
+    100258: Vault Ceiling 1A1
+    100260: Vault Ceiling 1A1 (Large)
+    100262: Vault Celing Attachment 1
+    100264: Vault Celing Attachment 1 (Large)
+    100266: Vault Celing Attachment 2
+    100268: Vault Celing Attachment 2 (Large)
+    100270: Vault Celing Attachment 3
+    100272: Vault Celing Attachment 3 (Large)
+    100274: Vault Celing Attachment 4
+    100276: Vault Celing Attachment 4 (Large)
+    100278: Wall Chains 1A1
+    100280: Wall Chains 1A2
+    100282: Wall Chains 1A3
+    100284: Wall Chains 1B1
+    100286: Wall Chains 1B2
+    100288: Wall Chains 1B3
+    100290: Wall Chains 1C1
+    100292: Wall Chains 1C2
+    100294: Wall Chains 1C3
+    100296: Wall Chains 2A1
+    100298: Wall Chains 2A2
+    100300: Wall Chains 2A3
+    100302: Wall Chains 2A4
+    100304: Wall Chains Base 1B1
+    100306: Wall Corner Half 1A1
+    100308: Wall Corner Half 1A2
+    100310: Wall Corner Half 1A3
+    100312: Wall Corner Quarter 1A1
+    100314: Wall Corner Quarter 1A2
+    100316: Wall Corner Quarter 1A3
+    100318: Wall Corner Standard 1A1
+    100320: Wall Corner Standard 1A2
+    100322: Wall Corner Standard 1A3
+    100324: Wall Doorway 1A1
+    100326: Wall Doorway 1A2
+    100328: Wall Doorway 1A3
+    100330: Wall Doorway 1A4
+    100332: Wall Doorway 1B1
+    100334: Wall Doorway 1B2
+    100336: Wall Doorway 1B3
+    100338: Wall Doorway 1B4
+    100340: Wall Half L 1A1
+    100342: Wall Half L 1A2
+    100344: Wall Half L 1A3
+    100346: Wall Half R 1A1
+    100348: Wall Half R 1A2
+    100350: Wall Half R 1A3
+    100352: Wall Quarter L 1A1
+    100354: Wall Quarter L 1A2
+    100356: Wall Quarter L 1A3
+    100358: Wall Quarter R 1A1
+    100360: Wall Quarter R 1A2
+    100362: Wall Quarter R 1A3
+    100364: Wall Standard 1A1
+    100366: Wall Standard 1A2
+    100368: Wall Standard 1A3
+    400000: Arched Wall 1A1
+    400002: Arched Wall 1A2
+    400004: Arched Wall 1A3
+    400006: Arched Wall 1A4
+    400008: Arched Wall 1B1
+    400010: Arched Wall 1B2
+    400012: Arched Wall 1B3
+    400014: Arched Wall 1B4
+    400016: Arched Wall Extension 1A1
+    400018: Arched Wall Extension 1B1
+    400020: Arched Wall Gate 1A1
+    400022: Arched Wall Gate 1B1
+    400024: Arched Wall Small Extension 1A1
+    400026: Arched Wall Window 1A1
+    400028: Chains Hanging 1A1
+    400030: Chains Hanging 1A2
+    400032: Chains Hanging 1A3
+    400034: Chains Hanging 2A1
+    400036: Chains Large Hanging 1A1
+    400038: Chains Large Hanging 1A2
+    400040: Chains Large Hanging 1A3
+    400042: Chains Large Hanging 2A1
+    400044: Corridor Celing 1A1
+    400046: Corridor Celing 1A1 (Large)
+    400048: Corridor Celing Attachment 1
+    400050: Corridor Celing Attachment 1 (Large)
+    400052: Corridor Celing Attachment 2
+    400054: Corridor Celing Attachment 2 (Large)
+    400056: Curved Floor Inner 1A
+    400058: Curved Floor Outer 1A
+    400060: //RootNode
+    400062: Floor Piece 1A1
+    400064: Floor Piece 1A2
+    400066: Floor Piece 1A3
+    400068: Floor Piece 1A4
+    400070: Floor Piece 1A5
+    400072: Floor Piece 1A6
+    400074: Floor Piece 1A7
+    400076: Floor Piece 1A8
+    400078: Floor Piece Half 1A1
+    400080: Floor Piece Half Quarter 1A1
+    400082: Floor Piece Quarter 1A1
+    400084: Ornate Door 1A1
+    400086: Ornate Door 1A1 L
+    400088: Ornate Door 1A1 R
+    400090: Ornate Door 1A2
+    400092: Ornate Door 1A2 L
+    400094: Ornate Door 1A2 R
+    400096: Pillar 1A1
+    400098: Pillar 1A1 (Large)
+    400100: Pillar 1A2
+    400102: Pillar 1A2 (Large)
+    400104: Pillar 1A3
+    400106: Pillar 1A3 (Large)
+    400108: Pillar 1A4
+    400110: Pillar 1A4 (Large)
+    400112: Pillar 1A5
+    400114: Pillar 1A5 (Large)
+    400116: Pillar 1B1
+    400118: Pillar 1B1 (Large)
+    400120: Pillar 1B2
+    400122: Pillar 1B2 (Large)
+    400124: Pillar 1B3
+    400126: Pillar 1B3 (Large)
+    400128: Pillar 1B4
+    400130: Pillar 1B4 (Large)
+    400132: Pillar 1B5
+    400134: Pillar 1B5 (Large)
+    400136: Pillar 1B6
+    400138: Pillar 1B6 (Large)
+    400140: Pillar Archway 1A1
+    400142: Pillar Archway 1A1 (Large)
+    400144: Pillar Archway 1A2
+    400146: Pillar Archway 1A2 (Large)
+    400148: Pillar Archway 1A3
+    400150: Pillar Archway 1A3 (Large)
+    400152: Pillar Archway 1A4
+    400154: Pillar Archway 1A4 (Large)
+    400156: Pillar Archway 1A5
+    400158: Pillar Archway 1A5 (Large)
+    400160: Pillar Archway Double 1A1
+    400162: Pillar Archway Double 1A1 (Large)
+    400164: Pillar Archway Gate 1A1
+    400166: Pillar Archway Gate 1A1 (Large)
+    400168: Pillar Archway Gate 1A2
+    400170: Pillar Archway Gate 1A2 (Large)
+    400172: Pillar Archway Ornate 1A1
+    400174: Pillar Archway Ornate 1A1 (Large)
+    400176: Pillar Archway Ornate 1A2
+    400178: Pillar Archway Ornate 1A2 (Large)
+    400180: Pillar Archway Stone 1A1
+    400182: Pillar Archway Stone 1A1 (Large)
+    400184: Pillar Chains 1A1
+    400186: Pillar Chains 1A2
+    400188: Pillar Chains 1A3
+    400190: Pillar Chains 1A4
+    400192: Pillar Chains 1B1
+    400194: Pillar Pedestal 1A1
+    400196: Pillar Pedestal 1A2
+    400198: Pillar Pedestal 1A3
+    400200: Pillar Pedestal 1A4
+    400202: Pillar Pedestal 1A5
+    400204: Pillar Small 2A1
+    400206: Pillar Small 2A2
+    400208: Pillar Small 2A3
+    400210: Pillar Small 2A4
+    400212: Pillar Small 2A5
+    400214: Railing 1A1
+    400216: Railing 1A2
+    400218: Railing 1A3
+    400220: Railing 1A4
+    400222: Railing 1B1
+    400224: Railing 1B2
+    400226: Railing 1B3
+    400228: Railing 1B4
+    400230: Railing 1C1
+    400232: Railing 1C2
+    400234: Railing 1D1
+    400236: Railing 1D2
+    400238: Railing Post 1A1
+    400240: Stairs Quarter Inner 1A1
+    400242: Stairs Quarter Inner 1A2
+    400244: Stairs Quarter Inner 1B1
+    400246: Stairs Quarter Inner 1B2
+    400248: Stairs Quarter Outer 1A1
+    400250: Stairs Quarter Outer 1A2
+    400252: Stairs Quarter Outer 1B1
+    400254: Stairs Quarter Outer 1B2
+    400256: Stairs Quarter Straight 1A
+    400258: Vault Ceiling 1A1
+    400260: Vault Ceiling 1A1 (Large)
+    400262: Vault Celing Attachment 1
+    400264: Vault Celing Attachment 1 (Large)
+    400266: Vault Celing Attachment 2
+    400268: Vault Celing Attachment 2 (Large)
+    400270: Vault Celing Attachment 3
+    400272: Vault Celing Attachment 3 (Large)
+    400274: Vault Celing Attachment 4
+    400276: Vault Celing Attachment 4 (Large)
+    400278: Wall Chains 1A1
+    400280: Wall Chains 1A2
+    400282: Wall Chains 1A3
+    400284: Wall Chains 1B1
+    400286: Wall Chains 1B2
+    400288: Wall Chains 1B3
+    400290: Wall Chains 1C1
+    400292: Wall Chains 1C2
+    400294: Wall Chains 1C3
+    400296: Wall Chains 2A1
+    400298: Wall Chains 2A2
+    400300: Wall Chains 2A3
+    400302: Wall Chains 2A4
+    400304: Wall Chains Base 1B1
+    400306: Wall Corner Half 1A1
+    400308: Wall Corner Half 1A2
+    400310: Wall Corner Half 1A3
+    400312: Wall Corner Quarter 1A1
+    400314: Wall Corner Quarter 1A2
+    400316: Wall Corner Quarter 1A3
+    400318: Wall Corner Standard 1A1
+    400320: Wall Corner Standard 1A2
+    400322: Wall Corner Standard 1A3
+    400324: Wall Doorway 1A1
+    400326: Wall Doorway 1A2
+    400328: Wall Doorway 1A3
+    400330: Wall Doorway 1A4
+    400332: Wall Doorway 1B1
+    400334: Wall Doorway 1B2
+    400336: Wall Doorway 1B3
+    400338: Wall Doorway 1B4
+    400340: Wall Half L 1A1
+    400342: Wall Half L 1A2
+    400344: Wall Half L 1A3
+    400346: Wall Half R 1A1
+    400348: Wall Half R 1A2
+    400350: Wall Half R 1A3
+    400352: Wall Quarter L 1A1
+    400354: Wall Quarter L 1A2
+    400356: Wall Quarter L 1A3
+    400358: Wall Quarter R 1A1
+    400360: Wall Quarter R 1A2
+    400362: Wall Quarter R 1A3
+    400364: Wall Standard 1A1
+    400366: Wall Standard 1A2
+    400368: Wall Standard 1A3
+    2100000: Dungeon Railings 1A1
+    2100002: Dungeon Wall 1A1
+    2100004: Dungeon Tile 1A1
+    2100006: Dungeon Metal 1A1
+    2100008: Dungeon Pillars 2A1
+    2100010: Ornate Doors 1A1
+    2300000: Arched Wall 1A1
+    2300002: Arched Wall 1A2
+    2300004: Arched Wall 1A3
+    2300006: Arched Wall 1A4
+    2300008: Arched Wall 1B1
+    2300010: Arched Wall 1B2
+    2300012: Arched Wall 1B3
+    2300014: Arched Wall 1B4
+    2300016: Arched Wall Extension 1A1
+    2300018: Arched Wall Extension 1B1
+    2300020: Arched Wall Gate 1A1
+    2300022: Arched Wall Gate 1B1
+    2300024: Arched Wall Small Extension 1A1
+    2300026: Arched Wall Window 1A1
+    2300028: Chains Hanging 1A1
+    2300030: Chains Hanging 1A2
+    2300032: Chains Hanging 1A3
+    2300034: Chains Hanging 2A1
+    2300036: Chains Large Hanging 1A1
+    2300038: Chains Large Hanging 1A2
+    2300040: Chains Large Hanging 1A3
+    2300042: Chains Large Hanging 2A1
+    2300044: Corridor Celing 1A1
+    2300046: Corridor Celing 1A1 (Large)
+    2300048: Corridor Celing Attachment 1
+    2300050: Corridor Celing Attachment 1 (Large)
+    2300052: Corridor Celing Attachment 2
+    2300054: Corridor Celing Attachment 2 (Large)
+    2300056: Curved Floor Inner 1A
+    2300058: Curved Floor Outer 1A
+    2300060: Floor Piece 1A1
+    2300062: Floor Piece 1A2
+    2300064: Floor Piece 1A3
+    2300066: Floor Piece 1A4
+    2300068: Floor Piece 1A5
+    2300070: Floor Piece 1A6
+    2300072: Floor Piece 1A7
+    2300074: Floor Piece 1A8
+    2300076: Floor Piece Half 1A1
+    2300078: Floor Piece Half Quarter 1A1
+    2300080: Floor Piece Quarter 1A1
+    2300082: Ornate Door 1A1
+    2300084: Ornate Door 1A1 L
+    2300086: Ornate Door 1A1 R
+    2300088: Ornate Door 1A2
+    2300090: Ornate Door 1A2 L
+    2300092: Ornate Door 1A2 R
+    2300094: Pillar 1A1
+    2300096: Pillar 1A1 (Large)
+    2300098: Pillar 1A2
+    2300100: Pillar 1A2 (Large)
+    2300102: Pillar 1A3
+    2300104: Pillar 1A3 (Large)
+    2300106: Pillar 1A4
+    2300108: Pillar 1A4 (Large)
+    2300110: Pillar 1A5
+    2300112: Pillar 1A5 (Large)
+    2300114: Pillar 1B1
+    2300116: Pillar 1B1 (Large)
+    2300118: Pillar 1B2
+    2300120: Pillar 1B2 (Large)
+    2300122: Pillar 1B3
+    2300124: Pillar 1B3 (Large)
+    2300126: Pillar 1B4
+    2300128: Pillar 1B4 (Large)
+    2300130: Pillar 1B5
+    2300132: Pillar 1B5 (Large)
+    2300134: Pillar 1B6
+    2300136: Pillar 1B6 (Large)
+    2300138: Pillar Archway 1A1
+    2300140: Pillar Archway 1A1 (Large)
+    2300142: Pillar Archway 1A2
+    2300144: Pillar Archway 1A2 (Large)
+    2300146: Pillar Archway 1A3
+    2300148: Pillar Archway 1A3 (Large)
+    2300150: Pillar Archway 1A4
+    2300152: Pillar Archway 1A4 (Large)
+    2300154: Pillar Archway 1A5
+    2300156: Pillar Archway 1A5 (Large)
+    2300158: Pillar Archway Double 1A1
+    2300160: Pillar Archway Double 1A1 (Large)
+    2300162: Pillar Archway Gate 1A1
+    2300164: Pillar Archway Gate 1A1 (Large)
+    2300166: Pillar Archway Gate 1A2
+    2300168: Pillar Archway Gate 1A2 (Large)
+    2300170: Pillar Archway Ornate 1A1
+    2300172: Pillar Archway Ornate 1A1 (Large)
+    2300174: Pillar Archway Ornate 1A2
+    2300176: Pillar Archway Ornate 1A2 (Large)
+    2300178: Pillar Archway Stone 1A1
+    2300180: Pillar Archway Stone 1A1 (Large)
+    2300182: Pillar Chains 1A1
+    2300184: Pillar Chains 1A2
+    2300186: Pillar Chains 1A3
+    2300188: Pillar Chains 1A4
+    2300190: Pillar Chains 1B1
+    2300192: Pillar Pedestal 1A1
+    2300194: Pillar Pedestal 1A2
+    2300196: Pillar Pedestal 1A3
+    2300198: Pillar Pedestal 1A4
+    2300200: Pillar Pedestal 1A5
+    2300202: Pillar Small 2A1
+    2300204: Pillar Small 2A2
+    2300206: Pillar Small 2A3
+    2300208: Pillar Small 2A4
+    2300210: Pillar Small 2A5
+    2300212: Railing 1A1
+    2300214: Railing 1A2
+    2300216: Railing 1A3
+    2300218: Railing 1A4
+    2300220: Railing 1B1
+    2300222: Railing 1B2
+    2300224: Railing 1B3
+    2300226: Railing 1B4
+    2300228: Railing 1C1
+    2300230: Railing 1C2
+    2300232: Railing 1D1
+    2300234: Railing 1D2
+    2300236: Railing Post 1A1
+    2300238: Stairs Quarter Inner 1A1
+    2300240: Stairs Quarter Inner 1A2
+    2300242: Stairs Quarter Inner 1B1
+    2300244: Stairs Quarter Inner 1B2
+    2300246: Stairs Quarter Outer 1A1
+    2300248: Stairs Quarter Outer 1A2
+    2300250: Stairs Quarter Outer 1B1
+    2300252: Stairs Quarter Outer 1B2
+    2300254: Stairs Quarter Straight 1A
+    2300256: Vault Ceiling 1A1
+    2300258: Vault Ceiling 1A1 (Large)
+    2300260: Vault Celing Attachment 1
+    2300262: Vault Celing Attachment 1 (Large)
+    2300264: Vault Celing Attachment 2
+    2300266: Vault Celing Attachment 2 (Large)
+    2300268: Vault Celing Attachment 3
+    2300270: Vault Celing Attachment 3 (Large)
+    2300272: Vault Celing Attachment 4
+    2300274: Vault Celing Attachment 4 (Large)
+    2300276: Wall Chains 1A1
+    2300278: Wall Chains 1A2
+    2300280: Wall Chains 1A3
+    2300282: Wall Chains 1B1
+    2300284: Wall Chains 1B2
+    2300286: Wall Chains 1B3
+    2300288: Wall Chains 1C1
+    2300290: Wall Chains 1C2
+    2300292: Wall Chains 1C3
+    2300294: Wall Chains 2A1
+    2300296: Wall Chains 2A2
+    2300298: Wall Chains 2A3
+    2300300: Wall Chains 2A4
+    2300302: Wall Chains Base 1B1
+    2300304: Wall Corner Half 1A1
+    2300306: Wall Corner Half 1A2
+    2300308: Wall Corner Half 1A3
+    2300310: Wall Corner Quarter 1A1
+    2300312: Wall Corner Quarter 1A2
+    2300314: Wall Corner Quarter 1A3
+    2300316: Wall Corner Standard 1A1
+    2300318: Wall Corner Standard 1A2
+    2300320: Wall Corner Standard 1A3
+    2300322: Wall Doorway 1A1
+    2300324: Wall Doorway 1A2
+    2300326: Wall Doorway 1A3
+    2300328: Wall Doorway 1A4
+    2300330: Wall Doorway 1B1
+    2300332: Wall Doorway 1B2
+    2300334: Wall Doorway 1B3
+    2300336: Wall Doorway 1B4
+    2300338: Wall Half L 1A1
+    2300340: Wall Half L 1A2
+    2300342: Wall Half L 1A3
+    2300344: Wall Half R 1A1
+    2300346: Wall Half R 1A2
+    2300348: Wall Half R 1A3
+    2300350: Wall Quarter L 1A1
+    2300352: Wall Quarter L 1A2
+    2300354: Wall Quarter L 1A3
+    2300356: Wall Quarter R 1A1
+    2300358: Wall Quarter R 1A2
+    2300360: Wall Quarter R 1A3
+    2300362: Wall Standard 1A1
+    2300364: Wall Standard 1A2
+    2300366: Wall Standard 1A3
+    3300000: Arched Wall 1A1
+    3300002: Arched Wall 1A2
+    3300004: Arched Wall 1A3
+    3300006: Arched Wall 1A4
+    3300008: Arched Wall 1B1
+    3300010: Arched Wall 1B2
+    3300012: Arched Wall 1B3
+    3300014: Arched Wall 1B4
+    3300016: Arched Wall Extension 1A1
+    3300018: Arched Wall Extension 1B1
+    3300020: Arched Wall Gate 1A1
+    3300022: Arched Wall Gate 1B1
+    3300024: Arched Wall Small Extension 1A1
+    3300026: Arched Wall Window 1A1
+    3300028: Chains Hanging 1A1
+    3300030: Chains Hanging 1A2
+    3300032: Chains Hanging 1A3
+    3300034: Chains Hanging 2A1
+    3300036: Chains Large Hanging 1A1
+    3300038: Chains Large Hanging 1A2
+    3300040: Chains Large Hanging 1A3
+    3300042: Chains Large Hanging 2A1
+    3300044: Corridor Celing 1A1
+    3300046: Corridor Celing 1A1 (Large)
+    3300048: Corridor Celing Attachment 1
+    3300050: Corridor Celing Attachment 1 (Large)
+    3300052: Corridor Celing Attachment 2
+    3300054: Corridor Celing Attachment 2 (Large)
+    3300056: Curved Floor Inner 1A
+    3300058: Curved Floor Outer 1A
+    3300060: Floor Piece 1A1
+    3300062: Floor Piece 1A2
+    3300064: Floor Piece 1A3
+    3300066: Floor Piece 1A4
+    3300068: Floor Piece 1A5
+    3300070: Floor Piece 1A6
+    3300072: Floor Piece 1A7
+    3300074: Floor Piece 1A8
+    3300076: Floor Piece Half 1A1
+    3300078: Floor Piece Half Quarter 1A1
+    3300080: Floor Piece Quarter 1A1
+    3300082: Ornate Door 1A1
+    3300084: Ornate Door 1A1 L
+    3300086: Ornate Door 1A1 R
+    3300088: Ornate Door 1A2
+    3300090: Ornate Door 1A2 L
+    3300092: Ornate Door 1A2 R
+    3300094: Pillar 1A1
+    3300096: Pillar 1A1 (Large)
+    3300098: Pillar 1A2
+    3300100: Pillar 1A2 (Large)
+    3300102: Pillar 1A3
+    3300104: Pillar 1A3 (Large)
+    3300106: Pillar 1A4
+    3300108: Pillar 1A4 (Large)
+    3300110: Pillar 1A5
+    3300112: Pillar 1A5 (Large)
+    3300114: Pillar 1B1
+    3300116: Pillar 1B1 (Large)
+    3300118: Pillar 1B2
+    3300120: Pillar 1B2 (Large)
+    3300122: Pillar 1B3
+    3300124: Pillar 1B3 (Large)
+    3300126: Pillar 1B4
+    3300128: Pillar 1B4 (Large)
+    3300130: Pillar 1B5
+    3300132: Pillar 1B5 (Large)
+    3300134: Pillar 1B6
+    3300136: Pillar 1B6 (Large)
+    3300138: Pillar Archway 1A1
+    3300140: Pillar Archway 1A1 (Large)
+    3300142: Pillar Archway 1A2
+    3300144: Pillar Archway 1A2 (Large)
+    3300146: Pillar Archway 1A3
+    3300148: Pillar Archway 1A3 (Large)
+    3300150: Pillar Archway 1A4
+    3300152: Pillar Archway 1A4 (Large)
+    3300154: Pillar Archway 1A5
+    3300156: Pillar Archway 1A5 (Large)
+    3300158: Pillar Archway Double 1A1
+    3300160: Pillar Archway Double 1A1 (Large)
+    3300162: Pillar Archway Gate 1A1
+    3300164: Pillar Archway Gate 1A1 (Large)
+    3300166: Pillar Archway Gate 1A2
+    3300168: Pillar Archway Gate 1A2 (Large)
+    3300170: Pillar Archway Ornate 1A1
+    3300172: Pillar Archway Ornate 1A1 (Large)
+    3300174: Pillar Archway Ornate 1A2
+    3300176: Pillar Archway Ornate 1A2 (Large)
+    3300178: Pillar Archway Stone 1A1
+    3300180: Pillar Archway Stone 1A1 (Large)
+    3300182: Pillar Chains 1A1
+    3300184: Pillar Chains 1A2
+    3300186: Pillar Chains 1A3
+    3300188: Pillar Chains 1A4
+    3300190: Pillar Chains 1B1
+    3300192: Pillar Pedestal 1A1
+    3300194: Pillar Pedestal 1A2
+    3300196: Pillar Pedestal 1A3
+    3300198: Pillar Pedestal 1A4
+    3300200: Pillar Pedestal 1A5
+    3300202: Pillar Small 2A1
+    3300204: Pillar Small 2A2
+    3300206: Pillar Small 2A3
+    3300208: Pillar Small 2A4
+    3300210: Pillar Small 2A5
+    3300212: Railing 1A1
+    3300214: Railing 1A2
+    3300216: Railing 1A3
+    3300218: Railing 1A4
+    3300220: Railing 1B1
+    3300222: Railing 1B2
+    3300224: Railing 1B3
+    3300226: Railing 1B4
+    3300228: Railing 1C1
+    3300230: Railing 1C2
+    3300232: Railing 1D1
+    3300234: Railing 1D2
+    3300236: Railing Post 1A1
+    3300238: Stairs Quarter Inner 1A1
+    3300240: Stairs Quarter Inner 1A2
+    3300242: Stairs Quarter Inner 1B1
+    3300244: Stairs Quarter Inner 1B2
+    3300246: Stairs Quarter Outer 1A1
+    3300248: Stairs Quarter Outer 1A2
+    3300250: Stairs Quarter Outer 1B1
+    3300252: Stairs Quarter Outer 1B2
+    3300254: Stairs Quarter Straight 1A
+    3300256: Vault Ceiling 1A1
+    3300258: Vault Ceiling 1A1 (Large)
+    3300260: Vault Celing Attachment 1
+    3300262: Vault Celing Attachment 1 (Large)
+    3300264: Vault Celing Attachment 2
+    3300266: Vault Celing Attachment 2 (Large)
+    3300268: Vault Celing Attachment 3
+    3300270: Vault Celing Attachment 3 (Large)
+    3300272: Vault Celing Attachment 4
+    3300274: Vault Celing Attachment 4 (Large)
+    3300276: Wall Chains 1A1
+    3300278: Wall Chains 1A2
+    3300280: Wall Chains 1A3
+    3300282: Wall Chains 1B1
+    3300284: Wall Chains 1B2
+    3300286: Wall Chains 1B3
+    3300288: Wall Chains 1C1
+    3300290: Wall Chains 1C2
+    3300292: Wall Chains 1C3
+    3300294: Wall Chains 2A1
+    3300296: Wall Chains 2A2
+    3300298: Wall Chains 2A3
+    3300300: Wall Chains 2A4
+    3300302: Wall Chains Base 1B1
+    3300304: Wall Corner Half 1A1
+    3300306: Wall Corner Half 1A2
+    3300308: Wall Corner Half 1A3
+    3300310: Wall Corner Quarter 1A1
+    3300312: Wall Corner Quarter 1A2
+    3300314: Wall Corner Quarter 1A3
+    3300316: Wall Corner Standard 1A1
+    3300318: Wall Corner Standard 1A2
+    3300320: Wall Corner Standard 1A3
+    3300322: Wall Doorway 1A1
+    3300324: Wall Doorway 1A2
+    3300326: Wall Doorway 1A3
+    3300328: Wall Doorway 1A4
+    3300330: Wall Doorway 1B1
+    3300332: Wall Doorway 1B2
+    3300334: Wall Doorway 1B3
+    3300336: Wall Doorway 1B4
+    3300338: Wall Half L 1A1
+    3300340: Wall Half L 1A2
+    3300342: Wall Half L 1A3
+    3300344: Wall Half R 1A1
+    3300346: Wall Half R 1A2
+    3300348: Wall Half R 1A3
+    3300350: Wall Quarter L 1A1
+    3300352: Wall Quarter L 1A2
+    3300354: Wall Quarter L 1A3
+    3300356: Wall Quarter R 1A1
+    3300358: Wall Quarter R 1A2
+    3300360: Wall Quarter R 1A3
+    3300362: Wall Standard 1A1
+    3300364: Wall Standard 1A2
+    3300366: Wall Standard 1A3
+    4300000: Railing 1A2
+    4300002: Railing 1A3
+    4300004: Railing 1A4
+    4300006: Railing 1A1
+    4300008: Stairs Quarter Straight 1A
+    4300010: Stairs Quarter Inner 1A1
+    4300012: Stairs Quarter Outer 1A1
+    4300014: Stairs Quarter Inner 1B1
+    4300016: Stairs Quarter Outer 1B1
+    4300018: Curved Floor Inner 1A
+    4300020: Curved Floor Outer 1A
+    4300022: Railing 1B3
+    4300024: Railing 1B2
+    4300026: Railing 1B4
+    4300028: Railing 1B1
+    4300030: Railing Post 1A1
+    4300032: Wall Chains 1B2
+    4300034: Wall Chains 1A2
+    4300036: Wall Chains 1C2
+    4300038: Wall Chains Base 1B1
+    4300040: Wall Chains 1B1
+    4300042: Wall Chains 1A1
+    4300044: Wall Chains 1C1
+    4300046: Wall Chains 1B3
+    4300048: Wall Chains 1C3
+    4300050: Chains Hanging 1A1
+    4300052: Chains Hanging 1A2
+    4300054: Chains Hanging 1A3
+    4300056: Wall Chains 1A3
+    4300058: Chains Large Hanging 1A3
+    4300060: Chains Large Hanging 1A1
+    4300062: Chains Large Hanging 1A2
+    4300064: Pillar Archway 1A2
+    4300066: Pillar Pedestal 1A1
+    4300068: Pillar Pedestal 1A2
+    4300070: Pillar Pedestal 1A3
+    4300072: Pillar Pedestal 1A4
+    4300074: Pillar Pedestal 1A5
+    4300076: Pillar Archway Gate 1A1
+    4300078: Pillar Chains 1A4
+    4300080: Pillar Chains 1A3
+    4300082: Pillar Chains 1A1
+    4300084: Pillar Chains 1A2
+    4300086: Chains Hanging 2A1
+    4300088: Chains Large Hanging 2A1
+    4300090: Arched Wall Window 1A1
+    4300092: Pillar Archway 1A3
+    4300094: Pillar Archway 1A4
+    4300096: Pillar Archway 1A5
+    4300098: Pillar Archway 1A1
+    4300100: Pillar Archway Double 1A1
+    4300102: Arched Wall Extension 1B1
+    4300104: Arched Wall Extension 1A1
+    4300106: Wall Half R 1A1
+    4300108: Wall Half L 1A1
+    4300110: Wall Half R 1A2
+    4300112: Wall Half L 1A2
+    4300114: Wall Half R 1A3
+    4300116: Wall Half L 1A3
+    4300118: Wall Standard 1A3
+    4300120: Wall Standard 1A2
+    4300122: Floor Piece 1A1
+    4300124: Floor Piece Half 1A1
+    4300126: Floor Piece Half Quarter 1A1
+    4300128: Railing 1C1
+    4300130: Railing 1C2
+    4300132: Arched Wall Gate 1A1
+    4300134: Arched Wall Gate 1B1
+    4300136: Wall Corner Half 1A1
+    4300138: Wall Corner Half 1A2
+    4300140: Wall Corner Half 1A3
+    4300142: Wall Corner Standard 1A3
+    4300144: Wall Corner Standard 1A2
+    4300146: Wall Corner Standard 1A1
+    4300148: Wall Standard 1A1
+    4300150: Pillar 1A1
+    4300152: Pillar 1B1
+    4300154: Pillar 1B2
+    4300156: Pillar 1B5
+    4300158: Pillar 1A5
+    4300160: Pillar 1A4
+    4300162: Pillar 1B6
+    4300164: Pillar 1B3
+    4300166: Pillar 1A3
+    4300168: Pillar 1A2
+    4300170: Pillar 1B4
+    4300172: Wall Doorway 1B2
+    4300174: Wall Doorway 1A2
+    4300176: Pillar Chains 1B1
+    4300178: Wall Chains 2A2
+    4300180: Wall Chains 2A1
+    4300182: Wall Chains 2A3
+    4300184: Wall Chains 2A4
+    4300186: Floor Piece 1A7
+    4300188: Floor Piece 1A8
+    4300190: Floor Piece 1A6
+    4300192: Floor Piece 1A5
+    4300194: Floor Piece 1A4
+    4300196: Pillar Archway Ornate 1A2
+    4300198: Pillar Archway Ornate 1A1
+    4300200: Arched Wall 1B1
+    4300202: Arched Wall 1A2
+    4300204: Arched Wall 1A1
+    4300206: Arched Wall 1B2
+    4300208: Pillar Archway Gate 1A2
+    4300210: Wall Quarter R 1A1
+    4300212: Wall Quarter L 1A1
+    4300214: Wall Quarter R 1A2
+    4300216: Wall Quarter L 1A2
+    4300218: Wall Quarter R 1A3
+    4300220: Wall Quarter L 1A3
+    4300222: Railing 1D2
+    4300224: Railing 1D1
+    4300226: Pillar 1A1 (Large)
+    4300228: Pillar 1B1 (Large)
+    4300230: Pillar 1B2 (Large)
+    4300232: Pillar 1B5 (Large)
+    4300234: Pillar 1A5 (Large)
+    4300236: Pillar 1A4 (Large)
+    4300238: Pillar 1B6 (Large)
+    4300240: Pillar 1B3 (Large)
+    4300242: Pillar 1A3 (Large)
+    4300244: Pillar 1A2 (Large)
+    4300246: Pillar 1B4 (Large)
+    4300248: Arched Wall Small Extension 1A1
+    4300250: Stairs Quarter Outer 1A2
+    4300252: Stairs Quarter Inner 1A2
+    4300254: Stairs Quarter Inner 1B2
+    4300256: Stairs Quarter Outer 1B2
+    4300258: Floor Piece 1A3
+    4300260: Floor Piece 1A2
+    4300262: Floor Piece Quarter 1A1
+    4300264: Wall Doorway 1B3
+    4300266: Ornate Door 1A2 L
+    4300268: Ornate Door 1A2 R
+    4300270: Wall Doorway 1A3
+    4300272: Ornate Door 1A1 L
+    4300274: Ornate Door 1A1 R
+    4300276: Wall Doorway 1B4
+    4300278: Ornate Door 1A1
+    4300280: Wall Doorway 1A4
+    4300282: Ornate Door 1A2
+    4300284: Corridor Celing 1A1
+    4300286: Corridor Celing Attachment 2
+    4300288: Corridor Celing Attachment 1
+    4300290: Pillar Archway Stone 1A1
+    4300292: Vault Ceiling 1A1
+    4300294: Vault Celing Attachment 2
+    4300296: Vault Celing Attachment 3
+    4300298: Vault Celing Attachment 4
+    4300300: Vault Celing Attachment 1
+    4300302: Pillar Small 2A1
+    4300304: Pillar Small 2A2
+    4300306: Pillar Small 2A3
+    4300308: Pillar Small 2A4
+    4300310: Pillar Small 2A5
+    4300312: Arched Wall 1B4
+    4300314: Arched Wall 1A4
+    4300316: Arched Wall 1B3
+    4300318: Arched Wall 1A3
+    4300320: Wall Doorway 1B1
+    4300322: Wall Doorway 1A1
+    4300324: Pillar Archway 1A2 (Large)
+    4300326: Pillar Archway Gate 1A1 (Large)
+    4300328: Pillar Archway 1A3 (Large)
+    4300330: Pillar Archway 1A4 (Large)
+    4300332: Pillar Archway 1A5 (Large)
+    4300334: Pillar Archway 1A1 (Large)
+    4300336: Pillar Archway Double 1A1 (Large)
+    4300338: Pillar Archway Ornate 1A2 (Large)
+    4300340: Pillar Archway Ornate 1A1 (Large)
+    4300342: Pillar Archway Gate 1A2 (Large)
+    4300344: Corridor Celing 1A1 (Large)
+    4300346: Corridor Celing Attachment 2 (Large)
+    4300348: Corridor Celing Attachment 1 (Large)
+    4300350: Pillar Archway Stone 1A1 (Large)
+    4300352: Vault Ceiling 1A1 (Large)
+    4300354: Vault Celing Attachment 2 (Large)
+    4300356: Vault Celing Attachment 3 (Large)
+    4300358: Vault Celing Attachment 4 (Large)
+    4300360: Vault Celing Attachment 1 (Large)
+    4300362: Wall Corner Quarter 1A1
+    4300364: Wall Corner Quarter 1A2
+    4300366: Wall Corner Quarter 1A3
+    6400000: Arched Wall 1A1
+    6400002: Arched Wall 1A2
+    6400004: Arched Wall 1A3
+    6400006: Arched Wall 1A4
+    6400008: Arched Wall 1B1
+    6400010: Arched Wall 1B2
+    6400012: Arched Wall 1B3
+    6400014: Arched Wall 1B4
+    6400016: Arched Wall Extension 1A1
+    6400018: Arched Wall Extension 1B1
+    6400020: Arched Wall Gate 1A1
+    6400022: Arched Wall Gate 1B1
+    6400024: Arched Wall Small Extension 1A1
+    6400026: Arched Wall Window 1A1
+    6400028: Chains Hanging 1A1
+    6400030: Chains Hanging 1A2
+    6400032: Chains Hanging 1A3
+    6400034: Chains Hanging 2A1
+    6400036: Chains Large Hanging 1A1
+    6400038: Chains Large Hanging 1A2
+    6400040: Chains Large Hanging 1A3
+    6400042: Chains Large Hanging 2A1
+    6400044: Corridor Celing 1A1
+    6400046: Corridor Celing 1A1 (Large)
+    6400048: Corridor Celing Attachment 1
+    6400050: Corridor Celing Attachment 1 (Large)
+    6400052: Corridor Celing Attachment 2
+    6400054: Corridor Celing Attachment 2 (Large)
+    6400056: Curved Floor Inner 1A
+    6400058: Curved Floor Outer 1A
+    6400060: Floor Piece 1A1
+    6400062: Floor Piece 1A2
+    6400064: Floor Piece 1A3
+    6400066: Floor Piece 1A4
+    6400068: Floor Piece 1A5
+    6400070: Floor Piece 1A6
+    6400072: Floor Piece 1A7
+    6400074: Floor Piece 1A8
+    6400076: Floor Piece Half 1A1
+    6400078: Floor Piece Half Quarter 1A1
+    6400080: Floor Piece Quarter 1A1
+    6400082: Ornate Door 1A1
+    6400084: Ornate Door 1A1 L
+    6400086: Ornate Door 1A1 R
+    6400088: Ornate Door 1A2
+    6400090: Ornate Door 1A2 L
+    6400092: Ornate Door 1A2 R
+    6400094: Pillar 1A1
+    6400096: Pillar 1A1 (Large)
+    6400098: Pillar 1A2
+    6400100: Pillar 1A2 (Large)
+    6400102: Pillar 1A3
+    6400104: Pillar 1A3 (Large)
+    6400106: Pillar 1A4
+    6400108: Pillar 1A4 (Large)
+    6400110: Pillar 1A5
+    6400112: Pillar 1A5 (Large)
+    6400114: Pillar 1B1
+    6400116: Pillar 1B1 (Large)
+    6400118: Pillar 1B2
+    6400120: Pillar 1B2 (Large)
+    6400122: Pillar 1B3
+    6400124: Pillar 1B3 (Large)
+    6400126: Pillar 1B4
+    6400128: Pillar 1B4 (Large)
+    6400130: Pillar 1B5
+    6400132: Pillar 1B5 (Large)
+    6400134: Pillar 1B6
+    6400136: Pillar 1B6 (Large)
+    6400138: Pillar Archway 1A1
+    6400140: Pillar Archway 1A1 (Large)
+    6400142: Pillar Archway 1A2
+    6400144: Pillar Archway 1A2 (Large)
+    6400146: Pillar Archway 1A3
+    6400148: Pillar Archway 1A3 (Large)
+    6400150: Pillar Archway 1A4
+    6400152: Pillar Archway 1A4 (Large)
+    6400154: Pillar Archway 1A5
+    6400156: Pillar Archway 1A5 (Large)
+    6400158: Pillar Archway Double 1A1
+    6400160: Pillar Archway Double 1A1 (Large)
+    6400162: Pillar Archway Gate 1A1
+    6400164: Pillar Archway Gate 1A1 (Large)
+    6400166: Pillar Archway Gate 1A2
+    6400168: Pillar Archway Gate 1A2 (Large)
+    6400170: Pillar Archway Ornate 1A1
+    6400172: Pillar Archway Ornate 1A1 (Large)
+    6400174: Pillar Archway Ornate 1A2
+    6400176: Pillar Archway Ornate 1A2 (Large)
+    6400178: Pillar Archway Stone 1A1
+    6400180: Pillar Archway Stone 1A1 (Large)
+    6400182: Pillar Chains 1A1
+    6400184: Pillar Chains 1A2
+    6400186: Pillar Chains 1A3
+    6400188: Pillar Chains 1A4
+    6400190: Pillar Chains 1B1
+    6400192: Pillar Pedestal 1A1
+    6400194: Pillar Pedestal 1A2
+    6400196: Pillar Pedestal 1A3
+    6400198: Pillar Pedestal 1A4
+    6400200: Pillar Pedestal 1A5
+    6400202: Pillar Small 2A1
+    6400204: Pillar Small 2A2
+    6400206: Pillar Small 2A3
+    6400208: Pillar Small 2A4
+    6400210: Pillar Small 2A5
+    6400212: Railing 1A1
+    6400214: Railing 1A2
+    6400216: Railing 1A3
+    6400218: Railing 1A4
+    6400220: Railing 1B1
+    6400222: Railing 1B2
+    6400224: Railing 1B3
+    6400226: Railing 1B4
+    6400228: Railing 1C1
+    6400230: Railing 1C2
+    6400232: Railing 1D1
+    6400234: Railing 1D2
+    6400236: Railing Post 1A1
+    6400238: Stairs Quarter Inner 1A1
+    6400240: Stairs Quarter Inner 1A2
+    6400242: Stairs Quarter Inner 1B1
+    6400244: Stairs Quarter Inner 1B2
+    6400246: Stairs Quarter Outer 1A1
+    6400248: Stairs Quarter Outer 1A2
+    6400250: Stairs Quarter Outer 1B1
+    6400252: Stairs Quarter Outer 1B2
+    6400254: Stairs Quarter Straight 1A
+    6400256: Vault Ceiling 1A1
+    6400258: Vault Ceiling 1A1 (Large)
+    6400260: Vault Celing Attachment 1
+    6400262: Vault Celing Attachment 1 (Large)
+    6400264: Vault Celing Attachment 2
+    6400266: Vault Celing Attachment 2 (Large)
+    6400268: Vault Celing Attachment 3
+    6400270: Vault Celing Attachment 3 (Large)
+    6400272: Vault Celing Attachment 4
+    6400274: Vault Celing Attachment 4 (Large)
+    6400276: Wall Chains 1A1
+    6400278: Wall Chains 1A2
+    6400280: Wall Chains 1A3
+    6400282: Wall Chains 1B1
+    6400284: Wall Chains 1B2
+    6400286: Wall Chains 1B3
+    6400288: Wall Chains 1C1
+    6400290: Wall Chains 1C2
+    6400292: Wall Chains 1C3
+    6400294: Wall Chains 2A1
+    6400296: Wall Chains 2A2
+    6400298: Wall Chains 2A3
+    6400300: Wall Chains 2A4
+    6400302: Wall Chains Base 1B1
+    6400304: Wall Corner Half 1A1
+    6400306: Wall Corner Half 1A2
+    6400308: Wall Corner Half 1A3
+    6400310: Wall Corner Quarter 1A1
+    6400312: Wall Corner Quarter 1A2
+    6400314: Wall Corner Quarter 1A3
+    6400316: Wall Corner Standard 1A1
+    6400318: Wall Corner Standard 1A2
+    6400320: Wall Corner Standard 1A3
+    6400322: Wall Doorway 1A1
+    6400324: Wall Doorway 1A2
+    6400326: Wall Doorway 1A3
+    6400328: Wall Doorway 1A4
+    6400330: Wall Doorway 1B1
+    6400332: Wall Doorway 1B2
+    6400334: Wall Doorway 1B3
+    6400336: Wall Doorway 1B4
+    6400338: Wall Half L 1A1
+    6400340: Wall Half L 1A2
+    6400342: Wall Half L 1A3
+    6400344: Wall Half R 1A1
+    6400346: Wall Half R 1A2
+    6400348: Wall Half R 1A3
+    6400350: Wall Quarter L 1A1
+    6400352: Wall Quarter L 1A2
+    6400354: Wall Quarter L 1A3
+    6400356: Wall Quarter R 1A1
+    6400358: Wall Quarter R 1A2
+    6400360: Wall Quarter R 1A3
+    6400362: Wall Standard 1A1
+    6400364: Wall Standard 1A2
+    6400366: Wall Standard 1A3
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Metal 1A1
+    second: {fileID: 2100000, guid: 491236b656907de408b5a712994dbd29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Pillars 2A1
+    second: {fileID: 2100000, guid: 3cff038742da36945a99e0e0031b86da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Railings 1A1
+    second: {fileID: 2100000, guid: 5f812d62ae3ead84b987d4ccb36e3be9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Tile 1A1
+    second: {fileID: 2100000, guid: b3d031a66b356124eb669c3e21d28db3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Wall 1A1
+    second: {fileID: 2100000, guid: e54dd8821e67c3046a4e93c93d94285d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ornate Doors 1A1
+    second: {fileID: 2100000, guid: edcef66fbfa96d34c90cb538bb85c170, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164581
+  packageName: The Ancient Set - Dungeons
+  packageVersion: 1.0
+  assetPath: Assets/Ancient Set - Dungeons/FBX/Dungeon Supply 2.fbx
+  uploadId: 357038

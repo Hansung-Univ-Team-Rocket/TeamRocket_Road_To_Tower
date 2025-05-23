@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/*
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -202,12 +203,12 @@ public class Enemy_FSM : MonoBehaviour
         // 속도가 0이 아니라면, BugCountDown을 0으로 초기화
 
 
-        /*********************  FSM *********************/
+        //==========================  FSM ==========================
 
 
         switch (state)
         {
-            /*********************  IDLE *********************/
+            //==========================  IDLE ==========================
 
             case STATE.IDLE:
 
@@ -241,7 +242,7 @@ public class Enemy_FSM : MonoBehaviour
 
 
 
-            /*********************  IDLE_PATROL *********************/
+            //==========================  IDLE_PATROL ==========================
 
             case STATE.IDLE_PATROL:
                 animator.SetInteger("State", 0);
@@ -305,7 +306,7 @@ public class Enemy_FSM : MonoBehaviour
 
 
 
-            /*********************  ROAMER *********************/
+            //==========================  ROAMER ==========================
 
             case STATE.ROAMER:
                 animator.SetInteger("State", 1);
@@ -348,7 +349,7 @@ public class Enemy_FSM : MonoBehaviour
 
 
 
-            /*********************  FIND *********************/
+            //==========================  FIND ==========================
 
             case STATE.FIND:
                 animator.SetInteger("State", 1);
@@ -391,7 +392,7 @@ public class Enemy_FSM : MonoBehaviour
 
 
 
-            /*********************  ATTACT  *********************/
+            //==========================  ATTACT  ==========================
 
             case STATE.ATTACK:
 
@@ -523,7 +524,7 @@ public class Enemy_FSM : MonoBehaviour
 
 
 
-            /*********************  DEAD  *********************/
+            //==========================  DEAD  ==========================
 
             case STATE.DEAD:
                 //animator.SetBool("isDead", true);
@@ -558,9 +559,10 @@ public class Enemy_FSM : MonoBehaviour
                 break;
         }
     }
+    // 이걸 총알로 재활용 하면 될 듯함
     public void DropGun()
     {
-        GameObject dropGun = Instantiate(gun.gameObject);
+        GameObject dropGun = Instantiate(gameObject);
         dropGun.transform.position = this.gameObject.transform.position;
         dropGun.transform.rotation = Quaternion.identity;
         dropGun.transform.Rotate(0, 0, 90f);
@@ -572,11 +574,11 @@ public class Enemy_FSM : MonoBehaviour
 
         dropGun.GetComponent<Rigidbody>().isKinematic = true;
 
-        Destroy(gun.gameObject);
+        //Destroy(gun.gameObject);
 
     }
 
-
+    // 플레이어 콘트롤러가 하나 더 필요함.
     private IEnumerator MeeleAttack()
     {
         if (!coroutineChecker)
@@ -622,3 +624,5 @@ public class Enemy_FSM : MonoBehaviour
     }
 
 }
+
+*/

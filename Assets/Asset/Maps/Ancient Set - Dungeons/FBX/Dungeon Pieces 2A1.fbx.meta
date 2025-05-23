@@ -1,0 +1,544 @@
+fileFormatVersion: 2
+guid: e92ef83ed52dba9449cc96482d60c6a6
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Chains Hanging 1A1
+    100002: Chains Hanging 1A2
+    100004: Chains Hanging 1A3
+    100006: Chains Hanging 2A1
+    100008: Chains Large Hanging 1A1
+    100010: Chains Large Hanging 1A2
+    100012: Chains Large Hanging 1A3
+    100014: Chains Large Hanging 2A1
+    100016: //RootNode
+    100018: Floor Piece Metal Grate 1A1
+    100020: Floor Piece Metal Grate 1A2
+    100022: Floor Piece Metal Grate 1A3
+    100024: Pillar 2A1
+    100026: Pillar 2A1 Chains A
+    100028: Pillar 2A1 Chains B
+    100030: Pillar 2A2
+    100032: Pillar 2B1
+    100034: Pillar 2B2
+    100036: Pillar 2B2 Chains A
+    100038: Pillar 2C1
+    100040: Pillar 2C2
+    100042: Pillar 2D1
+    100044: Pillar 2D2
+    100046: Pillar 2E1
+    100048: Pillar 2E2
+    100050: Pillar Archway 1A1
+    100052: Pillar Archway 1A2
+    100054: Pillar Archway 1A3
+    100056: Pillar Archway 1A4
+    100058: Pillar Archway 1A5
+    100060: Pillar Archway Gate 1A1
+    100062: Pillar Pedestal 1A1
+    100064: Pillar Pedestal 1B1
+    100066: Pillar Pedestal 1C1
+    100068: Pillar Pedestal 1D1
+    100070: Pillar Pedestal 1E1
+    100072: Railing 2A1
+    100074: Railing 2B1
+    100076: Railing 2C1
+    100078: Railing 2D1
+    100080: Railing Post 2A1
+    100082: Wall 1A Chains A
+    100084: Wall 1A1
+    100086: Wall Archway 1A1
+    100088: Wall Archway 1A2
+    100090: Wall Archway 1B1
+    100092: Wall Archway 1B2
+    100094: Wall Archway 1C1
+    100096: Wall Archway 1C2
+    100098: Wall Archway 1D1
+    100100: Wall Archway 1D2
+    100102: Wall Archway Gate 1A1
+    100104: Wall Archway Overpass 1A1
+    100106: Wall Archway Overpass 1A2
+    100108: Wall Archway Overpass 1A3
+    100110: Wall Archway Overway 1A1
+    100112: Wall Archway Underway 1A1
+    100114: Wall Chains 1A1
+    100116: Wall Chains 1A2
+    100118: Wall Chains 1A3
+    100120: Wall Chains 1B1
+    100122: Wall Chains 1B2
+    100124: Wall Chains 1B3
+    100126: Wall Chains 1C1
+    100128: Wall Chains 1C2
+    100130: Wall Chains 1C3
+    100132: Wall Chains Base 1A1
+    100134: Wall Chains Base 1B1
+    100136: Wall Doorway 1A1
+    100138: Wall Doorway 1A2
+    400000: Chains Hanging 1A1
+    400002: Chains Hanging 1A2
+    400004: Chains Hanging 1A3
+    400006: Chains Hanging 2A1
+    400008: Chains Large Hanging 1A1
+    400010: Chains Large Hanging 1A2
+    400012: Chains Large Hanging 1A3
+    400014: Chains Large Hanging 2A1
+    400016: //RootNode
+    400018: Floor Piece Metal Grate 1A1
+    400020: Floor Piece Metal Grate 1A2
+    400022: Floor Piece Metal Grate 1A3
+    400024: Pillar 2A1
+    400026: Pillar 2A1 Chains A
+    400028: Pillar 2A1 Chains B
+    400030: Pillar 2A2
+    400032: Pillar 2B1
+    400034: Pillar 2B2
+    400036: Pillar 2B2 Chains A
+    400038: Pillar 2C1
+    400040: Pillar 2C2
+    400042: Pillar 2D1
+    400044: Pillar 2D2
+    400046: Pillar 2E1
+    400048: Pillar 2E2
+    400050: Pillar Archway 1A1
+    400052: Pillar Archway 1A2
+    400054: Pillar Archway 1A3
+    400056: Pillar Archway 1A4
+    400058: Pillar Archway 1A5
+    400060: Pillar Archway Gate 1A1
+    400062: Pillar Pedestal 1A1
+    400064: Pillar Pedestal 1B1
+    400066: Pillar Pedestal 1C1
+    400068: Pillar Pedestal 1D1
+    400070: Pillar Pedestal 1E1
+    400072: Railing 2A1
+    400074: Railing 2B1
+    400076: Railing 2C1
+    400078: Railing 2D1
+    400080: Railing Post 2A1
+    400082: Wall 1A Chains A
+    400084: Wall 1A1
+    400086: Wall Archway 1A1
+    400088: Wall Archway 1A2
+    400090: Wall Archway 1B1
+    400092: Wall Archway 1B2
+    400094: Wall Archway 1C1
+    400096: Wall Archway 1C2
+    400098: Wall Archway 1D1
+    400100: Wall Archway 1D2
+    400102: Wall Archway Gate 1A1
+    400104: Wall Archway Overpass 1A1
+    400106: Wall Archway Overpass 1A2
+    400108: Wall Archway Overpass 1A3
+    400110: Wall Archway Overway 1A1
+    400112: Wall Archway Underway 1A1
+    400114: Wall Chains 1A1
+    400116: Wall Chains 1A2
+    400118: Wall Chains 1A3
+    400120: Wall Chains 1B1
+    400122: Wall Chains 1B2
+    400124: Wall Chains 1B3
+    400126: Wall Chains 1C1
+    400128: Wall Chains 1C2
+    400130: Wall Chains 1C3
+    400132: Wall Chains Base 1A1
+    400134: Wall Chains Base 1B1
+    400136: Wall Doorway 1A1
+    400138: Wall Doorway 1A2
+    2100000: Dungeon Railings 1A1
+    2100002: Dungeon Wall 1A1
+    2100004: Dungeon Pillars 2A1
+    2100006: Dungeon Metal 1A1
+    2100008: Dungeon Tile 1A1
+    2300000: Chains Hanging 1A1
+    2300002: Chains Hanging 1A2
+    2300004: Chains Hanging 1A3
+    2300006: Chains Hanging 2A1
+    2300008: Chains Large Hanging 1A1
+    2300010: Chains Large Hanging 1A2
+    2300012: Chains Large Hanging 1A3
+    2300014: Chains Large Hanging 2A1
+    2300016: Floor Piece Metal Grate 1A1
+    2300018: Floor Piece Metal Grate 1A2
+    2300020: Floor Piece Metal Grate 1A3
+    2300022: Pillar 2A1
+    2300024: Pillar 2A1 Chains A
+    2300026: Pillar 2A1 Chains B
+    2300028: Pillar 2A2
+    2300030: Pillar 2B1
+    2300032: Pillar 2B2
+    2300034: Pillar 2B2 Chains A
+    2300036: Pillar 2C1
+    2300038: Pillar 2C2
+    2300040: Pillar 2D1
+    2300042: Pillar 2D2
+    2300044: Pillar 2E1
+    2300046: Pillar 2E2
+    2300048: Pillar Archway 1A1
+    2300050: Pillar Archway 1A2
+    2300052: Pillar Archway 1A3
+    2300054: Pillar Archway 1A4
+    2300056: Pillar Archway 1A5
+    2300058: Pillar Archway Gate 1A1
+    2300060: Pillar Pedestal 1A1
+    2300062: Pillar Pedestal 1B1
+    2300064: Pillar Pedestal 1C1
+    2300066: Pillar Pedestal 1D1
+    2300068: Pillar Pedestal 1E1
+    2300070: Railing 2A1
+    2300072: Railing 2B1
+    2300074: Railing 2C1
+    2300076: Railing 2D1
+    2300078: Railing Post 2A1
+    2300080: Wall 1A Chains A
+    2300082: Wall 1A1
+    2300084: Wall Archway 1A1
+    2300086: Wall Archway 1A2
+    2300088: Wall Archway 1B1
+    2300090: Wall Archway 1B2
+    2300092: Wall Archway 1C1
+    2300094: Wall Archway 1C2
+    2300096: Wall Archway 1D1
+    2300098: Wall Archway 1D2
+    2300100: Wall Archway Gate 1A1
+    2300102: Wall Archway Overpass 1A1
+    2300104: Wall Archway Overpass 1A2
+    2300106: Wall Archway Overpass 1A3
+    2300108: Wall Archway Overway 1A1
+    2300110: Wall Archway Underway 1A1
+    2300112: Wall Chains 1A1
+    2300114: Wall Chains 1A2
+    2300116: Wall Chains 1A3
+    2300118: Wall Chains 1B1
+    2300120: Wall Chains 1B2
+    2300122: Wall Chains 1B3
+    2300124: Wall Chains 1C1
+    2300126: Wall Chains 1C2
+    2300128: Wall Chains 1C3
+    2300130: Wall Chains Base 1A1
+    2300132: Wall Chains Base 1B1
+    2300134: Wall Doorway 1A1
+    2300136: Wall Doorway 1A2
+    3300000: Chains Hanging 1A1
+    3300002: Chains Hanging 1A2
+    3300004: Chains Hanging 1A3
+    3300006: Chains Hanging 2A1
+    3300008: Chains Large Hanging 1A1
+    3300010: Chains Large Hanging 1A2
+    3300012: Chains Large Hanging 1A3
+    3300014: Chains Large Hanging 2A1
+    3300016: Floor Piece Metal Grate 1A1
+    3300018: Floor Piece Metal Grate 1A2
+    3300020: Floor Piece Metal Grate 1A3
+    3300022: Pillar 2A1
+    3300024: Pillar 2A1 Chains A
+    3300026: Pillar 2A1 Chains B
+    3300028: Pillar 2A2
+    3300030: Pillar 2B1
+    3300032: Pillar 2B2
+    3300034: Pillar 2B2 Chains A
+    3300036: Pillar 2C1
+    3300038: Pillar 2C2
+    3300040: Pillar 2D1
+    3300042: Pillar 2D2
+    3300044: Pillar 2E1
+    3300046: Pillar 2E2
+    3300048: Pillar Archway 1A1
+    3300050: Pillar Archway 1A2
+    3300052: Pillar Archway 1A3
+    3300054: Pillar Archway 1A4
+    3300056: Pillar Archway 1A5
+    3300058: Pillar Archway Gate 1A1
+    3300060: Pillar Pedestal 1A1
+    3300062: Pillar Pedestal 1B1
+    3300064: Pillar Pedestal 1C1
+    3300066: Pillar Pedestal 1D1
+    3300068: Pillar Pedestal 1E1
+    3300070: Railing 2A1
+    3300072: Railing 2B1
+    3300074: Railing 2C1
+    3300076: Railing 2D1
+    3300078: Railing Post 2A1
+    3300080: Wall 1A Chains A
+    3300082: Wall 1A1
+    3300084: Wall Archway 1A1
+    3300086: Wall Archway 1A2
+    3300088: Wall Archway 1B1
+    3300090: Wall Archway 1B2
+    3300092: Wall Archway 1C1
+    3300094: Wall Archway 1C2
+    3300096: Wall Archway 1D1
+    3300098: Wall Archway 1D2
+    3300100: Wall Archway Gate 1A1
+    3300102: Wall Archway Overpass 1A1
+    3300104: Wall Archway Overpass 1A2
+    3300106: Wall Archway Overpass 1A3
+    3300108: Wall Archway Overway 1A1
+    3300110: Wall Archway Underway 1A1
+    3300112: Wall Chains 1A1
+    3300114: Wall Chains 1A2
+    3300116: Wall Chains 1A3
+    3300118: Wall Chains 1B1
+    3300120: Wall Chains 1B2
+    3300122: Wall Chains 1B3
+    3300124: Wall Chains 1C1
+    3300126: Wall Chains 1C2
+    3300128: Wall Chains 1C3
+    3300130: Wall Chains Base 1A1
+    3300132: Wall Chains Base 1B1
+    3300134: Wall Doorway 1A1
+    3300136: Wall Doorway 1A2
+    4300000: Railing 2C1
+    4300002: Railing 2D1
+    4300004: Railing 2B1
+    4300006: Railing 2A1
+    4300008: Railing Post 2A1
+    4300010: Wall Archway 1B1
+    4300012: Wall Archway 1A1
+    4300014: Wall Archway 1A2
+    4300016: Wall Chains 1B2
+    4300018: Wall Chains 1A2
+    4300020: Wall Chains 1C2
+    4300022: Floor Piece Metal Grate 1A2
+    4300024: Floor Piece Metal Grate 1A3
+    4300026: Wall Chains Base 1B1
+    4300028: Wall Chains Base 1A1
+    4300030: Wall Chains 1B1
+    4300032: Wall Chains 1A1
+    4300034: Wall Chains 1C1
+    4300036: Pillar 2A2
+    4300038: Pillar 2D2
+    4300040: Pillar 2C2
+    4300042: Pillar 2B2
+    4300044: Pillar 2E2
+    4300046: Wall Chains 1B3
+    4300048: Wall Chains 1C3
+    4300050: Chains Hanging 1A1
+    4300052: Chains Hanging 1A2
+    4300054: Chains Hanging 1A3
+    4300056: Wall Archway Gate 1A1
+    4300058: Pillar 2A1
+    4300060: Pillar 2D1
+    4300062: Pillar 2C1
+    4300064: Pillar 2B1
+    4300066: Pillar 2E1
+    4300068: Wall Chains 1A3
+    4300070: Chains Large Hanging 1A3
+    4300072: Chains Large Hanging 1A1
+    4300074: Chains Large Hanging 1A2
+    4300076: Floor Piece Metal Grate 1A1
+    4300078: Wall Archway 1D2
+    4300080: Wall Archway 1C2
+    4300082: Wall Archway 1B2
+    4300084: Wall Archway Overpass 1A3
+    4300086: Wall Archway Overpass 1A2
+    4300088: Wall 1A1
+    4300090: Wall Archway 1D1
+    4300092: Wall Archway 1C1
+    4300094: Wall Doorway 1A1
+    4300096: Wall Doorway 1A2
+    4300098: Wall Archway Underway 1A1
+    4300100: Wall Archway Overway 1A1
+    4300102: Wall Archway Overpass 1A1
+    4300104: Pillar Archway 1A1
+    4300106: Pillar Archway 1A2
+    4300108: Pillar Archway 1A3
+    4300110: Pillar Archway 1A5
+    4300112: Pillar Archway 1A4
+    4300114: Pillar Pedestal 1A1
+    4300116: Pillar Pedestal 1B1
+    4300118: Pillar Pedestal 1C1
+    4300120: Pillar Pedestal 1D1
+    4300122: Pillar Pedestal 1E1
+    4300124: Pillar Archway Gate 1A1
+    4300126: Pillar 2B2 Chains A
+    4300128: Wall 1A Chains A
+    4300130: Pillar 2A1 Chains A
+    4300132: Pillar 2A1 Chains B
+    4300134: Chains Hanging 2A1
+    4300136: Chains Large Hanging 2A1
+    6400000: Chains Hanging 1A1
+    6400002: Chains Hanging 1A2
+    6400004: Chains Hanging 1A3
+    6400006: Chains Hanging 2A1
+    6400008: Chains Large Hanging 1A1
+    6400010: Chains Large Hanging 1A2
+    6400012: Chains Large Hanging 1A3
+    6400014: Chains Large Hanging 2A1
+    6400016: Floor Piece Metal Grate 1A1
+    6400018: Floor Piece Metal Grate 1A2
+    6400020: Floor Piece Metal Grate 1A3
+    6400022: Pillar 2A1
+    6400024: Pillar 2A1 Chains A
+    6400026: Pillar 2A1 Chains B
+    6400028: Pillar 2A2
+    6400030: Pillar 2B1
+    6400032: Pillar 2B2
+    6400034: Pillar 2B2 Chains A
+    6400036: Pillar 2C1
+    6400038: Pillar 2C2
+    6400040: Pillar 2D1
+    6400042: Pillar 2D2
+    6400044: Pillar 2E1
+    6400046: Pillar 2E2
+    6400048: Pillar Archway 1A1
+    6400050: Pillar Archway 1A2
+    6400052: Pillar Archway 1A3
+    6400054: Pillar Archway 1A4
+    6400056: Pillar Archway 1A5
+    6400058: Pillar Archway Gate 1A1
+    6400060: Pillar Pedestal 1A1
+    6400062: Pillar Pedestal 1B1
+    6400064: Pillar Pedestal 1C1
+    6400066: Pillar Pedestal 1D1
+    6400068: Pillar Pedestal 1E1
+    6400070: Railing 2A1
+    6400072: Railing 2B1
+    6400074: Railing 2C1
+    6400076: Railing 2D1
+    6400078: Railing Post 2A1
+    6400080: Wall 1A Chains A
+    6400082: Wall 1A1
+    6400084: Wall Archway 1A1
+    6400086: Wall Archway 1A2
+    6400088: Wall Archway 1B1
+    6400090: Wall Archway 1B2
+    6400092: Wall Archway 1C1
+    6400094: Wall Archway 1C2
+    6400096: Wall Archway 1D1
+    6400098: Wall Archway 1D2
+    6400100: Wall Archway Gate 1A1
+    6400102: Wall Archway Overpass 1A1
+    6400104: Wall Archway Overpass 1A2
+    6400106: Wall Archway Overpass 1A3
+    6400108: Wall Archway Overway 1A1
+    6400110: Wall Archway Underway 1A1
+    6400112: Wall Chains 1A1
+    6400114: Wall Chains 1A2
+    6400116: Wall Chains 1A3
+    6400118: Wall Chains 1B1
+    6400120: Wall Chains 1B2
+    6400122: Wall Chains 1B3
+    6400124: Wall Chains 1C1
+    6400126: Wall Chains 1C2
+    6400128: Wall Chains 1C3
+    6400130: Wall Chains Base 1A1
+    6400132: Wall Chains Base 1B1
+    6400134: Wall Doorway 1A1
+    6400136: Wall Doorway 1A2
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Metal 1A1
+    second: {fileID: 2100000, guid: 491236b656907de408b5a712994dbd29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Pillars 2A1
+    second: {fileID: 2100000, guid: 3cff038742da36945a99e0e0031b86da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Railings 1A1
+    second: {fileID: 2100000, guid: 5f812d62ae3ead84b987d4ccb36e3be9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Tile 1A1
+    second: {fileID: 2100000, guid: b3d031a66b356124eb669c3e21d28db3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dungeon Wall 1A1
+    second: {fileID: 2100000, guid: e54dd8821e67c3046a4e93c93d94285d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164581
+  packageName: The Ancient Set - Dungeons
+  packageVersion: 1.0
+  assetPath: Assets/Ancient Set - Dungeons/FBX/Dungeon Pieces 2A1.fbx
+  uploadId: 357038
