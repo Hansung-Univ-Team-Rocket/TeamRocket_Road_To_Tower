@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: cfa817c57c5148646863264ae78f2142
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226046
+  packageName: Cowboy Girl 2 Western Character - Wild West,Adventure,Survival,Survivor,Action
+  packageVersion: 1.0
+  assetPath: Assets/Asset/Characters/David Grette/Shader/SubGpaph/SkinDeformationBlend.hlsl
+  uploadId: 514963
