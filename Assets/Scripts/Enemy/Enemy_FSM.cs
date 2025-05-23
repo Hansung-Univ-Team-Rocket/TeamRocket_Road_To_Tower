@@ -1,4 +1,99 @@
-﻿/*
+﻿using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UIElements;
+
+public class Enemy_FSM : MonoBehaviour
+{
+    Transform _player;
+
+    public enum STATE
+    { 
+        SPAWN,
+        IDLE,
+        DAMAGED,
+        FIND,
+        ATTACK,
+        DEAD,
+    }
+
+    public STATE state;
+
+    [SerializeField] NavMeshAgent _nav;
+    [SerializeField] Animator _animator;
+    [SerializeField] GameObject _spawnEffect;
+    public          float spwanEffectTime;
+
+    [SerializeField] bool _isDead = false;
+
+    private void Start()
+    {
+        _nav = GetComponent<NavMeshAgent>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        _animator = GetComponentInChildren<Animator>();
+    }
+
+    void SpwanEffect()
+    {
+        GameObject spwanEffect = Instantiate(_spawnEffect, this.transform.position, Quaternion.identity);
+        Destroy(spwanEffect, spwanEffectTime); 
+    }
+
+    private void Update()
+    {
+        if (_animator != null) Debug.Log("NULL");
+
+        Debug.Log(state);
+
+        if (_isDead)
+        {
+            // 사망 애니메이터 플레그값 입력
+            _animator.SetBool("isDead", true); 
+            return;
+        }
+
+        if (_nav.enabled)
+        {
+
+        }
+
+        switch (state)
+        {
+            case STATE.SPAWN:
+                if(_animator != null)
+                    _animator.SetInteger("State", 0);
+                else
+                {
+                    Debug.LogError("Animator is null");
+                }
+                // 애니메이터 FSM은 Integer로 작성
+                break;
+
+            case STATE.IDLE:
+                break;
+
+            case STATE.DAMAGED:
+                break;
+
+            case STATE.FIND:
+                break;
+
+            case STATE.ATTACK:
+                break;
+
+            case STATE.DEAD:
+                break;
+
+            default:
+                break;
+        }
+    }
+}
+
+
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
