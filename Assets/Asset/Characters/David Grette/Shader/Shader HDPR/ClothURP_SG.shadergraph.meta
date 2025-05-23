@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: e9682b4e991238b44a3f036b70726dd9
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226046
+  packageName: Cowboy Girl 2 Western Character - Wild West,Adventure,Survival,Survivor,Action
+  packageVersion: 1.0
+  assetPath: Assets/Asset/Characters/David Grette/Shader/Shader HDPR/ClothURP_SG.shadergraph
+  uploadId: 514963

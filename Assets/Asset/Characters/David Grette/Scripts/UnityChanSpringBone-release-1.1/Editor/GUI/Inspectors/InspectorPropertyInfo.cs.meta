@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 70eb4960098432a4abbdf79efd0a9edc
+timeCreated: 1489761009
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226046
+  packageName: Cowboy Girl 2 Western Character - Wild West,Adventure,Survival,Survivor,Action
+  packageVersion: 1.0
+  assetPath: Assets/Asset/Characters/David Grette/Scripts/UnityChanSpringBone-release-1.1/Editor/GUI/Inspectors/InspectorPropertyInfo.cs
+  uploadId: 514963
