@@ -29,11 +29,19 @@ public class Enemy_FSM : MonoBehaviour
     public float moveSpeed = 6f;
     public bool isMeleeType = false;
     public float attackDistance = 40f;
+    public float staggerTime = 0.5f;
+    public float staggerTimeChecker = 0f;
+
+    public GameObject projectile;
 
     [SerializeField] NavMeshAgent _nav;
     [SerializeField] Animator _animator;
     [SerializeField] GameObject _spawnEffect;
     public          float spwanEffectTime;
+
+    [Header("Bullet Data")]
+    public GameObject bullet;
+    public Transform shotRocation;
 
     [Header("Flag Values")]
     [SerializeField] bool _isDead = false;
@@ -57,8 +65,16 @@ public class Enemy_FSM : MonoBehaviour
     }
 
     void Damaged(int hitDamage)
-    { 
+    {
         hp -= hitDamage;
+        if (hp <= 0)
+        {
+            _isDead = true;
+
+            state = STATE.DEAD;
+            _animator.SetBool("isDead", true);
+        }
+        state = STATE.DAMAGED;
     }
 
     /// <summary>
@@ -78,16 +94,36 @@ public class Enemy_FSM : MonoBehaviour
         else return false;
     }
 
-    void Attack(float attackDis)
+    void FarHited()
     {
-        if (isMeleeType)
+        while (true)
         {
-
+            if (!IsTragetInSight(this.transform.forward, _player.transform.position, fovDegrees, maxDistance))
+                _nav.SetDestination(_player.transform.position);
+            else
+            {
+                state = STATE.FIND;
+                break;
+            }
+        }
+    }
+    void Attack()
+    {
+        if (!isMeleeType)
+        {
+            ShotBulletIns();
         }
         else
         {
-            
+
         }
+    }
+
+    public void ShotBulletIns() // 적 유닛 전용. 유저는 레이케이스트 사용
+    {
+        GameObject bullet_ = Instantiate(bullet);
+        bullet_.transform.position = shotRocation.position;
+        bullet_.transform.rotation = shotRocation.rotation;
     }
 
     /// <summary>
@@ -131,8 +167,6 @@ public class Enemy_FSM : MonoBehaviour
 
         if (_isDead)
         {
-            // 사망 애니메이터 플레그값 입력
-            _animator.SetBool("isDead", true); 
             return;
         }
 
@@ -144,6 +178,8 @@ public class Enemy_FSM : MonoBehaviour
         switch (state)
         {
             case STATE.SPAWN:
+
+                state = STATE.IDLE;
 
                 break;
 
@@ -165,6 +201,22 @@ public class Enemy_FSM : MonoBehaviour
                 break;
 
             case STATE.DAMAGED:
+                staggerTimeChecker += Time.deltaTime;
+                _nav.SetDestination(this.transform.position);
+
+                if (staggerTime >= staggerTimeChecker)
+                {
+                    if (IsTragetInSight(this.transform.forward, _player.transform.position, fovDegrees, maxDistance))
+                    {
+                        if (AttackAdjust(_player.transform.position, attackDistance))
+                        {
+                            state = STATE.ATTACK;
+                        }
+                        state = STATE.FIND;
+                    }
+                    FarHited();
+                }
+                
                 break;
 
             case STATE.FIND:
@@ -184,7 +236,7 @@ public class Enemy_FSM : MonoBehaviour
 
                 if (isMeleeType)
                 {
-
+                    state = STATE.ATTACK;
                 }
                 else
                 {
@@ -197,9 +249,23 @@ public class Enemy_FSM : MonoBehaviour
                 break;
 
             case STATE.ATTACK:
+                if (_animator != null)
+                    _animator.SetInteger("State", 2);
+                else
+                {
+                    Debug.LogError("Animator is null");
+                }
+                Attack();
+
+                if (!AttackAdjust(_player.transform.position, attackDistance))
+                {
+                    state = STATE.FIND;
+                }
                 break;
 
             case STATE.DEAD:
+                // 총알 드랍과 관련된 스크립트가 들어가야 함.
+                
                 break;
 
             default:

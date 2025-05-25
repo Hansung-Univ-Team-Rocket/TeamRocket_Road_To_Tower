@@ -88,6 +88,12 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         _motor.CharacterController = this;
     }
 
+    public void Dead()
+    {
+        // 애니메이션 재생 코드라인 추가 필요
+        upperPlayerState = UpperPlayerState.DEAD;
+        lowerPlayerState = LowerPlayerState.DEAD;
+    }
     void ReturnMoveInput(PlayerInput inputs)
     {
         _movementCheckValue = Mathf.Abs(inputs.AxisFwd) + Mathf.Abs(inputs.AxisRight);
