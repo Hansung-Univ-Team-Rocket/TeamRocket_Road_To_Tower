@@ -22,6 +22,14 @@ public class Enemy_FSM : MonoBehaviour
 
     public STATE state;
 
+
+    [Header("Enemy Stat | if enemy's attack type is melee, change is MeleeType flag value to true")]
+    public int damage = 1;
+    public int hp = 300;
+    public float moveSpeed = 6f;
+    public bool isMeleeType = false;
+    public float attackDistance = 40f;
+
     [SerializeField] NavMeshAgent _nav;
     [SerializeField] Animator _animator;
     [SerializeField] GameObject _spawnEffect;
@@ -32,8 +40,8 @@ public class Enemy_FSM : MonoBehaviour
 
 
     [Header("Enemy's Finder Value")]
-    [SerializeField] float _fovDegrees; // 적 유닛이 볼 수 있는 시야각
-    [SerializeField] float _maxDistance; // 적 유닛이 볼 수 있는 최대 시야 거리
+    public float fovDegrees = 65f; // 적 유닛이 볼 수 있는 시야각 기본값 65
+    public float maxDistance = 60; // 적 유닛이 볼 수 있는 최대 시야 거리 기본값 60
 
     private void Start()
     {
@@ -45,7 +53,41 @@ public class Enemy_FSM : MonoBehaviour
     void SpwanEffect()
     {
         GameObject spwanEffect = Instantiate(_spawnEffect, this.transform.position, Quaternion.identity);
-        Destroy(spwanEffect, spwanEffectTime); 
+        Destroy(spwanEffect, spwanEffectTime);
+    }
+
+    void Damaged(int hitDamage)
+    { 
+        hp -= hitDamage;
+    }
+
+    /// <summary>
+    /// 원거리 공격 유닛일 경우, 이동 거리 및 공격 가능 거리에 대한 일부 값 보정
+    /// </summary>
+    /// <param name="toTargetDIr"></param>
+    /// <param name="attackDis"></param>
+    /// <returns></returns>
+    bool AttackAdjust(Vector3 toTargetDIr, float attackDis)
+    {
+        // 적 유닛과 플레이어 유닛간의 거리 판별
+        float resultDistance =
+            Vector3.Distance(this.gameObject.transform.position, toTargetDIr);
+
+        if (resultDistance <= attackDis * 2 / 3)
+            return true;
+        else return false;
+    }
+
+    void Attack(float attackDis)
+    {
+        if (isMeleeType)
+        {
+
+        }
+        else
+        {
+            
+        }
     }
 
     /// <summary>
@@ -112,6 +154,13 @@ public class Enemy_FSM : MonoBehaviour
                 {
                     Debug.LogError("Animator is null");
                 }
+
+                _nav.SetDestination(this.transform.position);
+
+                if(IsTragetInSight(this.transform.forward, _player.transform.position, fovDegrees, maxDistance))
+                {
+                    state = STATE.FIND;
+                }
                 // 애니메이터 FSM은 Integer로 작성
                 break;
 
@@ -119,6 +168,32 @@ public class Enemy_FSM : MonoBehaviour
                 break;
 
             case STATE.FIND:
+                if (_animator != null)
+                    _animator.SetInteger("State", 1);
+                else
+                {
+                    Debug.LogError("Animator is null");
+                }
+
+                _nav.SetDestination(_player.transform.position);
+
+                if (!IsTragetInSight(this.transform.forward, _player.transform.position, fovDegrees, maxDistance))
+                {
+                    state = STATE.IDLE;
+                }
+
+                if (isMeleeType)
+                {
+
+                }
+                else
+                {
+                    if (AttackAdjust(_player.transform.position, attackDistance))
+                    {
+                        state = STATE.ATTACK;
+                    }
+                }
+
                 break;
 
             case STATE.ATTACK:
