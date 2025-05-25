@@ -64,7 +64,7 @@ public class Enemy_FSM : MonoBehaviour
         Destroy(spwanEffect, spwanEffectTime);
     }
 
-    void Damaged(int hitDamage)
+    public void Damaged(int hitDamage)
     {
         hp -= hitDamage;
         if (hp <= 0)
@@ -101,7 +101,10 @@ public class Enemy_FSM : MonoBehaviour
         while (true)
         {
             if (!IsTragetInSight(this.transform.forward, _player.transform.position, fovDegrees, maxDistance))
+            {
+                this.gameObject.transform.LookAt(_player.transform.position);
                 _nav.SetDestination(_player.transform.position);
+            }
             else
             {
                 state = STATE.FIND;
@@ -224,6 +227,7 @@ public class Enemy_FSM : MonoBehaviour
                 break;
 
             case STATE.FIND:
+                this.gameObject.transform.LookAt(_player.transform.position);
                 if (_animator != null)
                     _animator.SetInteger("State", 1);
                 else
@@ -253,6 +257,7 @@ public class Enemy_FSM : MonoBehaviour
                 break;
 
             case STATE.ATTACK:
+                this.gameObject.transform.LookAt(_player.transform.position);
                 if (_animator != null)
                     _animator.SetInteger("State", 2);
                 else
