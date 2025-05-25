@@ -1,18 +1,11 @@
 fileFormatVersion: 2
-guid: 3a9ace625530d1e41904c8f3ce34f6ec
-AssetOrigin:
-  serializedVersion: 1
-  productId: 242599
-  packageName: Steampunk character collections
-  packageVersion: 1.0
-  assetPath: Assets/Steampunk character collections/SteamPunk Mech/Animations/Idle.fbx
-  uploadId: 614690
+guid: 5367c844e478f4d4790c45ca2e9d59b0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
   - first:
-      74: -3100369314251171874
-    second: Idle
+      74: -1622007997828536433
+    second: Find
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -41,18 +34,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
-      takeName: Idle
-      internalID: -3100369314251171874
+      name: Find
+      takeName: Idle_Rare
+      internalID: -1622007997828536433
       firstFrame: 0
-      lastFrame: 108
+      lastFrame: 88
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

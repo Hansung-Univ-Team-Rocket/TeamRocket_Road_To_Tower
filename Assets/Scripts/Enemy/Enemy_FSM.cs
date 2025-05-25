@@ -89,6 +89,8 @@ public class Enemy_FSM : MonoBehaviour
         float resultDistance =
             Vector3.Distance(this.gameObject.transform.position, toTargetDIr);
 
+        Debug.Log($"현재 거리 : {resultDistance}, 공격 범위 : {attackDis * 2 / 3}");
+
         if (resultDistance <= attackDis * 2 / 3)
             return true;
         else return false;
@@ -140,6 +142,8 @@ public class Enemy_FSM : MonoBehaviour
         // 적 유닛과 플레이어 유닛간의 거리 판별
         float resultDistance =
             Vector3.Distance(this.gameObject.transform.position, toTargetDIr);
+
+        Debug.Log($"현재 거리 : {resultDistance}");
 
         if (resultDistance > maxFIndDIstance)
         {
