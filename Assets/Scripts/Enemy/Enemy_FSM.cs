@@ -22,18 +22,34 @@ public class Enemy_FSM : MonoBehaviour
 
     public STATE state;
 
+
+    [Header("Enemy Stat | if enemy's attack type is melee, change is MeleeType flag value to true")]
+    public int damage = 1;
+    public int hp = 300;
+    public float moveSpeed = 6f;
+    public bool isMeleeType = false;
+    public float attackDistance = 40f;
+    public float staggerTime = 0.5f;
+    public float staggerTimeChecker = 0f;
+
+    public GameObject projectile;
+
     [SerializeField] NavMeshAgent _nav;
     [SerializeField] Animator _animator;
     [SerializeField] GameObject _spawnEffect;
     public          float spwanEffectTime;
+
+    [Header("Bullet Data")]
+    public GameObject bullet;
+    public Transform shotRocation;
 
     [Header("Flag Values")]
     [SerializeField] bool _isDead = false;
 
 
     [Header("Enemy's Finder Value")]
-    [SerializeField] float _fovDegrees; // 적 유닛이 볼 수 있는 시야각
-    [SerializeField] float _maxDistance; // 적 유닛이 볼 수 있는 최대 시야 거리
+    public float fovDegrees = 65f; // 적 유닛이 볼 수 있는 시야각 기본값 65
+    public float maxDistance = 60; // 적 유닛이 볼 수 있는 최대 시야 거리 기본값 60
 
     private void Start()
     {
@@ -45,7 +61,69 @@ public class Enemy_FSM : MonoBehaviour
     void SpwanEffect()
     {
         GameObject spwanEffect = Instantiate(_spawnEffect, this.transform.position, Quaternion.identity);
-        Destroy(spwanEffect, spwanEffectTime); 
+        Destroy(spwanEffect, spwanEffectTime);
+    }
+
+    void Damaged(int hitDamage)
+    {
+        hp -= hitDamage;
+        if (hp <= 0)
+        {
+            _isDead = true;
+
+            state = STATE.DEAD;
+            _animator.SetBool("isDead", true);
+        }
+        state = STATE.DAMAGED;
+    }
+
+    /// <summary>
+    /// 원거리 공격 유닛일 경우, 이동 거리 및 공격 가능 거리에 대한 일부 값 보정
+    /// </summary>
+    /// <param name="toTargetDIr"></param>
+    /// <param name="attackDis"></param>
+    /// <returns></returns>
+    bool AttackAdjust(Vector3 toTargetDIr, float attackDis)
+    {
+        // 적 유닛과 플레이어 유닛간의 거리 판별
+        float resultDistance =
+            Vector3.Distance(this.gameObject.transform.position, toTargetDIr);
+
+        if (resultDistance <= attackDis * 2 / 3)
+            return true;
+        else return false;
+    }
+
+    void FarHited()
+    {
+        while (true)
+        {
+            if (!IsTragetInSight(this.transform.forward, _player.transform.position, fovDegrees, maxDistance))
+                _nav.SetDestination(_player.transform.position);
+            else
+            {
+                state = STATE.FIND;
+                break;
+            }
+        }
+    }
+    void Attack()
+    {
+        if (!isMeleeType)
+        {
+            ShotBulletIns();
+        }
+        else
+        {
+
+        }
+    }
+
+    public void ShotBulletIns() // 적 유닛 전용. 유저는 레이케이스트 사용
+    {
+        GameObject bullet_ = Instantiate(bullet);
+        bullet_.transform.position = shotRocation.position;
+        bullet_.transform.rotation = shotRocation.rotation;
     }
 
     /// <summary>
@@ -89,8 +167,6 @@ public class Enemy_FSM : MonoBehaviour
 
         if (_isDead)
         {
-            // 사망 애니메이터 플레그값 입력
-            _animator.SetBool("isDead", true); 
             return;
         }
 
@@ -103,6 +179,8 @@ public class Enemy_FSM : MonoBehaviour
         {
             case STATE.SPAWN:
 
+                state = STATE.IDLE;
+
                 break;
 
             case STATE.IDLE:
@@ -112,19 +190,82 @@ public class Enemy_FSM : MonoBehaviour
                 {
                     Debug.LogError("Animator is null");
                 }
+
+                _nav.SetDestination(this.transform.position);
+
+                if(IsTragetInSight(this.transform.forward, _player.transform.position, fovDegrees, maxDistance))
+                {
+                    state = STATE.FIND;
+                }
                 // 애니메이터 FSM은 Integer로 작성
                 break;
 
             case STATE.DAMAGED:
+                staggerTimeChecker += Time.deltaTime;
+                _nav.SetDestination(this.transform.position);
+
+                if (staggerTime >= staggerTimeChecker)
+                {
+                    if (IsTragetInSight(this.transform.forward, _player.transform.position, fovDegrees, maxDistance))
+                    {
+                        if (AttackAdjust(_player.transform.position, attackDistance))
+                        {
+                            state = STATE.ATTACK;
+                        }
+                        state = STATE.FIND;
+                    }
+                    FarHited();
+                }
+                
                 break;
 
             case STATE.FIND:
+                if (_animator != null)
+                    _animator.SetInteger("State", 1);
+                else
+                {
+                    Debug.LogError("Animator is null");
+                }
+
+                _nav.SetDestination(_player.transform.position);
+
+                if (!IsTragetInSight(this.transform.forward, _player.transform.position, fovDegrees, maxDistance))
+                {
+                    state = STATE.IDLE;
+                }
+
+                if (isMeleeType)
+                {
+                    state = STATE.ATTACK;
+                }
+                else
+                {
+                    if (AttackAdjust(_player.transform.position, attackDistance))
+                    {
+                        state = STATE.ATTACK;
+                    }
+                }
+
                 break;
 
             case STATE.ATTACK:
+                if (_animator != null)
+                    _animator.SetInteger("State", 2);
+                else
+                {
+                    Debug.LogError("Animator is null");
+                }
+                Attack();
+
+                if (!AttackAdjust(_player.transform.position, attackDistance))
+                {
+                    state = STATE.FIND;
+                }
                 break;
 
             case STATE.DEAD:
+                // 총알 드랍과 관련된 스크립트가 들어가야 함.
+                
                 break;
 
             default:
