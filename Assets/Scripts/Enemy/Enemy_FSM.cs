@@ -229,7 +229,7 @@ public class Enemy_FSM : MonoBehaviour
             case STATE.FIND:
                 this.gameObject.transform.LookAt(_player.transform.position);
                 if (_animator != null)
-                    _animator.SetInteger("State", 1);
+                    _animator.SetInteger("State", 3);
                 else
                 {
                     Debug.LogError("Animator is null");
@@ -259,7 +259,7 @@ public class Enemy_FSM : MonoBehaviour
             case STATE.ATTACK:
                 this.gameObject.transform.LookAt(_player.transform.position);
                 if (_animator != null)
-                    _animator.SetInteger("State", 2);
+                    _animator.SetInteger("State", 4);
                 else
                 {
                     Debug.LogError("Animator is null");
