@@ -41,12 +41,12 @@ public class Enemy_FSM : MonoBehaviour
     public          float spwanEffectTime;
 
     [Header("Hold Timer")]
-    public float minAttackStateTime = 1.5f;
-    private float attackStateDurationTimer = 0f;
-    float lostSightCooldown = 2f;
-    float lostSightTimer = 0f;
-    float idleTimeChecker = 0f;
-    float idleThreshold = 1f;
+    [SerializeField] float minAttackStateTime = 1.5f;
+    [SerializeField] float attackStateDurationTimer = 0f;
+    [SerializeField] float lostSightCooldown = 2f;
+    [SerializeField] float lostSightTimer = 0f;
+    [SerializeField] float idleTimeChecker = 0f;
+    [SerializeField] float idleThreshold = 1f;
 
     [Header("Bullet Data")]
     public GameObject bullet;
