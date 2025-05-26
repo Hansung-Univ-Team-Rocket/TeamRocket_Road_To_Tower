@@ -33,8 +33,7 @@ public class Enemy_FSM : MonoBehaviour
     public float attackTImeChecker = 0f;
     public float staggerTime = 0.5f;
     public float staggerTimeChecker = 0f;
-
-    public GameObject projectile;
+    public Collider meleeCollider;
 
     [SerializeField] NavMeshAgent _nav;
     [SerializeField] Animator _animator;
@@ -58,6 +57,10 @@ public class Enemy_FSM : MonoBehaviour
         _nav = GetComponent<NavMeshAgent>();
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _animator = GetComponentInChildren<Animator>();
+        if (isMeleeType || meleeCollider != null)
+        {
+            meleeCollider.enabled = false;
+        }
     }
 
     void SpwanEffect()
@@ -273,11 +276,26 @@ public class Enemy_FSM : MonoBehaviour
 
                 if (attackTImeChecker >= attackRPM)
                 {
-                    Attack();
+                    if (!isMeleeType)
+                    {
+                        ShotBulletIns();
+                    }
+                    else
+                    {
+                        // 밀리 공격이라면, 여기로.
+                        // 콜라이더의 on을 담당해야 함.
+                        meleeCollider.enabled = true;
+                    }
                     attackTImeChecker = 0;
                 }
                 if (!AttackAdjust(attackDistance))
                 {
+                    if(isMeleeType)
+                    {
+                        // 밀리 공격이라면 한번 거쳐서 FIND로
+                        // 여기서, 팔에 달린 콜라이더가 꺼져야 함.
+                        meleeCollider.enabled=false;
+                    }
                     state = STATE.FIND;
                 }
                 break;
