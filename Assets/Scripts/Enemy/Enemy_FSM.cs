@@ -40,6 +40,14 @@ public class Enemy_FSM : MonoBehaviour
     [SerializeField] GameObject _spawnEffect;
     public          float spwanEffectTime;
 
+    [Header("Hold Timer")]
+    public float minAttackStateTime = 1.5f;
+    private float attackStateDurationTimer = 0f;
+    float lostSightCooldown = 2f;
+    float lostSightTimer = 0f;
+    float idleTimeChecker = 0f;
+    float idleThreshold = 1f;
+
     [Header("Bullet Data")]
     public GameObject bullet;
     public Transform shotRocation;
@@ -87,34 +95,27 @@ public class Enemy_FSM : MonoBehaviour
     /// </summary>
     /// <param name="attackDis"></param>
     /// <returns></returns>
+    /*
     bool AttackAdjust(float attackDis)
     {
         // 적 유닛과 플레이어 유닛간의 거리 판별
         float resultDistance =
             Vector3.Distance(this.gameObject.transform.position, _player.transform.position);
 
-        Debug.Log($"현재 거리 : {resultDistance}, 공격 범위 : {attackDis * 2 / 3}");
+        Debug.Log($"현재 거리 : {resultDistance}, 공격 범위 : {attackDis * 0.7}");
 
-        if (resultDistance <= attackDis * 2 / 3)
-            return true;
+        if (resultDistance <= attackDis * 0.7f) return true;
         else return false;
+    }*/
+
+    bool IsInAttackRange(float distance)
+    {
+        return Vector3.Distance(transform.position, _player.position) <= distance * 0.7f;
     }
 
-    void FarHited()
+    bool IsStillInAttackRange(float distance)
     {
-        while (true)
-        {
-            if (!IsTragetInSight(this.transform.forward, _player.transform.position, fovDegrees, maxDistance))
-            {
-                this.gameObject.transform.LookAt(_player.transform.position);
-                _nav.SetDestination(_player.transform.position);
-            }
-            else
-            {
-                state = STATE.FIND;
-                break;
-            }
-        }
+        return Vector3.Distance(transform.position, _player.position) <= distance * 1.2f;
     }
     void Attack()
     {
@@ -178,6 +179,14 @@ public class Enemy_FSM : MonoBehaviour
         return false;
     }
 
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackDistance * 0.9f); // 공격 진입 범위
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, attackDistance * 1.1f); // 공격 유지 범위
+    }
+
     private void Update()
     {
         if (_animator != null) Debug.Log("NULL");
@@ -213,8 +222,11 @@ public class Enemy_FSM : MonoBehaviour
 
                 _nav.SetDestination(this.transform.position);
 
-                if(IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance))
+                idleTimeChecker += Time.deltaTime;
+
+                if(idleTimeChecker >= idleThreshold && IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance))
                 {
+                    idleTimeChecker = 0;
                     state = STATE.FIND;
                 }
                 // 애니메이터 FSM은 Integer로 작성
@@ -228,7 +240,7 @@ public class Enemy_FSM : MonoBehaviour
                 {
                     if (IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance))
                     {
-                        if (AttackAdjust(attackDistance))
+                        if (IsInAttackRange(attackDistance))
                         {
                             state = STATE.ATTACK;
                         }
@@ -251,11 +263,22 @@ public class Enemy_FSM : MonoBehaviour
 
                 if (!IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance))
                 {
-                    state = STATE.IDLE;
+                    lostSightTimer += Time.deltaTime;
+
+                    if (lostSightCooldown <= lostSightTimer)
+                    {
+                        lostSightTimer = 0;
+                        state = STATE.IDLE;
+                    }
+                }
+                else
+                {
+                    lostSightTimer = 0f;
                 }
 
-                if (AttackAdjust(attackDistance))
+                if (IsInAttackRange(attackDistance))
                 {
+                    attackStateDurationTimer = 0f;
                     state = STATE.ATTACK;
                 }
                 
@@ -264,8 +287,9 @@ public class Enemy_FSM : MonoBehaviour
 
             case STATE.ATTACK:
                 this.gameObject.transform.LookAt(_player.transform.position);
-                _nav.SetDestination(this.transform.position);
+                _nav.SetDestination(_player.transform.position);
                 attackTImeChecker += Time.deltaTime;
+                attackStateDurationTimer += Time.deltaTime;
 
                 if (_animator != null)
                     _animator.SetInteger("State", 4);
@@ -276,6 +300,8 @@ public class Enemy_FSM : MonoBehaviour
 
                 if (attackTImeChecker >= attackRPM)
                 {
+                    _nav.SetDestination(this.transform.position);
+
                     if (!isMeleeType)
                     {
                         ShotBulletIns();
@@ -288,16 +314,21 @@ public class Enemy_FSM : MonoBehaviour
                     }
                     attackTImeChecker = 0;
                 }
-                if (!AttackAdjust(attackDistance))
+                if (attackStateDurationTimer >= minAttackStateTime)
                 {
-                    if(isMeleeType)
+                    if (!IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance) ||
+                            !IsStillInAttackRange(attackDistance))
                     {
-                        // 밀리 공격이라면 한번 거쳐서 FIND로
-                        // 여기서, 팔에 달린 콜라이더가 꺼져야 함.
-                        meleeCollider.enabled=false;
+                        if (isMeleeType)
+                        {
+                            // 밀리 공격이라면, 여기로.
+                            // 콜라이더의 off을 담당해야 함.
+                            meleeCollider.enabled = false;
+                        }
+                        state = STATE.FIND; // 시야 밖이거나 공격 거리 밖이면 FIND로
                     }
-                    state = STATE.FIND;
                 }
+                
                 break;
 
             case STATE.DEAD:
