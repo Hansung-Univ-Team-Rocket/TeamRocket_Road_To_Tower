@@ -3,13 +3,14 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     public PlayerMovementController PMC;
+    public WeaponScript WS;
     public Animator anim;
 
     void Start()
     {
         anim.SetInteger("Up", 0);
         anim.SetInteger("Down", 0);
-        anim.SetInteger("Weapon", 1);
+        anim.SetInteger("Weapon", 0);
     }
 
     void Update()
@@ -25,6 +26,24 @@ public class PlayerAnimation : MonoBehaviour
         /// 라이플 : 1
         /// 활 : 2
         /// 검 : 3
+
+        switch (WS.weaponType)
+        {
+            case WeaponScript.WEAPON_TYPE.PISTOL:
+                anim.SetInteger("Weapon", 0);
+                break;
+            case WeaponScript.WEAPON_TYPE.RIFLE:
+                anim.SetInteger("Weapon", 1);
+                break;
+            case WeaponScript.WEAPON_TYPE.BOW:
+                anim.SetInteger("Weapon", 2);
+                break;
+            case WeaponScript.WEAPON_TYPE.SWORD:
+                anim.SetInteger("Weapon", 3);
+                break;
+            default:
+                break;
+        }
 
         anim.SetInteger("Weapon", 1);
     }

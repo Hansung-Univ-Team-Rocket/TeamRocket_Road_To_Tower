@@ -2,8 +2,16 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
+    public enum WEAPON_TYPE
+    {
+        PISTOL,
+        RIFLE,
+        BOW,
+        SWORD
+    }
+
     [Header("Weapon's Basic Value | If the weapon is meele, set roundsPerMinute as animation delay")]
-    public string weaponType = string.Empty;
+    public WEAPON_TYPE weaponType;
     public int weaponDamage = 0;
     public float weaponReroadTime = 0;
     public int nowBullet = 12;
@@ -26,7 +34,7 @@ public class WeaponScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        weaponType = WEAPON_TYPE.PISTOL;
     }
 
     // Update is called once per frame

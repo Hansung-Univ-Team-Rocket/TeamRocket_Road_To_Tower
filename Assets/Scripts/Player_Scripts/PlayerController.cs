@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
 
     void FireGun(PlayerInput inputs)
     {
-        if (_weaponScript.nowReroading || _weaponScript.nowBullet <= 0 || _weaponScript.weaponType == "Shotgun") return;
+        if (_weaponScript.nowReroading || _weaponScript.nowBullet <= 0 || _weaponScript.weaponType == WeaponScript.WEAPON_TYPE.RIFLE) return;
         if(_fireTimer < _weaponScript.roundsPerMinute) return;
 
         _characterController.upperPlayerState = UpperPlayerState.SHOOTINGATTACK;
