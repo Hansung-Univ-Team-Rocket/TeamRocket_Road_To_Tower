@@ -9,6 +9,7 @@ TagManager:
   - Boss
   - Spike
   - Weapon
+  - Enemy
   layers:
   - Default
   - TransparentFX
