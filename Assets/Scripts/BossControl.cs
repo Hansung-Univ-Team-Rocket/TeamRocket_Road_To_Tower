@@ -43,6 +43,16 @@ public class BossControl : MonoBehaviour
         StartCoroutine(PatternLoop());
     }
 
+    void Update()
+    {
+        // 플레이어 위치 인식
+        Vector3 targetPosition = player.position;
+        targetPosition.y = transform.position.y;
+        // 플레이어를 바라보게
+        Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
+        transform.rotation = Quaternion.LookRotation(targetDirection);
+    }
+
     IEnumerator PatternLoop()
     {
         while (true)
@@ -51,7 +61,7 @@ public class BossControl : MonoBehaviour
             {
                 isAttacking = true;
 
-                int pattern = Random.Range(0, 5);
+                int pattern = 1; // Random.Range(0, 5);
                 switch (pattern)
                 {
                     case 0:
@@ -130,23 +140,17 @@ public class BossControl : MonoBehaviour
     // 패턴 2: 각 손에서 5발씩 비유도 탄환 발사
     IEnumerator StraightShotPattern()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            anim.SetBool("shoot", true);
-            // 플레이어 위치 인식
-            Vector3 targetPosition = player.position;
-            targetPosition.y = transform.position.y;
-            // 플레이어를 바라보게
-            Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
-            transform.rotation = Quaternion.LookRotation(targetDirection);
+        anim.SetBool("shoot", true);
 
-            // 번갈아가며 손을 선택
+
+        for (int i = 0; i < 4; i++)
+        {
             Transform fireHand = RHand;
 
             FireStraightBullet(fireHand);
-            anim.SetBool("shoot", false);
-            yield return new WaitForSeconds(0.5f); // 간격 조정 가능
+            yield return new WaitForSeconds(0.6f); // 간격 조정 가능
         }
+        anim.SetBool("shoot", false);
 
         yield return new WaitForSeconds(1f); // 패턴 종료 전 대기
     }
