@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class EnemyMeleeAttackTrigger : MonoBehaviour
 {
+    public Enemy_FSM fsm;
     int _damageValue = 0;
+
     private void Start()
     {
-        _damageValue = gameObject.transform.parent.GetComponent<Enemy_FSM>().damage;
+        _damageValue = fsm.damage;
     }
     private void OnTriggerEnter(Collider other)
     {
