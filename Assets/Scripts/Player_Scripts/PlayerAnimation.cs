@@ -15,7 +15,6 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        //CheackWeapon();
         CheckUpperState();
         CheckLowerState();
     }
@@ -30,7 +29,17 @@ public class PlayerAnimation : MonoBehaviour
 
         switch (WS.weaponType)
         {
-            case "":
+            case WeaponScript.WEAPON_TYPE.PISTOL:
+                anim.SetInteger("Weapon", 0);
+                break;
+            case WeaponScript.WEAPON_TYPE.RIFLE:
+                anim.SetInteger("Weapon", 1);
+                break;
+            case WeaponScript.WEAPON_TYPE.BOW:
+                anim.SetInteger("Weapon", 2);
+                break;
+            case WeaponScript.WEAPON_TYPE.SWORD:
+                anim.SetInteger("Weapon", 3);
                 break;
             default:
                 break;
