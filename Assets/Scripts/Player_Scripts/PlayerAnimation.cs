@@ -3,17 +3,19 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     public PlayerMovementController PMC;
+    public WeaponScript WS;
     public Animator anim;
 
     void Start()
     {
         anim.SetInteger("Up", 0);
         anim.SetInteger("Down", 0);
-        anim.SetInteger("Weapon", 1);
+        anim.SetInteger("Weapon", 0);
     }
 
     void Update()
     {
+        //CheackWeapon();
         CheckUpperState();
         CheckLowerState();
     }
@@ -25,6 +27,14 @@ public class PlayerAnimation : MonoBehaviour
         /// 라이플 : 1
         /// 활 : 2
         /// 검 : 3
+
+        switch (WS.weaponType)
+        {
+            case "":
+                break;
+            default:
+                break;
+        }
 
         anim.SetInteger("Weapon", 1);
     }
