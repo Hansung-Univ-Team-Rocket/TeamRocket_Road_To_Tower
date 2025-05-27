@@ -88,9 +88,10 @@ public class Enemy_FSM : MonoBehaviour
             _isDead = true;
 
             state = STATE.DEAD;
-            _animator.SetBool("isDead", true);
+            _animator.SetInteger("State", 5);
         }
-        state = STATE.DAMAGED;
+        else
+            state = STATE.DAMAGED;
     }
 
     /// <summary>
