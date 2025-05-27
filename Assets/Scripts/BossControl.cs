@@ -8,7 +8,9 @@ public class BossControl : MonoBehaviour
 {
     public Transform player;
     MeshRenderer[] meshs;
-    Color softRed = new Color(1f, 0f, 0f, 0.4f);
+    Color softRed = new Color(1f, 0f, 0f, 1f);
+    private Texture[][] originalBaseMaps;
+    public Texture2D redTexture;
 
     public Transform LHand;
     public Transform RHand;
@@ -34,23 +36,41 @@ public class BossControl : MonoBehaviour
     private Vector3 spikeAreaSize = new Vector3(25f, 0f, 25f);
 
     private bool isAttacking = false;
+    private bool Dash = false;
 
     void Start()
     {
         Floor = GameObject.Find("Floor");
         meshs = GetComponentsInChildren<MeshRenderer>();
+        originalBaseMaps = new Texture[meshs.Length][];
+        for (int m = 0; m < meshs.Length; m++)
+        {
+            Material[] mats = meshs[m].materials;
+            originalBaseMaps[m] = new Texture[mats.Length];
+            for (int i = 0; i < mats.Length; i++)
+            {
+                if (mats[i].HasProperty("_BaseMap"))
+                    originalBaseMaps[m][i] = mats[i].GetTexture("_BaseMap");
+            }
+        }
         anim = GetComponent<Animator>();
         StartCoroutine(PatternLoop());
     }
 
     void Update()
     {
-        // 플레이어 위치 인식
-        Vector3 targetPosition = player.position;
-        targetPosition.y = transform.position.y;
-        // 플레이어를 바라보게
-        Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
-        transform.rotation = Quaternion.LookRotation(targetDirection);
+        if (player == null) return;
+
+        if (!Dash)
+        {
+            Vector3 directionToPlayer = player.position - transform.position;
+            directionToPlayer.y = 0; // 수평 회전만 고려
+            if (directionToPlayer != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer.normalized);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // 부드럽게 회전
+            }
+        }
     }
 
     IEnumerator PatternLoop()
@@ -61,7 +81,7 @@ public class BossControl : MonoBehaviour
             {
                 isAttacking = true;
 
-                int pattern = 1; // Random.Range(0, 5);
+                int pattern = 0; // Random.Range(0, 5);
                 switch (pattern)
                 {
                     case 0:
@@ -94,6 +114,7 @@ public class BossControl : MonoBehaviour
     {
         float preparationTime = 0f;
 
+        Dash = true;
         // 준비 시간 동안 플레이어를 계속 바라봄
         while (preparationTime < 2.0f)
         {
@@ -102,21 +123,39 @@ public class BossControl : MonoBehaviour
             if (directionToPlayer != Vector3.zero)
                 transform.rotation = Quaternion.LookRotation(directionToPlayer.normalized);
 
-            foreach (MeshRenderer mesh in meshs)
+            for (int m = 0; m < meshs.Length; m++)
             {
-                foreach (Material mat in mesh.materials)
+                MeshRenderer renderer = meshs[m];
+                Material[] originalMats = renderer.materials;
+                Material[] newMats = new Material[originalMats.Length];
+
+                for (int i = 0; i < originalMats.Length; i++)
                 {
-                    mat.color = softRed;
+                    newMats[i] = new Material(originalMats[i]);
+
+                    if (newMats[i].HasProperty("_BaseMap"))
+                    {
+                        newMats[i].SetTexture("_BaseMap", redTexture);
+                    }
                 }
+
+                renderer.materials = newMats;
             }
 
             preparationTime += Time.deltaTime;
             yield return null;
         }
 
-        foreach (MeshRenderer mesh in meshs)
-            foreach (Material mat in mesh.materials)
-                mesh.material.color = Color.gray;
+        for (int m = 0; m < meshs.Length; m++)
+        {
+            Material[] mats = meshs[m].materials;
+            for (int i = 0; i < mats.Length; i++)
+            {
+                if (mats[i].HasProperty("_BaseMap"))
+                    mats[i].SetTexture("_BaseMap", originalBaseMaps[m][i]);
+            }
+            meshs[m].materials = mats;
+        }
 
         // 돌진 시작 시점의 플레이어 위치를 기준으로 돌진
         Vector3 dashTarget = player.position;
@@ -135,6 +174,7 @@ public class BossControl : MonoBehaviour
         anim.SetBool("run", false);
 
         yield return new WaitForSeconds(1f);
+        Dash = false;
     }
 
     // 패턴 2: 각 손에서 5발씩 비유도 탄환 발사

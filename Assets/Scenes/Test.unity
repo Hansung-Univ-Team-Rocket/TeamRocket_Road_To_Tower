@@ -359,6 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1945655888}
+  redTexture: {fileID: 2800000, guid: ab4861eb092ef3c4db206e6c543d6b45, type: 3}
   LHand: {fileID: 1051906112}
   RHand: {fileID: 1821965034}
   shootPoint: {fileID: 1372889191}
@@ -1186,6 +1187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1945655888}
+  redTexture: {fileID: 0}
   LHand: {fileID: 1721815490}
   RHand: {fileID: 1187293485}
   shootPoint: {fileID: 1838209130}
