@@ -1147,12 +1147,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
+      propertyPath: sinkSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
       propertyPath: fovDegrees
       value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
+      propertyPath: isMeleeType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
       propertyPath: maxDistance
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
+      propertyPath: destroyDelay
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
       propertyPath: attackDistance

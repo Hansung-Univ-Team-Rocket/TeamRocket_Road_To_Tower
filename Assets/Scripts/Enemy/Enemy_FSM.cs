@@ -16,6 +16,7 @@ public class Enemy_FSM : MonoBehaviour
         IDLE,
         DAMAGED,
         FIND,
+        INVESTIGATE,
         ATTACK,
         DEAD,
     }
@@ -27,7 +28,6 @@ public class Enemy_FSM : MonoBehaviour
     public int damage = 1;
     public int hp = 300;
     public float moveSpeed = 6f;
-    public bool isMeleeType = false;
     public float attackDistance = 40f;
     public float attackRPM = 1f;
     public float attackTImeChecker = 0f;
@@ -55,7 +55,19 @@ public class Enemy_FSM : MonoBehaviour
     [Header("Flag Values")]
     [SerializeField] bool _isDead = false;
     [SerializeField] bool _isDamaged = false;
+    public bool isMeleeType = false;
 
+    [Header("Death Sinking Value")]
+    public float sinkSpeed = 1.5f;
+    public float destroyDelay = 5f;
+
+    [Header("Investigate Value")]
+    [SerializeField] Vector3 lastKnownPlayerPosition;
+    [SerializeField] bool hasLastKnownPosition = false;
+    [SerializeField] float investigateTime = 3f; // 마지막 위치를 조사하는 시간
+    [SerializeField] float investigateTimer = 0f;
+
+    [SerializeField] CapsuleCollider _capsuleCollider;
 
     [Header("Enemy's Finder Value")]
     public float fovDegrees = 65f; // 적 유닛이 볼 수 있는 시야각 기본값 65
@@ -66,6 +78,8 @@ public class Enemy_FSM : MonoBehaviour
         _nav = GetComponent<NavMeshAgent>();
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _animator = GetComponentInChildren<Animator>();
+        _capsuleCollider = GetComponent<CapsuleCollider>();
+
         if (isMeleeType || meleeCollider != null)
         {
             meleeCollider.enabled = false;
@@ -80,20 +94,30 @@ public class Enemy_FSM : MonoBehaviour
 
     public void Damaged(int hitDamage)
     {
+        if (state == STATE.DEAD) return;
+
         hp -= hitDamage;
         _isDamaged = true;
         staggerTimeChecker = 0f;
+
         if (hp <= 0)
         {
+            _capsuleCollider.enabled = false;
             _isDead = true;
-
+            _nav.enabled = false;
             state = STATE.DEAD;
             _animator.SetInteger("State", 5);
+
+            Invoke("DestroyEnemy", destroyDelay);
         }
         else
             state = STATE.DAMAGED;
     }
 
+    void DestroyEnemy()
+    {
+        Destroy(this.gameObject);
+    }
     /// <summary>
     /// 원거리 공격 유닛일 경우, 이동 거리 및 공격 가능 거리에 대한 일부 값 보정
     /// </summary>
@@ -198,6 +222,7 @@ public class Enemy_FSM : MonoBehaviour
 
         if (_isDead)
         {
+            this.gameObject.transform.position += Vector3.down * sinkSpeed * Time.deltaTime;
             return;
         }
 
@@ -244,6 +269,9 @@ public class Enemy_FSM : MonoBehaviour
                 if (staggerTimeChecker >= staggerTime)
                 {
                     _isDamaged = false;
+                    lastKnownPlayerPosition = _player.transform.position;
+                    hasLastKnownPosition = true;
+
                     if (IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance))
                     {
                         if (IsInAttackRange(attackDistance))
@@ -254,15 +282,46 @@ public class Enemy_FSM : MonoBehaviour
                             state = STATE.FIND;
                     }
                     else
-                        state = STATE.IDLE;
-                }
+                    {
+                        // 시야에 없으면 INVESTIGATE
+                        investigateTimer = 0f;
+                        state = STATE.INVESTIGATE;
+                    }
+                }                
+                break;
 
+            case STATE.INVESTIGATE:
+                if (_animator != null)
+                    _animator.SetInteger("State", 2); // 이동 애니메이션 (힛 후, 추격용 state)
+
+                investigateTimer += Time.deltaTime;
+
+                // 마지막으로 본 위치로 이동
+                _nav.SetDestination(lastKnownPlayerPosition);
+
+                // 이동 중에 플레이어를 다시 발견하면
+                if (IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance))
+                {
+                    if (IsInAttackRange(attackDistance))
+                    {
+                        state = STATE.ATTACK;
+                    }
+                    else
+                        state = STATE.FIND;
+                }
+                // 마지막 위치에 도달했거나 시간이 지나면 IDLE로
+                else if (investigateTimer >= investigateTime ||
+                         Vector3.Distance(transform.position, lastKnownPlayerPosition) < 2f)
+                {
+                    hasLastKnownPosition = false;
+                    state = STATE.IDLE;
+                }
                 break;
 
             case STATE.FIND:
                 this.gameObject.transform.LookAt(_player.transform.position);
                 if (_animator != null)
-                    _animator.SetInteger("State", 3);
+                    _animator.SetInteger("State", 2);
                 else
                 {
                     Debug.LogError("Animator is null");
@@ -341,6 +400,7 @@ public class Enemy_FSM : MonoBehaviour
                 break;
 
             case STATE.DEAD:
+
                 // 총알 드랍과 관련된 스크립트가 들어가야 함.
                 
                 break;
