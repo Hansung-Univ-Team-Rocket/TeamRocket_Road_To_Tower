@@ -296,10 +296,8 @@ public class Enemy_FSM : MonoBehaviour
 
                 investigateTimer += Time.deltaTime;
 
-                // 마지막으로 본 위치로 이동
-                _nav.SetDestination(lastKnownPlayerPosition);
+                _nav.SetDestination(lastKnownPlayerPosition); // 히트 당시 마지막 플레이어 위치로
 
-                // 이동 중에 플레이어를 다시 발견하면
                 if (IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance))
                 {
                     if (IsInAttackRange(attackDistance))
@@ -309,9 +307,8 @@ public class Enemy_FSM : MonoBehaviour
                     else
                         state = STATE.FIND;
                 }
-                // 마지막 위치에 도달했거나 시간이 지나면 IDLE로
                 else if (investigateTimer >= investigateTime ||
-                         Vector3.Distance(transform.position, lastKnownPlayerPosition) < 2f)
+                         Vector3.Distance(transform.position, lastKnownPlayerPosition) < 2f) // 마지막 플레이어 발견 위치에 도달했거나 시간이 지나면 IDLE로
                 {
                     hasLastKnownPosition = false;
                     state = STATE.IDLE;
