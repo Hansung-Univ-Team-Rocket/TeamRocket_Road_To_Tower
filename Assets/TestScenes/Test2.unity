@@ -1265,7 +1265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7380650440270575185, guid: 39544155b871b494195a8dd3f9984872, type: 3}
       propertyPath: weaponDamage
-      value: 2
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7547165088598514002, guid: 39544155b871b494195a8dd3f9984872, type: 3}
       propertyPath: m_LocalPosition.x

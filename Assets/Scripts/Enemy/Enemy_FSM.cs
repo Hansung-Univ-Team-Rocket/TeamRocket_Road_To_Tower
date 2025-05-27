@@ -235,6 +235,9 @@ public class Enemy_FSM : MonoBehaviour
                 break;
 
             case STATE.DAMAGED:
+                if (_animator != null)
+                    _animator.SetInteger("State", 3);
+
                 staggerTimeChecker += Time.deltaTime;
                 _nav.SetDestination(this.transform.position);
 
