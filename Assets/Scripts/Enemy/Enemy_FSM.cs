@@ -54,6 +54,7 @@ public class Enemy_FSM : MonoBehaviour
 
     [Header("Flag Values")]
     [SerializeField] bool _isDead = false;
+    [SerializeField] bool _isDamaged = false;
 
 
     [Header("Enemy's Finder Value")]
@@ -80,6 +81,8 @@ public class Enemy_FSM : MonoBehaviour
     public void Damaged(int hitDamage)
     {
         hp -= hitDamage;
+        _isDamaged = true;
+        staggerTimeChecker = 0f;
         if (hp <= 0)
         {
             _isDead = true;
@@ -222,7 +225,7 @@ public class Enemy_FSM : MonoBehaviour
 
                 idleTimeChecker += Time.deltaTime;
 
-                if(idleTimeChecker >= idleThreshold && IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance))
+                if(idleTimeChecker >= idleThreshold && IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance) && !_isDamaged)
                 {
                     idleTimeChecker = 0;
                     state = STATE.FIND;
@@ -236,14 +239,18 @@ public class Enemy_FSM : MonoBehaviour
 
                 if (staggerTimeChecker >= staggerTime)
                 {
+                    _isDamaged = false;
                     if (IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance))
                     {
                         if (IsInAttackRange(attackDistance))
                         {
                             state = STATE.ATTACK;
                         }
+                        else
+                            state = STATE.FIND;
                     }
-                    state = STATE.FIND;
+                    else
+                        state = STATE.IDLE;
                 }
 
                 break;
@@ -259,7 +266,7 @@ public class Enemy_FSM : MonoBehaviour
 
                 _nav.SetDestination(_player.transform.position);
 
-                if (!IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance))
+                if (!IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance) && !_isDamaged)
                 {
                     lostSightTimer += Time.deltaTime;
 
@@ -274,7 +281,7 @@ public class Enemy_FSM : MonoBehaviour
                     lostSightTimer = 0f;
                 }
 
-                if (IsInAttackRange(attackDistance))
+                if (IsInAttackRange(attackDistance) && !_isDamaged)
                 {
                     attackStateDurationTimer = 0f;
                     state = STATE.ATTACK;
