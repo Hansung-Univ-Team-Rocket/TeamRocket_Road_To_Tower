@@ -52,3 +52,9 @@ MonoBehaviour:
   _fireTimer: 0
   bulletTrailPrefab: {fileID: 6815339865969837386, guid: b30a684a183993c48819a15f1cb215e6, type: 3}
   _reRoadTimer: 0
+  _isAim: 0
+  _beforeScrollInput: {x: 0, y: 0, z: 0}
+  muzzleEffect: {fileID: 6878135304120583779, guid: cdd844dc31268834ab0075ea39e56a82, type: 3}
+  muzzlePos: {fileID: 0}
+  bulletHolePrefab: {fileID: 4447654646729277233, guid: ec727f167a1e5954b939904e2c084452, type: 3}
+  _cameraSensivity: 0.5

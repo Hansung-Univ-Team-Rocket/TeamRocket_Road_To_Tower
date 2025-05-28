@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     public              GameObject muzzleEffect;
     public              Transform muzzlePos;
+    public              GameObject bulletHolePrefab;
     RaycastHit hit;
 
     Vector3 _lookInputVector;
@@ -187,6 +188,7 @@ public class PlayerController : MonoBehaviour
     void InsMuzzleEffet()
     {
         GameObject muzzleFlash = Instantiate(muzzleEffect, muzzlePos.transform.position, Quaternion.identity);
+        Destroy(muzzleFlash, 0.1f);
 
     }
 
@@ -222,6 +224,10 @@ public class PlayerController : MonoBehaviour
             if(hit.collider.tag == "Enemy")
             {
                 hit.collider.gameObject.GetComponent<Enemy_FSM>().Damaged(_weaponScript.weaponDamage);
+            }
+            else
+            {
+                GameObject bulletHole = Instantiate(bulletHolePrefab, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal));
             }
 
             // 여기에 데미지 처리 필요함. 일단 테스트
