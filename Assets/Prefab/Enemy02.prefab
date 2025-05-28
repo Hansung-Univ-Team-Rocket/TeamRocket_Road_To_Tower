@@ -102,6 +102,7 @@ MonoBehaviour:
   investigateTime: 3
   investigateTimer: 0
   _capsuleCollider: {fileID: 0}
+  deadEffect: {fileID: 49151557670930427, guid: 9ce747358a9ddeb49b76c227f3588d2f, type: 3}
   fovDegrees: 65
   maxDistance: 60
 --- !u!195 &98483784137833648

@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public              GameObject muzzleEffect;
     public              Transform muzzlePos;
     public              GameObject bulletHolePrefab;
+    public              GameObject enemyHitImpactVFX;
+    public              GameObject enemyHitVFX;
     RaycastHit hit;
 
     Vector3 _lookInputVector;
@@ -224,6 +226,10 @@ public class PlayerController : MonoBehaviour
             if(hit.collider.tag == "Enemy")
             {
                 hit.collider.gameObject.GetComponent<Enemy_FSM>().Damaged(_weaponScript.weaponDamage);
+                GameObject enemyHitImpact = Instantiate(enemyHitImpactVFX, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal));
+                GameObject enemyHit = Instantiate(enemyHitVFX, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal));
+
+                Destroy(enemyHit, 3.3f);
             }
             else
             {

@@ -68,6 +68,8 @@ public class Enemy_FSM : MonoBehaviour
     [SerializeField] float investigateTimer = 0f;
 
     [SerializeField] CapsuleCollider _capsuleCollider;
+    
+    public GameObject deadEffect;
 
     [Header("Enemy's Finder Value")]
     public float fovDegrees = 65f; // 적 유닛이 볼 수 있는 시야각 기본값 65
@@ -106,6 +108,8 @@ public class Enemy_FSM : MonoBehaviour
             _isDead = true;
             _nav.enabled = false;
             state = STATE.DEAD;
+            GameObject deadVFX = Instantiate(deadEffect, this.transform.position, Quaternion.identity);
+            Destroy(deadVFX, 3f);
             _animator.SetInteger("State", 5);
 
             Invoke("DestroyEnemy", destroyDelay);
