@@ -7,10 +7,6 @@ using System.Linq;
 public class BossControl : MonoBehaviour
 {
     public Transform player;
-    MeshRenderer[] meshs;
-    Color softRed = new Color(1f, 0f, 0f, 1f);
-    private Texture[][] originalBaseMaps;
-    public Texture2D redTexture;
 
     public Transform LHand;
     public Transform RHand;
@@ -41,20 +37,8 @@ public class BossControl : MonoBehaviour
     void Start()
     {
         Floor = GameObject.Find("Floor");
-        meshs = GetComponentsInChildren<MeshRenderer>();
-        originalBaseMaps = new Texture[meshs.Length][];
-        for (int m = 0; m < meshs.Length; m++)
-        {
-            Material[] mats = meshs[m].materials;
-            originalBaseMaps[m] = new Texture[mats.Length];
-            for (int i = 0; i < mats.Length; i++)
-            {
-                if (mats[i].HasProperty("_BaseMap"))
-                    originalBaseMaps[m][i] = mats[i].GetTexture("_BaseMap");
-            }
-        }
         anim = GetComponent<Animator>();
-        StartCoroutine(PatternLoop());
+        StartCoroutine(Delayed());
     }
 
     void Update()
@@ -72,6 +56,44 @@ public class BossControl : MonoBehaviour
             }
         }
     }
+    void ChangeBaseMapToRed()
+    {
+        // 모든 자식 MeshRenderer + SkinnedMeshRenderer 가져오기
+        var meshRenderers = GetComponentsInChildren<Renderer>();
+
+        foreach (var renderer in meshRenderers)
+        {
+            foreach (var mat in renderer.materials) // material == sharedMaterial 아님
+            {
+                if (mat.HasProperty("_BaseColor"))
+                {
+                    mat.SetColor("_BaseColor", Color.red);
+                }
+            }
+        }
+    }
+    void ChangeBaseMapToWhite()
+    {
+        // 모든 자식 MeshRenderer + SkinnedMeshRenderer 가져오기
+        var meshRenderers = GetComponentsInChildren<Renderer>();
+
+        foreach (var renderer in meshRenderers)
+        {
+            foreach (var mat in renderer.materials) // material == sharedMaterial 아님
+            {
+                if (mat.HasProperty("_BaseColor"))
+                {
+                    mat.SetColor("_BaseColor", Color.white);
+                }
+            }
+        }
+    }
+
+    IEnumerator Delayed()
+    {
+        yield return new WaitForSeconds(3f); // 등장 후 대기 시간 (3초 등 자유 설정)
+        StartCoroutine(PatternLoop());
+    }
 
     IEnumerator PatternLoop()
     {
@@ -81,10 +103,11 @@ public class BossControl : MonoBehaviour
             {
                 isAttacking = true;
 
-                int pattern = 4; // Random.Range(0, 5);
+                int pattern = 0; // Random.Range(0, 5);
                 switch (pattern)
                 {
                     case 0:
+                        ChangeBaseMapToRed();
                         yield return StartCoroutine(DashPattern());
                         break;
                     case 1:
@@ -123,41 +146,12 @@ public class BossControl : MonoBehaviour
             if (directionToPlayer != Vector3.zero)
                 transform.rotation = Quaternion.LookRotation(directionToPlayer.normalized);
 
-            for (int m = 0; m < meshs.Length; m++)
-            {
-                MeshRenderer renderer = meshs[m];
-                Material[] originalMats = renderer.materials;
-                Material[] newMats = new Material[originalMats.Length];
-
-                for (int i = 0; i < originalMats.Length; i++)
-                {
-                    newMats[i] = new Material(originalMats[i]);
-
-                    if (newMats[i].HasProperty("_BaseMap"))
-                    {
-                        newMats[i].SetTexture("_BaseMap", redTexture);
-                    }
-                }
-
-                renderer.materials = newMats;
-            }
-
             preparationTime += Time.deltaTime;
             yield return null;
         }
 
-        for (int m = 0; m < meshs.Length; m++)
-        {
-            Material[] mats = meshs[m].materials;
-            for (int i = 0; i < mats.Length; i++)
-            {
-                if (mats[i].HasProperty("_BaseMap"))
-                    mats[i].SetTexture("_BaseMap", originalBaseMaps[m][i]);
-            }
-            meshs[m].materials = mats;
-        }
-
         // 돌진 시작 시점의 플레이어 위치를 기준으로 돌진
+        ChangeBaseMapToWhite();
         Vector3 dashTarget = player.position;
         dashTarget.y = transform.position.y;
 
@@ -224,9 +218,13 @@ public class BossControl : MonoBehaviour
         Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
         transform.rotation = Quaternion.LookRotation(targetDirection);
 
-        for (int i = 0; i < 5; i++) // 총 5회 반복
+        for (int i = 0; i < 4; i++) // 총 4회 반복
         {
-            anim.SetBool("spread", true);
+            if (i % 2 == 0)
+            {
+                anim.SetBool("spread", false);
+                anim.SetBool("spread", true);
+            }
             Vector3 directionToPlayer = (player.position - shootPoint.position).normalized;
             float startAngle = -fanAngle / 2f;
             float angleStep = fanAngle / (bulletCount - 1);
@@ -253,8 +251,12 @@ public class BossControl : MonoBehaviour
 
                 yield return new WaitForSeconds(0.05f); // 발사 간격
             }
-
             yield return new WaitForSeconds(0.5f); // 각 부채꼴 사이 간격
+            if (i % 2 == 1)
+            {
+                anim.SetBool("spread", false);
+                yield return new WaitForSeconds(1f); // 각 부채꼴 사이 간격
+            }
         }
 
         yield return new WaitForSeconds(1f); // 패턴 종료 대기
