@@ -905,37 +905,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721815489}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1761507151
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1761507152}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1761507152
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761507151}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1789681284
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &1789681285
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1100,7 +1069,6 @@ MonoBehaviour:
   SpreadBulletPrefab: {fileID: 9010742471142047644, guid: 6104eb1b692ed4843abf624091d5dfb6, type: 3}
   warningPlanePrefab: {fileID: 2801908183515063299, guid: c71c72ff2a5f6684fab881a9ba1c7d4b, type: 3}
   spikePrefab: {fileID: 5517957459761711049, guid: 8770f89a4f2ba6045adb2f71790a5b47, type: 3}
-  childMonsterPrefab: {fileID: 0}
   dashSpeed: 20
   patternCooldown: 2
   damage: 10
@@ -1180,7 +1148,7 @@ MonoBehaviour:
   m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 1
+  m_SoftShadowQuality: 0
 --- !u!108 &1862464328
 Light:
   m_ObjectHideFlags: 0
@@ -1556,67 +1524,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1982988641}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!1001 &1044265331783887731
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1599083660406449381, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1945655888}
-    - target: {fileID: 3337381956982130175, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337381956982130175, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337381956982130175, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337381956982130175, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337381956982130175, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337381956982130175, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337381956982130175, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337381956982130175, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337381956982130175, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3337381956982130175, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5662631587569911981, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
-      propertyPath: m_Name
-      value: SteamPunkBoss
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1627,5 +1534,3 @@ SceneRoots:
   - {fileID: 1982988641}
   - {fileID: 1789681288}
   - {fileID: 1945655888}
-  - {fileID: 1761507152}
-  - {fileID: 1044265331783887731}
