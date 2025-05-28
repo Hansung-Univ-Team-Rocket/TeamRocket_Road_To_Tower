@@ -364,22 +364,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6773009226213801514, guid: 4455c532542066c46a80411045762a57, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6773009226213801514, guid: 4455c532542066c46a80411045762a57, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 8301865267372547547, guid: 4455c532542066c46a80411045762a57, type: 3}
       propertyPath: _playerCam
       value: 
       objectReference: {fileID: 1409962370}
-    - target: {fileID: 8301865267372547547, guid: 4455c532542066c46a80411045762a57, type: 3}
-      propertyPath: muzzleEffect
-      value: 
-      objectReference: {fileID: 6878135304120583779, guid: cdd844dc31268834ab0075ea39e56a82, type: 3}
     - target: {fileID: 8301865267372547547, guid: 4455c532542066c46a80411045762a57, type: 3}
       propertyPath: _cameraFollowPoint
       value: 
@@ -1339,41 +1327,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5836040444806649001, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
-      propertyPath: sinkSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
-      propertyPath: fovDegrees
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
-      propertyPath: isMeleeType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
-      propertyPath: maxDistance
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
-      propertyPath: destroyDelay
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
-      propertyPath: attackDistance
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 8165668999619849044, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
       propertyPath: m_Name
       value: Enemy01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8165668999619849044, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
