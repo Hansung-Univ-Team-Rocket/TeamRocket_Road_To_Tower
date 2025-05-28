@@ -106,14 +106,13 @@ MonoBehaviour:
   damage: 1
   hp: 300
   moveSpeed: 6
-  isMeleeType: 0
   attackDistance: 40
   attackRPM: 1
   attackTImeChecker: 0
   staggerTime: 0.5
   staggerTimeChecker: 0
   meleeCollider: {fileID: 0}
-  _nav: {fileID: 0}
+  _nav: {fileID: 2387417619207883061}
   _animator: {fileID: 4441886587387863725}
   _spawnEffect: {fileID: 0}
   spwanEffectTime: 0
@@ -126,6 +125,15 @@ MonoBehaviour:
   bullet: {fileID: 9166365378689018418, guid: 39af17f42b037fc438ee65f986ac5d4c, type: 3}
   shotRocation: {fileID: 4335424252572817842}
   _isDead: 0
+  _isDamaged: 0
+  isMeleeType: 0
+  sinkSpeed: 1.5
+  destroyDelay: 5
+  lastKnownPlayerPosition: {x: 0, y: 0, z: 0}
+  hasLastKnownPosition: 0
+  investigateTime: 3
+  investigateTimer: 0
+  _capsuleCollider: {fileID: 0}
   fovDegrees: 65
   maxDistance: 60
 --- !u!195 &2387417619207883061
