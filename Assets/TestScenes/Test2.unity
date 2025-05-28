@@ -369,6 +369,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1409962370}
     - target: {fileID: 8301865267372547547, guid: 4455c532542066c46a80411045762a57, type: 3}
+      propertyPath: enemyHitVFX
+      value: 
+      objectReference: {fileID: 1346433991272976979, guid: 3d42f36585da4e7478aec6dfe32cd433, type: 3}
+    - target: {fileID: 8301865267372547547, guid: 4455c532542066c46a80411045762a57, type: 3}
       propertyPath: _cameraFollowPoint
       value: 
       objectReference: {fileID: 767253105366282615}
