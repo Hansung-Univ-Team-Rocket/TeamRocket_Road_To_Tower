@@ -108,8 +108,13 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     // 정지 상태인 경우에 여기서 플레이어 스테이트 머신 해결
     public void SetInputs(ref PlayerInput inputs)
     {
-        if (upperPlayerState == UpperPlayerState.DEAD || lowerPlayerState == LowerPlayerState.DEAD) return;
+        if (upperPlayerState == UpperPlayerState.DEAD || lowerPlayerState == LowerPlayerState.DEAD)
+        {
+            _moveInputVector = Vector3.zero;
+            _lookInputVector = Vector3.zero;
 
+            return;
+        }
         ReturnMoveInput(inputs);
         if (_dodgeTimeChecker >= _dodgeTime && isNowDodge)
         {
@@ -365,6 +370,11 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
     public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
     {
+        if (upperPlayerState == UpperPlayerState.DEAD || lowerPlayerState == LowerPlayerState.DEAD)
+        {
+            currentVelocity = Vector3.zero;
+            return;
+        }
 
         if (_motor.GroundingStatus.IsStableOnGround)
         {

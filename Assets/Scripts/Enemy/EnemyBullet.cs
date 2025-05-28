@@ -34,12 +34,6 @@ public class EnemyBullet : MonoBehaviour
             if (other.gameObject.CompareTag("Player"))
             {
                 PlayerStatusInfo.playerHP--;
-
-                if(PlayerStatusInfo.playerHP <= 0)
-                {
-                    other.gameObject.GetComponent<PlayerMovementController>().Dead();
-                }
-
             }
         }
 

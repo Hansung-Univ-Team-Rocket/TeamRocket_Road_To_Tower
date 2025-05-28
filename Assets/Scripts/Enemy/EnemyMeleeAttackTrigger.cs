@@ -15,11 +15,6 @@ public class EnemyMeleeAttackTrigger : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             PlayerStatusInfo.playerHP -= _damageValue;
-
-            if(PlayerStatusInfo.playerHP <= 0)
-            {
-                other.gameObject.GetComponent<PlayerMovementController>().Dead();
-            }
         }
     }
 }
