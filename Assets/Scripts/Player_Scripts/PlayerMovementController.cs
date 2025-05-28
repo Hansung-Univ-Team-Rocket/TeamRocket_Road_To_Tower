@@ -292,7 +292,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
                 {
                     lowerPlayerState = LowerPlayerState.MOVE;
                 }
-                if(!isFire && !isReroading && _movementCheckValue != 0)
+                if (!isFire && !isReroading && _movementCheckValue != 0)
                 {
                     upperPlayerState = UpperPlayerState.IDLE;
                     lowerPlayerState = LowerPlayerState.MOVE;
@@ -301,6 +301,24 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
                 {
                     upperPlayerState = UpperPlayerState.IDLE;
                     lowerPlayerState = LowerPlayerState.IDLE;
+                }
+            }
+            else if (_isCrouching && !_isSprinting)  // 버그 수정. -> 조건 추가 else if로 변경
+            {
+                if (isFire || isReroading)
+                {
+                    if (_movementCheckValue > 0)
+                        lowerPlayerState = LowerPlayerState.CROUCH_MOVE;
+                    else
+                        lowerPlayerState = LowerPlayerState.CROUCH;
+                }
+                else
+                {
+                    upperPlayerState = UpperPlayerState.IDLE;
+                    if (_movementCheckValue > 0)                    // 움직임이 있는가?
+                        lowerPlayerState = LowerPlayerState.CROUCH_MOVE;
+                    else
+                        lowerPlayerState = LowerPlayerState.CROUCH;
                 }
             }
         }
