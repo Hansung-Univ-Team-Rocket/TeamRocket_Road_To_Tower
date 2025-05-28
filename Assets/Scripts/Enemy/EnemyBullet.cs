@@ -29,17 +29,11 @@ public class EnemyBullet : MonoBehaviour
     {
         Debug.Log("Collided with: " + other.gameObject.name + ", Tag: " + other.gameObject.tag);
 
-        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Player"))
         {
             if (other.gameObject.CompareTag("Player"))
             {
                 PlayerStatusInfo.playerHP--;
-
-                if(PlayerStatusInfo.playerHP <= 0)
-                {
-                    other.gameObject.GetComponent<PlayerMovementController>().Dead();
-                }
-
             }
         }
 

@@ -177,7 +177,7 @@ public class Enemy_FSM : MonoBehaviour
         float resultDistance =
             Vector3.Distance(this.gameObject.transform.position, _player.transform.position);
 
-        Debug.Log($"현재 거리 : {resultDistance}");
+        //Debug.Log($"현재 거리 : {resultDistance}");
 
         if (resultDistance > maxFIndDIstance)
         {

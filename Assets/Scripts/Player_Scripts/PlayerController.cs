@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 
 public class PlayerController : MonoBehaviour
@@ -84,10 +85,27 @@ public class PlayerController : MonoBehaviour
     }
     void HandleCharacterInputs()
     {
-        if (PlayerStatusInfo.playerHP <= 0) return;
+
+        
         _fireTimer += Time.deltaTime;
 
         PlayerInput inputs = new PlayerInput();
+        if (PlayerStatusInfo.playerHP <= 0) {
+            inputs.AxisFwd = 0;
+            inputs.AxisRight = 0;
+            inputs.CameraRotation = Quaternion.identity;
+            inputs.CrouchDown = false;
+            inputs.CrouchUp = false;
+            inputs.Sprint = false;
+            inputs.Non_Sprint = false;
+            inputs.Dodge = false;
+            inputs.MeleeAttack = false;
+            inputs.ShootingAttack = false;
+            inputs.Reroading = false;
+
+            _characterController.Dead();
+            return;
+        }        
         inputs.AxisFwd = Input.GetAxisRaw("Vertical");
         inputs.AxisRight = Input.GetAxisRaw("Horizontal");
         inputs.CameraRotation = _playerCam.transform.rotation;

@@ -52,6 +52,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     [SerializeField] float _stableMovementSharpness = 15f;
     [SerializeField] public float _orientationSharpness = 10f;
     [SerializeField] Vector3 _gravity = new Vector3(0, -60f, 0);
+    [SerializeField] CapsuleCollider _capsuleCollider;
 
     [Header("CoolTimes")]
     [SerializeField] float _dodgeTime = .5f;
@@ -86,13 +87,19 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         upperPlayerState = UpperPlayerState.IDLE;
         lowerPlayerState = LowerPlayerState.IDLE;
         _motor.CharacterController = this;
+        _capsuleCollider = GetComponent<CapsuleCollider>();
+        _capsuleCollider.isTrigger = true;
     }
 
     public void Dead()
     {
         // 애니메이션 재생 코드라인 추가 필요
+        if (upperPlayerState == UpperPlayerState.DEAD || lowerPlayerState == LowerPlayerState.DEAD) return;
+
         upperPlayerState = UpperPlayerState.DEAD;
         lowerPlayerState = LowerPlayerState.DEAD;
+        
+
     }
     void ReturnMoveInput(PlayerInput inputs)
     {
@@ -101,8 +108,13 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     // 정지 상태인 경우에 여기서 플레이어 스테이트 머신 해결
     public void SetInputs(ref PlayerInput inputs)
     {
-        if (upperPlayerState == UpperPlayerState.DEAD || lowerPlayerState == LowerPlayerState.DEAD) return;
+        if (upperPlayerState == UpperPlayerState.DEAD || lowerPlayerState == LowerPlayerState.DEAD)
+        {
+            _moveInputVector = Vector3.zero;
+            _lookInputVector = Vector3.zero;
 
+            return;
+        }
         ReturnMoveInput(inputs);
         if (_dodgeTimeChecker >= _dodgeTime && isNowDodge)
         {
@@ -358,6 +370,11 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
     public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
     {
+        if (upperPlayerState == UpperPlayerState.DEAD || lowerPlayerState == LowerPlayerState.DEAD)
+        {
+            currentVelocity = Vector3.zero;
+            return;
+        }
 
         if (_motor.GroundingStatus.IsStableOnGround)
         {
