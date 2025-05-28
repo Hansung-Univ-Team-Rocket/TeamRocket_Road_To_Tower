@@ -58,4 +58,5 @@ MonoBehaviour:
   muzzlePos: {fileID: 0}
   bulletHolePrefab: {fileID: 4447654646729277233, guid: ec727f167a1e5954b939904e2c084452, type: 3}
   enemyHitImpactVFX: {fileID: 4164134933671370030, guid: d7bff92b57d951c48bafc5c9e27dbf7c, type: 3}
+  enemyHitVFX: {fileID: 1346433991272976979, guid: 3d42f36585da4e7478aec6dfe32cd433, type: 3}
   _cameraSensivity: 0.5
