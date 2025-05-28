@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]    float _reRoadTimer = 0;
     [SerializeField]    bool _isAim = false;
     [SerializeField]    Vector3 _beforeScrollInput;
+
+    public              GameObject muzzleEffect;
+    public              Transform muzzlePos;
     RaycastHit hit;
 
     Vector3 _lookInputVector;
@@ -31,7 +34,7 @@ public class PlayerController : MonoBehaviour
         _playerCam.SetFollowTransform(_cameraFollowPoint);
         _WeaponPrefab = FindChildWithTag(_characterController.gameObject.transform, "Weapon");
         _weaponScript = _WeaponPrefab.GetComponent<WeaponScript>();
-
+        muzzlePos = GameObject.FindGameObjectWithTag("MuzzlePos").GetComponent<Transform>();
     }
 
     Transform FindChildWithTag(Transform character, string tag)
@@ -181,12 +184,19 @@ public class PlayerController : MonoBehaviour
         _characterController.SetInputs(ref inputs);
     }
 
+    void InsMuzzleEffet()
+    {
+        GameObject muzzleFlash = Instantiate(muzzleEffect, muzzlePos.transform.position, Quaternion.identity);
+
+    }
+
     void FireGun(PlayerInput inputs)
     {
         if (_weaponScript.nowReroading || _weaponScript.nowBullet <= 0 || _weaponScript.weaponType == WeaponScript.WEAPON_TYPE.RIFLE) return;
         if(_fireTimer < _weaponScript.roundsPerMinute) return;
 
         _characterController.upperPlayerState = UpperPlayerState.SHOOTINGATTACK;
+        InsMuzzleEffet();
         _fireTimer = 0;
         _weaponScript.nowBullet--;
 
