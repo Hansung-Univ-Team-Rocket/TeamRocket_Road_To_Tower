@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
@@ -6,8 +7,19 @@ public class PlayerAnimation : MonoBehaviour
     public WeaponScript WS;
     public Animator anim;
 
+    public AudioClip moveClip;
+    public AudioClip dodgeClip;
+    public AudioClip shootingClip;
+    public AudioClip damagedClip;
+    private AudioSource audioSource;
+
+    private Coroutine footstepCoroutine;
+    private UpperPlayerState lastUpperState;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         anim.SetInteger("Up", 0);
         anim.SetInteger("Down", 0);
         anim.SetInteger("Weapon", 0);
@@ -17,6 +29,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         CheckUpperState();
         CheckLowerState();
+
+        // 업데이트 끝나고 현 스테이트 저장
+        lastUpperState = PMC.upperPlayerState;
     }
 
     void CheackWeapon()
@@ -50,6 +65,24 @@ public class PlayerAnimation : MonoBehaviour
 
     void CheckUpperState()
     {
+        var newState = PMC.upperPlayerState;
+
+        // 닷지 효과음
+        if (newState == UpperPlayerState.DODGE && lastUpperState != UpperPlayerState.DODGE)
+        {
+            audioSource.PlayOneShot(dodgeClip);
+        }
+        // 사격 효과음
+        if (newState == UpperPlayerState.SHOOTINGATTACK && lastUpperState != UpperPlayerState.SHOOTINGATTACK)
+        {
+            audioSource.PlayOneShot(shootingClip);
+        }
+        // 피격 효과음
+        if (newState == UpperPlayerState.DAMAGED && lastUpperState != UpperPlayerState.DAMAGED)
+        {
+            audioSource.PlayOneShot(damagedClip);
+        }
+
         switch (PMC.upperPlayerState)
         {
             case UpperPlayerState.IDLE:
@@ -112,5 +145,49 @@ public class PlayerAnimation : MonoBehaviour
             default:
                 break;
         }
+
+        // 걷기, 달리기, 웅크려 걷기 세 상태만 루프 시작
+        if (PMC.lowerPlayerState == LowerPlayerState.MOVE ||
+            PMC.lowerPlayerState == LowerPlayerState.SPRINT ||
+            PMC.lowerPlayerState == LowerPlayerState.CROUCH_MOVE)
+        {
+            // 코루틴이 아직 시작되지 않았으면 시작
+            if (footstepCoroutine == null)
+                footstepCoroutine = StartCoroutine(PlayFootsteps());
+        }
+        else
+        {
+            // 그 외 상태가 되면 코루틴을 멈추고 참조 초기화
+            if (footstepCoroutine != null)
+            {
+                StopCoroutine(footstepCoroutine);
+                footstepCoroutine = null;
+            }
+        }
+    }
+
+    IEnumerator PlayFootsteps()
+    {
+        // 걷기 상태일 때만 반복
+        while (PMC.lowerPlayerState == LowerPlayerState.MOVE ||
+               PMC.lowerPlayerState == LowerPlayerState.SPRINT ||
+               PMC.lowerPlayerState == LowerPlayerState.CROUCH_MOVE)
+        {
+            audioSource.PlayOneShot(moveClip);
+
+            // 상태별 간격
+            float interval = PMC.lowerPlayerState == LowerPlayerState.SPRINT ? 0.3f
+                           : PMC.lowerPlayerState == LowerPlayerState.CROUCH_MOVE ? 0.6f
+                           : 0.4f;
+            yield return new WaitForSeconds(interval);
+        }
+
+        // 상태가 바뀌면 코루틴 종료 후 참조 초기화
+        footstepCoroutine = null;
+    }
+
+    void PlayDodgeSound()
+    {
+        audioSource.PlayOneShot(dodgeClip);
     }
 }
