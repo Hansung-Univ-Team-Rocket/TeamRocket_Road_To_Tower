@@ -7,7 +7,6 @@ using System.Linq;
 public class BossControl : MonoBehaviour
 {
     public Transform player;
-    MeshRenderer[] meshs;
 
     public Transform LHand;
     public Transform RHand;
@@ -18,7 +17,12 @@ public class BossControl : MonoBehaviour
     public GameObject SpreadBulletPrefab;
     public GameObject warningPlanePrefab;
     public GameObject spikePrefab;
+    public GameObject childMonsterPrefab;
     private GameObject Floor;
+    private Animator anim;
+    private GameObject headChild = null;
+    private GameObject leftShoulderChild = null;
+    private GameObject rightShoulderChild = null;
 
     public float dashSpeed = 20f;
     public float patternCooldown = 2f;
@@ -28,15 +32,73 @@ public class BossControl : MonoBehaviour
     public float warningDuration = 3f;
     public float spikeDuration = 2f;
     public int spikeCount = 5;
+    private float headHeight = 3.0f;
+    private float shoulderHeight = 1.5f;
+    private float shoulderOffset = 1.5f;
 
     private Vector3 spikeAreaSize = new Vector3(25f, 0f, 25f);
 
     private bool isAttacking = false;
+    private bool Dash = false;
 
     void Start()
     {
         Floor = GameObject.Find("Floor");
-        meshs = GetComponentsInChildren<MeshRenderer>();
+        anim = GetComponent<Animator>();
+        StartCoroutine(Delayed());
+    }
+
+    void Update()
+    {
+        if (player == null) return;
+
+        if (!Dash)
+        {
+            Vector3 directionToPlayer = player.position - transform.position;
+            directionToPlayer.y = 0; // 수평 회전만 고려
+            if (directionToPlayer != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer.normalized);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // 부드럽게 회전
+            }
+        }
+    }
+    void ChangeBaseMapToRed()
+    {
+        // 모든 자식 MeshRenderer + SkinnedMeshRenderer 가져오기
+        var meshRenderers = GetComponentsInChildren<Renderer>();
+
+        foreach (var renderer in meshRenderers)
+        {
+            foreach (var mat in renderer.materials) // material == sharedMaterial 아님
+            {
+                if (mat.HasProperty("_BaseColor"))
+                {
+                    mat.SetColor("_BaseColor", Color.red);
+                }
+            }
+        }
+    }
+    void ChangeBaseMapToWhite()
+    {
+        // 모든 자식 MeshRenderer + SkinnedMeshRenderer 가져오기
+        var meshRenderers = GetComponentsInChildren<Renderer>();
+
+        foreach (var renderer in meshRenderers)
+        {
+            foreach (var mat in renderer.materials) // material == sharedMaterial 아님
+            {
+                if (mat.HasProperty("_BaseColor"))
+                {
+                    mat.SetColor("_BaseColor", Color.white);
+                }
+            }
+        }
+    }
+
+    IEnumerator Delayed()
+    {
+        yield return new WaitForSeconds(3f); // 등장 후 대기 시간 (3초 등 자유 설정)
         StartCoroutine(PatternLoop());
     }
 
@@ -48,10 +110,11 @@ public class BossControl : MonoBehaviour
             {
                 isAttacking = true;
 
-                int pattern = Random.Range(0, 5);
+                int pattern = 5; // Random.Range(0, 6);
                 switch (pattern)
                 {
                     case 0:
+                        ChangeBaseMapToRed();
                         yield return StartCoroutine(DashPattern());
                         break;
                     case 1:
@@ -65,6 +128,9 @@ public class BossControl : MonoBehaviour
                         break;
                     case 4:
                         yield return StartCoroutine(SpikePattern());
+                        break;
+                    case 5:
+                        yield return StartCoroutine(CreateChildMonsters());
                         break;
                 }
 
@@ -81,6 +147,7 @@ public class BossControl : MonoBehaviour
     {
         float preparationTime = 0f;
 
+        Dash = true;
         // 준비 시간 동안 플레이어를 계속 바라봄
         while (preparationTime < 2.0f)
         {
@@ -89,51 +156,45 @@ public class BossControl : MonoBehaviour
             if (directionToPlayer != Vector3.zero)
                 transform.rotation = Quaternion.LookRotation(directionToPlayer.normalized);
 
-            foreach (MeshRenderer mesh in meshs)
-                mesh.material.color = Color.green;
-
             preparationTime += Time.deltaTime;
             yield return null;
         }
 
-        foreach (MeshRenderer mesh in meshs)
-            mesh.material.color = Color.gray;
-
         // 돌진 시작 시점의 플레이어 위치를 기준으로 돌진
+        ChangeBaseMapToWhite();
         Vector3 dashTarget = player.position;
         dashTarget.y = transform.position.y;
 
         transform.forward = (dashTarget - transform.position).normalized;
 
         // 해당 위치까지 돌진
+
+        anim.SetBool("run", true);
         while (Vector3.Distance(transform.position, dashTarget) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, dashTarget, dashSpeed * Time.deltaTime);
             yield return null;
         }
+        anim.SetBool("run", false);
 
         yield return new WaitForSeconds(1f);
+        Dash = false;
     }
 
     // 패턴 2: 각 손에서 5발씩 비유도 탄환 발사
     IEnumerator StraightShotPattern()
     {
+        anim.SetBool("shoot", true);
 
-        for (int i = 0; i < 5; i++)
+
+        for (int i = 0; i < 4; i++)
         {
-            // 플레이어 위치 인식
-            Vector3 targetPosition = player.position;
-            targetPosition.y = transform.position.y;
-            // 플레이어를 바라보게
-            Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
-            transform.rotation = Quaternion.LookRotation(targetDirection);
-
-            // 번갈아가며 손을 선택
-            Transform fireHand = (i % 2 == 0) ? RHand : LHand;
+            Transform fireHand = RHand;
 
             FireStraightBullet(fireHand);
-            yield return new WaitForSeconds(0.5f); // 간격 조정 가능
+            yield return new WaitForSeconds(0.6f); // 간격 조정 가능
         }
+        anim.SetBool("shoot", false);
 
         yield return new WaitForSeconds(1f); // 패턴 종료 전 대기
     }
@@ -148,11 +209,13 @@ public class BossControl : MonoBehaviour
         Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
         transform.rotation = Quaternion.LookRotation(targetDirection);
 
+        anim.SetBool("shoot", true);
         FireHomingBullet(RHand);
         yield return new WaitForSeconds(1f);
 
-        FireHomingBullet(LHand);
-        yield return new WaitForSeconds(1f); // 다음 패턴과의 간격 유지
+        FireHomingBullet(RHand);
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("shoot", false);
     }
 
     // 패턴 4: 몸의 중앙에서 부채꼴 모양으로 탄환을 흩뿌리며 발사
@@ -165,8 +228,13 @@ public class BossControl : MonoBehaviour
         Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
         transform.rotation = Quaternion.LookRotation(targetDirection);
 
-        for (int i = 0; i < 5; i++) // 총 5회 반복
+        for (int i = 0; i < 4; i++) // 총 4회 반복
         {
+            if (i % 2 == 0)
+            {
+                anim.SetBool("spread", false);
+                anim.SetBool("spread", true);
+            }
             Vector3 directionToPlayer = (player.position - shootPoint.position).normalized;
             float startAngle = -fanAngle / 2f;
             float angleStep = fanAngle / (bulletCount - 1);
@@ -193,8 +261,12 @@ public class BossControl : MonoBehaviour
 
                 yield return new WaitForSeconds(0.05f); // 발사 간격
             }
-
             yield return new WaitForSeconds(0.5f); // 각 부채꼴 사이 간격
+            if (i % 2 == 1)
+            {
+                anim.SetBool("spread", false);
+                yield return new WaitForSeconds(1f); // 각 부채꼴 사이 간격
+            }
         }
 
         yield return new WaitForSeconds(1f); // 패턴 종료 대기
@@ -211,7 +283,8 @@ public class BossControl : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(targetDirection);
 
         for (int count = 0; count < 3; count++)
-        {
+        { 
+            anim.SetBool("spike", true);
             List<Vector3> spikePositions = new List<Vector3>();
             List<GameObject> warningPlanes = new List<GameObject>();
 
@@ -263,11 +336,65 @@ public class BossControl : MonoBehaviour
                 spike.transform.localScale = new Vector3(cellSize, 0.1f, cellSize);
                 Destroy(spike, spikeDuration);
             }
+            anim.SetBool("spike", false);
             yield return new WaitForSeconds(1f); // 반복 간 간격
         }
 
         yield return new WaitForSeconds(1f);
     }
+    IEnumerator CreateChildMonsters()
+    {
+        // 이미 생성된 자식 몬스터가 있으면 생성하지 않음
+        if (headChild != null || leftShoulderChild != null || rightShoulderChild != null)
+        {
+            Debug.Log("자식 몬스터 이미 존재함, 생성 중단");
+            yield break; // 코루틴 종료
+        }
+
+        float moveDuration = 1f;
+
+        Vector3 bossCenterPos = transform.position;
+
+        Vector3 headTargetPos = transform.position + Vector3.up * 3f;
+        Vector3 leftShoulderTargetPos = LHand.position + Vector3.up * 1.5f;
+        Vector3 rightShoulderTargetPos = RHand.position + Vector3.up * 1.5f;
+
+        headChild = Instantiate(childMonsterPrefab, bossCenterPos, Quaternion.identity);
+        leftShoulderChild = Instantiate(childMonsterPrefab, bossCenterPos, Quaternion.identity);
+        rightShoulderChild = Instantiate(childMonsterPrefab, bossCenterPos, Quaternion.identity);
+
+        headChild.transform.parent = transform;
+        leftShoulderChild.transform.parent = transform;
+        rightShoulderChild.transform.parent = transform;
+
+        float elapsed = 0f;
+
+        while (elapsed < moveDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / moveDuration);
+
+            headChild.transform.position = Vector3.Lerp(bossCenterPos, headTargetPos, t);
+            leftShoulderChild.transform.position = Vector3.Lerp(bossCenterPos, leftShoulderTargetPos, t);
+            rightShoulderChild.transform.position = Vector3.Lerp(bossCenterPos, rightShoulderTargetPos, t);
+
+            Vector3 forwardDir = transform.forward;
+            headChild.transform.rotation = Quaternion.LookRotation(forwardDir);
+            leftShoulderChild.transform.rotation = Quaternion.LookRotation(forwardDir);
+            rightShoulderChild.transform.rotation = Quaternion.LookRotation(forwardDir);
+
+            yield return null;
+        }
+
+        headChild.transform.localPosition = Vector3.up * 3f;
+        leftShoulderChild.transform.localPosition = transform.InverseTransformPoint(LHand.position) + Vector3.up * 1.5f;
+        rightShoulderChild.transform.localPosition = transform.InverseTransformPoint(RHand.position) + Vector3.up * 1.5f;
+
+        headChild.transform.localRotation = Quaternion.identity;
+        leftShoulderChild.transform.localRotation = Quaternion.identity;
+        rightShoulderChild.transform.localRotation = Quaternion.identity;
+    }
+
 
     void FireStraightBullet(Transform hand)
     {
