@@ -234,8 +234,16 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     // 최대한 이동 상태와 관련된 플레이어 스테이트는 이 콜백에서 해결
     public void AfterCharacterUpdate(float deltaTime)
     {
+        // Dodge 중에는 다른 상태 갱신하지 말고 바로 리턴
+        if (isNowDodge)
+        {
+            upperPlayerState = UpperPlayerState.DODGE;
+            lowerPlayerState = LowerPlayerState.DODGE;
+            return;
+        }
+
         // 하드코딩, 스프린트를 하다, 앉기 키를 누르고 동시에 손을 때면 상체는 스프린트로, 하체는 아이들인 상태가 되는 경우가 있음
-        if(upperPlayerState == UpperPlayerState.SPRINT && lowerPlayerState == LowerPlayerState.IDLE)
+        if (upperPlayerState == UpperPlayerState.SPRINT && lowerPlayerState == LowerPlayerState.IDLE)
         {
             upperPlayerState = UpperPlayerState.IDLE;
         }
