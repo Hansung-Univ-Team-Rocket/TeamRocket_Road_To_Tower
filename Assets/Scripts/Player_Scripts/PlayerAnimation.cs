@@ -46,7 +46,6 @@ public class PlayerAnimation : MonoBehaviour
         // 업데이트 끝나고 현 스테이트 저장
         lastUpperState = PMC.upperPlayerState;
         lastLowerState = PMC.lowerPlayerState;
-        Debug.LogError($"lowerState : {PMC.lowerPlayerState}");
     }
 
     public void SetWeaponIndex(int weaponIndex)
