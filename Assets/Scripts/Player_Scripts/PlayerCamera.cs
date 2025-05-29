@@ -25,6 +25,10 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] Quaternion _targetShakeRotation = Quaternion.identity;
     [SerializeField] Quaternion _currentShakeRotation = Quaternion.identity;
 
+    [Header("Camera bump Values")]
+    [SerializeField] float collisionChecker = .3f;
+    [SerializeField] float collisionOffset = .5f;
+    [SerializeField] Transform playerTr;
 
     float _currentSpeed = 0f;
     float _shakeTimer = 0f;
@@ -52,6 +56,34 @@ public class PlayerCamera : MonoBehaviour
         _planarDir = Vector3.forward;
     }
 
+    private void Start()
+    {
+        playerTr = GameObject.FindGameObjectWithTag("CameraPos").GetComponent<Transform>();
+    }
+
+    // 카메라 충돌 체크
+    public void CheckBump()
+    {
+        Vector3 playerPos = playerTr.position;
+        Vector3 cameraPos = transform.position;
+        Vector3 direction = (cameraPos - playerPos).normalized;
+
+        float distrance = Vector3.Distance(playerPos, cameraPos);
+
+        RaycastHit[] hits = Physics.RaycastAll(playerPos, direction, distrance);
+
+        foreach(var hit in hits)
+        {
+            //만약 충돌 콜라이더가 벽이 아니라 적? continue로 빠져나오기
+            if (hit.collider.tag == "Enemy") continue;
+
+            if(hit.transform != playerTr.transform && hit.transform != transform)
+            {
+                transform.position = hit.point - direction * collisionOffset;
+                break;
+            }
+        }
+    }
     public void SetAimState(bool aiming)
     {
         if (aiming && !_isAiming)
@@ -217,25 +249,5 @@ public class PlayerCamera : MonoBehaviour
             HandlePosition(deltaTime, zoomInput, targetRotation);
             ApplySpeedBasedShake(deltaTime);
         }
-    }
-
-    /*
-    public void UpdatePlayerStickOnWall(float deltaTime, Vector3 rotationInput)
-    {
-        if (_followTransform)
-        {
-            HandleRotationInput(deltaTime, rotationInput, out Quaternion targetRotation);
-
-            _targetDis = _minDis;
-
-            Vector3 rightOffset = targetRotation * Vector3.right * 2f;
-            _currentFollowPos = Vector3.Lerp(_currentFollowPos, _followTransform.position, 1f - Mathf.Exp(-_followSharpness * deltaTime));
-            Vector3 targetPosition = _currentFollowPos - ((targetRotation * Vector3.forward) * _minDis) + rightOffset;
-
-            _curDIs = Mathf.Lerp(_curDIs, _minDis, 1 - Mathf.Exp(-_disMovementSharpness * deltaTime));
-            transform.position = targetPosition;
-            transform.rotation = targetRotation;
-        }
-    }*/
-    
+    }    
 }
