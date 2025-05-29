@@ -6,7 +6,7 @@ using System.Linq;
 
 public class BossControl : MonoBehaviour
 {
-    public Transform player;
+    public GameObject player;
 
     public Transform LHand;
     public Transform RHand;
@@ -43,6 +43,7 @@ public class BossControl : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         Floor = GameObject.Find("Floor");
         anim = GetComponent<Animator>();
         StartCoroutine(Delayed());
@@ -54,7 +55,7 @@ public class BossControl : MonoBehaviour
 
         if (!Dash)
         {
-            Vector3 directionToPlayer = player.position - transform.position;
+            Vector3 directionToPlayer = player.transform.position - transform.position;
             directionToPlayer.y = 0; // 수평 회전만 고려
             if (directionToPlayer != Vector3.zero)
             {
@@ -151,7 +152,7 @@ public class BossControl : MonoBehaviour
         // 준비 시간 동안 플레이어를 계속 바라봄
         while (preparationTime < 2.0f)
         {
-            Vector3 directionToPlayer = (player.position - transform.position);
+            Vector3 directionToPlayer = (player.transform.position - transform.position);
             directionToPlayer.y = 0;
             if (directionToPlayer != Vector3.zero)
                 transform.rotation = Quaternion.LookRotation(directionToPlayer.normalized);
@@ -162,7 +163,7 @@ public class BossControl : MonoBehaviour
 
         // 돌진 시작 시점의 플레이어 위치를 기준으로 돌진
         ChangeBaseMapToWhite();
-        Vector3 dashTarget = player.position;
+        Vector3 dashTarget = player.transform.position;
         dashTarget.y = transform.position.y;
 
         transform.forward = (dashTarget - transform.position).normalized;
@@ -203,7 +204,7 @@ public class BossControl : MonoBehaviour
     IEnumerator HomingShotPattern()
     {
         // 플레이어 위치 인식
-        Vector3 targetPosition = player.position;
+        Vector3 targetPosition = player.transform.position;
         targetPosition.y = transform.position.y;
         // 플레이어를 바라보게
         Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
@@ -222,7 +223,7 @@ public class BossControl : MonoBehaviour
     IEnumerator SpreadPattern()
     {
         // 플레이어 위치 인식
-        Vector3 targetPosition = player.position;
+        Vector3 targetPosition = player.transform.position;
         targetPosition.y = transform.position.y;
         // 플레이어를 바라보게
         Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
@@ -235,7 +236,7 @@ public class BossControl : MonoBehaviour
                 anim.SetBool("spread", false);
                 anim.SetBool("spread", true);
             }
-            Vector3 directionToPlayer = (player.position - shootPoint.position).normalized;
+            Vector3 directionToPlayer = (player.transform.position - shootPoint.position).normalized;
             float startAngle = -fanAngle / 2f;
             float angleStep = fanAngle / (bulletCount - 1);
 
@@ -255,7 +256,7 @@ public class BossControl : MonoBehaviour
                 Spread sb = bullet.GetComponent<Spread>();
                 if (sb != null)
                 {
-                    sb.target = player;
+                    sb.target = player.transform;
                     sb.SetDirection(rotatedDirection);
                 }
 
@@ -276,7 +277,7 @@ public class BossControl : MonoBehaviour
     IEnumerator SpikePattern()
     {
         // 플레이어 위치 인식
-        Vector3 targetPosition = player.position;
+        Vector3 targetPosition = player.transform.position;
         targetPosition.y = transform.position.y;
         // 플레이어를 바라보게
         Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
@@ -402,7 +403,7 @@ public class BossControl : MonoBehaviour
         NBullet sb = bullet.GetComponent<NBullet>();
         if (sb != null)
         {
-            sb.target = player;
+            sb.target = player.transform;
         }
     }
 
@@ -412,7 +413,7 @@ public class BossControl : MonoBehaviour
         Homing homing = bullet.GetComponent<Homing>();
         if (homing != null)
         {
-            homing.target = player;
+            homing.target = player.transform;
         }
     }
 }
