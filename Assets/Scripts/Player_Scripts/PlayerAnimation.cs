@@ -208,9 +208,26 @@ public class PlayerAnimation : MonoBehaviour
         if (isChangingWeapon) yield break;
 
         isChangingWeapon = true;
+        
+        // 한번 더 안전장치 추가
+        if (PMC.upperPlayerState == UpperPlayerState.SHOOTINGATTACK)
+        {
+            PMC.upperPlayerState = UpperPlayerState.IDLE;
+        }
+
+        PMC.isFire = false;
+
         anim.SetTrigger("ChangeWeapon");
 
-        yield return new WaitForSeconds(3f); // 무기들 직접 제어하면서 꼬였음. WeaponManager에서 관리하게 전환하고 애니메이션만
+        yield return new WaitForSeconds(1.37f);
+
+        WM.HideWeapon(fromIdx);
+
+        yield return new WaitForSeconds(0.15f); // 잠깐의 빈손 추가
+        
+        WM.ShowWeapon(toIdx);
+
+        yield return new WaitForSeconds(1.38f); // 종료 타이밍 맞춰서
 
         anim.SetInteger("Weapon", toIdx); // 파라메터 인덱스 전환
 

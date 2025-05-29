@@ -70,14 +70,44 @@ public class WeaponManager : MonoBehaviour
 
     IEnumerator ChangeWeaponWithAnim(int newWeaponIndex)
     {
-        yield return StartCoroutine(animation.ChangeWeapon(currentWeaponIndex, newWeaponIndex)); // 애니메이션 시간이 끝날 때 아래 실행으로 코드 수정
+        //animation.isChangingWeapon = true;
 
-        // 실질적 무기 교체절
-        weapons[currentWeaponIndex].gameObject.SetActive(false);
+        //yield return new WaitForSeconds(1.37f);
+        //weapons[currentWeaponIndex].gameObject.SetActive(false);
+        //Debug.Log($"Weapon Swap first step {weapons[currentWeaponIndex].name}");
+
+        //yield return new WaitForSeconds(0.15f); // 잠깐 빈손으로 만들어서 자연스럽게 
+
+        //currentWeaponIndex = newWeaponIndex;
+        //weapons[currentWeaponIndex].gameObject.SetActive(true);
+        //Debug.Log($"Weapon Swap Sec Step {weapons[currentWeaponIndex].name}");
+
+        //yield return StartCoroutine(animation.ChangeWeapon(currentWeaponIndex, newWeaponIndex)); // 애니메이션 시간이 끝날 때 아래 실행으로 코드 수정
+
+        //// 실질적 무기 교체절
+        //weapons[currentWeaponIndex].gameObject.SetActive(false);
+        //currentWeaponIndex = newWeaponIndex;
+        //weapons[currentWeaponIndex].gameObject.SetActive(true);
+
+        //Debug.Log($"Weapon Swap {weapons[currentWeaponIndex].name}");
+
+        yield return StartCoroutine(animation.ChangeWeapon(currentWeaponIndex, newWeaponIndex));
+
         currentWeaponIndex = newWeaponIndex;
-        weapons[currentWeaponIndex].gameObject.SetActive(true);
 
-        Debug.Log($"Weapon Swap {weapons[currentWeaponIndex].name}");
+        Debug.Log($"Weapon Swap |||| {weapons[currentWeaponIndex].name}");
+    }
+
+    public void HideWeapon(int weaponIndex)
+    {
+        weapons[weaponIndex].gameObject.SetActive(false);
+        Debug.Log($"Hide ||| {weapons[weaponIndex].name}");
+    }
+
+    public void ShowWeapon(int weaponIndex)
+    {
+        weapons[weaponIndex].gameObject.SetActive(true);
+        Debug.Log($"Show ||| {weapons[weaponIndex].name}");
     }
 
     void ForceStopAttacking()
