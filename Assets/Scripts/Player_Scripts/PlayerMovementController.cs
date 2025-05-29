@@ -242,13 +242,6 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             return;
         }
 
-        // reload 중이라면 하체는 IDLE 로 유지
-        if (isReroading && lowerPlayerState == LowerPlayerState.IDLE)
-        {
-            lowerPlayerState = LowerPlayerState.IDLE;
-            return;
-        }
-
         // 하드코딩, 스프린트를 하다, 앉기 키를 누르고 동시에 손을 때면 상체는 스프린트로, 하체는 아이들인 상태가 되는 경우가 있음
         if (upperPlayerState == UpperPlayerState.SPRINT && lowerPlayerState == LowerPlayerState.IDLE)
         {
