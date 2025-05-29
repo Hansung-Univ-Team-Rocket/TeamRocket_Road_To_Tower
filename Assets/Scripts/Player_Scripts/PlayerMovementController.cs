@@ -75,6 +75,11 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     public UpperPlayerState upperPlayerState;
     public LowerPlayerState lowerPlayerState;
 
+    [Header("Damaged Stun")]
+    [SerializeField] float _damagedDuration = .5f;
+    [SerializeField] float _damagedTimer = 0f;
+    [SerializeField] bool _isDamaged = false;
+
     float _movementCheckValue = 0f;
 
 
@@ -91,6 +96,17 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         _capsuleCollider.isTrigger = true;
     }
 
+    private bool CanSprint()
+    {
+        return !_isCrouching &&
+               !isNowDodge &&
+               !_isDamaged &&
+               !isReroading &&
+               upperPlayerState != UpperPlayerState.DEAD &&
+               lowerPlayerState != LowerPlayerState.DEAD;
+    }
+
+
     public void Dead()
     {
         // 애니메이션 재생 코드라인 추가 필요
@@ -98,8 +114,19 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
         upperPlayerState = UpperPlayerState.DEAD;
         lowerPlayerState = LowerPlayerState.DEAD;
-        
+    }
 
+    public void TakeDamaged()
+    {
+        if (upperPlayerState == UpperPlayerState.DEAD) return;
+        if (isNowDodge) return;
+
+        upperPlayerState = UpperPlayerState.DAMAGED;
+        _isDamaged = true;
+        _damagedTimer = 0;
+
+        isFire = false;
+        isReroading = false;
     }
     void ReturnMoveInput(PlayerInput inputs)
     {
@@ -115,6 +142,19 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
             return;
         }
+
+        if(_isDamaged)
+        {
+            _damagedTimer += Time.deltaTime;
+
+            if (_damagedTimer >= _damagedDuration)
+            {
+                _isDamaged = false;
+                upperPlayerState = UpperPlayerState.IDLE;
+                _damagedTimer = 0;
+            }
+            else return;
+        }
         ReturnMoveInput(inputs);
         if (_dodgeTimeChecker >= _dodgeTime && isNowDodge)
         {
@@ -124,7 +164,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             lowerPlayerState = LowerPlayerState.IDLE;
             _dodgeTimeChecker = 0f;
         }
-        if (inputs.Dodge && !isNowDodge && !_isCrouching)
+        if (inputs.Dodge && !isNowDodge && !_isCrouching && !_isDamaged)
         {
             _isDodge = true;
             isNowDodge = true;
@@ -162,74 +202,86 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         _moveInputVector = cameraPlanerRotation * moveInputVector;
         _lookInputVector = _moveInputVector.normalized;
 
-        if (inputs.AxisFwd != 0 || inputs.AxisRight != 0)
+        // 여기 갈아 엎어야 함.
+        MovementStates(inputs); // 갈아 엎었음. 리팩토링 + 최적화
+    }
+
+    void MovementStates(PlayerInput inputs)
+    {
+        bool isMoving = _movementCheckValue > 0;
+
+        // 앉기
+        if (inputs.CrouchDown)
         {
-            //Debug.Log("들어 옴?");
-            if (inputs.CrouchDown)
+            _secondCrouchingChecker = true;
+            if (!_isCrouching)
             {
-                _isSprinting = false;
-                _secondCrouchingChecker = true;
-
-                if (!_isCrouching)
-                {
-                    _isCrouching = true;
-                    _motor.SetCapsuleDimensions(0.5f, _playerCrouchedCapsuleHieght, _playerCrouchedCapsuleHieght * .5f);
-
-                    lowerPlayerState = LowerPlayerState.CROUCH_MOVE;
-                }
-            }
-            else if (inputs.CrouchUp)
-            {
-                _secondCrouchingChecker = false;
-            }
-            else if (inputs.Sprint)
-            {
-                if (!_isCrouching)
-                {
-                    _isSprinting = true;
-                }
-                else _isSprinting = false;
-            }
-            else if (inputs.Non_Sprint) // 사실상의 달리기를 안 했을 때의 모든 상태가 들어가는 else 구문
-            {
-                _isSprinting = false;
+                _isCrouching = true;
+                _isSprinting = false;  // 앉으면 스프린트 해제
+                _motor.SetCapsuleDimensions(0.5f, _playerCrouchedCapsuleHieght, _playerCrouchedCapsuleHieght * .5f);
             }
         }
-        if(inputs.AxisFwd == 0 && inputs.AxisRight == 0)
+        else if (inputs.CrouchUp)
         {
+            _secondCrouchingChecker = false;
+        }
 
-            if(inputs.CrouchDown)
+        // 스프린트 처리 개선
+        if (inputs.Sprint && CanSprint() && isMoving)
+        {
+            _isSprinting = true;
+            Debug.Log("스프린트 활성화");
+        }
+        else if (inputs.Non_Sprint || !isMoving || !CanSprint())
+        {
+            if (_isSprinting)
             {
-                _secondCrouchingChecker = true;
-
-                if (!_isCrouching)
-                {
-                    _isCrouching = true;
-                    _motor.SetCapsuleDimensions(0.5f, _playerCrouchedCapsuleHieght, _playerCrouchedCapsuleHieght * .5f);
-                    lowerPlayerState = LowerPlayerState.CROUCH;
-                }
-                else
-                {
-                    lowerPlayerState = LowerPlayerState.CROUCH;
-                }
-            }
-            if(inputs.CrouchUp)
-            {
-                _secondCrouchingChecker = false;
-            }
-            else
-            {
-                if(!_isCrouching)
-                {
-                    lowerPlayerState = LowerPlayerState.IDLE;
-                }
-                else
-                {
-                    lowerPlayerState = LowerPlayerState.CROUCH;
-                }
+                _isSprinting = false;
+                Debug.Log("스프린트 비활성화");
             }
         }
 
+        // 상태 업데이트
+        UpdatePlayerStates(isMoving);
+    }
+
+    void UpdatePlayerStates(bool isMoving)
+    {
+        // 상체 상태
+        if (isFire)
+        {
+            upperPlayerState = UpperPlayerState.SHOOTINGATTACK;
+        }
+        else if (isReroading)
+        {
+            upperPlayerState = UpperPlayerState.REROADING;
+        }
+        else if (_isSprinting && isMoving)
+        {
+            upperPlayerState = UpperPlayerState.SPRINT;
+        }
+        else
+        {
+            upperPlayerState = UpperPlayerState.IDLE;
+        }
+
+        // 하체 상태
+        if (_isCrouching)
+        {
+            lowerPlayerState = isMoving ? LowerPlayerState.CROUCH_MOVE : LowerPlayerState.CROUCH;
+        }
+        else if (_isSprinting && isMoving)
+        {
+            lowerPlayerState = LowerPlayerState.SPRINT;
+        }
+        else if (isMoving)
+        {
+            lowerPlayerState = LowerPlayerState.MOVE;
+        }
+        else
+        {
+            lowerPlayerState = LowerPlayerState.IDLE;
+        }
     }
     // 최대한 이동 상태와 관련된 플레이어 스테이트는 이 콜백에서 해결
     public void AfterCharacterUpdate(float deltaTime)
@@ -242,96 +294,42 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             return;
         }
 
+        if (_isDamaged)
+        {
+            upperPlayerState = UpperPlayerState.DAMAGED;
+            _isSprinting = false;
+            return;
+        }
+
         // 하드코딩, 스프린트를 하다, 앉기 키를 누르고 동시에 손을 때면 상체는 스프린트로, 하체는 아이들인 상태가 되는 경우가 있음
         if (upperPlayerState == UpperPlayerState.SPRINT && lowerPlayerState == LowerPlayerState.IDLE)
         {
             upperPlayerState = UpperPlayerState.IDLE;
         }
+
         if (_isCrouching && !_secondCrouchingChecker)
         {
-            // 앉은 상태에서 머리 위에 콜라이더가 있는 오브젝트가 있는가?
             _motor.SetCapsuleDimensions(0.5f, _playerNonCrouhedCapsuleHieght, 1f);
-            if(_motor.CharacterOverlap(
+            if (_motor.CharacterOverlap(
                 _motor.TransientPosition,
                 _motor.TransientRotation,
                 _probedColliders,
                 _motor.CollidableLayers,
                 QueryTriggerInteraction.Ignore) > 0)
             {
-                // 그렇다면 계속 앉은 상태
                 _motor.SetCapsuleDimensions(0.5f, _playerCrouchedCapsuleHieght, _playerCrouchedCapsuleHieght * .5f);
             }
             else
             {
                 _isCrouching = false;
-                //upperPlayerState = UpperPlayerState.IDLE;
-                lowerPlayerState = LowerPlayerState.IDLE;
-            }
-        }
-        if(_isSprinting)
-        {
-            if (isFire || isReroading)
-            {
-                lowerPlayerState = LowerPlayerState.SPRINT;
-            }
-            else
-            {
-                upperPlayerState = UpperPlayerState.SPRINT;
-                lowerPlayerState = LowerPlayerState.SPRINT;
-            }
-        }
-        else
-        {
-            if (_isCrouching)
-            {
-                if (isFire || isReroading)
-                {
-                    lowerPlayerState = LowerPlayerState.CROUCH_MOVE;
-                }
-                else
-                {
-                    upperPlayerState = UpperPlayerState.IDLE;
-                    lowerPlayerState = LowerPlayerState.CROUCH_MOVE;
-                }
-            }
-            if (!_isCrouching && !_isSprinting)
-            {
-                if (isFire || isReroading)
-                {
-                    lowerPlayerState = LowerPlayerState.MOVE;
-                }
-                if (!isFire && !isReroading && _movementCheckValue != 0)
-                {
-                    upperPlayerState = UpperPlayerState.IDLE;
-                    lowerPlayerState = LowerPlayerState.MOVE;
-                }
-                if (!isFire && !isReroading && _movementCheckValue == 0)
-                {
-                    upperPlayerState = UpperPlayerState.IDLE;
-                    lowerPlayerState = LowerPlayerState.IDLE;
-                }
-            }
-            else if (_isCrouching && !_isSprinting)  // 버그 수정. -> 조건 추가 else if로 변경
-            {
-                if (isFire || isReroading)
-                {
-                    if (_movementCheckValue > 0)
-                        lowerPlayerState = LowerPlayerState.CROUCH_MOVE;
-                    else
-                        lowerPlayerState = LowerPlayerState.CROUCH;
-                }
-                else
-                {
-                    upperPlayerState = UpperPlayerState.IDLE;
-                    if (_movementCheckValue > 0)                    // 움직임이 있는가?
-                        lowerPlayerState = LowerPlayerState.CROUCH_MOVE;
-                    else
-                        lowerPlayerState = LowerPlayerState.CROUCH;
-                }
             }
         }
 
-        Debug.Log($"lowerPlayerState: {lowerPlayerState}, upperPlayerState: {upperPlayerState}");
+        // 상태 재확인 (움직임이 있는지 체크)
+        bool isMoving = _movementCheckValue > 0;
+        UpdatePlayerStates(isMoving);
+
+        Debug.Log($"Sprint: {_isSprinting}, Lower: {lowerPlayerState}, Upper: {upperPlayerState}");
     }
 
     public void BeforeCharacterUpdate(float deltaTime)
