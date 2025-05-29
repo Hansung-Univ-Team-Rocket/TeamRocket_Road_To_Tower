@@ -890,6 +890,11 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!4 &1092228070 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8847236386496557443, guid: 39544155b871b494195a8dd3f9984872, type: 3}
+  m_PrefabInstance: {fileID: 767253105366282613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1120151444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,6 +1163,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33d558f65647a9429adf8dfa0fde86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1625478045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1625478046}
+  m_Layer: 0
+  m_Name: MuzzlePos
+  m_TagString: MuzzlePos
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1625478046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625478045}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.2837048, y: 0.647697, z: 0.6476971, w: 0.28370538}
+  m_LocalPosition: {x: 0.32850632, y: 0.17441405, z: 0.062000252}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1092228070}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1766477520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,9 +1623,16 @@ PrefabInstance:
       propertyPath: moveClip
       value: 
       objectReference: {fileID: 8300000, guid: ec9fa9cdb6e8fb64cb5e5df43200eada, type: 3}
+    - target: {fileID: 8847236386496780945, guid: 39544155b871b494195a8dd3f9984872, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8847236386496557443, guid: 39544155b871b494195a8dd3f9984872, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1625478046}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39544155b871b494195a8dd3f9984872, type: 3}
 --- !u!114 &767253105366282614 stripped
