@@ -135,8 +135,11 @@ MonoBehaviour:
   investigateTimer: 0
   _capsuleCollider: {fileID: 0}
   deadEffect: {fileID: 49151557670930427, guid: 9ce747358a9ddeb49b76c227f3588d2f, type: 3}
+  attackEffect: {fileID: 3308993914093469881, guid: fe8a879e79fa6e745a3cc121d8afc0d5, type: 3}
   fovDegrees: 45
   maxDistance: 50
+  healItemPrefab: {fileID: 8479701401940649558, guid: 502a049d6a1dcd8478e8bdb55748884f, type: 3}
+  ammoItemPrefab: {fileID: 7899894279516424008, guid: 522da43f3082f2844bd6d79f9cb4101f, type: 3}
 --- !u!195 &2387417619207883061
 NavMeshAgent:
   m_ObjectHideFlags: 0

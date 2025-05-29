@@ -76,6 +76,10 @@ public class Enemy_FSM : MonoBehaviour
     public float fovDegrees = 65f; // 적 유닛이 볼 수 있는 시야각 기본값 65
     public float maxDistance = 60; // 적 유닛이 볼 수 있는 최대 시야 거리 기본값 60
 
+    [Header("Item List")]
+    public GameObject healItemPrefab;
+    public GameObject ammoItemPrefab;
+
     private void Start()
     {
         _nav = GetComponent<NavMeshAgent>();
@@ -111,12 +115,32 @@ public class Enemy_FSM : MonoBehaviour
             state = STATE.DEAD;
             GameObject deadVFX = Instantiate(deadEffect, this.transform.position, Quaternion.identity);
             Destroy(deadVFX, 3f);
+            InsItemDrop();
             _animator.SetInteger("State", 5);
-
             Invoke("DestroyEnemy", destroyDelay);
         }
         else
             state = STATE.DAMAGED;
+    }
+
+    void InsItemDrop()
+    {
+        // 8 : 1 : 1
+        int randomValue = Random.Range(1, 11);
+
+        Debug.LogWarning($"{randomValue} 결과");
+        if(randomValue < 2) // 이때가 1
+        {
+            GameObject healItem = Instantiate(healItemPrefab, this.gameObject.transform.position, Quaternion.identity);
+        }
+        else if(randomValue >= 2 && randomValue <= 9) // 이때가 2~9
+        {
+            GameObject ammoItem = Instantiate(ammoItemPrefab, this.gameObject.transform.position, Quaternion.identity);
+        }
+        else // 이때가 10
+        {
+            return;
+        }
     }
 
     void DestroyEnemy()
