@@ -129,9 +129,17 @@ public class WeaponScript : MonoBehaviour
             GameObject enemyHit = Instantiate(enemyHitVFX, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal));
             Destroy(enemyHit, 3.3f);
         }
+        else if(hit.collider.tag == "Boss")
+        {
+            var boss = hit.collider.GetComponent<BossControl>();
+            if (boss != null)
+            {
+                boss.Damaged(weaponDamage);
+            }
+        }
         else
         {
-            GameObject bulletHole = Instantiate(bulletHolePrefab, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal));
+        GameObject bulletHole = Instantiate(bulletHolePrefab, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal));
         }
     }
     

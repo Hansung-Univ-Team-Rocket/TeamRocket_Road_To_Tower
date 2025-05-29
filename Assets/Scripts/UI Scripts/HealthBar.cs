@@ -5,48 +5,65 @@ public class HealthBar : MonoBehaviour
 {
     public Slider healthSlider;         // 즉시 반응하는 체력바
     public Slider easeHealthSlider;     // 부드럽게 따라오는 체력바
-    public float maxHealth = 100f;
-    private float currentHealth;
-    private float lerpSpeed = 0.05f;
+
+    [SerializeField] Enemy_FSM fsm;
+    float lerpSpeed = 0.05f;
+    Transform cameraTransform;
+    private int maxHealth;
+
 
     void Start()
     {
-        currentHealth = maxHealth;
+        fsm = GetComponentInParent<Enemy_FSM>();
+
+        if(fsm == null )
+        {
+            Debug.LogError("Null");
+
+            return;
+        }
+
+        cameraTransform = Camera.main.transform;
+        maxHealth = fsm.hp;
+
         healthSlider.maxValue = maxHealth;
         easeHealthSlider.maxValue = maxHealth;
 
-        healthSlider.value = currentHealth;
-        easeHealthSlider.value = currentHealth;
+        healthSlider.value = maxHealth;
+        easeHealthSlider.value = maxHealth;
     }
 
     void Update()
     {
-        // 테스트용 데미지
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            TakeDamage(10);
-        }
+        if (fsm == null) return;
+
+        // 현재 체력 비율 계산 (0~1)
+        float healthPercentage = (float)fsm.hp / maxHealth;
 
         // 즉시 체력바 반영
-        healthSlider.value = currentHealth;
+        healthSlider.value = fsm.hp;
 
         // 부드러운 체력바 반영
-        if (easeHealthSlider.value != currentHealth)
+        if (Mathf.Abs(easeHealthSlider.value - fsm.hp) > 0.01f)
         {
-            easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, currentHealth, lerpSpeed);
+            easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, fsm.hp, lerpSpeed);
         }
 
-        // 체력바가 항상 카메라를 보게 (선택)
-        transform.LookAt(Camera.main.transform);
-        transform.Rotate(0, 180, 0); 
+        // if (Input.GetKeyDown(KeyCode.P))
+        // {
+        //     Debug.Log($"Current HP: {enemyFSM.hp}/{maxHealth}, Slider: {healthSlider.value}/{healthSlider.maxValue}");
+        // }
+
+        if (cameraTransform != null)
+        {
+            transform.LookAt(cameraTransform);
+            transform.Rotate(0, 180, 0);
+        }
     }
 
-    public void TakeDamage(float amount)
+    public void UpdateMaxHealth(int maxHealth)
     {
-        currentHealth -= amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-    
+        healthSlider.maxValue = maxHealth;
+        easeHealthSlider.maxValue = maxHealth;
     }
-
-   
 }

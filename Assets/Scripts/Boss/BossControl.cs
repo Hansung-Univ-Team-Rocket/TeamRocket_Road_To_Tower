@@ -43,6 +43,8 @@ public class BossControl : MonoBehaviour
     public float spikeDuration = 2f;
     public int spikeCount = 5;
     [SerializeField] float damageCooldown = 1.0f; // 데미지 쿨타임 (1초)
+    [SerializeField] bool _isDead = false;
+    [SerializeField] CapsuleCollider _capsuleCollider;
     private bool _canDamage = true; // 데미지를 줄 수 있는지 여부
     // private float headHeight = 3.0f;
     // private float shoulderHeight = 1.5f;
@@ -59,6 +61,7 @@ public class BossControl : MonoBehaviour
         Floor = GameObject.FindWithTag("Floor");
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        _capsuleCollider = GetComponent<CapsuleCollider>();
         audioSource.PlayOneShot(AwakeSound);
 
         StartCoroutine(Delayed());
@@ -67,15 +70,17 @@ public class BossControl : MonoBehaviour
     void Update()
     {
         if (player == null) return;
-
-        if (!Dash)
+        if (_isDead == false)
         {
-            Vector3 directionToPlayer = player.transform.position - transform.position;
-            directionToPlayer.y = 0; // 수평 회전만 고려
-            if (directionToPlayer != Vector3.zero)
+            if (!Dash)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer.normalized);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // 부드럽게 회전
+                Vector3 directionToPlayer = player.transform.position - transform.position;
+                directionToPlayer.y = 0; // 수평 회전만 고려
+                if (directionToPlayer != Vector3.zero)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer.normalized);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // 부드럽게 회전
+                }
             }
         }
     }
@@ -122,6 +127,10 @@ public class BossControl : MonoBehaviour
     {
         while (true)
         {
+            if (_isDead)
+            {
+                yield break;
+            }
             if (!isAttacking)
             {
                 isAttacking = true;
@@ -145,9 +154,9 @@ public class BossControl : MonoBehaviour
                     case 4:
                         yield return StartCoroutine(SpikePattern());
                         break;
-                    // case 5:
-                    //     yield return StartCoroutine(CreateChildMonsters());
-                    //     break;
+                        // case 5:
+                        //     yield return StartCoroutine(CreateChildMonsters());
+                        //     break;
                 }
 
                 yield return new WaitForSeconds(patternCooldown);
@@ -167,6 +176,10 @@ public class BossControl : MonoBehaviour
         // 준비 시간 동안 플레이어를 계속 바라봄
         while (preparationTime < 2.0f)
         {
+            if (_isDead)
+            {
+                yield break;
+            }
             Vector3 directionToPlayer = (player.transform.position - transform.position);
             directionToPlayer.y = 0;
             if (directionToPlayer != Vector3.zero)
@@ -189,6 +202,10 @@ public class BossControl : MonoBehaviour
         audioSource.PlayOneShot(DashSound);
         while (Vector3.Distance(transform.position, dashTarget) > 0.1f)
         {
+            if (_isDead)
+            {
+                yield break;
+            }
             transform.position = Vector3.MoveTowards(transform.position, dashTarget, dashSpeed * Time.deltaTime);
             yield return null;
         }
@@ -206,6 +223,10 @@ public class BossControl : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
+            if (_isDead)
+            {
+                yield break;
+            }
             Transform fireHand = RHand;
 
             FireStraightBullet(fireHand);
@@ -228,6 +249,10 @@ public class BossControl : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(targetDirection);
 
         anim.SetBool("shoot", true);
+        if (_isDead)
+        {
+            yield break;
+        }
         FireHomingBullet(RHand);
         audioSource.PlayOneShot(ShootSound);
         yield return new WaitForSeconds(1f);
@@ -250,6 +275,10 @@ public class BossControl : MonoBehaviour
 
         for (int i = 0; i < 4; i++) // 총 4회 반복
         {
+            if (_isDead)
+            {
+                yield break;
+            }
             if (i % 2 == 0)
             {
                 anim.SetBool("spread", false);
@@ -304,7 +333,11 @@ public class BossControl : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(targetDirection);
 
         for (int count = 0; count < 3; count++)
-        { 
+        {
+            if (_isDead)
+            {
+                yield break;
+            }
             anim.SetBool("spike", true);
             audioSource.PlayOneShot(WarningSound);
             List<Vector3> spikePositions = new List<Vector3>();
@@ -453,5 +486,15 @@ public class BossControl : MonoBehaviour
         _canDamage = false;
         yield return new WaitForSeconds(damageCooldown);
         _canDamage = true;
+    }
+    public void Damaged(int HitDamage)
+    {
+        Debug.Log("Boss Hit");
+        HP -= HitDamage;
+        if (HP <= 0)
+        {
+            _isDead = true;
+            anim.SetBool("Death", true);
+        }
     }
 }

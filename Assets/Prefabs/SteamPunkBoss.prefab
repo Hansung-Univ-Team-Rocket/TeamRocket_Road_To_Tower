@@ -3249,7 +3249,7 @@ GameObject:
   - component: {fileID: -2141515450325025083}
   m_Layer: 0
   m_Name: SteamPunkBoss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3376,6 +3376,7 @@ MonoBehaviour:
   SpreadSound: {fileID: 8300000, guid: 970394946013b3f489cca4996bc0ef86, type: 3}
   WarningSound: {fileID: 8300000, guid: 19e5c7293652ef44a9322cf2dbc714c6, type: 3}
   DeathSound: {fileID: 8300000, guid: 9bbe58e9814591a4d801f1fa98f891d9, type: 3}
+  HP: 2000
   dashSpeed: 30
   patternCooldown: 2
   damage: 10
@@ -3384,6 +3385,9 @@ MonoBehaviour:
   warningDuration: 3
   spikeDuration: 2
   spikeCount: 8
+  damageCooldown: 1
+  _isDead: 0
+  _capsuleCollider: {fileID: 0}
 --- !u!82 &-2141515450325025083
 AudioSource:
   m_ObjectHideFlags: 0
