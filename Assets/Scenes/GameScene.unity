@@ -9939,6 +9939,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39ea0359a28017f408028bfb90edff8b, type: 3}
+--- !u!1 &227815005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 227815006}
+  - component: {fileID: 227815007}
+  m_Layer: 0
+  m_Name: MobManger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &227815006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227815005}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 206.75488, y: 18.481754, z: 273.31516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &227815007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227815005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5554cd5fe473ee04c9ce259567c17ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sawSpwanPoint:
+  - {fileID: 1891092623}
+  - {fileID: 1983609395}
+  - {fileID: 1615607283}
+  - {fileID: 496358071}
+  - {fileID: 1090047582}
+  gunSpwanPoint:
+  - {fileID: 1378213927}
+  - {fileID: 1821783233}
+  - {fileID: 1395803952}
+  - {fileID: 1185066190}
+  gunMobPrefab: {fileID: 8165668999619849044, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
+  sawMobPrefab: {fileID: 6286660815683654274, guid: 832095aaad66e1241834c676333714b8, type: 3}
 --- !u!1001 &228369347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97455,4 +97512,8 @@ SceneRoots:
   - {fileID: 879507530}
   - {fileID: 20118124}
   - {fileID: 1487717425}
+<<<<<<< HEAD
   - {fileID: 371973370}
+=======
+  - {fileID: 227815006}
+>>>>>>> JDH
