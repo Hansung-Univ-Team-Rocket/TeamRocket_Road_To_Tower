@@ -130,6 +130,7 @@ public class Enemy_FSM : MonoBehaviour
             Destroy(deadVFX, 3f);
             InsItemDrop();
             _animator.SetInteger("State", 5);
+            GameObject.FindGameObjectWithTag("Manager").GetComponent<PlayerHealthUI>().AddKill();
             Invoke("DestroyEnemy", destroyDelay);
         }
         else
