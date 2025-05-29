@@ -11,6 +11,14 @@ TagManager:
   - Weapon
   - Enemy
   - MuzzlePos
+  - CinemachineTarget
+  - FxTemporaire
+  - Team2
+  - Concrete
+  - BHException
+  - Wood
+  - Ground
+  - WeaponPos
   layers:
   - Default
   - TransparentFX

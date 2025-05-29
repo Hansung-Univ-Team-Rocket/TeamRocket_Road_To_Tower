@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0) && !_characterController.isReroading && !_characterController.isNowDodge)
         {
             _characterController.isFire = true;
-            FireGun(inputs);
+            FireGun();
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
@@ -194,7 +194,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void FireGun(PlayerInput inputs)
+    void FireGun()
     {
         if (_weaponScript.nowReroading || _weaponScript.nowBullet <= 0 || _weaponScript.weaponType == WeaponScript.WEAPON_TYPE.RIFLE) return;
         if(_fireTimer < _weaponScript.roundsPerMinute) return;
@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // 여기에 데미지 처리 필요함. 일단 테스트
-            ShowBulletTestTrail(ray.origin, hit.point);
+            //ShowBulletTestTrail(ray.origin, hit.point);
         }
     }
     void ShowBulletTestTrail(Vector3 start, Vector3 end)
