@@ -179,8 +179,22 @@ public class PlayerController : MonoBehaviour
         inputs.CameraRotation = _playerCam.transform.rotation;
         inputs.CrouchDown = Input.GetKeyDown(KeyCode.LeftControl);
         inputs.CrouchUp = Input.GetKeyUp(KeyCode.LeftControl);
-        inputs.Sprint = Input.GetKey(KeyCode.LeftShift);
-        inputs.Non_Sprint = !inputs.Sprint;
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            inputs.Sprint = true;
+            inputs.Non_Sprint = false;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            inputs.Sprint = false;
+            inputs.Non_Sprint = true;
+        }
+        else
+        {
+            inputs.Sprint = false;
+            inputs.Non_Sprint = false;
+        }
+
         //inputs.Reroading = Input.GetKeyDown(KeyCode.R);
 
         if (inputs.Sprint) Debug.Log("달리기 온");
@@ -239,6 +253,8 @@ public class PlayerController : MonoBehaviour
     {
         WeaponScript currentWeapon = _weaponManager.currentWeapon;
 
+        if (_characterController.upperPlayerState == UpperPlayerState.DAMAGED) return;
+
         if (Input.GetKeyDown(KeyCode.R) && !_characterController.isReroading && currentWeapon.CanReload())
         {
             _characterController.isReroading = true;
@@ -274,7 +290,7 @@ public class PlayerController : MonoBehaviour
     {
         WeaponScript currentWeapon = _weaponManager.currentWeapon;
 
-        if (_weaponManager.animation.isChangingWeapon) return;
+        if (_weaponManager.animation.isChangingWeapon || _characterController.upperPlayerState == UpperPlayerState.DAMAGED) return;
 
         if(Input.GetKey(KeyCode.Mouse0) && !_characterController.isReroading && !_characterController.isNowDodge)
         {
