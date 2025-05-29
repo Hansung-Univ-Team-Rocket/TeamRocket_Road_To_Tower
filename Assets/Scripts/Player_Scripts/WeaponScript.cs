@@ -51,7 +51,7 @@ public class WeaponScript : MonoBehaviour
 
     void Start()
     {
-        weaponType = WEAPON_TYPE.PISTOL;
+        //weaponType = WEAPON_TYPE.PISTOL;
         muzzlePos = FindChildWithTag(this.gameObject.transform, "MuzzlePos");
     }
 
@@ -72,19 +72,24 @@ public class WeaponScript : MonoBehaviour
 
     public bool CanReload()
     {
-        if (weaponType == WEAPON_TYPE.PISTOL) return true; // 만약 권총인 경우(딱총 기본 무한 탄창) 조건 없이 장전 가능
+        if (weaponType == WEAPON_TYPE.PISTOL) return nowBullet < maxBullet; // 현재 권총이 꽉 찬 경우면 재장전 불가능으로 전환, 대신 잔여 탄창은 신경쓰지 않음
         else return nowBullet < maxBullet && remainingAmmo > 0;
     }
 
     public void Reload()
     {
-        if(!CanReload()) return;
+        if (!CanReload()) return;
 
-        int ammoNeeded = maxBullet - nowBullet; // 최대 탄약이 12인 경우, 현재 탄창에 3발 있는 경우 9발이 해당 값으로 들어감. 즉, 실제 장전이 필요한 탄들
-        int ammoToReload = Mathf.Min(ammoNeeded, remainingAmmo); // 만약에 remainingAmmo가 ammoNeeded보다 작은 경우, remainingAmmo 만큼 소모
+        if (weaponType == WEAPON_TYPE.PISTOL) nowBullet = maxBullet; // 만약 권총인 경우(딱총 기본 무한 탄창) 조건 없이 장전 가능
+        
+        else // 총 타입이 권총이 아닌 경우
+        {
+            int ammoNeeded = maxBullet - nowBullet; // 최대 탄약이 12인 경우, 현재 탄창에 3발 있는 경우 9발이 해당 값으로 들어감. 즉, 실제 장전이 필요한 탄들
+            int ammoToReload = Mathf.Min(ammoNeeded, remainingAmmo); // 만약에 remainingAmmo가 ammoNeeded보다 작은 경우, remainingAmmo 만큼 소모
 
-        nowBullet += ammoToReload;
-        remainingAmmo -= ammoToReload;
+            nowBullet += ammoToReload;
+            remainingAmmo -= ammoToReload;
+        }
     }
     /// <summary>
     /// 무기의 잔탄을 추가해주는 함수(탄약 습득). 만약 탄약이 드랍시, 콜라이더에 닿으면서 해당 함수의 값을 불러와 추가해주어야 함.

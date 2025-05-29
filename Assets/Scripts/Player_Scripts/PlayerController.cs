@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
             if (_reRoadTimer >= currentWeapon.weaponReroadTime)
             {
                 _characterController.isReroading = false;
-                currentWeapon.nowBullet = currentWeapon.maxBullet;
+                currentWeapon.Reload();
                 _characterController.upperPlayerState = UpperPlayerState.IDLE;
                 _reRoadTimer = 0;
             }
