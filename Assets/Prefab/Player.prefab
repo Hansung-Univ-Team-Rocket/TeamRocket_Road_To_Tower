@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4991652256834247612}
   - component: {fileID: 8301865267372547547}
+  - component: {fileID: -5438066481488878499}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -48,15 +49,32 @@ MonoBehaviour:
   _cameraFollowPoint: {fileID: 0}
   _characterController: {fileID: 0}
   _WeaponPrefab: {fileID: 0}
-  _weaponScript: {fileID: 0}
+  _weaponManager: {fileID: 0}
   _fireTimer: 0
-  bulletTrailPrefab: {fileID: 6815339865969837386, guid: b30a684a183993c48819a15f1cb215e6, type: 3}
   _reRoadTimer: 0
   _isAim: 0
-  _beforeScrollInput: {x: 0, y: 0, z: 0}
-  muzzleEffect: {fileID: 6878135304120583779, guid: cdd844dc31268834ab0075ea39e56a82, type: 3}
-  muzzlePos: {fileID: 0}
-  bulletHolePrefab: {fileID: 4447654646729277233, guid: ec727f167a1e5954b939904e2c084452, type: 3}
-  enemyHitImpactVFX: {fileID: 4164134933671370030, guid: d7bff92b57d951c48bafc5c9e27dbf7c, type: 3}
-  enemyHitVFX: {fileID: 1346433991272976979, guid: 3d42f36585da4e7478aec6dfe32cd433, type: 3}
+  isChangingWeapon: 0
+  _wasDodging: 0
   _cameraSensivity: 0.5
+--- !u!114 &-5438066481488878499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6773009226213801514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb13f3ad7533b89459452b08818e1857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  heartPrefab: {fileID: 1265587779314288318, guid: 43f276ecdc35e674aae0f90fd4e7dbff, type: 3}
+  fullHeart: {fileID: 21300000, guid: 28f56cd86f3a2b442be233131fea8dd8, type: 3}
+  halfHeart: {fileID: 21300000, guid: 0f55c7f82e2980f4499e551800abdda5, type: 3}
+  emptyHeart: {fileID: 21300000, guid: 60752b3aec4043c4eb8778052d4edad9, type: 3}
+  heartContainer: {fileID: 0}
+  timeText: {fileID: 0}
+  scoreText: {fileID: 0}
+  gameOverManager: {fileID: 0}
+  totalKills: 0
