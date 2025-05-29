@@ -33,6 +33,7 @@ public class BossControl : MonoBehaviour
     private AudioSource audioSource;
 
 
+    public float HP = 2000f;
     public float dashSpeed = 20f;
     public float patternCooldown = 2f;
     public int damage = 5;
@@ -54,7 +55,7 @@ public class BossControl : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("CameraPos");
         Floor = GameObject.FindWithTag("Floor");
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
