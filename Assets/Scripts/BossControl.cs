@@ -122,7 +122,7 @@ public class BossControl : MonoBehaviour
             {
                 isAttacking = true;
 
-                int pattern = 4; // Random.Range(0, 5);
+                int pattern = Random.Range(0, 5);
                 switch (pattern)
                 {
                     case 0:
