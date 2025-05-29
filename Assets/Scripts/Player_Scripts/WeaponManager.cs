@@ -52,7 +52,7 @@ public class WeaponManager : MonoBehaviour
         if (animation.isChangingWeapon)
             return;
 
-        StartCoroutine(animation.ChangeWeapon(weaponIndex));
+        StartCoroutine(animation.ChangeWeapon());
 
         //weapons[currentWeaponIndex].gameObject.SetActive(false);
 

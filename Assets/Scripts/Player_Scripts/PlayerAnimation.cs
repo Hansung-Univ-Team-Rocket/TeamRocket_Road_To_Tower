@@ -192,20 +192,22 @@ public class PlayerAnimation : MonoBehaviour
         footstepCoroutine = null;
     }
 
-    public IEnumerator ChangeWeapon(int weaponNumber)
+    public IEnumerator ChangeWeapon()
     {
         // 이미 바꾸는 중이면 그대로 종료
         if (isChangingWeapon) yield break;
 
         isChangingWeapon = true;
-        anim.SetBool("IsChangeWeapon", true);
+        anim.SetTrigger("ChangeWeapon");
 
-        if (weaponNumber == 0) //딱총일 때
+        if (anim.GetInteger("Weapon") == 0) //딱총일 때
         {
             yield return new WaitForSeconds(1f);
             pistol.SetActive(false);
             yield return new WaitForSeconds(0.8f);
             rifle.SetActive(true);
+
+            anim.SetInteger("Weapon", 1);
         }
         else
         {
@@ -213,10 +215,9 @@ public class PlayerAnimation : MonoBehaviour
             rifle.SetActive(false);
             yield return new WaitForSeconds(0.3f);
             pistol.SetActive(true);
-        }
 
-        anim.SetBool("IsChangeWeapon", false);
-        CheckWeapon();
+            anim.SetInteger("Weapon", 0);
+        }
 
         isChangingWeapon = false;
     }
