@@ -16,6 +16,7 @@ public class PlayerAnimation : MonoBehaviour
     public AudioClip dodgeClip;
     public AudioClip shootingClip;
     public AudioClip damagedClip;
+    public AudioClip reloadClip;
     private AudioSource audioSource;
 
     private Coroutine footstepCoroutine;
@@ -97,6 +98,11 @@ public class PlayerAnimation : MonoBehaviour
         if (newState == UpperPlayerState.DAMAGED && lastUpperState != UpperPlayerState.DAMAGED)
         {
             audioSource.PlayOneShot(damagedClip);
+        }
+        // 재장전 효과음
+        if (newState == UpperPlayerState.REROADING && lastUpperState != UpperPlayerState.REROADING)
+        {
+            audioSource.PlayOneShot(reloadClip);
         }
 
         switch (PMC.upperPlayerState)

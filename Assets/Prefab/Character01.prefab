@@ -155,6 +155,7 @@ MonoBehaviour:
   dodgeClip: {fileID: 8300000, guid: fd7a7cdf7914f36488c6bee6c09823ff, type: 3}
   shootingClip: {fileID: 8300000, guid: 1bcce874a5ea3614bbfc8d2ac9911836, type: 3}
   damagedClip: {fileID: 8300000, guid: 9e81f5e6ed90923449ef837ea9388035, type: 3}
+  reloadClip: {fileID: 8300000, guid: cb20d06dbc609e04c8b4f62ea7c0cdf6, type: 3}
   isChangingWeapon: 0
 --- !u!82 &2369117830751507620
 AudioSource:
@@ -625,6 +626,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 585097316622401413}
     m_Modifications:
+    - target: {fileID: 1397584959158872394, guid: ebb97bb75af97cc4ebc614f6f7511aaa, type: 3}
+      propertyPath: weaponReroadTime
+      value: 2.167
+      objectReference: {fileID: 0}
     - target: {fileID: 7462936746031389793, guid: ebb97bb75af97cc4ebc614f6f7511aaa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.108
@@ -817,6 +822,10 @@ PrefabInstance:
     - target: {fileID: 855604635881537218, guid: 7043c0331ddac204dafdfaae28ca72e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 71.603
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406544514695940967, guid: 7043c0331ddac204dafdfaae28ca72e1, type: 3}
+      propertyPath: weaponReroadTime
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1307,7 +1307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons: []
-  currentWeaponIndex: 0
+  currentWeaponIndex: 1
   animation: {fileID: 767253105366282620}
 --- !u!1 &1965638556
 GameObject:
