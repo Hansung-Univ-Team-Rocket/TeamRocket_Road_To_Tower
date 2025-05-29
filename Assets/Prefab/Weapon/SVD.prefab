@@ -134,10 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd279d8b8d62a5428093490f342ebb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 0
-  weaponDamage: 0
+  weaponType: 1
+  weaponDamage: 100
   weaponReroadTime: 0
-  roundsPerMinute: 0
+  roundsPerMinute: 0.5
   nowBullet: 12
   maxBullet: 12
   remainingAmmo: 12
@@ -149,7 +149,7 @@ MonoBehaviour:
   muzzlePos: {fileID: 0}
   bulletHolePrefab: {fileID: 4447654646729277233, guid: ec727f167a1e5954b939904e2c084452, type: 3}
   enemyHitImpactVFX: {fileID: 4164134933671370030, guid: d7bff92b57d951c48bafc5c9e27dbf7c, type: 3}
-  enemyHitVFX: {fileID: 4164134933671370030, guid: d7bff92b57d951c48bafc5c9e27dbf7c, type: 3}
+  enemyHitVFX: {fileID: 1346433991272976979, guid: 3d42f36585da4e7478aec6dfe32cd433, type: 3}
   _isAiming: 0
 --- !u!1 &855604635881301690
 GameObject:

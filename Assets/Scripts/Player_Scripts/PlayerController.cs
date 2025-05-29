@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     //}
     private void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         _playerCam.SetFollowTransform(_cameraFollowPoint);
         _weaponManager = GameObject.FindGameObjectWithTag("WeaponPos").GetComponent<WeaponManager>();
 
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
             if (_reRoadTimer >= currentWeapon.weaponReroadTime)
             {
                 _characterController.isReroading = false;
-                currentWeapon.nowBullet = currentWeapon.maxBullet;
+                currentWeapon.Reload();
                 _characterController.upperPlayerState = UpperPlayerState.IDLE;
                 _reRoadTimer = 0;
             }

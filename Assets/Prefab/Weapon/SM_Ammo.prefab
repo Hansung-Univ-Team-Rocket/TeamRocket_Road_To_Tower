@@ -104,7 +104,7 @@ MonoBehaviour:
   weaponType: 0
   weaponDamage: 0
   weaponReroadTime: 0
-  roundsPerMinute: 0
+  roundsPerMinute: 0.9
   nowBullet: 12
   maxBullet: 12
   remainingAmmo: 12
