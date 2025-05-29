@@ -4,84 +4,120 @@ using System.Collections.Generic;
 using TMPro;
 public class PlayerController : MonoBehaviour
 {
-    [Header("ÀÌµ¿ °ü·Ã")]
+    [Header("ì´ë™ ê´€ë ¨")]
     public float moveSpeed = 5f;
     private Rigidbody rb;
     private Vector3 moveDirection;
 
-    [Header("Ã¼·Â °ü·Ã")]
-    public float maxHealth = 20f;          // ÃÖ´ë Ã¼·Â (ÇÏÆ® 3°³ = 6HP) º¯°æ°¡´É
-    public float currentHealth = 20f;      // ÇöÀç Ã¼·Â (0.5 ´ÜÀ§ °¡´É)
+    [Header("ì²´ë ¥ ê´€ë ¨")]
+    public float maxHealth = 20f;          //  ìµœëŒ€ ì²´ë ¥ í•˜íŠ¸ 3ê°œ=6hp ë³€ê²½ê°€ëŠ¥
+    public float currentHealth = 20f;      // í˜„ì¬ ì²´ë ¥ 0.5 ë‹¨ìœ„ ê°€ëŠ¥
 
-    [Header("ÇÏÆ® UI °ü·Ã")]
-    public GameObject heartPrefab;        // ÇÏÆ® ÇÏ³ª´ç ÀÌ¹ÌÁö ÇÁ¸®ÆÕ
+    [Header("í•˜íŠ¸ UI ê´€ë ¨")]
+    public GameObject heartPrefab;        // í•˜íŠ¸ í•˜ë‚˜ë‹¹ ì´ë¯¸ì§€ í”„ë¦¬íŒ¹
     public Sprite fullHeart, halfHeart, emptyHeart;
-    public Transform heartContainer;      // ÇÏÆ®µéÀ» ´ãÀ» ºÎ¸ğ ¿ÀºêÁ§Æ® (HeartPanel)
+    public Transform heartContainer;      // í•˜íŠ¸ë“¤ì„ ë‹´ì„ ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸
     private List<Image> hearts = new List<Image>();
 
-    [Header("Å¸ÀÓ txt, ½ºÄÚ¾î txt")]
+    [Header("íƒ€ì„txt, ìŠ¤ì½”ì–´txt")]
     public TextMeshProUGUI timeText; 
     private float timer = 0f;
     public TextMeshProUGUI scoreText;
     private int score = 0;
 
+    public GameOverManager gameOverManager;
+
+    public int clearedStage = 1;
+    public int totalKills = 0;
+    public string causeOfDeath = "Die by enemy";
+
+    private bool isDead = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        CreateHearts(); //Ã¼·Â¿¡ ¸ÂÃç ÇÏÆ® UI»ı¼º
-        UpdateHearts(); //ÇöÀç Ã¼·Â¿¡ µû¶ó ÇÏÆ® UI»ı¼º
+
+        currentHealth = maxHealth; //ì²´ë ¥ í’€í”¼ë¡œ ì´ˆê¸°í™”
+        CreateHearts(); //ì²´ë ¥ì— ë§ì¶° í•˜íŠ¸ UIìƒì„±
+        UpdateHearts(); //í˜„ì¬ ì²´ë ¥ì— ë”°ë¼ í•˜íŠ¸ UIìƒì„±
     }
 
     void Update()
     {
-        // ÀÌµ¿ ÀÔ·Â Ã³¸®
+        // ì´ë™ ì…ë ¥ ì²˜ë¦¬
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector3(moveX, 0f, moveZ).normalized;
 
-        timer += Time.deltaTime; //½Ã°£ ÅØ½ºÆ®
+        timer += Time.deltaTime; //ì‹œê°„ í…ìŠ¤íŠ¸
 
-        int minutes = Mathf.FloorToInt(timer / 60f); //ºĞ
-        int seconds = Mathf.FloorToInt(timer % 60f); //ÃÊ
+        if (currentHealth <= 0)
+        {
+            Die(); //í”Œë ˆì´ì–´ ì£½ìŒ
+        }
+
+        int minutes = Mathf.FloorToInt(timer / 60f); //ë¶„
+        int seconds = Mathf.FloorToInt(timer % 60f); //ì´ˆ
 
         timeText.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
     }
 
 
-    //ÇÃ·¹ÀÌ¾î ¿òÁ÷ÀÓ
+    //í”Œë ˆì´ì–´ ì›€ì§ì„
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
 
-    //½ºÄÚ¾î ÅØ½ºÆ®
+
+    //í”Œë ˆì´ì–´ ì£½ì„ ì‹œ íŒ¨ë„ ì°½ì— ëœ° ê¸€ìë“¤, GameManagerì—ì„œ ë¶ˆëŸ¬ì˜´
+    void Die()
+    {
+
+        if (isDead) return; 
+        isDead = true;
+
+        gameOverManager.ShowGameOver(
+        clearedStage,
+        timer,
+        score,
+        totalKills,
+        causeOfDeath
+    );
+
+        Time.timeScale = 0f; // ê²Œì„ ë©ˆì¶¤
+    }
+
+    //ìŠ¤ì½”ì–´ í…ìŠ¤íŠ¸
     public void AddScore(int amount)
     {
         score += amount;
         scoreText.text = "Score\n"+ score.ToString();
     }
 
-    // Àû°ú Ãæµ¹ ½Ã µ¥¹ÌÁö 0.5 ÇÏÆ® (1HP) ½ºÄÚ¾î 200
+    // ì ê³¼ ì¶©ëŒì‹œ ë°ë¯¸ì§€
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            TakeDamage(1f); // ¹İÄ­ µ¥¹ÌÁö
-            AddScore(200); // Á¡¼ö +200 
-            Destroy(other.gameObject); // Àû »èÁ¦
+            TakeDamage(3.5f,"Hit by enemy"); // ë°ë¯¸ì§€ ê³„ìˆ˜ ì •í•  ìˆ˜ ìˆìŒ
+            totalKills += 1; // ì  í‚¬ìˆ˜
+            AddScore(200); // ì  í‚¬ë‹¹ ì ìˆ˜ 
+            Destroy(other.gameObject); // ì  ì‚­ì œ
         }
     }
 
 
-    //µ¥¹ÌÁö ¹ŞÀ½
-    public void TakeDamage(float amount)
+    //ë°ë¯¸ì§€ ë°›ìŒ
+    public void TakeDamage(float amount, string cause)
     {
         currentHealth = Mathf.Max(currentHealth - amount, 0f);
-        Debug.Log("ÇöÀç Ã¼·Â: " + currentHealth);
+        Debug.Log("í˜„ì¬ ì²´ë ¥: " + currentHealth);
+        causeOfDeath = cause;
         UpdateHearts();
     }
 
-    // Ã¼·ÂÈ¸º¹
+    // ì²´ë ¥ íšŒë³µ
     public void Heal(float amount)
     {
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
@@ -89,7 +125,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    //ÇÏÆ® prefabºÒ·¯¿À±â
+    //í•˜íŠ¸ prefabë¶ˆëŸ¬ì˜¤ê¸°
     void CreateHearts()
     {
         int heartCount = Mathf.CeilToInt(maxHealth / 2f);
@@ -102,7 +138,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // ÇÑ Ä­ ÇÏÆ®, ¹İ Ä­ ÇÏÆ®, ºó ÇÏÆ® ±¸Çö
+    // í•œ ì¹¸ í•˜íŠ¸, ë°˜ ì¹¸ í•˜íŠ¸, ë¹ˆ í•˜íŠ¸ êµ¬í˜„
     void UpdateHearts()
     {
         for (int i = 0; i < hearts.Count; i++)
@@ -110,11 +146,11 @@ public class PlayerController : MonoBehaviour
             float heartHealth = Mathf.Clamp(currentHealth - (i * 2f), 0f, 2f);
 
             if (heartHealth >= 2f)
-                hearts[i].sprite = fullHeart;  //ÇÑ Ä­= ¹İÄ­ 2°³
+                hearts[i].sprite = fullHeart;  //í•œ ì¹¸=ë°˜ ì¹¸ 2ê°œ
             else if (heartHealth >= 1f)
-                hearts[i].sprite = halfHeart; //¹İ Ä­
+                hearts[i].sprite = halfHeart; //ë°˜ ì¹¸
             else
-                hearts[i].sprite = emptyHeart;
+                hearts[i].sprite = emptyHeart;//ë¹ˆ ì¹¸
         }
     }
 }
