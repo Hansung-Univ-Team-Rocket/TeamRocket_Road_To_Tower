@@ -1,10 +1,11 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
     public PlayerMovementController PMC;
-    public WeaponScript WS;
+    public WeaponManager WM;
     public Animator anim;
 
     public GameObject pistol;
@@ -18,6 +19,8 @@ public class PlayerAnimation : MonoBehaviour
 
     private Coroutine footstepCoroutine;
     private UpperPlayerState lastUpperState;
+
+    public bool isChangingWeapon = false;
 
     void Start()
     {
@@ -37,7 +40,7 @@ public class PlayerAnimation : MonoBehaviour
         lastUpperState = PMC.upperPlayerState;
     }
 
-    void CheackWeapon()
+    void CheckWeapon()
     {
         /// 현재 무기 정보 받아와서 애니메이션 변수 설정.
         /// 딱총 : 0
@@ -45,18 +48,18 @@ public class PlayerAnimation : MonoBehaviour
         /// 활 : 2
         /// 검 : 3
 
-        switch (WS.weaponType)
+        switch (WM.currentWeaponIndex)
         {
-            case WeaponScript.WEAPON_TYPE.PISTOL:
+            case 0:
                 anim.SetInteger("Weapon", 0);
                 break;
-            case WeaponScript.WEAPON_TYPE.RIFLE:
+            case 1:
                 anim.SetInteger("Weapon", 1);
                 break;
-            case WeaponScript.WEAPON_TYPE.BOW:
+            case 2:
                 anim.SetInteger("Weapon", 2);
                 break;
-            case WeaponScript.WEAPON_TYPE.SWORD:
+            case 3:
                 anim.SetInteger("Weapon", 3);
                 break;
             default:
@@ -189,12 +192,15 @@ public class PlayerAnimation : MonoBehaviour
         footstepCoroutine = null;
     }
 
-    public IEnumerator ChangeWeapon()
+    public IEnumerator ChangeWeapon(int weaponNumber)
     {
-        anim.SetBool("IsWeaponChange", true);
-        anim.SetBool("IsWeaponChange", false);
+        // 이미 바꾸는 중이면 그대로 종료
+        if (isChangingWeapon) yield break;
 
-        if (WS.weaponType == 0) //딱총일 때
+        isChangingWeapon = true;
+        anim.SetBool("IsChangeWeapon", true);
+
+        if (weaponNumber == 0) //딱총일 때
         {
             yield return new WaitForSeconds(1f);
             pistol.SetActive(false);
@@ -208,5 +214,10 @@ public class PlayerAnimation : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             pistol.SetActive(true);
         }
+
+        anim.SetBool("IsChangeWeapon", false);
+        CheckWeapon();
+
+        isChangingWeapon = false;
     }
 }

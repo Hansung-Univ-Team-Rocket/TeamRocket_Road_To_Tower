@@ -4,7 +4,8 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] WeaponScript[] weapons;
-    [SerializeField] int currentWeaponIndex = 0;
+    public int currentWeaponIndex = 0;
+    public PlayerAnimation animation;
 
     PlayerCamera _playerCam;
     public WeaponScript currentWeapon => weapons[currentWeaponIndex]; // 현재 무기는 현재 무기 인덱스의 WeaponScript를 리턴
@@ -47,10 +48,16 @@ public class WeaponManager : MonoBehaviour
             return;
         }
 
-        weapons[currentWeaponIndex].gameObject.SetActive(false);
+        // 이미 무기전환 중이면 무시
+        if (animation.isChangingWeapon)
+            return;
+
+        StartCoroutine(animation.ChangeWeapon(weaponIndex));
+
+        //weapons[currentWeaponIndex].gameObject.SetActive(false);
 
         currentWeaponIndex = weaponIndex;
-        weapons[currentWeaponIndex].gameObject.SetActive(true);
+        //weapons[currentWeaponIndex].gameObject.SetActive(true);
 
         Debug.Log($"Weapon Swap {weapons[currentWeaponIndex].name}");
     }
