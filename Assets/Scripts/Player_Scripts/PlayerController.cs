@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         _playerCam.SetFollowTransform(_cameraFollowPoint);
         _weaponManager = GameObject.FindGameObjectWithTag("WeaponPos").GetComponent<WeaponManager>();
+
+        if (_weaponManager == null) Debug.LogError("WeaponManager is null");
     }
 
     Transform FindChildWithTag(Transform character, string tag)
@@ -156,7 +158,7 @@ public class PlayerController : MonoBehaviour
     {
         WeaponScript currentWeapon = _weaponManager.currentWeapon;
 
-        if (Input.GetKeyDown(KeyCode.R) && !_characterController.isReroading)
+        if (Input.GetKeyDown(KeyCode.R) && !_characterController.isReroading && currentWeapon.CanReload())
         {
             _characterController.isReroading = true;
             _characterController.upperPlayerState = UpperPlayerState.REROADING;
