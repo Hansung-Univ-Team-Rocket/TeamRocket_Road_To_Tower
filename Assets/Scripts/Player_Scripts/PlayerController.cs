@@ -1,7 +1,9 @@
+using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,19 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]    Transform _cameraFollowPoint;
     [SerializeField]    PlayerMovementController _characterController;
     [SerializeField]    Transform _WeaponPrefab;
-    [SerializeField]    WeaponScript _weaponScript;
+    [SerializeField]   WeaponManager _weaponManager;
     [SerializeField]    float _fireTimer = 0;
-    [SerializeField]    GameObject bulletTrailPrefab;
     [SerializeField]    float _reRoadTimer = 0;
     [SerializeField]    bool _isAim = false;
-    [SerializeField]    Vector3 _beforeScrollInput;
-
-    public              GameObject muzzleEffect;
-    public              Transform muzzlePos;
-    public              GameObject bulletHolePrefab;
-    public              GameObject enemyHitImpactVFX;
-    public              GameObject enemyHitVFX;
-    RaycastHit hit;
 
     Vector3 _lookInputVector;
 
@@ -33,11 +26,11 @@ public class PlayerController : MonoBehaviour
     //}
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         _playerCam.SetFollowTransform(_cameraFollowPoint);
-        _WeaponPrefab = FindChildWithTag(_characterController.gameObject.transform, "Weapon");
-        _weaponScript = _WeaponPrefab.GetComponent<WeaponScript>();
-        muzzlePos = GameObject.FindGameObjectWithTag("MuzzlePos").GetComponent<Transform>();
+        _weaponManager = GameObject.FindGameObjectWithTag("WeaponPos").GetComponent<WeaponManager>();
+
+        if (_weaponManager == null) Debug.LogError("WeaponManager is null");
     }
 
     Transform FindChildWithTag(Transform character, string tag)
@@ -57,19 +50,19 @@ public class PlayerController : MonoBehaviour
     {
         float mouseUp = Input.GetAxisRaw("Mouse Y");
         float mouseRIght = Input.GetAxisRaw("Mouse X");
-
         float scrollInput = -Input.GetAxis("Mouse ScrollWheel");
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             _playerCam.SetAimState(true);
-
             _isAim = true;
+            _weaponManager.currentWeapon.SetAimingState(true);
         }
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             _playerCam.SetAimState(false);
             _isAim = false;
+            _weaponManager.currentWeapon.SetAimingState(false);
         }
 
         _lookInputVector = new Vector3(mouseRIght, mouseUp, 0f);
@@ -90,10 +83,9 @@ public class PlayerController : MonoBehaviour
         }
     }
     void HandleCharacterInputs()
-    {
-
-        
+    {        
         _fireTimer += Time.deltaTime;
+        _weaponManager.HandleWeaponSwitchInput();
 
         PlayerInput inputs = new PlayerInput();
         if (PlayerStatusInfo.playerHP <= 0) {
@@ -121,36 +113,11 @@ public class PlayerController : MonoBehaviour
         inputs.Non_Sprint = !inputs.Sprint;
         //inputs.Reroading = Input.GetKeyDown(KeyCode.R);
 
-        if (Input.GetKeyDown(KeyCode.R) && !_characterController.isReroading)
-        {
-            _characterController.isReroading = true;
-            _characterController.upperPlayerState = UpperPlayerState.REROADING;
-        }
-
-        if (_characterController.isReroading)
-        {
-            _reRoadTimer += Time.deltaTime;
-
-            if (_reRoadTimer >= _weaponScript.weaponReroadTime)
-            {
-                _characterController.isReroading = false;
-                _weaponScript.nowBullet = _weaponScript.maxBullet;
-                _characterController.upperPlayerState = UpperPlayerState.IDLE;
-                _reRoadTimer = 0;
-            }
-        }
         if (inputs.Sprint) Debug.Log("달리기 온");
         if (inputs.Non_Sprint) Debug.Log("달리기 아님");
-        if (Input.GetKey(KeyCode.Mouse0) && !_characterController.isReroading && !_characterController.isNowDodge)
-        {
-            _characterController.isFire = true;
-            FireGun();
-        }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            _characterController.isFire = false;
-            _characterController.upperPlayerState = UpperPlayerState.IDLE;
-        }
+
+        HandleReloading();
+        HandleShooting();
 
         //if (Input.GetKey(KeyCode.Mouse0) && !_weaponScript.isMeele
         //    && !_weaponScript.nowReroading && _weaponScript.nowBullet > 0)
@@ -187,68 +154,50 @@ public class PlayerController : MonoBehaviour
         _characterController.SetInputs(ref inputs);
     }
 
-    void InsMuzzleEffet()
+    void HandleReloading()
     {
-        GameObject muzzleFlash = Instantiate(muzzleEffect, muzzlePos.transform.position, Quaternion.identity);
-        Destroy(muzzleFlash, 0.1f);
+        WeaponScript currentWeapon = _weaponManager.currentWeapon;
 
-    }
-
-    void FireGun()
-    {
-        if (_weaponScript.nowReroading || _weaponScript.nowBullet <= 0 || _weaponScript.weaponType == WeaponScript.WEAPON_TYPE.RIFLE) return;
-        if(_fireTimer < _weaponScript.roundsPerMinute) return;
-
-        _characterController.upperPlayerState = UpperPlayerState.SHOOTINGATTACK;
-        InsMuzzleEffet();
-        _fireTimer = 0;
-        _weaponScript.nowBullet--;
-
-        // 에임 내 랜덤 방향 적용 (스프레드)
-        Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
-        //Vector3 spreadDir = GetSpreadDirection();
-
-        Ray ray = _playerCam.GetComponent<Camera>().ScreenPointToRay(screenCenter);
-        //ray.direction += spreadDir;
-
-        if (_isAim)
+        if (Input.GetKeyDown(KeyCode.R) && !_characterController.isReroading && currentWeapon.CanReload())
         {
-            _playerCam.ApplyRecoilShake(Random.Range(-_weaponScript.horizontalAmount * 2/3, _weaponScript.horizontalAmount * 2 / 3), _weaponScript.verticalAmount * 2 / 3);
+            _characterController.isReroading = true;
+            _characterController.upperPlayerState = UpperPlayerState.REROADING;
         }
-        else
-        {
-            _playerCam.ApplyRecoilShake(Random.Range(-_weaponScript.horizontalAmount, _weaponScript.horizontalAmount), _weaponScript.verticalAmount);
-        }
-        if (Physics.Raycast(ray, out RaycastHit hit, _weaponScript.maxFireDistance))
-        {
-            Debug.Log($"Hit {hit.collider.name} ||||||||| {hit.point}");
 
-            if(hit.collider.tag == "Enemy")
+        if (_characterController.isReroading)
+        {
+            _reRoadTimer += Time.deltaTime;
+
+            if (_reRoadTimer >= currentWeapon.weaponReroadTime)
             {
-                hit.collider.gameObject.GetComponent<Enemy_FSM>().Damaged(_weaponScript.weaponDamage);
-                GameObject enemyHitImpact = Instantiate(enemyHitImpactVFX, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal));
-                GameObject enemyHit = Instantiate(enemyHitVFX, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal));
-
-                Destroy(enemyHit, 3.3f);
+                _characterController.isReroading = false;
+                currentWeapon.nowBullet = currentWeapon.maxBullet;
+                _characterController.upperPlayerState = UpperPlayerState.IDLE;
+                _reRoadTimer = 0;
             }
-            else
-            {
-                GameObject bulletHole = Instantiate(bulletHolePrefab, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal));
-            }
-
-            // 여기에 데미지 처리 필요함. 일단 테스트
-            //ShowBulletTestTrail(ray.origin, hit.point);
         }
     }
-    void ShowBulletTestTrail(Vector3 start, Vector3 end)
-    {
-        GameObject trail = Instantiate(bulletTrailPrefab);
-        LineRenderer lr = trail.GetComponent<LineRenderer>();
-        lr.SetPosition(0, start);
-        lr.SetPosition(1, end);
 
-        Destroy(trail, 0.1f); // 잠깐 보여주고 제거
+    void HandleShooting()
+    {
+        WeaponScript currentWeapon = _weaponManager.currentWeapon;
+        if(Input.GetKey(KeyCode.Mouse0) && !_characterController.isReroading && !_characterController.isNowDodge)
+        {
+            if(_fireTimer >= currentWeapon.roundsPerMinute && currentWeapon.CanFIre())
+            {
+                _characterController.isFire = true;
+                _characterController.upperPlayerState = UpperPlayerState.SHOOTINGATTACK;
+                _fireTimer = 0;
+                currentWeapon.FIre();
+            }
+        }
+        if(Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            _characterController.isFire = false;
+            _characterController.upperPlayerState = UpperPlayerState.IDLE;
+        }
     }
+
     /*
     Vector3 GetSpreadDirection()
     {

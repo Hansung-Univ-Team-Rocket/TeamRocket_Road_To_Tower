@@ -890,11 +890,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
---- !u!4 &1092228070 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8847236386496557443, guid: 39544155b871b494195a8dd3f9984872, type: 3}
-  m_PrefabInstance: {fileID: 767253105366282613}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1120151444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,37 +1158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33d558f65647a9429adf8dfa0fde86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1625478045
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1625478046}
-  m_Layer: 0
-  m_Name: MuzzlePos
-  m_TagString: MuzzlePos
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1625478046
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625478045}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.2837048, y: 0.647697, z: 0.6476971, w: 0.28370538}
-  m_LocalPosition: {x: 0.32850632, y: 0.17441405, z: 0.062000252}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1092228070}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1766477520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,6 +1279,25 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1786349204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2012988249835069299, guid: 39544155b871b494195a8dd3f9984872, type: 3}
+  m_PrefabInstance: {fileID: 767253105366282613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1786349206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786349204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11c2a4e48780a54d8ca0244fd8eb17d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons: []
+  currentWeaponIndex: 0
 --- !u!1 &1965638556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,6 +1454,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4200246118179706390, guid: 39544155b871b494195a8dd3f9984872, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 4323119676766992386, guid: 39544155b871b494195a8dd3f9984872, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1547,6 +1534,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -67.894
       objectReference: {fileID: 0}
+    - target: {fileID: 5040935667477920135, guid: 39544155b871b494195a8dd3f9984872, type: 3}
+      propertyPath: bulletHolePrefab
+      value: 
+      objectReference: {fileID: 4447654646729277233, guid: ec727f167a1e5954b939904e2c084452, type: 3}
     - target: {fileID: 7380650440270575185, guid: 39544155b871b494195a8dd3f9984872, type: 3}
       propertyPath: weaponDamage
       value: 30
@@ -1627,13 +1618,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8847236386496557443, guid: 39544155b871b494195a8dd3f9984872, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 1625478046}
-    m_AddedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1791402128097378416, guid: 39544155b871b494195a8dd3f9984872, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8819550646697453676, guid: 39544155b871b494195a8dd3f9984872, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2012988249835069299, guid: 39544155b871b494195a8dd3f9984872, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1786349206}
   m_SourcePrefab: {fileID: 100100000, guid: 39544155b871b494195a8dd3f9984872, type: 3}
 --- !u!114 &767253105366282614 stripped
 MonoBehaviour:
