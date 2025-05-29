@@ -8,9 +8,7 @@ public class ChildMonster1 : MonoBehaviour
     public GameObject bulletPrefab;        // 발사할 총알 프리팹
     public Transform shootPoint;           // 총알 발사 위치 (빈 오브젝트)
 
-    public float shootCooldown = 3.6f;       // 총알 발사 간격
-    float curTime = 0;
-    bool isCoroutinePlaying = false;
+    public float shootCooldown = 3f;       // 총알 발사 간격
 
     private Animator anim;
 
@@ -25,36 +23,36 @@ public class ChildMonster1 : MonoBehaviour
                 player = playerObj.transform;
         }
 
+        StartCoroutine(ShootRoutine());
     }
 
-    private void Update()
+    IEnumerator ShootRoutine()
     {
-        curTime += Time.deltaTime;
-
-        if (curTime >= shootCooldown && !isCoroutinePlaying)
+        while (true)
         {
-            isCoroutinePlaying = true;
-            anim.SetTrigger("isShooting");
+            yield return new WaitForSeconds(shootCooldown);
 
-            StartCoroutine(Shooting());
+            if (player == null)
+                continue;
+
+            anim.SetTrigger("isShooting");
+            yield return new WaitForSeconds(1f); // 애니메이션 발사 준비 시간
+
+            yield return StartCoroutine(FireBulletWithDelay());
         }
     }
 
-    IEnumerator Shooting()
+    IEnumerator FireBulletWithDelay()
     {
-        yield return new WaitForSeconds(1f);
+
         GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
         DelayedBullet sb = bullet.GetComponent<DelayedBullet>();
-
         if (sb != null)
         {
             sb.target = player;
-            sb.StartMovingAfterDelay(0.5f, shootPoint);
+            sb.StartMovingAfterDelay(2f, shootPoint);
         }
-
-        isCoroutinePlaying = false;
-        
-            curTime = 0;
+        yield return new WaitForSeconds(2f);
+        yield return null;
     }
-
 }
