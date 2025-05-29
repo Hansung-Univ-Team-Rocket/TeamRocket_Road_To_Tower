@@ -24,6 +24,7 @@ TagManager:
   - CameraPos
   - Floor
   - Door
+  - Manager
   layers:
   - Default
   - TransparentFX
