@@ -1425,6 +1425,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7209413449646333281, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
+      propertyPath: attackEffect
+      value: 
+      objectReference: {fileID: 3308993914093469881, guid: fe8a879e79fa6e745a3cc121d8afc0d5, type: 3}
     - target: {fileID: 8165668999619849044, guid: 31a1f8dc06d796b4ca19b414d3ef00ff, type: 3}
       propertyPath: m_Name
       value: Enemy01
@@ -1442,6 +1446,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 410406794944906278, guid: 39544155b871b494195a8dd3f9984872, type: 3}
+      propertyPath: enemyHitVFX
+      value: 
+      objectReference: {fileID: 1346433991272976979, guid: 3d42f36585da4e7478aec6dfe32cd433, type: 3}
     - target: {fileID: 661667454427604828, guid: 39544155b871b494195a8dd3f9984872, type: 3}
       propertyPath: m_Name
       value: Character01
