@@ -6,7 +6,7 @@ using System.Linq;
 
 public class BossControl : MonoBehaviour
 {
-    public Transform player;
+    public GameObject player;
 
     public Transform LHand;
     public Transform RHand;
@@ -23,6 +23,14 @@ public class BossControl : MonoBehaviour
     // private GameObject headChild = null;
     // private GameObject leftShoulderChild = null;
     // private GameObject rightShoulderChild = null;
+
+    public AudioClip AwakeSound;
+    public AudioClip DashSound;
+    public AudioClip ShootSound;
+    public AudioClip SpreadSound;
+    public AudioClip WarningSound;
+    public AudioClip DeathSound;
+    private AudioSource audioSource;
 
     public float dashSpeed = 20f;
     public float patternCooldown = 2f;
@@ -43,8 +51,12 @@ public class BossControl : MonoBehaviour
 
     void Start()
     {
-        Floor = GameObject.Find("Floor");
+        player = GameObject.FindWithTag("Player");
+        Floor = GameObject.FindWithTag("Floor");
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(AwakeSound);
+
         StartCoroutine(Delayed());
     }
 
@@ -54,7 +66,7 @@ public class BossControl : MonoBehaviour
 
         if (!Dash)
         {
-            Vector3 directionToPlayer = player.position - transform.position;
+            Vector3 directionToPlayer = player.transform.position - transform.position;
             directionToPlayer.y = 0; // 수평 회전만 고려
             if (directionToPlayer != Vector3.zero)
             {
@@ -110,7 +122,7 @@ public class BossControl : MonoBehaviour
             {
                 isAttacking = true;
 
-                int pattern = 5; // Random.Range(0, 6);
+                int pattern = Random.Range(0, 5);
                 switch (pattern)
                 {
                     case 0:
@@ -151,7 +163,7 @@ public class BossControl : MonoBehaviour
         // 준비 시간 동안 플레이어를 계속 바라봄
         while (preparationTime < 2.0f)
         {
-            Vector3 directionToPlayer = (player.position - transform.position);
+            Vector3 directionToPlayer = (player.transform.position - transform.position);
             directionToPlayer.y = 0;
             if (directionToPlayer != Vector3.zero)
                 transform.rotation = Quaternion.LookRotation(directionToPlayer.normalized);
@@ -162,7 +174,7 @@ public class BossControl : MonoBehaviour
 
         // 돌진 시작 시점의 플레이어 위치를 기준으로 돌진
         ChangeBaseMapToWhite();
-        Vector3 dashTarget = player.position;
+        Vector3 dashTarget = player.transform.position;
         dashTarget.y = transform.position.y;
 
         transform.forward = (dashTarget - transform.position).normalized;
@@ -170,6 +182,7 @@ public class BossControl : MonoBehaviour
         // 해당 위치까지 돌진
 
         anim.SetBool("run", true);
+        audioSource.PlayOneShot(DashSound);
         while (Vector3.Distance(transform.position, dashTarget) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, dashTarget, dashSpeed * Time.deltaTime);
@@ -192,6 +205,7 @@ public class BossControl : MonoBehaviour
             Transform fireHand = RHand;
 
             FireStraightBullet(fireHand);
+            audioSource.PlayOneShot(ShootSound);
             yield return new WaitForSeconds(0.6f); // 간격 조정 가능
         }
         anim.SetBool("shoot", false);
@@ -203,7 +217,7 @@ public class BossControl : MonoBehaviour
     IEnumerator HomingShotPattern()
     {
         // 플레이어 위치 인식
-        Vector3 targetPosition = player.position;
+        Vector3 targetPosition = player.transform.position;
         targetPosition.y = transform.position.y;
         // 플레이어를 바라보게
         Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
@@ -211,9 +225,11 @@ public class BossControl : MonoBehaviour
 
         anim.SetBool("shoot", true);
         FireHomingBullet(RHand);
+        audioSource.PlayOneShot(ShootSound);
         yield return new WaitForSeconds(1f);
 
         FireHomingBullet(RHand);
+        audioSource.PlayOneShot(ShootSound);
         yield return new WaitForSeconds(1f);
         anim.SetBool("shoot", false);
     }
@@ -222,7 +238,7 @@ public class BossControl : MonoBehaviour
     IEnumerator SpreadPattern()
     {
         // 플레이어 위치 인식
-        Vector3 targetPosition = player.position;
+        Vector3 targetPosition = player.transform.position;
         targetPosition.y = transform.position.y;
         // 플레이어를 바라보게
         Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
@@ -234,8 +250,9 @@ public class BossControl : MonoBehaviour
             {
                 anim.SetBool("spread", false);
                 anim.SetBool("spread", true);
+                audioSource.PlayOneShot(SpreadSound);
             }
-            Vector3 directionToPlayer = (player.position - shootPoint.position).normalized;
+            Vector3 directionToPlayer = (player.transform.position - shootPoint.position).normalized;
             float startAngle = -fanAngle / 2f;
             float angleStep = fanAngle / (bulletCount - 1);
 
@@ -255,7 +272,7 @@ public class BossControl : MonoBehaviour
                 Spread sb = bullet.GetComponent<Spread>();
                 if (sb != null)
                 {
-                    sb.target = player;
+                    sb.target = player.transform;
                     sb.SetDirection(rotatedDirection);
                 }
 
@@ -276,7 +293,7 @@ public class BossControl : MonoBehaviour
     IEnumerator SpikePattern()
     {
         // 플레이어 위치 인식
-        Vector3 targetPosition = player.position;
+        Vector3 targetPosition = player.transform.position;
         targetPosition.y = transform.position.y;
         // 플레이어를 바라보게
         Vector3 targetDirection = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z).normalized;
@@ -285,15 +302,16 @@ public class BossControl : MonoBehaviour
         for (int count = 0; count < 3; count++)
         { 
             anim.SetBool("spike", true);
+            audioSource.PlayOneShot(WarningSound);
             List<Vector3> spikePositions = new List<Vector3>();
             List<GameObject> warningPlanes = new List<GameObject>();
 
             Vector3 floorSize = Floor.transform.localScale; // Floor 객체의 크기 (localScale)을 사용
             Vector3 floorCenter = Floor.transform.position; // Floor 중심 좌표
 
-            float realSizeX = floorSize.x * 10f; // Plane의 실제 크기 고려
-            float realSizeZ = floorSize.z * 10f;
-            float cellSize = 10f; // 셀 한 칸 크기
+            float realSizeX = floorSize.x * 5f; // Plane의 실제 크기 고려
+            float realSizeZ = floorSize.z * 5f;
+            float cellSize = 5f; // 셀 한 칸 크기
 
             // 가능한 셀 목록 생성
             List<Vector3> availableCells = new List<Vector3>();
@@ -304,7 +322,7 @@ public class BossControl : MonoBehaviour
                 {
                     float worldX = floorCenter.x - realSizeX / 2f + x * cellSize + cellSize / 2f;
                     float worldZ = floorCenter.z - realSizeZ / 2f + z * cellSize + cellSize / 2f;
-                    availableCells.Add(new Vector3(worldX, 0, worldZ));
+                    availableCells.Add(new Vector3(worldX, 16, worldZ));
                 }
             }
 
@@ -402,7 +420,7 @@ public class BossControl : MonoBehaviour
         NBullet sb = bullet.GetComponent<NBullet>();
         if (sb != null)
         {
-            sb.target = player;
+            sb.target = player.transform;
         }
     }
 
@@ -412,7 +430,7 @@ public class BossControl : MonoBehaviour
         Homing homing = bullet.GetComponent<Homing>();
         if (homing != null)
         {
-            homing.target = player;
+            homing.target = player.transform;
         }
     }
 }

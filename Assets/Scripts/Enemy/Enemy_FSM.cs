@@ -67,6 +67,13 @@ public class Enemy_FSM : MonoBehaviour
     [SerializeField] float investigateTime = 3f; // 마지막 위치를 조사하는 시간
     [SerializeField] float investigateTimer = 0f;
 
+    [Header("Melee Attack Timing")]
+    [SerializeField] float meleeAnimationDuration = 3.21f;
+    [SerializeField] float meleeColliderOnTime = 0.15f;
+    [SerializeField] float meleeColliderOffTime = 0.28f;
+    [SerializeField] float meleeAnimTimer = 0f;
+    [SerializeField] bool _isMeleeAnimPlaying = false;
+
     [SerializeField] CapsuleCollider _capsuleCollider;
     
     public GameObject deadEffect;
@@ -192,7 +199,7 @@ public class Enemy_FSM : MonoBehaviour
         NBullet sb = bullet.GetComponent<NBullet>();
         if (sb != null)
         {
-            sb.target = _player;
+            sb.target = GameObject.FindGameObjectWithTag("CameraPos").transform;
         }
         GameObject attackVFX = Instantiate(attackEffect, shotRocation.position, shotRocation.rotation);
         Destroy(attackVFX, 1.8f);
@@ -299,6 +306,15 @@ public class Enemy_FSM : MonoBehaviour
                 if (_animator != null)
                     _animator.SetInteger("State", 3);
 
+                if (isMeleeType && _isMeleeAnimPlaying)
+                {
+                    _isMeleeAnimPlaying = false;
+                    meleeAnimTimer = 0f;
+                    meleeCollider.enabled = false;
+                    _nav.isStopped = false;
+                    Debug.Log("Melee attack interrupted by damage");
+                }
+
                 staggerTimeChecker += Time.deltaTime;
                 _nav.SetDestination(this.transform.position);
 
@@ -388,48 +404,57 @@ public class Enemy_FSM : MonoBehaviour
 
             case STATE.ATTACK:
                 this.gameObject.transform.LookAt(_player.transform.position);
-                _nav.SetDestination(_player.transform.position);
+
+                // 원거리만 이동
+                if (!isMeleeType)
+                    _nav.SetDestination(_player.transform.position);
+
                 attackTImeChecker += Time.deltaTime;
                 attackStateDurationTimer += Time.deltaTime;
 
                 if (_animator != null)
                     _animator.SetInteger("State", 4);
-                else
-                {
-                    Debug.LogError("Animator is null");
-                }
 
-                if (attackTImeChecker >= attackRPM)
+                if (isMeleeType)
                 {
-                    _nav.SetDestination(this.transform.position);
+                    AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0); // 현재 애니메이션 시간 가져오기 (0~1 normalized)
+                    float normalizedTime = stateInfo.normalizedTime % 1;
 
-                    if (!isMeleeType)
+                    // 콜라이더 타이밍 (0~1 기준으로 변환)
+                    if (normalizedTime >= 0.1f && normalizedTime <= 0.3f)
                     {
-                        ShotBulletIns();
+                        if (!meleeCollider.enabled)
+                            meleeCollider.enabled = true;
                     }
                     else
                     {
-                        // 밀리 공격이라면, 여기로.
-                        // 콜라이더의 on을 담당해야 함.
-                        meleeCollider.enabled = true;
+                        if (meleeCollider.enabled)
+                            meleeCollider.enabled = false;
                     }
-                    attackTImeChecker = 0;
                 }
+                // 원거리 공격 - 타이머 기반
+                else
+                {
+                    if (attackTImeChecker >= attackRPM)
+                    {
+                        _nav.SetDestination(this.transform.position);
+                        ShotBulletIns();
+                        attackTImeChecker = 0;
+                    }
+                }
+
+                // State 전환 체크
                 if (attackStateDurationTimer >= minAttackStateTime)
                 {
                     if (!IsTragetInSight(this.transform.forward, toTarget, fovDegrees, maxDistance) ||
                             !IsStillInAttackRange(attackDistance))
                     {
                         if (isMeleeType)
-                        {
-                            // 밀리 공격이라면, 여기로.
-                            // 콜라이더의 off을 담당해야 함.
                             meleeCollider.enabled = false;
-                        }
-                        state = STATE.FIND; // 시야 밖이거나 공격 거리 밖이면 FIND로
+
+                        state = STATE.FIND;
                     }
                 }
-                
                 break;
 
             case STATE.DEAD:

@@ -1,4 +1,4 @@
-/*
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,13 +7,12 @@ public class MainMenuManager : MonoBehaviour
     // ���� ���� ��ư Ŭ�� ��
     public void OnStartGame()
     {
-        SceneManager.LoadScene("GameScene"); // �� ���� �÷��� �� �̸����� ����
+        SceneManager.LoadScene("Mapscence"); // �� ���� �÷��� �� �̸����� ����
     }
 
     // ���� ���� ��ư Ŭ�� ��
     public void OnQuitGame()
-    {
-        Debug.Log("���� ����!");
+    { 
         Application.Quit(); // ����� ���� ����
     }
 
@@ -28,4 +27,3 @@ public class MainMenuManager : MonoBehaviour
         settingPanel.SetActive(false);
     }
 }
-*/

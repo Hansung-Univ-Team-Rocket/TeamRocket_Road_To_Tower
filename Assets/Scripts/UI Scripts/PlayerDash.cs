@@ -1,4 +1,4 @@
-/*
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,4 +43,3 @@ public class PlayerDash : MonoBehaviour
         dashCooldownImage.fillAmount = 1f;
     }
 }
-*/
