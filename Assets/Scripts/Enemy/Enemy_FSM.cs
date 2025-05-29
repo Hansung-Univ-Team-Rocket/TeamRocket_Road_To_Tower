@@ -189,6 +189,11 @@ public class Enemy_FSM : MonoBehaviour
     public void ShotBulletIns() // 적 유닛 전용. 유저는 레이케이스트 사용
     {
         GameObject bullet_ = Instantiate(bullet, shotRocation.position, shotRocation.rotation);
+        NBullet sb = bullet.GetComponent<NBullet>();
+        if (sb != null)
+        {
+            sb.target = _player;
+        }
         GameObject attackVFX = Instantiate(attackEffect, shotRocation.position, shotRocation.rotation);
         Destroy(attackVFX, 1.8f);
     }
