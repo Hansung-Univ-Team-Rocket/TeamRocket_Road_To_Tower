@@ -1561,6 +1561,10 @@ PrefabInstance:
       propertyPath: bulletHolePrefab
       value: 
       objectReference: {fileID: 4447654646729277233, guid: ec727f167a1e5954b939904e2c084452, type: 3}
+    - target: {fileID: 5040935667477920135, guid: 39544155b871b494195a8dd3f9984872, type: 3}
+      propertyPath: weaponReroadTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7380650440270575185, guid: 39544155b871b494195a8dd3f9984872, type: 3}
       propertyPath: weaponDamage
       value: 30
