@@ -1534,6 +1534,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -67.894
       objectReference: {fileID: 0}
+    - target: {fileID: 5040935667477920135, guid: 39544155b871b494195a8dd3f9984872, type: 3}
+      propertyPath: bulletHolePrefab
+      value: 
+      objectReference: {fileID: 4447654646729277233, guid: ec727f167a1e5954b939904e2c084452, type: 3}
     - target: {fileID: 7380650440270575185, guid: 39544155b871b494195a8dd3f9984872, type: 3}
       propertyPath: weaponDamage
       value: 30
@@ -1614,7 +1618,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1791402128097378416, guid: 39544155b871b494195a8dd3f9984872, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8819550646697453676, guid: 39544155b871b494195a8dd3f9984872, type: 3}
     m_AddedGameObjects: []
@@ -1622,9 +1627,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2012988249835069299, guid: 39544155b871b494195a8dd3f9984872, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1786349206}
-    - targetCorrespondingSourceObject: {fileID: 4200246118179706390, guid: 39544155b871b494195a8dd3f9984872, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 767253105366282617}
   m_SourcePrefab: {fileID: 100100000, guid: 39544155b871b494195a8dd3f9984872, type: 3}
 --- !u!114 &767253105366282614 stripped
 MonoBehaviour:
@@ -1642,40 +1644,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3960286704313683735, guid: 39544155b871b494195a8dd3f9984872, type: 3}
   m_PrefabInstance: {fileID: 767253105366282613}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &767253105366282616 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4200246118179706390, guid: 39544155b871b494195a8dd3f9984872, type: 3}
-  m_PrefabInstance: {fileID: 767253105366282613}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &767253105366282617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767253105366282616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fd279d8b8d62a5428093490f342ebb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponType: 0
-  weaponDamage: 30
-  weaponReroadTime: 0.12
-  roundsPerMinute: 0.12
-  nowBullet: 100
-  maxBullet: 100
-  remainingAmmo: 12
-  nowReroading: 0
-  maxFireDistance: 100
-  horizontalAmount: 0.2
-  verticalAmount: 0.3
-  muzzleEffect: {fileID: 6878135304120583779, guid: cdd844dc31268834ab0075ea39e56a82, type: 3}
-  muzzlePos: {fileID: 0}
-  bulletHolePrefab: {fileID: 0}
-  enemyHitImpactVFX: {fileID: 0}
-  enemyHitVFX: {fileID: 0}
-  _isAiming: 0
 --- !u!1001 &1075103330169451797
 PrefabInstance:
   m_ObjectHideFlags: 0
