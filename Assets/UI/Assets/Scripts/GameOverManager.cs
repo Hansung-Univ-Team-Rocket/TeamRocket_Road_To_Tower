@@ -1,4 +1,4 @@
-
+/*
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -13,7 +13,7 @@ public class GameOverManager : MonoBehaviour
     public TextMeshProUGUI killText;
     public TextMeshProUGUI causeText;
 
-    public void ShowGameOver(float playTime, int score, int kills, string cause)
+    public void ShowGameOver(int stage, float playTime, int score, int kills, string cause)
     {
         gameOverPanel.SetActive(true);
 
@@ -34,4 +34,4 @@ public class GameOverManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // ���� �� �ٽ� �ε�
     }
 }
-
+*/

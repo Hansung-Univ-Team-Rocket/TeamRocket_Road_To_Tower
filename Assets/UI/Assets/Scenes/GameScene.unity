@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0.6458749, b: 0.097232126, a: 1}
+  m_Color: {r: 1, g: 0.82876694, b: 0.4481132, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2296,11 +2296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9296a3f33ce44eeea8ed3c5c2656e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverPanel: {fileID: 0}
-  timeText: {fileID: 0}
-  scoreText: {fileID: 0}
-  killText: {fileID: 0}
-  causeText: {fileID: 0}
 --- !u!1 &729851939
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,7 +2309,7 @@ GameObject:
   - component: {fileID: 729851941}
   - component: {fileID: 729851940}
   m_Layer: 5
-  m_Name: HealthCanvas
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2453,7 +2448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8490566, g: 0.6216114, b: 0.028034903, a: 1}
+  m_Color: {r: 0.745283, g: 0.5861727, b: 0.16522783, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3094,7 +3089,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &912314779
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3459,7 +3454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1021779449
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4467,7 +4462,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 30
   m_WholeNumbers: 0
-  m_Value: 10
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
