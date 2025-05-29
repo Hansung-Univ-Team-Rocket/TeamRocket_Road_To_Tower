@@ -1,4 +1,4 @@
-/*
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -67,4 +67,3 @@ public class SettingsUIManager : MonoBehaviour
         settingsPanel.SetActive(false);
     }
 }
-*/
