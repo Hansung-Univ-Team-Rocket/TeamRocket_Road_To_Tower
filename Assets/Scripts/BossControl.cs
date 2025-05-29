@@ -44,7 +44,7 @@ public class BossControl : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        Floor = GameObject.Find("Floor");
+        Floor = GameObject.FindWithTag("Floor");
         anim = GetComponent<Animator>();
         StartCoroutine(Delayed());
     }
@@ -111,7 +111,7 @@ public class BossControl : MonoBehaviour
             {
                 isAttacking = true;
 
-                int pattern = Random.Range(0, 5);
+                int pattern = 4;//Random.Range(0, 5);
                 switch (pattern)
                 {
                     case 0:
