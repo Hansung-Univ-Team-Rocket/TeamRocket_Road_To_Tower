@@ -24,6 +24,14 @@ public class BossControl : MonoBehaviour
     // private GameObject leftShoulderChild = null;
     // private GameObject rightShoulderChild = null;
 
+    public AudioClip AwakeSound;
+    public AudioClip DashSound;
+    public AudioClip ShootSound;
+    public AudioClip SpreadSound;
+    public AudioClip WarningSound;
+    public AudioClip DeathSound;
+    private AudioSource audioSource;
+
     public float dashSpeed = 20f;
     public float patternCooldown = 2f;
     public int damage = 5;
@@ -46,6 +54,9 @@ public class BossControl : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         Floor = GameObject.FindWithTag("Floor");
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(AwakeSound);
+
         StartCoroutine(Delayed());
     }
 
@@ -111,7 +122,7 @@ public class BossControl : MonoBehaviour
             {
                 isAttacking = true;
 
-                int pattern = 4;//Random.Range(0, 5);
+                int pattern = Random.Range(0, 5);
                 switch (pattern)
                 {
                     case 0:
@@ -171,6 +182,7 @@ public class BossControl : MonoBehaviour
         // 해당 위치까지 돌진
 
         anim.SetBool("run", true);
+        audioSource.PlayOneShot(DashSound);
         while (Vector3.Distance(transform.position, dashTarget) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, dashTarget, dashSpeed * Time.deltaTime);
@@ -193,6 +205,7 @@ public class BossControl : MonoBehaviour
             Transform fireHand = RHand;
 
             FireStraightBullet(fireHand);
+            audioSource.PlayOneShot(ShootSound);
             yield return new WaitForSeconds(0.6f); // 간격 조정 가능
         }
         anim.SetBool("shoot", false);
@@ -212,9 +225,11 @@ public class BossControl : MonoBehaviour
 
         anim.SetBool("shoot", true);
         FireHomingBullet(RHand);
+        audioSource.PlayOneShot(ShootSound);
         yield return new WaitForSeconds(1f);
 
         FireHomingBullet(RHand);
+        audioSource.PlayOneShot(ShootSound);
         yield return new WaitForSeconds(1f);
         anim.SetBool("shoot", false);
     }
@@ -235,6 +250,7 @@ public class BossControl : MonoBehaviour
             {
                 anim.SetBool("spread", false);
                 anim.SetBool("spread", true);
+                audioSource.PlayOneShot(SpreadSound);
             }
             Vector3 directionToPlayer = (player.transform.position - shootPoint.position).normalized;
             float startAngle = -fanAngle / 2f;
@@ -286,6 +302,7 @@ public class BossControl : MonoBehaviour
         for (int count = 0; count < 3; count++)
         { 
             anim.SetBool("spike", true);
+            audioSource.PlayOneShot(WarningSound);
             List<Vector3> spikePositions = new List<Vector3>();
             List<GameObject> warningPlanes = new List<GameObject>();
 
