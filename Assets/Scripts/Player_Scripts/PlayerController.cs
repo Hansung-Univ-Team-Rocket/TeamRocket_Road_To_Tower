@@ -185,6 +185,9 @@ public class PlayerController : MonoBehaviour
     void HandleShooting()
     {
         WeaponScript currentWeapon = _weaponManager.currentWeapon;
+
+        if (_weaponManager.animation.isChangingWeapon) return;
+
         if(Input.GetKey(KeyCode.Mouse0) && !_characterController.isReroading && !_characterController.isNowDodge)
         {
             if(_fireTimer >= currentWeapon.roundsPerMinute && currentWeapon.CanFIre())

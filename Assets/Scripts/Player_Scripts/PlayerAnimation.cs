@@ -210,7 +210,7 @@ public class PlayerAnimation : MonoBehaviour
         isChangingWeapon = true;
         anim.SetTrigger("ChangeWeapon");
 
-        yield return new WaitForSeconds(1.8f); // 무기들 직접 제어하면서 꼬였음. WeaponManager에서 관리하게 전환하고 애니메이션만
+        yield return new WaitForSeconds(2.2f); // 무기들 직접 제어하면서 꼬였음. WeaponManager에서 관리하게 전환하고 애니메이션만
 
         anim.SetInteger("Weapon", toIdx); // 파라메터 인덱스 전환
 
