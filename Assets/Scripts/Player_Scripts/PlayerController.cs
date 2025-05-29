@@ -11,11 +11,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]    Transform _cameraFollowPoint;
     [SerializeField]    PlayerMovementController _characterController;
     [SerializeField]    Transform _WeaponPrefab;
-    [SerializeField]   WeaponManager _weaponManager;
+    [SerializeField]    WeaponManager _weaponManager;
     [SerializeField]    float _fireTimer = 0;
     [SerializeField]    float _reRoadTimer = 0;
     [SerializeField]    bool _isAim = false;
     [SerializeField]    bool isChangingWeapon = false;
+    [SerializeField]    bool _wasDodging = false;
 
     Vector3 _lookInputVector;
 
@@ -57,6 +58,58 @@ public class PlayerController : MonoBehaviour
         float mouseRIght = Input.GetAxisRaw("Mouse X");
         float scrollInput = -Input.GetAxis("Mouse ScrollWheel");
 
+        // 닷지 중인가?
+        if (!_wasDodging && _characterController.isNowDodge)
+        {
+            // 닷지 시작 || 줌인
+            _playerCam.SetAimState(true);
+            _wasDodging = true;
+        }
+        else if (_wasDodging && !_characterController.isNowDodge)
+        {
+            // 닷지 끝 || 원래 에임 상태로 복구
+            _playerCam.SetAimState(_isAim);
+            _wasDodging = false;
+        }
+
+        // 닷지 중이 아닐 때는 여기로
+        if (!_characterController.isNowDodge)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                _playerCam.SetAimState(true);
+                _isAim = true;
+                _weaponManager.currentWeapon.SetAimingState(true);
+            }
+            if (Input.GetKeyUp(KeyCode.Mouse1))
+            {
+                _playerCam.SetAimState(false);
+                _isAim = false;
+                _weaponManager.currentWeapon.SetAimingState(false);
+            }
+        }
+
+        _lookInputVector = new Vector3(mouseRIght, mouseUp, 0f);
+
+        if (!_isAim)
+        {
+            _playerCam.UpdateWithInput(Time.deltaTime, scrollInput, _lookInputVector * _cameraSensivity);
+        }
+        else
+        {
+            _playerCam.UpdateWithInput(Time.deltaTime, -100f, _lookInputVector * _cameraSensivity);
+        }
+
+        // 닷지 중에는 CheckBump 비활성화
+        if (!_characterController.isNowDodge)
+        {
+            _playerCam.CheckBump();
+        }
+        /*
+        float mouseUp = Input.GetAxisRaw("Mouse Y");
+        float mouseRIght = Input.GetAxisRaw("Mouse X");
+        float scrollInput = -Input.GetAxis("Mouse ScrollWheel");
+
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             _playerCam.SetAimState(true);
@@ -87,7 +140,14 @@ public class PlayerController : MonoBehaviour
             _playerCam.UpdateWithInput(Time.deltaTime, -100f, _lookInputVector * _cameraSensivity);
         }
 
-        _playerCam.CheckBump();
+        if (!_characterController.isNowDodge)
+        {
+            _playerCam.CheckBump();
+        }
+        else
+        {
+            _playerCam.SetAimState(true);
+        }*/
     }
     void HandleCharacterInputs()
     {        
