@@ -23,6 +23,7 @@ TagManager:
   - AddMagazine
   - CameraPos
   - Floor
+  - Door
   layers:
   - Default
   - TransparentFX
