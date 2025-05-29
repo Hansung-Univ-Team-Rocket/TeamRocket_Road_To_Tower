@@ -7,6 +7,9 @@ public class PlayerAnimation : MonoBehaviour
     public WeaponScript WS;
     public Animator anim;
 
+    public GameObject pistol;
+    public GameObject rifle;
+
     public AudioClip moveClip;
     public AudioClip dodgeClip;
     public AudioClip shootingClip;
@@ -186,8 +189,24 @@ public class PlayerAnimation : MonoBehaviour
         footstepCoroutine = null;
     }
 
-    void PlayDodgeSound()
+    public IEnumerator ChangeWeapon()
     {
-        audioSource.PlayOneShot(dodgeClip);
+        anim.SetBool("IsWeaponChange", true);
+        anim.SetBool("IsWeaponChange", false);
+
+        if (WS.weaponType == 0) //µüÃÑÀÏ ¶§
+        {
+            yield return new WaitForSeconds(1f);
+            pistol.SetActive(false);
+            yield return new WaitForSeconds(0.8f);
+            rifle.SetActive(true);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1.5f);
+            rifle.SetActive(false);
+            yield return new WaitForSeconds(0.3f);
+            pistol.SetActive(true);
+        }
     }
 }
