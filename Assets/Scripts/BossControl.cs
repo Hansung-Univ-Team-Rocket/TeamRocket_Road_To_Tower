@@ -20,9 +20,9 @@ public class BossControl : MonoBehaviour
     public GameObject childMonsterPrefab;
     private GameObject Floor;
     private Animator anim;
-    private GameObject headChild = null;
-    private GameObject leftShoulderChild = null;
-    private GameObject rightShoulderChild = null;
+    // private GameObject headChild = null;
+    // private GameObject leftShoulderChild = null;
+    // private GameObject rightShoulderChild = null;
 
     public float dashSpeed = 20f;
     public float patternCooldown = 2f;
@@ -32,9 +32,9 @@ public class BossControl : MonoBehaviour
     public float warningDuration = 3f;
     public float spikeDuration = 2f;
     public int spikeCount = 5;
-    private float headHeight = 3.0f;
-    private float shoulderHeight = 1.5f;
-    private float shoulderOffset = 1.5f;
+    // private float headHeight = 3.0f;
+    // private float shoulderHeight = 1.5f;
+    // private float shoulderOffset = 1.5f;
 
     private Vector3 spikeAreaSize = new Vector3(25f, 0f, 25f);
 
@@ -129,9 +129,9 @@ public class BossControl : MonoBehaviour
                     case 4:
                         yield return StartCoroutine(SpikePattern());
                         break;
-                    case 5:
-                        yield return StartCoroutine(CreateChildMonsters());
-                        break;
+                    // case 5:
+                    //     yield return StartCoroutine(CreateChildMonsters());
+                    //     break;
                 }
 
                 yield return new WaitForSeconds(patternCooldown);
@@ -342,58 +342,58 @@ public class BossControl : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
     }
-    IEnumerator CreateChildMonsters()
-    {
-        // 이미 생성된 자식 몬스터가 있으면 생성하지 않음
-        if (headChild != null || leftShoulderChild != null || rightShoulderChild != null)
-        {
-            Debug.Log("자식 몬스터 이미 존재함, 생성 중단");
-            yield break; // 코루틴 종료
-        }
-
-        float moveDuration = 1f;
-
-        Vector3 bossCenterPos = transform.position;
-
-        Vector3 headTargetPos = transform.position + Vector3.up * 3f;
-        Vector3 leftShoulderTargetPos = LHand.position + Vector3.up * 1.5f;
-        Vector3 rightShoulderTargetPos = RHand.position + Vector3.up * 1.5f;
-
-        headChild = Instantiate(childMonsterPrefab, bossCenterPos, Quaternion.identity);
-        leftShoulderChild = Instantiate(childMonsterPrefab, bossCenterPos, Quaternion.identity);
-        rightShoulderChild = Instantiate(childMonsterPrefab, bossCenterPos, Quaternion.identity);
-
-        headChild.transform.parent = transform;
-        leftShoulderChild.transform.parent = transform;
-        rightShoulderChild.transform.parent = transform;
-
-        float elapsed = 0f;
-
-        while (elapsed < moveDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / moveDuration);
-
-            headChild.transform.position = Vector3.Lerp(bossCenterPos, headTargetPos, t);
-            leftShoulderChild.transform.position = Vector3.Lerp(bossCenterPos, leftShoulderTargetPos, t);
-            rightShoulderChild.transform.position = Vector3.Lerp(bossCenterPos, rightShoulderTargetPos, t);
-
-            Vector3 forwardDir = transform.forward;
-            headChild.transform.rotation = Quaternion.LookRotation(forwardDir);
-            leftShoulderChild.transform.rotation = Quaternion.LookRotation(forwardDir);
-            rightShoulderChild.transform.rotation = Quaternion.LookRotation(forwardDir);
-
-            yield return null;
-        }
-
-        headChild.transform.localPosition = Vector3.up * 3f;
-        leftShoulderChild.transform.localPosition = transform.InverseTransformPoint(LHand.position) + Vector3.up * 1.5f;
-        rightShoulderChild.transform.localPosition = transform.InverseTransformPoint(RHand.position) + Vector3.up * 1.5f;
-
-        headChild.transform.localRotation = Quaternion.identity;
-        leftShoulderChild.transform.localRotation = Quaternion.identity;
-        rightShoulderChild.transform.localRotation = Quaternion.identity;
-    }
+    // IEnumerator CreateChildMonsters()
+    // {
+    //     // 이미 생성된 자식 몬스터가 있으면 생성하지 않음
+    //     if (headChild != null || leftShoulderChild != null || rightShoulderChild != null)
+    //     {
+    //         Debug.Log("자식 몬스터 이미 존재함, 생성 중단");
+    //         yield break; // 코루틴 종료
+    //     }
+    // 
+    //     float moveDuration = 1f;
+    // 
+    //     Vector3 bossCenterPos = transform.position;
+    // 
+    //     Vector3 headTargetPos = transform.position + Vector3.up * 3f;
+    //     Vector3 leftShoulderTargetPos = LHand.position + Vector3.up * 1.5f;
+    //     Vector3 rightShoulderTargetPos = RHand.position + Vector3.up * 1.5f;
+    // 
+    //     headChild = Instantiate(childMonsterPrefab, bossCenterPos, Quaternion.identity);
+    //     leftShoulderChild = Instantiate(childMonsterPrefab, bossCenterPos, Quaternion.identity);
+    //     rightShoulderChild = Instantiate(childMonsterPrefab, bossCenterPos, Quaternion.identity);
+    // 
+    //     headChild.transform.parent = transform;
+    //     leftShoulderChild.transform.parent = transform;
+    //     rightShoulderChild.transform.parent = transform;
+    // 
+    //     float elapsed = 0f;
+    // 
+    //     while (elapsed < moveDuration)
+    //     {
+    //         elapsed += Time.deltaTime;
+    //         float t = Mathf.Clamp01(elapsed / moveDuration);
+    // 
+    //         headChild.transform.position = Vector3.Lerp(bossCenterPos, headTargetPos, t);
+    //         leftShoulderChild.transform.position = Vector3.Lerp(bossCenterPos, leftShoulderTargetPos, t);
+    //         rightShoulderChild.transform.position = Vector3.Lerp(bossCenterPos, rightShoulderTargetPos, t);
+    // 
+    //         Vector3 forwardDir = transform.forward;
+    //         headChild.transform.rotation = Quaternion.LookRotation(forwardDir);
+    //         leftShoulderChild.transform.rotation = Quaternion.LookRotation(forwardDir);
+    //         rightShoulderChild.transform.rotation = Quaternion.LookRotation(forwardDir);
+    // 
+    //         yield return null;
+    //     }
+    // 
+    //     headChild.transform.localPosition = Vector3.up * 3f;
+    //     leftShoulderChild.transform.localPosition = transform.InverseTransformPoint(LHand.position) + Vector3.up * 1.5f;
+    //     rightShoulderChild.transform.localPosition = transform.InverseTransformPoint(RHand.position) + Vector3.up * 1.5f;
+    // 
+    //     headChild.transform.localRotation = Quaternion.identity;
+    //     leftShoulderChild.transform.localRotation = Quaternion.identity;
+    //     rightShoulderChild.transform.localRotation = Quaternion.identity;
+    // }
 
 
     void FireStraightBullet(Transform hand)
