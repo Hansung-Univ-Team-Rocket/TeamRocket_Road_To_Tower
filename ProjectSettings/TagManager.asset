@@ -21,6 +21,7 @@ TagManager:
   - WeaponPos
   - Heal
   - AddMagazine
+  - CameraPos
   layers:
   - Default
   - TransparentFX
