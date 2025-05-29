@@ -19,6 +19,8 @@ TagManager:
   - Wood
   - Ground
   - WeaponPos
+  - Heal
+  - AddMagazine
   layers:
   - Default
   - TransparentFX
