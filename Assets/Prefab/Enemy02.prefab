@@ -793,6 +793,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5122489788512502966}
     m_Modifications:
+    - target: {fileID: 4200881995754156056, guid: b256f29ecd054394797b33bfa472885d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.465
+      objectReference: {fileID: 0}
     - target: {fileID: 7146982881763519569, guid: b256f29ecd054394797b33bfa472885d, type: 3}
       propertyPath: m_Name
       value: SteamPunkMech_2837_Saw Variant
