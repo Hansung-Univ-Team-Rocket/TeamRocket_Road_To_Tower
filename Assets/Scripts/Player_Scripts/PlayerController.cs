@@ -179,8 +179,22 @@ public class PlayerController : MonoBehaviour
         inputs.CameraRotation = _playerCam.transform.rotation;
         inputs.CrouchDown = Input.GetKeyDown(KeyCode.LeftControl);
         inputs.CrouchUp = Input.GetKeyUp(KeyCode.LeftControl);
-        inputs.Sprint = Input.GetKey(KeyCode.LeftShift);
-        inputs.Non_Sprint = !inputs.Sprint;
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            inputs.Sprint = true;
+            inputs.Non_Sprint = false;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            inputs.Sprint = false;
+            inputs.Non_Sprint = true;
+        }
+        else
+        {
+            inputs.Sprint = false;
+            inputs.Non_Sprint = false;
+        }
+
         //inputs.Reroading = Input.GetKeyDown(KeyCode.R);
 
         if (inputs.Sprint) Debug.Log("달리기 온");
