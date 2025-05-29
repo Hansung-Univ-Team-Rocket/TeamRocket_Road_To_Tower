@@ -16,17 +16,17 @@ public class MakeSomeNoise : MonoBehaviour {
     private MeshFilter mf;
 
     // Use this for initialization
-    void Start() {
-        mf = GetComponent<MeshFilter>();
-        MakeNoise();
-    }
+    //void Start() {
+    //    mf = GetComponent<MeshFilter>();
+    //    MakeNoise();
+    //}
 
-    // Update is called once per frame
-    void Update() {
-        MakeNoise();
-        xOffset += Time.deltaTime * timeScale;
-        yOffset += Time.deltaTime * timeScale;
-    }
+    //// Update is called once per frame
+    //void Update() {
+    //    MakeNoise();
+    //    xOffset += Time.deltaTime * timeScale;
+    //    yOffset += Time.deltaTime * timeScale;
+    //}
 
     void MakeNoise()
     {
