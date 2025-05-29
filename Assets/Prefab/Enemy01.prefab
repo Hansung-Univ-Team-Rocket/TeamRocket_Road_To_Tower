@@ -574,7 +574,6 @@ GameObject:
   - component: {fileID: 4969589321212435689}
   - component: {fileID: 7209413449646333281}
   - component: {fileID: 2387417619207883061}
-  - component: {fileID: 8416163081109179468}
   m_Layer: 0
   m_Name: Enemy01
   m_TagString: Enemy
@@ -700,21 +699,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8416163081109179468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8165668999619849044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e5b05e09aa354d1d880389bf29f92bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 2388450807153748760}
-  easeHealthSlider: {fileID: 7264007524064174611}
-  maxHealth: 100
 --- !u!1 &8204774354289106300
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +711,7 @@ GameObject:
   - component: {fileID: 3287958677826342090}
   - component: {fileID: 5440850083346694731}
   - component: {fileID: 5362324397884210938}
+  - component: {fileID: 2180248579919495108}
   m_Layer: 5
   m_Name: HealthCanvas
   m_TagString: Untagged
@@ -817,6 +802,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2180248579919495108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8204774354289106300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5b05e09aa354d1d880389bf29f92bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 2388450807153748760}
+  easeHealthSlider: {fileID: 7264007524064174611}
+  maxHealth: 100
 --- !u!1001 &4441886586739542531
 PrefabInstance:
   m_ObjectHideFlags: 0
