@@ -7,7 +7,7 @@ public class MainMenuManager : MonoBehaviour
     // ���� ���� ��ư Ŭ�� ��
     public void OnStartGame()
     {
-        SceneManager.LoadScene("GameScence"); // �� ���� �÷��� �� �̸����� ����
+        SceneManager.LoadScene("GameScene"); // �� ���� �÷��� �� �̸����� ����
     }
 
     // ���� ���� ��ư Ŭ�� ��
