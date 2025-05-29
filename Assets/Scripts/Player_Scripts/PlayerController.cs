@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     //}
     private void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         _playerCam.SetFollowTransform(_cameraFollowPoint);
         _weaponManager = GameObject.FindGameObjectWithTag("WeaponPos").GetComponent<WeaponManager>();
 
