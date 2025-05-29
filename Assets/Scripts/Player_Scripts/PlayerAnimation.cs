@@ -8,8 +8,9 @@ public class PlayerAnimation : MonoBehaviour
     public WeaponManager WM;
     public Animator anim;
 
-    public GameObject pistol;
-    public GameObject rifle;
+    //public GameObject pistol;
+    //public GameObject rifle;
+    // 하드 코딩할 필요가 없음. WeaponManager에서 가저올꺼임.
 
     public AudioClip moveClip;
     public AudioClip dodgeClip;
@@ -35,38 +36,47 @@ public class PlayerAnimation : MonoBehaviour
     {
         CheckUpperState();
         CheckLowerState();
+        CheckWeapon();
 
         // 업데이트 끝나고 현 스테이트 저장
         lastUpperState = PMC.upperPlayerState;
     }
 
+    public void SetWeaponIndex(int weaponIndex)
+    {
+        anim.SetInteger("Weapon", weaponIndex);
+    }
     void CheckWeapon()
     {
-        /// 현재 무기 정보 받아와서 애니메이션 변수 설정.
-        /// 딱총 : 0
-        /// 라이플 : 1
-        /// 활 : 2
-        /// 검 : 3
+        // 해당 코드라인도 수정이 필요. 무기 인덱스 따라 애니메이션 설정으로 수정했음.
+        ///// 현재 무기 정보 받아와서 애니메이션 변수 설정.
+        ///// 딱총 : 0
+        ///// 라이플 : 1
+        ///// 활 : 2
+        ///// 검 : 3
 
-        switch (WM.currentWeaponIndex)
-        {
-            case 0:
-                anim.SetInteger("Weapon", 0);
-                break;
-            case 1:
-                anim.SetInteger("Weapon", 1);
-                break;
-            case 2:
-                anim.SetInteger("Weapon", 2);
-                break;
-            case 3:
-                anim.SetInteger("Weapon", 3);
-                break;
-            default:
-                break;
-        }
+        //switch (WM.currentWeaponIndex)
+        //{
+        //    case 0:
+        //        anim.SetInteger("Weapon", 0);
+        //        break;
+        //    case 1:
+        //        anim.SetInteger("Weapon", 1);
+        //        break;
+        //    case 2:
+        //        anim.SetInteger("Weapon", 2);
+        //        break;
+        //    case 3:
+        //        anim.SetInteger("Weapon", 3);
+        //        break;
+        //    default:
+        //        break;
+        //}
 
-        anim.SetInteger("Weapon", 1);
+        //anim.SetInteger("Weapon", 1);
+
+        if (WM == null || WM.currentWeapon == null) return; // 웨폰 매니저가 널이거나 현재 무기가 널이면 그냥 리턴해서 에러 방지
+        anim.SetInteger("Weapon", WM.currentWeaponIndex); // 하드 코딩할 필요가 없음. 지금 무기 인덱스가 0, 1이 지금 딱총 라이플 순임
     }
 
     void CheckUpperState()
@@ -192,7 +202,7 @@ public class PlayerAnimation : MonoBehaviour
         footstepCoroutine = null;
     }
 
-    public IEnumerator ChangeWeapon()
+    public IEnumerator ChangeWeapon(int fromIdx, int toIdx) // 수정, 
     {
         // 이미 바꾸는 중이면 그대로 종료
         if (isChangingWeapon) yield break;
@@ -200,24 +210,9 @@ public class PlayerAnimation : MonoBehaviour
         isChangingWeapon = true;
         anim.SetTrigger("ChangeWeapon");
 
-        if (anim.GetInteger("Weapon") == 0) //딱총일 때
-        {
-            yield return new WaitForSeconds(1f);
-            pistol.SetActive(false);
-            yield return new WaitForSeconds(0.8f);
-            rifle.SetActive(true);
+        yield return new WaitForSeconds(1.8f); // 무기들 직접 제어하면서 꼬였음. WeaponManager에서 관리하게 전환하고 애니메이션만
 
-            anim.SetInteger("Weapon", 1);
-        }
-        else
-        {
-            yield return new WaitForSeconds(1.5f);
-            rifle.SetActive(false);
-            yield return new WaitForSeconds(0.3f);
-            pistol.SetActive(true);
-
-            anim.SetInteger("Weapon", 0);
-        }
+        anim.SetInteger("Weapon", toIdx); // 파라메터 인덱스 전환
 
         isChangingWeapon = false;
     }

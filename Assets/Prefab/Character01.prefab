@@ -151,12 +151,11 @@ MonoBehaviour:
   PMC: {fileID: 493876604377129990}
   WM: {fileID: 0}
   anim: {fileID: 2718322517016001878}
-  pistol: {fileID: 0}
-  rifle: {fileID: 0}
   moveClip: {fileID: 8300000, guid: ec9fa9cdb6e8fb64cb5e5df43200eada, type: 3}
   dodgeClip: {fileID: 8300000, guid: fd7a7cdf7914f36488c6bee6c09823ff, type: 3}
   shootingClip: {fileID: 8300000, guid: 1bcce874a5ea3614bbfc8d2ac9911836, type: 3}
   damagedClip: {fileID: 8300000, guid: 9e81f5e6ed90923449ef837ea9388035, type: 3}
+  isChangingWeapon: 0
 --- !u!82 &2369117830751507620
 AudioSource:
   m_ObjectHideFlags: 0
@@ -283,8 +282,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8847236386496557443}
   - {fileID: 3531267666320870572}
+  - {fileID: 8847236386496557443}
   m_Father: {fileID: 3149992942530547955}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2604928105250838174

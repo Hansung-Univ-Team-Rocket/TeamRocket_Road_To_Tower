@@ -1,3 +1,5 @@
+using Mono.Cecil.Cil;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -37,6 +39,11 @@ public class WeaponManager : MonoBehaviour
         {
             currentWeaponIndex = 0;
             weapons[currentWeaponIndex].gameObject.SetActive(true);
+
+            if(animation != null)
+            {
+                animation.SetWeaponIndex(currentWeaponIndex);
+            }
             Debug.Log($"In Suc, the first weapon sel {weapons[currentWeaponIndex].name}");
         }
     }
@@ -52,12 +59,21 @@ public class WeaponManager : MonoBehaviour
         if (animation.isChangingWeapon)
             return;
 
-        StartCoroutine(animation.ChangeWeapon());
+        if (currentWeaponIndex == weaponIndex) return; // 같은 무기라도 무시
 
-        //weapons[currentWeaponIndex].gameObject.SetActive(false);
+        StartCoroutine(ChangeWeaponWithAnim(weaponIndex));
 
-        currentWeaponIndex = weaponIndex;
-        //weapons[currentWeaponIndex].gameObject.SetActive(true);
+        Debug.Log($"Weapon Swap {weapons[currentWeaponIndex].name}");
+    }
+
+    IEnumerator ChangeWeaponWithAnim(int newWeaponIndex)
+    {
+        yield return StartCoroutine(animation.ChangeWeapon(currentWeaponIndex, newWeaponIndex)); // 애니메이션 시간이 끝날 때 아래 실행으로 코드 수정
+
+        // 실질적 무기 교체절
+        weapons[currentWeaponIndex].gameObject.SetActive(false);
+        currentWeaponIndex = newWeaponIndex;
+        weapons[currentWeaponIndex].gameObject.SetActive(true);
 
         Debug.Log($"Weapon Swap {weapons[currentWeaponIndex].name}");
     }
