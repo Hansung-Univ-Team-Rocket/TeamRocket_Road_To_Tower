@@ -711,7 +711,7 @@ MonoBehaviour:
   verticalAmount: 0.3
   muzzleEffect: {fileID: 0}
   muzzlePos: {fileID: 0}
-  bulletHolePrefab: {fileID: 0}
+  bulletHolePrefab: {fileID: 4447654646729277233, guid: ec727f167a1e5954b939904e2c084452, type: 3}
   enemyHitImpactVFX: {fileID: 0}
   enemyHitVFX: {fileID: 0}
   _isAiming: 0

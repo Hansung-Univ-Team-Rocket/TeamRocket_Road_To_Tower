@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7462936746031389793}
   - component: {fileID: 5782189793717130180}
   - component: {fileID: 8636357839297111822}
+  - component: {fileID: 1397584959158872394}
   m_Layer: 0
   m_Name: SM_Ammo
   m_TagString: Untagged
@@ -88,6 +89,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1397584959158872394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7843719976331069147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd279d8b8d62a5428093490f342ebb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 0
+  weaponDamage: 0
+  weaponReroadTime: 0
+  roundsPerMinute: 0
+  nowBullet: 12
+  maxBullet: 12
+  remainingAmmo: 12
+  nowReroading: 0
+  maxFireDistance: 100
+  horizontalAmount: 0.2
+  verticalAmount: 0.3
+  muzzleEffect: {fileID: 6878135304120583779, guid: cdd844dc31268834ab0075ea39e56a82, type: 3}
+  muzzlePos: {fileID: 0}
+  bulletHolePrefab: {fileID: 4164134933671370030, guid: d7bff92b57d951c48bafc5c9e27dbf7c, type: 3}
+  enemyHitImpactVFX: {fileID: 4164134933671370030, guid: d7bff92b57d951c48bafc5c9e27dbf7c, type: 3}
+  enemyHitVFX: {fileID: 1346433991272976979, guid: 3d42f36585da4e7478aec6dfe32cd433, type: 3}
+  _isAiming: 0
 --- !u!1 &8087506335963137639
 GameObject:
   m_ObjectHideFlags: 0

@@ -148,7 +148,8 @@ public class WeaponScript : MonoBehaviour
 
         nowBullet--;
         InsMuzzleEffet();
-        
+        ApplyRecoil();
+        RaycastCal();
     }
     public void InsMuzzleEffet()
     {
