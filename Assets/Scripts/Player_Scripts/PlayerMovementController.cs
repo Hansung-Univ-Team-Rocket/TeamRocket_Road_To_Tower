@@ -365,6 +365,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
     public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
     {
+
         // 업퍼 enum이 사격 시 아닐 시, 캐릭터는 카메라 시점으로 회전 X
         if (upperPlayerState == UpperPlayerState.SHOOTINGATTACK)
         {
@@ -382,6 +383,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
                 currentRotation = Quaternion.LookRotation(smoothedLookDir, _motor.CharacterUp);
             }
         }
+        
         else // 그 외에는
         {
             _orientationSharpness = 10f;
