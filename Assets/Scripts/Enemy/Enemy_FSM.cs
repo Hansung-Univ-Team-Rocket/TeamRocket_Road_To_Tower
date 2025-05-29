@@ -70,6 +70,7 @@ public class Enemy_FSM : MonoBehaviour
     [SerializeField] CapsuleCollider _capsuleCollider;
     
     public GameObject deadEffect;
+    public GameObject attackEffect;
 
     [Header("Enemy's Finder Value")]
     public float fovDegrees = 65f; // 적 유닛이 볼 수 있는 시야각 기본값 65
@@ -164,6 +165,8 @@ public class Enemy_FSM : MonoBehaviour
     public void ShotBulletIns() // 적 유닛 전용. 유저는 레이케이스트 사용
     {
         GameObject bullet_ = Instantiate(bullet, shotRocation.position, shotRocation.rotation);
+        GameObject attackVFX = Instantiate(attackEffect, shotRocation.position, shotRocation.rotation);
+        Destroy(attackVFX, 1.8f);
     }
 
     /// <summary>

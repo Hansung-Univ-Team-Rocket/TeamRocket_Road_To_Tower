@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour
         if (_weaponManager == null) Debug.LogError("WeaponManager is null");
     }
 
+    private void FixedUpdate()
+    {
+        Debug.Log($"{PlayerStatusInfo.playerHP} |||| HP");
+    }
     Transform FindChildWithTag(Transform character, string tag)
     {
         foreach(Transform childs in character.transform.GetComponentInChildren<Transform>())
