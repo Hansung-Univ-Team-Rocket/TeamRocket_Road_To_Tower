@@ -7,6 +7,7 @@ public class NBullet : Bullet
     public Transform target;
     public float speed = 10f;
     private Vector3 Direction;
+
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
@@ -25,5 +26,15 @@ public class NBullet : Bullet
 
         // 일정시간이 지나면 총알 삭제
         Destroy(gameObject, lifeTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.LogWarning("In");
+        if (other.gameObject.tag == "Player")
+        {
+            PlayerStatusInfo.playerHP --;
+            other.gameObject.GetComponent<PlayerMovementController>().TakeDamaged();
+        }
     }
 }

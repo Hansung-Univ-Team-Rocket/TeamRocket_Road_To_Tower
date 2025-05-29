@@ -12,9 +12,6 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Struc")
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

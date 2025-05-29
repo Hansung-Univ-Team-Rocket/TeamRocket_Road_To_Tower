@@ -433,4 +433,14 @@ public class BossControl : MonoBehaviour
             homing.target = player.transform;
         }
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.LogWarning("In");
+        if (other.gameObject.tag == "Player")
+        {
+            PlayerStatusInfo.playerHP--;
+            other.gameObject.GetComponent<PlayerMovementController>().TakeDamaged();
+        }
+    }
 }

@@ -18,4 +18,13 @@ public class Homing : Bullet
         transform.forward = direction;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.LogWarning("In");
+        if (other.gameObject.tag == "Player")
+        {
+            PlayerStatusInfo.playerHP --;
+            other.gameObject.GetComponent<PlayerMovementController>().TakeDamaged();
+        }
+    }
 }

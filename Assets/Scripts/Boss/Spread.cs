@@ -5,7 +5,7 @@ public class Spread : Bullet
     private Rigidbody rigid;
     public Transform target;
     public float speed = 10f;
-    private Vector3 Direction;
+    private Vector3 Direction; 
 
     void Start()
     {
@@ -24,5 +24,14 @@ public class Spread : Bullet
     public void SetDirection(Vector3 dir)
     {
         Direction = dir.normalized;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.LogWarning("In");
+        if (other.gameObject.tag == "Player")
+        {
+            PlayerStatusInfo.playerHP--;
+            other.gameObject.GetComponent<PlayerMovementController>().TakeDamaged();
+        }
     }
 }
