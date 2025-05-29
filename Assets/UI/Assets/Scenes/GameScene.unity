@@ -2309,7 +2309,7 @@ GameObject:
   - component: {fileID: 729851941}
   - component: {fileID: 729851940}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: HealthCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
