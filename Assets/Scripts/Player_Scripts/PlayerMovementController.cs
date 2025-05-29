@@ -75,6 +75,11 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     public UpperPlayerState upperPlayerState;
     public LowerPlayerState lowerPlayerState;
 
+    [Header("Damaged Stun")]
+    [SerializeField] float _damagedDuration = .5f;
+    [SerializeField] float _damagedTimer = 0f;
+    [SerializeField] bool _isDamaged = false;
+
     float _movementCheckValue = 0f;
 
 
@@ -98,8 +103,19 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
         upperPlayerState = UpperPlayerState.DEAD;
         lowerPlayerState = LowerPlayerState.DEAD;
-        
+    }
 
+    public void TakeDamaged()
+    {
+        if (upperPlayerState == UpperPlayerState.DEAD) return;
+        if (isNowDodge) return;
+
+        upperPlayerState = UpperPlayerState.DAMAGED;
+        _isDamaged = true;
+        _damagedTimer = 0;
+
+        isFire = false;
+        isReroading = false;
     }
     void ReturnMoveInput(PlayerInput inputs)
     {
@@ -115,6 +131,19 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
 
             return;
         }
+
+        if(_isDamaged)
+        {
+            _damagedTimer += Time.deltaTime;
+
+            if (_damagedTimer >= _damagedDuration)
+            {
+                _isDamaged = false;
+                upperPlayerState = UpperPlayerState.IDLE;
+                _damagedTimer = 0;
+            }
+            else return;
+        }
         ReturnMoveInput(inputs);
         if (_dodgeTimeChecker >= _dodgeTime && isNowDodge)
         {
@@ -124,7 +153,7 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
             lowerPlayerState = LowerPlayerState.IDLE;
             _dodgeTimeChecker = 0f;
         }
-        if (inputs.Dodge && !isNowDodge && !_isCrouching)
+        if (inputs.Dodge && !isNowDodge && !_isCrouching && !_isDamaged)
         {
             _isDodge = true;
             isNowDodge = true;
@@ -239,6 +268,12 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
         {
             upperPlayerState = UpperPlayerState.DODGE;
             lowerPlayerState = LowerPlayerState.DODGE;
+            return;
+        }
+
+        if (_isDamaged)
+        {
+            upperPlayerState = UpperPlayerState.DAMAGED;
             return;
         }
 

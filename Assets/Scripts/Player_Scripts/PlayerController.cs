@@ -239,6 +239,8 @@ public class PlayerController : MonoBehaviour
     {
         WeaponScript currentWeapon = _weaponManager.currentWeapon;
 
+        if (_characterController.upperPlayerState == UpperPlayerState.DAMAGED) return;
+
         if (Input.GetKeyDown(KeyCode.R) && !_characterController.isReroading && currentWeapon.CanReload())
         {
             _characterController.isReroading = true;
@@ -274,7 +276,7 @@ public class PlayerController : MonoBehaviour
     {
         WeaponScript currentWeapon = _weaponManager.currentWeapon;
 
-        if (_weaponManager.animation.isChangingWeapon) return;
+        if (_weaponManager.animation.isChangingWeapon || _characterController.upperPlayerState == UpperPlayerState.DAMAGED) return;
 
         if(Input.GetKey(KeyCode.Mouse0) && !_characterController.isReroading && !_characterController.isNowDodge)
         {
