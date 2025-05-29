@@ -473,7 +473,7 @@ public class BossControl : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (_canDamage && other.CompareTag("Player"))
+        if (!_isDead && _canDamage && other.CompareTag("Player"))
         {
             Debug.LogWarning("In");
             PlayerStatusInfo.playerHP--;
