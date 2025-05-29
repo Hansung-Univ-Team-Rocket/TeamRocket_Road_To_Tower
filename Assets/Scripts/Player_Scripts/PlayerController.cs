@@ -86,6 +86,8 @@ public class PlayerController : MonoBehaviour
         {
             _playerCam.UpdateWithInput(Time.deltaTime, -100f, _lookInputVector * _cameraSensivity);
         }
+
+        _playerCam.CheckBump();
     }
     void HandleCharacterInputs()
     {        
