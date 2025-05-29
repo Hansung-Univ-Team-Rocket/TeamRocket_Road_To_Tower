@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.XR;
 
-public class ChildMonster : MonoBehaviour
+public class ChildMonster1 : MonoBehaviour
 {
     public Transform player;                // 플레이어 위치
     public GameObject bulletPrefab;        // 발사할 총알 프리팹
@@ -44,18 +44,15 @@ public class ChildMonster : MonoBehaviour
 
     IEnumerator FireBulletWithDelay()
     {
-        // 총알 생성, 자식 몬스터 바로 앞 (shootPoint 위치), 아직 움직이지 않음
-        for (int i = 0; i < 3; i++)
-        {
-            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
-            NBullet sb = bullet.GetComponent<NBullet>();
-            if (sb != null)
-            {
-                sb.target = player;
-            }
-            yield return new WaitForSeconds(1f);
-        }
 
+        GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+        DelayedBullet sb = bullet.GetComponent<DelayedBullet>();
+        if (sb != null)
+        {
+            sb.target = player;
+            sb.StartMovingAfterDelay(2f, shootPoint);
+        }
+        yield return new WaitForSeconds(2f);
         yield return null;
     }
 }

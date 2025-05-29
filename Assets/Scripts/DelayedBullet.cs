@@ -1,62 +1,53 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class DelayedBullet : Bullet
 {
     private Rigidbody rigid;
-    private Transform followTarget;   // 붙어 있을 shootPoint
-    private Vector3 direction;
+    public Transform target;
+    public Transform originPoint; // shootPoint 참조 저장용
     public float speed = 10f;
-    public float delay = 3f;
-    private bool isFired = false;
 
-    void Awake()
+    private Vector3 direction;
+    private bool isMoving = false;
+
+    void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        rigid.isKinematic = true; // 초기엔 움직이지 않음
     }
 
-    public void Init(Transform shootPoint, Transform target)
+    public void StartMovingAfterDelay(float delaySeconds, Transform shootOrigin)
     {
-        followTarget = shootPoint;
-        StartCoroutine(DelayedFire(target));
+        originPoint = shootOrigin;
+        StartCoroutine(DelayedFire(delaySeconds));
     }
 
-    IEnumerator DelayedFire(Transform target)
+    IEnumerator DelayedFire(float delaySeconds)
     {
+        // 지연 시간 동안 shootPoint에 위치 고정
         float elapsed = 0f;
-
-        // 3초 동안 shootPoint 따라가기
-        while (elapsed < delay)
+        while (elapsed < delaySeconds)
         {
-            if (followTarget != null)
+            if (originPoint != null)
             {
-                transform.position = followTarget.position;
-                transform.rotation = followTarget.rotation;
+                transform.position = originPoint.position;
             }
 
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        // 방향 설정
+        // 방향 설정 및 발사
         if (target != null)
         {
             direction = (target.position - transform.position).normalized;
-        }
-        else
-        {
-            direction = transform.forward; // fallback
+            transform.forward = direction;
         }
 
-        // 발사 시작
-        rigid.isKinematic = false;
+        isMoving = true;
         rigid.linearVelocity = direction * speed;
-        isFired = true;
-    }
 
-    void Start()
-    {
+        // 수명 시간 후 자동 파괴
         Destroy(gameObject, lifeTime);
     }
 }

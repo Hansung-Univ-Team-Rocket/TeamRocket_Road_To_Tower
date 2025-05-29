@@ -119,6 +119,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &248957128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6737123798750313517, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+  m_PrefabInstance: {fileID: 1911317041}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &248957132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248957128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab12c976c192cbc4db8da125306002c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1945655888}
+  bulletPrefab: {fileID: 732405390335032389, guid: fe4f97f267d373240b0f503e7af7e41f, type: 3}
+  shootPoint: {fileID: 691766734}
+  shootCooldown: 3
+--- !u!4 &342450161 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7802499612650288080, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+  m_PrefabInstance: {fileID: 1972508439}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &552733490
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +362,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571763377}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &691766734 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7802499612650288080, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+  m_PrefabInstance: {fileID: 1911317041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1185758086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,6 +1140,27 @@ MonoBehaviour:
   warningDuration: 3
   spikeDuration: 2
   spikeCount: 8
+--- !u!1 &1808453240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6737123798750313517, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+  m_PrefabInstance: {fileID: 1972508439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1808453241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808453240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea58fa5b5951b2e4ba38815700306f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1945655888}
+  bulletPrefab: {fileID: 7114830885464625129, guid: 3e17504383b2ea44e9d003b01169a6db, type: 3}
+  shootPoint: {fileID: 342450161}
+  shootCooldown: 3
 --- !u!1 &1838209129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,6 +1313,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &1911317041
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 721266862, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 86d93f9aabfcd9042ab1b393ef60dc52, type: 2}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.082221
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6737123798750313517, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_Name
+      value: SteamPunkMech1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6737123798750313517, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 248957132}
+  m_SourcePrefab: {fileID: 100100000, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
 --- !u!1 &1945655884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,6 +1530,70 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   hp: 100
+--- !u!1001 &1972508439
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 721266862, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 86d93f9aabfcd9042ab1b393ef60dc52, type: 2}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211803962831005335, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6737123798750313517, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      propertyPath: m_Name
+      value: SteamPunkMech2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6737123798750313517, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1808453241}
+  m_SourcePrefab: {fileID: 100100000, guid: 342656cf724769a44ba1cd495c6ac96b, type: 3}
 --- !u!1 &1982988640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,6 +1792,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SteamPunkBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 5662631587569911981, guid: ccadec5bfda40594fbcac32f4787210a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1629,3 +1813,5 @@ SceneRoots:
   - {fileID: 1945655888}
   - {fileID: 1761507152}
   - {fileID: 1044265331783887731}
+  - {fileID: 1911317041}
+  - {fileID: 1972508439}
