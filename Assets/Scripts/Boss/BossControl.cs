@@ -32,6 +32,7 @@ public class BossControl : MonoBehaviour
     public AudioClip DeathSound;
     private AudioSource audioSource;
 
+
     public float dashSpeed = 20f;
     public float patternCooldown = 2f;
     public int damage = 5;
@@ -40,6 +41,8 @@ public class BossControl : MonoBehaviour
     public float warningDuration = 3f;
     public float spikeDuration = 2f;
     public int spikeCount = 5;
+    [SerializeField] float damageCooldown = 1.0f; // 데미지 쿨타임 (1초)
+    private bool _canDamage = true; // 데미지를 줄 수 있는지 여부
     // private float headHeight = 3.0f;
     // private float shoulderHeight = 1.5f;
     // private float shoulderOffset = 1.5f;
@@ -333,7 +336,7 @@ public class BossControl : MonoBehaviour
                 Vector3 cellPos = availableCells[index];
                 availableCells.RemoveAt(index);
 
-                GameObject warning = Instantiate(warningPlanePrefab, cellPos + Vector3.up * 0.01f, Quaternion.identity);
+                GameObject warning = Instantiate(warningPlanePrefab, cellPos + Vector3.up * 0.1f, Quaternion.identity);
                 warning.transform.localScale = new Vector3(cellSize, 0.1f, cellSize);
                 warningPlanes.Add(warning);
                 spikePositions.Add(cellPos);
@@ -434,13 +437,20 @@ public class BossControl : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
-        Debug.LogWarning("In");
-        if (other.gameObject.tag == "Player")
+        if (_canDamage && other.CompareTag("Player"))
         {
+            Debug.LogWarning("In");
             PlayerStatusInfo.playerHP--;
-            other.gameObject.GetComponent<PlayerMovementController>().TakeDamaged();
+            other.GetComponent<PlayerMovementController>().TakeDamaged();
+            StartCoroutine(DamageCooldownCoroutine());
         }
+    }
+    private System.Collections.IEnumerator DamageCooldownCoroutine()
+    {
+        _canDamage = false;
+        yield return new WaitForSeconds(damageCooldown);
+        _canDamage = true;
     }
 }
