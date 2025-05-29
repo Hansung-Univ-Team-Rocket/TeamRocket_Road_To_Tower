@@ -3246,6 +3246,7 @@ GameObject:
   - component: {fileID: 4293598445573918649}
   - component: {fileID: 3994764028535131898}
   - component: {fileID: 1599083660406449381}
+  - component: {fileID: -2141515450325025083}
   m_Layer: 0
   m_Name: SteamPunkBoss
   m_TagString: Untagged
@@ -3261,7 +3262,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5662631587569911981}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
@@ -3369,6 +3370,12 @@ MonoBehaviour:
   warningPlanePrefab: {fileID: 2801908183515063299, guid: c71c72ff2a5f6684fab881a9ba1c7d4b, type: 3}
   spikePrefab: {fileID: 5517957459761711049, guid: 8770f89a4f2ba6045adb2f71790a5b47, type: 3}
   childMonsterPrefab: {fileID: 2351567363269870945, guid: a07d0c6225b646e438131c5cfa6dd57c, type: 3}
+  AwakeSound: {fileID: 8300000, guid: b352028addb4222499b384eaeb46eed6, type: 3}
+  DashSound: {fileID: 8300000, guid: e1a098e4ace200f449396634330bd699, type: 3}
+  ShootSound: {fileID: 8300000, guid: 88f9332e304099640888aa728debf831, type: 3}
+  SpreadSound: {fileID: 8300000, guid: 970394946013b3f489cca4996bc0ef86, type: 3}
+  WarningSound: {fileID: 8300000, guid: 19e5c7293652ef44a9322cf2dbc714c6, type: 3}
+  DeathSound: {fileID: 8300000, guid: 9bbe58e9814591a4d801f1fa98f891d9, type: 3}
   dashSpeed: 30
   patternCooldown: 2
   damage: 10
@@ -3377,6 +3384,103 @@ MonoBehaviour:
   warningDuration: 3
   spikeDuration: 2
   spikeCount: 8
+--- !u!82 &-2141515450325025083
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5662631587569911981}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5738149564976804681
 GameObject:
   m_ObjectHideFlags: 0
