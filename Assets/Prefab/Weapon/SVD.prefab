@@ -134,10 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd279d8b8d62a5428093490f342ebb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 0
-  weaponDamage: 0
+  weaponType: 1
+  weaponDamage: 100
   weaponReroadTime: 0
-  roundsPerMinute: 0
+  roundsPerMinute: 0.5
   nowBullet: 12
   maxBullet: 12
   remainingAmmo: 12
