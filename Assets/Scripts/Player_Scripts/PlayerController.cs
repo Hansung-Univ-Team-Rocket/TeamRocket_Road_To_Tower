@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // 여기에 데미지 처리 필요함. 일단 테스트
-            ShowBulletTestTrail(ray.origin, hit.point);
+            //ShowBulletTestTrail(ray.origin, hit.point);
         }
     }
     void ShowBulletTestTrail(Vector3 start, Vector3 end)
