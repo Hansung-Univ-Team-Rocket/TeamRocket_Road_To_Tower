@@ -98,6 +98,12 @@ public class Enemy_FSM : MonoBehaviour
         {
             meleeCollider.enabled = false;
         }
+
+        HealthBar healthBar = GetComponentInChildren<HealthBar>();
+        if (healthBar != null)
+        {
+            healthBar.UpdateMaxHealth(hp);
+        }
     }
 
     void SpwanEffect()
