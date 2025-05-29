@@ -494,6 +494,7 @@ public class BossControl : MonoBehaviour
         if (HP <= 0)
         {
             _isDead = true;
+            GameObject.FindGameObjectWithTag("Manager").GetComponent<PlayerHealthUI>().AddScore(1000);
             anim.SetBool("Death", true);
         }
     }
