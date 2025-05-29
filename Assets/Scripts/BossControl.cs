@@ -122,7 +122,7 @@ public class BossControl : MonoBehaviour
             {
                 isAttacking = true;
 
-                int pattern = Random.Range(0, 5);
+                int pattern = 4; // Random.Range(0, 5);
                 switch (pattern)
                 {
                     case 0:
@@ -309,9 +309,9 @@ public class BossControl : MonoBehaviour
             Vector3 floorSize = Floor.transform.localScale; // Floor 객체의 크기 (localScale)을 사용
             Vector3 floorCenter = Floor.transform.position; // Floor 중심 좌표
 
-            float realSizeX = floorSize.x * 10f; // Plane의 실제 크기 고려
-            float realSizeZ = floorSize.z * 10f;
-            float cellSize = 10f; // 셀 한 칸 크기
+            float realSizeX = floorSize.x * 5f; // Plane의 실제 크기 고려
+            float realSizeZ = floorSize.z * 5f;
+            float cellSize = 5f; // 셀 한 칸 크기
 
             // 가능한 셀 목록 생성
             List<Vector3> availableCells = new List<Vector3>();
@@ -322,7 +322,7 @@ public class BossControl : MonoBehaviour
                 {
                     float worldX = floorCenter.x - realSizeX / 2f + x * cellSize + cellSize / 2f;
                     float worldZ = floorCenter.z - realSizeZ / 2f + z * cellSize + cellSize / 2f;
-                    availableCells.Add(new Vector3(worldX, 0, worldZ));
+                    availableCells.Add(new Vector3(worldX, 16, worldZ));
                 }
             }
 
