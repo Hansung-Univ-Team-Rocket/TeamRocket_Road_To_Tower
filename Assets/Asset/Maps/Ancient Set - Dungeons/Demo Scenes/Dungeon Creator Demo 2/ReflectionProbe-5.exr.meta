@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d690db86dddb6478ea272965c441929c
+=======
+guid: 93dcb9d07b5a58c4abac284acf19acef
+>>>>>>> JDH
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,6 +110,8 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD
+=======
   - serializedVersion: 4
     buildTarget: WindowsStoreApps
     maxTextureSize: 2048
@@ -119,6 +125,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+>>>>>>> JDH
   spriteSheet:
     serializedVersion: 2
     sprites: []
