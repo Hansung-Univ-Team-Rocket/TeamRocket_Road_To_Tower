@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]    float _fireTimer = 0;
     [SerializeField]    float _reRoadTimer = 0;
     [SerializeField]    bool _isAim = false;
+    [SerializeField]    bool isChangingWeapon = false;
 
     Vector3 _lookInputVector;
 
@@ -107,7 +108,10 @@ public class PlayerController : MonoBehaviour
 
             _characterController.Dead();
             return;
-        }        
+        }
+
+        isChangingWeapon = _weaponManager.animation.isChangingWeapon;
+
         inputs.AxisFwd = Input.GetAxisRaw("Vertical");
         inputs.AxisRight = Input.GetAxisRaw("Horizontal");
         inputs.CameraRotation = _playerCam.transform.rotation;
@@ -120,9 +124,20 @@ public class PlayerController : MonoBehaviour
         if (inputs.Sprint) Debug.Log("달리기 온");
         if (inputs.Non_Sprint) Debug.Log("달리기 아님");
 
-        HandleReloading();
-        HandleShooting();
-
+        // 무기 교체 아닐 때만 공격 되게 진행
+        if (!isChangingWeapon)
+        {
+            HandleReloading();
+            HandleShooting();
+        }
+        else // 안전장치 하나 더 추가, 혹시 몰라 여기에도 한번 더 거르기
+        {
+            _characterController.isFire = false;
+            if(_characterController.upperPlayerState == UpperPlayerState.SHOOTINGATTACK)
+            {
+                _characterController.upperPlayerState = UpperPlayerState.IDLE;
+            }
+        }
         //if (Input.GetKey(KeyCode.Mouse0) && !_weaponScript.isMeele
         //    && !_weaponScript.nowReroading && _weaponScript.nowBullet > 0)
         //{
@@ -180,6 +195,17 @@ public class PlayerController : MonoBehaviour
                 _reRoadTimer = 0;
             }
         }
+    }
+
+    public void ForceStopFiring()
+    {
+        _characterController.isFire = false;
+
+        if (_characterController.upperPlayerState == UpperPlayerState.SHOOTINGATTACK)
+        {
+            _characterController.upperPlayerState = UpperPlayerState.IDLE;
+        }
+        Debug.Log("강제 전환 실행됨?");
     }
 
     void HandleShooting()

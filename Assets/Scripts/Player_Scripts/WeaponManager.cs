@@ -61,6 +61,8 @@ public class WeaponManager : MonoBehaviour
 
         if (currentWeaponIndex == weaponIndex) return; // 같은 무기라도 무시
 
+        ForceStopAttacking(); // 교체 전 무기 사격 강제 캔슬
+
         StartCoroutine(ChangeWeaponWithAnim(weaponIndex));
 
         Debug.Log($"Weapon Swap {weapons[currentWeaponIndex].name}");
@@ -78,6 +80,15 @@ public class WeaponManager : MonoBehaviour
         Debug.Log($"Weapon Swap {weapons[currentWeaponIndex].name}");
     }
 
+    void ForceStopAttacking()
+    {
+        PlayerController playerController = FindFirstObjectByType<PlayerController>();
+
+        if (playerController != null)
+        {
+            playerController.ForceStopFiring();
+        }
+    }
     public void HandleWeaponSwitchInput()
     {
         if (weapons == null) return;
