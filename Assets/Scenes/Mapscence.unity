@@ -8890,7 +8890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938730b126e1148ed91aeb86ae2041df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashCooldownImage: {fileID: 0}
+  dashCooldownImage: {fileID: 1855200460}
   dashCooldown: 10
 --- !u!1001 &928982992
 PrefabInstance:
