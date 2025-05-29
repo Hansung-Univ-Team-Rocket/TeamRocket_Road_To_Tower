@@ -74,8 +74,8 @@ MonoBehaviour:
   damage: 1
   hp: 300
   moveSpeed: 12
-  attackDistance: 3
-  attackRPM: 1
+  attackDistance: 4
+  attackRPM: 3.5
   attackTImeChecker: 0
   staggerTime: 0.5
   staggerTimeChecker: 0
@@ -101,6 +101,11 @@ MonoBehaviour:
   hasLastKnownPosition: 0
   investigateTime: 3
   investigateTimer: 0
+  meleeAnimationDuration: 3.21
+  meleeColliderOnTime: 0.15
+  meleeColliderOffTime: 0.28
+  meleeAnimTimer: 0
+  _isMeleeAnimPlaying: 0
   _capsuleCollider: {fileID: 0}
   deadEffect: {fileID: 49151557670930427, guid: 9ce747358a9ddeb49b76c227f3588d2f, type: 3}
   attackEffect: {fileID: 0}
