@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]    bool _isAim = false;
     [SerializeField]    Vector3 _beforeScrollInput;
 
-    public              GameObject muzzleEffect;
-    public              Transform muzzlePos;
     public              GameObject bulletHolePrefab;
     public              GameObject enemyHitImpactVFX;
     public              GameObject enemyHitVFX;
@@ -35,9 +33,8 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         _playerCam.SetFollowTransform(_cameraFollowPoint);
-        _WeaponPrefab = FindChildWithTag(_characterController.gameObject.transform, "Weapon");
+        _WeaponPrefab = GameObject.FindGameObjectWithTag("Weapon").transform;
         _weaponScript = _WeaponPrefab.GetComponent<WeaponScript>();
-        muzzlePos = GameObject.FindGameObjectWithTag("MuzzlePos").GetComponent<Transform>();
     }
 
     Transform FindChildWithTag(Transform character, string tag)
@@ -187,22 +184,16 @@ public class PlayerController : MonoBehaviour
         _characterController.SetInputs(ref inputs);
     }
 
-    void InsMuzzleEffet()
-    {
-        GameObject muzzleFlash = Instantiate(muzzleEffect, muzzlePos.transform.position, Quaternion.identity);
-        Destroy(muzzleFlash, 0.1f);
-
-    }
-
     void FireGun()
     {
         if (_weaponScript.nowReroading || _weaponScript.nowBullet <= 0 || _weaponScript.weaponType == WeaponScript.WEAPON_TYPE.RIFLE) return;
         if(_fireTimer < _weaponScript.roundsPerMinute) return;
 
         _characterController.upperPlayerState = UpperPlayerState.SHOOTINGATTACK;
-        InsMuzzleEffet();
         _fireTimer = 0;
         _weaponScript.nowBullet--;
+
+        _weaponScript.InsMuzzleEffet();
 
         // 에임 내 랜덤 방향 적용 (스프레드)
         Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);

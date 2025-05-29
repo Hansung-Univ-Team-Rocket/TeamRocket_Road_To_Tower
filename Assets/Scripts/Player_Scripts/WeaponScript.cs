@@ -32,9 +32,33 @@ public class WeaponScript : MonoBehaviour
     // 지금 와서 생각하니 화면 반동이 있는데 굳이 탄튐도 들어갈 필요가 있나? 하는 생각이 있어 주석처리
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public GameObject muzzleEffect;
+    public Transform muzzlePos;
+
+    public void InsMuzzleEffet()
+    {
+        GameObject muzzleFlash = Instantiate(muzzleEffect, muzzlePos.transform.position, Quaternion.identity);
+        Destroy(muzzleFlash, 0.1f);
+
+    }
+
+    Transform FindChildWithTag(Transform parent, string tag)
+    {
+        foreach (Transform child in parent.GetComponentsInChildren<Transform>())
+        {
+            if (child.CompareTag(tag))
+            {
+                return child;
+            }
+        }
+        return null; // 없을 경우
+    }
+
     void Start()
     {
         weaponType = WEAPON_TYPE.PISTOL;
+        muzzlePos = FindChildWithTag(this.gameObject.transform, "MuzzlePos");
     }
 
     // Update is called once per frame
