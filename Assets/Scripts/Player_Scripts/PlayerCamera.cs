@@ -75,7 +75,7 @@ public class PlayerCamera : MonoBehaviour
         foreach(var hit in hits)
         {
             //만약 충돌 콜라이더가 벽이 아니라 적? continue로 빠져나오기
-            if (hit.collider.tag == "Enemy") continue;
+            if (hit.collider.tag == "Enemy" || hit.collider.tag == "Bullet") continue;
 
             if(hit.transform != playerTr.transform && hit.transform != transform)
             {

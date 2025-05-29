@@ -192,7 +192,7 @@ public class Enemy_FSM : MonoBehaviour
         NBullet sb = bullet.GetComponent<NBullet>();
         if (sb != null)
         {
-            sb.target = _player;
+            sb.target = GameObject.FindGameObjectWithTag("CameraPos").transform;
         }
         GameObject attackVFX = Instantiate(attackEffect, shotRocation.position, shotRocation.rotation);
         Destroy(attackVFX, 1.8f);
