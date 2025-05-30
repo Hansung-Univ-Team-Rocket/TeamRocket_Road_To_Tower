@@ -5,17 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
-    public GameObject gameOverPanel;
+    //public GameObject gameOverPanel;
 
     //public TextMeshProUGUI stageText;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI killText;
-    public TextMeshProUGUI causeText;
+    //public TextMeshProUGUI killText;
+    //public TextMeshProUGUI causeText;
 
-    public void ShowGameOver( float playTime, int score, int kills, string cause)
+    public void ShowGameOver( float playTime, int score)
     {
-        gameOverPanel.SetActive(true);
+        //gameOverPanel.SetActive(true);
 
         //stageText.text = $"Clear stage: {stage}";// �������� 
 
@@ -24,14 +24,16 @@ public class GameOverManager : MonoBehaviour
         timeText.text = $"Play Time: {minutes:00}:{seconds:00}";// �÷����� �ð�
 
         scoreText.text = $"Score: {score}";// ȹ���� ���ھ�
-        killText.text = $"Kill Monster: {kills}";// ���� ���� ��
-        causeText.text = $"Die cause: {cause}"; // ���� ����
+        //killText.text = $"Kill Monster: {kills}";// ���� ���� ��
+        //causeText.text = $"Die cause: {cause}"; // ���� ����
     }
 
     public void OnRetryButtonClick()
     {
+        Debug.LogError("In???????????");
         Time.timeScale = 1f; // ���� ����
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // ���� �� �ٽ� �ε�
+        PlayerStatusInfo.playerHP = PlayerStatusInfo.maxPlayerHP;
+        SceneManager.LoadScene("MainMenu"); // ���� �� �ٽ� �ε�
     }
 }
 

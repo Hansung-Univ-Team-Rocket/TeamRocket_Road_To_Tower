@@ -111,7 +111,6 @@ public class PlayerMovementController : MonoBehaviour, ICharacterController
     {
         // 애니메이션 재생 코드라인 추가 필요
         if (upperPlayerState == UpperPlayerState.DEAD || lowerPlayerState == LowerPlayerState.DEAD) return;
-
         upperPlayerState = UpperPlayerState.DEAD;
         lowerPlayerState = LowerPlayerState.DEAD;
     }

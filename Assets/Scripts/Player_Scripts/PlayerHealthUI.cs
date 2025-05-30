@@ -28,6 +28,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     void Start()
     {
+        gameOverManager.gameObject.SetActive(false);
         // 하트 UI 생성
         CreateHearts();
         UpdateHearts();
@@ -59,6 +60,7 @@ public class PlayerHealthUI : MonoBehaviour
         // 사망 체크
         if (PlayerStatusInfo.playerHP <= 0 && !isDead)
         {
+            gameOverManager.gameObject.SetActive(true);
             Die();
         }
     }
@@ -92,7 +94,7 @@ public class PlayerHealthUI : MonoBehaviour
         AddScore(100); // 킬당 100점
     }
 
-    private void Die()
+    public void Die()
     {
         isDead = true;
 
@@ -100,12 +102,11 @@ public class PlayerHealthUI : MonoBehaviour
         {
             gameOverManager.ShowGameOver(
                 timer,
-                score,
-                totalKills,
-                causeOfDeath
+                score
             );
         }
 
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
     }
 
